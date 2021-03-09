@@ -8,6 +8,7 @@ public abstract class AbstractArgument
     public string ID;
     public string NAME;
     public string DESC;
+    public FactionType OWNER;
     public ArgumentOrigin ORIGIN;
 
     public int maxHP;      // Maximum resolve

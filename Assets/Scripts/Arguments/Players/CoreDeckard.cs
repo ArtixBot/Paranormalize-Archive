@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CoreDeckard : AbstractArgument
+{
+    public CoreDeckard(){
+        this.ID = "CORE_DECKARD";
+        this.NAME = "Collected";
+        this.DESC = "At the start of Deckard's turn, this argument gains 1 Poise.";
+        this.OWNER = FactionType.PLAYER;
+        this.ORIGIN = ArgumentOrigin.DEPLOYED;
+
+        this.curHP = 30;
+        this.maxHP = 30;
+        this.stacks = 1;
+    }
+}
