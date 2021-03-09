@@ -11,9 +11,9 @@ public abstract class AbstractCard {
 
     // Gameplay
     public string ID;               // Card ID
-    public int COST;                // Card cost
     public CardType TYPE;           // Card type
     public CardRarity RARITY;       // Card rarity
+    public int COST;                // Card cost
 
     // Cosmetic
     public string NAME;             // Card name
@@ -31,7 +31,7 @@ public abstract class AbstractCard {
         this.TYPE = type;
     }
 
-    public virtual void Play(){}
+    public virtual void Play(AbstractCharacter source, AbstractCharacter target){}
 
     public virtual void Upgrade(){
         this.isUpgraded = true;

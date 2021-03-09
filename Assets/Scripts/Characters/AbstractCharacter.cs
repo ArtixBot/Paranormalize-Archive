@@ -10,16 +10,17 @@ public abstract class AbstractCharacter
     public string NAME;     // Character name
     public FactionType FACTION;
     
-    public int drawModifier = 5;        // Default: At end of turn, draw 5 + <drawModifier>.
-    
     // HP is based on your core argument.
     public AbstractArgument coreArgument;
     public List<AbstractArgument> nonCoreArguments;
+    
+    // At end of turn, draw 5 + <drawMod>
+    public int drawMod = 0;
 
     // Action points
-    public int maxAP, curAP;
+    public int maxAP = 3, curAP = 3;
 
-    public Deck battleDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
+    public Deck permaDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
 
     public List<AbstractCard> hand = new List<AbstractCard>();
     protected Deck drawPile = new Deck();
@@ -51,6 +52,10 @@ public abstract class AbstractCharacter
             i--;        // Repeat process <numOfCards> times.
         }
         return;
+    }
+
+    public AbstractArgument GetCoreArgument(){
+        return this.coreArgument;
     }
 
     public List<AbstractCard> GetHand(){
