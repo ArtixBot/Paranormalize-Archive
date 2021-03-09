@@ -10,8 +10,9 @@ public abstract class AbstractArgument
     public string DESC;
     public ArgumentOrigin ORIGIN;
 
-    public int maxResolve;
-    public int curResolve;
+    public int maxHP;      // Maximum resolve
+    public int curHP;      // Current resolve
+    public int defense;         // Poise value
     public int stacks;
 
     public bool IsDeployed(){
