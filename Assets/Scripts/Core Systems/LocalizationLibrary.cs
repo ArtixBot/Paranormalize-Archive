@@ -10,11 +10,10 @@ using UnityEngine;
 public class LocalizationLibrary
 {
     public static readonly LocalizationLibrary Instance = new LocalizationLibrary();
-    public string language = Application.systemLanguage.ToString();
     private JObject json = null;
 
     private LocalizationLibrary(){
-        string altPath = "Localization/" + this.language + "/cards.json";
+        string altPath = "Localization/" + Application.systemLanguage.ToString() + "/cards";
         TextAsset targetFile = Resources.Load<TextAsset>(altPath);
         json = JObject.Parse(targetFile.ToString());
     }

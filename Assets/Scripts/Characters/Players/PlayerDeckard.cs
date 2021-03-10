@@ -13,10 +13,6 @@ public class PlayerDeckard : AbstractCharacter
 
     public override void AddStarterDeck(){
         //TODO: change from drawPile to permaDeck and implement deep-copy method
-        // this.drawPile.AddCard("TINKER_ANCHOR_SLAM");
-        // this.drawPile.AddCard("TINKER_WEIGHTED_HAMMER");
-        // this.drawPile.AddCard("TINKER_FLASH_OF_BRILLIANCE");
-        // this.drawPile.AddCard("TINKER_DEFECTIVE_IMPROVEMENTS");
-        // this.drawPile.AddCard("TINKER_BLOCK");
+        this.drawPile.AddCard("DECKARD_DIPLOMACY");
     }
 }

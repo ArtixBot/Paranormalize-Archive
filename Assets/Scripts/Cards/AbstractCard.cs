@@ -23,9 +23,10 @@ public abstract class AbstractCard {
     
     public bool isUpgraded = false;
 
-    public AbstractCard(string id, string cardName, int cost, CardRarity rarity, CardType type){
+    public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardRarity rarity, CardType type){
         this.ID = id;
-        this.NAME = cardName;
+        this.NAME = cardStrings["NAME"];
+        this.DESC = cardStrings["DESC"];
         this.COST = cost;
         this.RARITY = rarity;
         this.TYPE = type;
