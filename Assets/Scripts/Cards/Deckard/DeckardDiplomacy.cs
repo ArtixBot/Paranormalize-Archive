@@ -5,9 +5,10 @@ using UnityEngine;
 public class DeckardDiplomacy : AbstractCard {
 
     public static string cardID = "DECKARD_DIPLOMACY";
-    private static string cardName = "Diplomacy";
-    private static string cardDesc = "Deal 1-3 damage.";
-    private static int cardCost = 3;
+    private static Dictionary<string, string> strings = LocalizationLibrary.Instance.GetCardStrings(cardID);
+    private static string cardName = strings["NAME"];
+    private static string cardDesc = strings["DESC"];
+    private static int cardCost = 1;
 
     public DeckardDiplomacy() : base(
         cardID,
