@@ -7,7 +7,7 @@ public class PlayerAi : AbstractCharacter
     public PlayerAi(){
         this.NAME = "Ai";
         this.FACTION = FactionType.PLAYER;
-        this.coreArgument = new CoreAi();
+        this.coreArgument = new ArgumentCoreAi();
         this.maxAP = 3;
     }
 

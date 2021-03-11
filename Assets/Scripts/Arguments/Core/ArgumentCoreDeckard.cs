@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreAi : AbstractArgument
+public class ArgumentCoreDeckard : AbstractArgument
 {
-    public CoreAi(){
-        this.ID = "CORE_AI";
-        this.NAME = "Combative";
-        this.DESC = "Whenever one of Ai's arguments is destroyed, deal 1 damage to a random enemy argument.";
+    public ArgumentCoreDeckard(){
+        this.ID = "CORE_DECKARD";
+        this.NAME = "Collected";
+        this.DESC = "At the start of Deckard's turn, this argument gains 1 Poise.";
         this.OWNER = FactionType.PLAYER;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
 

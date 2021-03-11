@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreNoAbility : AbstractArgument
+public class ArgumentCoreNoAbility : AbstractArgument
 {
-    public CoreNoAbility(){
+    public ArgumentCoreNoAbility(){
         this.ID = "CORE_NO_ABILITY";
         this.NAME = "";
         this.DESC = "This core argument has no special abilities.";

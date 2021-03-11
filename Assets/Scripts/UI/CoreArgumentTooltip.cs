@@ -11,20 +11,20 @@ public class CoreArgumentTooltip : MonoBehaviour
 
     public AbstractArgument argumentRef;
     public Image bg;
-    private TextMeshProUGUI argumentName;
-    private TextMeshProUGUI argumentDesc;
+    public GameObject argumentName;
+    public GameObject argumentDesc;
 
     void OnEnable(){
-        argumentRef = new CoreDeckard();
+        argumentRef = new ArgumentCoreAi();
         bg = transform.Find("BG").gameObject.GetComponent<Image>();
-        argumentName = transform.Find("Core Argument Name").gameObject.GetComponent<TextMeshProUGUI>();
-        argumentDesc = transform.Find("Core Argument Description").gameObject.GetComponent<TextMeshProUGUI>();
+        argumentName = transform.Find("Core Argument Name").gameObject;
+        argumentDesc = transform.Find("BG/Core Argument Description").gameObject;
 
         if (argumentRef != null){
-            argumentName.text = argumentRef.NAME;
-            argumentDesc.text = argumentRef.DESC;
+            argumentName.GetComponent<TextMeshProUGUI>().text = argumentRef.NAME;
+            argumentDesc.GetComponent<TextMeshProUGUI>().text = argumentRef.DESC;
         } else {
-            argumentName.text = "MISSING ARGUMENT REF";
+            argumentName.GetComponent<TextMeshProUGUI>().text = "MISSING ARGUMENT REF";
         }
     }
 }
