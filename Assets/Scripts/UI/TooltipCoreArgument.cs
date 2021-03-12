@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class CoreArgumentTooltip : MonoBehaviour
+public class TooltipCoreArgument : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     public AbstractArgument argumentRef;
@@ -15,7 +14,6 @@ public class CoreArgumentTooltip : MonoBehaviour
     public GameObject argumentDesc;
 
     void OnEnable(){
-        argumentRef = new ArgumentCoreAi();
         bg = transform.Find("BG").gameObject.GetComponent<Image>();
         argumentName = transform.Find("Core Argument Name").gameObject;
         argumentDesc = transform.Find("BG/Core Argument Description").gameObject;
@@ -27,4 +25,8 @@ public class CoreArgumentTooltip : MonoBehaviour
             argumentName.GetComponent<TextMeshProUGUI>().text = "MISSING ARGUMENT REF";
         }
     }
+
+    public void OnPointerEnter(PointerEventData eventData){}
+
+    public void OnPointerExit(PointerEventData eventData){}
 }

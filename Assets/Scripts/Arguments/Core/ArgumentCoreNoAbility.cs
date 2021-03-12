@@ -14,5 +14,6 @@ public class ArgumentCoreNoAbility : AbstractArgument
         this.curHP = 30;
         this.maxHP = 30;
         this.stacks = 1;
+        this.isCore = true;
     }
 }
