@@ -6,8 +6,9 @@ public class ArgumentCoreNoAbility : AbstractArgument
 {
     public ArgumentCoreNoAbility(){
         this.ID = "CORE_NO_ABILITY";
-        this.NAME = "";
-        this.DESC = "This core argument has no special abilities.";
+        Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
+        this.NAME = strings["NAME"];
+        this.DESC = strings["DESC"];
         this.OWNER = FactionType.ENEMY;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
 

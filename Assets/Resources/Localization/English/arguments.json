@@ -6,5 +6,9 @@
     "CORE_DECKARD": {
         "NAME": "Collected",
         "DESC": "At the start of Deckard's turn, this argument gains <style=\"Scalable\">[STACKS]</style> <b>Poise</b>."
+    },
+    "CORE_NO_ABILITY": {
+        "NAME": "N/A",
+        "DESC": "This argument has no special effects."
     }
 }
