@@ -13,10 +13,10 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public GameObject tooltipInstance;
 
     public void Start(){
-        reference = new ArgumentCoreDeckard();
+        reference = new ArgumentCoreAi();       // TODO: Remove
         
         // Choose the tooltip to load when this argument is hovered (core argument/non-core argument tooltip)
-        tooltipPrefab = (reference.isCore) ? Resources.Load("Prefabs/CoreArgumentTooltip") as GameObject : Resources.Load("Prefabs/CoreArgumentTooltip") as GameObject;
+        tooltipPrefab = (reference.isCore) ? Resources.Load("Prefabs/ArgumentTooltip") as GameObject : Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
 
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
         stackCounter.text = "x" + reference.stacks;         // TODO: Update this when a card is played rather than just on start.
@@ -26,7 +26,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (tooltipInstance == null){
             tooltipInstance = (GameObject) Instantiate(tooltipPrefab, transform.position + new Vector3(400, 0, 0), Quaternion.identity);
             tooltipInstance.SetActive(false);       // Workaround for now; force an OnEnable() call AFTER we load in data for the tooltip.
-            tooltipInstance.GetComponent<TooltipCoreArgument>().argumentRef = reference;
+            tooltipInstance.GetComponent<TooltipArgument>().argumentRef = reference;
             tooltipInstance.transform.SetParent(gameObject.transform);
             tooltipInstance.SetActive(true);        // Forces an OnEnable() call so that the tooltip has the information (instead of nullref to AbstractArgument)
         }
