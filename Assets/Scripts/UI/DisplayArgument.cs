@@ -26,7 +26,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (tooltipInstance == null){
             tooltipInstance = (GameObject) Instantiate(tooltipPrefab, transform.position + new Vector3(400, 0, 0), Quaternion.identity);
             tooltipInstance.SetActive(false);       // Workaround for now; force an OnEnable() call AFTER we load in data for the tooltip.
-            tooltipInstance.GetComponent<TooltipArgument>().argumentRef = reference;
+            tooltipInstance.GetComponent<TooltipArgument>().argRef = reference;
             tooltipInstance.transform.SetParent(gameObject.transform);
             tooltipInstance.SetActive(true);        // Forces an OnEnable() call so that the tooltip has the information (instead of nullref to AbstractArgument)
         }

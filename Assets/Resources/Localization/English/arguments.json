@@ -1,0 +1,10 @@
+{
+    "CORE_AI": {
+        "NAME": "Combative",
+        "DESC": "Whenever one of Ai's arguments is destroyed, deal <style=\"Scalable\">[STACKS]</style> damage to a random enemy argument."
+    },
+    "CORE_DECKARD": {
+        "NAME": "Collected",
+        "DESC": "At the start of Deckard's turn, this argument gains <style=\"Scalable\">[STACKS]</style> <b>Poise</b>."
+    }
+}

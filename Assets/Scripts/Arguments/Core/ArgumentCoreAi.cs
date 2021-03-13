@@ -6,8 +6,9 @@ public class ArgumentCoreAi : AbstractArgument
 {
     public ArgumentCoreAi(){
         this.ID = "CORE_AI";
-        this.NAME = "Combative";
-        this.DESC = "Whenever one of Ai's arguments is destroyed, deal <style=\"Scalable\">1</style> damage to a random enemy argument.";
+        Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
+        this.NAME = strings["NAME"];
+        this.DESC = strings["DESC"];
         this.OWNER = FactionType.PLAYER;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
 
