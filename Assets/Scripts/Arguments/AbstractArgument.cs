@@ -5,9 +5,14 @@ using UnityEngine;
 public enum ArgumentOrigin {DEPLOYED, PLANTED};
 public abstract class AbstractArgument
 {
-    public string ID;
+
+    // Cosmetic
     public string NAME;
     public string DESC;
+    public Sprite IMG;
+
+    // Gameplay
+    public string ID;
     public FactionType OWNER;
     public ArgumentOrigin ORIGIN;
 

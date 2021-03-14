@@ -16,13 +16,15 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         // Choose the tooltip to load when this argument is hovered (core argument/non-core argument tooltip)
         tooltipPrefab = (reference.isCore) ? Resources.Load("Prefabs/ArgumentTooltip") as GameObject : Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
 
+        transform.Find("Image").GetComponent<Image>().sprite = reference.IMG;
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
         stackCounter.text = "x" + reference.stacks;         // TODO: Update this when a card is played rather than just on start.
     }
     
     public void OnPointerEnter(PointerEventData eventData){
         if (tooltipInstance == null){
-            tooltipInstance = (GameObject) Instantiate(tooltipPrefab, transform.position + new Vector3(400, 0, 0), Quaternion.identity);
+            int x = (reference.OWNER == FactionType.PLAYER) ? 300 : -300;
+            tooltipInstance = (GameObject) Instantiate(tooltipPrefab, transform.position + new Vector3(x, 0, 0), Quaternion.identity);
             tooltipInstance.SetActive(false);       // Workaround for now; force an OnEnable() call AFTER we load in data for the tooltip.
             tooltipInstance.GetComponent<TooltipArgument>().argRef = reference;
             tooltipInstance.transform.SetParent(GameObject.Find("Canvas").transform);

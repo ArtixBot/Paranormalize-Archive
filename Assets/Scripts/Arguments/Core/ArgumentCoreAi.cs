@@ -11,6 +11,7 @@ public class ArgumentCoreAi : AbstractArgument
         this.DESC = strings["DESC"];
         this.OWNER = FactionType.PLAYER;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/combative");
 
         this.curHP = 26;
         this.maxHP = 26;

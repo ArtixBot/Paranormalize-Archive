@@ -10,7 +10,7 @@ public class TurnManager
 
     private TurnManager(){
         // TODO: Remove this (currently for testing purposes ONLY)
-        this.AddToTurnList(new PlayerDeckard());
+        this.AddToTurnList(new PlayerAi());
         this.AddToTurnList(new TestEnemy());
     }
 

@@ -12,6 +12,7 @@ public class ArgumentCoreDeckard : AbstractArgument
         this.DESC = strings["DESC"];
         this.OWNER = FactionType.PLAYER;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/composed");
 
         this.curHP = 30;
         this.maxHP = 30;

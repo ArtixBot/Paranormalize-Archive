@@ -27,16 +27,14 @@ public class RenderNegotiation : MonoBehaviour
 
         // Render core arguments
         GameObject corePlayer = Instantiate(coreArgPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
-        corePlayer.SetActive(false);
         corePlayer.GetComponent<DisplayArgument>().reference = player.GetCoreArgument();
         corePlayer.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
         corePlayer.SetActive(true);
 
         GameObject coreEnemy = Instantiate(coreArgPrefab, GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform.position, Quaternion.identity);
-        coreEnemy.SetActive(false);
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
-        coreEnemy.SetActive(true);
+        coreEnemy.SetActive(true);      // Don't need a SetActive(false) since the prefab is disabled by default when instantiated
     }
 
     // void Render(){
