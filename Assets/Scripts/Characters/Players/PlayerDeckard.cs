@@ -8,6 +8,7 @@ public class PlayerDeckard : AbstractCharacter
         this.NAME = "Deckard";
         this.FACTION = FactionType.PLAYER;
         this.coreArgument = new ArgumentCoreDeckard();
+        this.coreArgument.OWNER = this;
         this.maxAP = 3;
     }
 

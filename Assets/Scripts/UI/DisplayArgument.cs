@@ -23,7 +23,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
     
     public void OnPointerEnter(PointerEventData eventData){
         if (tooltipInstance == null){
-            int x = (reference.OWNER == FactionType.PLAYER) ? 300 : -300;
+            int x = (reference.OWNER.FACTION == FactionType.PLAYER) ? 300 : -300;
             tooltipInstance = (GameObject) Instantiate(tooltipPrefab, transform.position + new Vector3(x, 0, 0), Quaternion.identity);
             tooltipInstance.SetActive(false);       // Workaround for now; force an OnEnable() call AFTER we load in data for the tooltip.
             tooltipInstance.GetComponent<TooltipArgument>().argRef = reference;

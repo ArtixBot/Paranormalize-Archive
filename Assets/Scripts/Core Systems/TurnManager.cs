@@ -33,6 +33,24 @@ public class TurnManager
         return this.turnList;
     }
 
+    public AbstractCharacter GetPlayer(){
+        for (int i = 0; i < turnList.Count; i++){
+            if (turnList[i].FACTION == FactionType.PLAYER){
+                return turnList[i];
+            }
+        }
+        return null;
+    }
+
+    public AbstractCharacter GetEnemy(){
+        for (int i = 0; i < turnList.Count; i++){
+            if (turnList[i].FACTION == FactionType.ENEMY){
+                return turnList[i];
+            }
+        }
+        return null;
+    }
+
     public void DebugTurnList(){
         foreach(var character in this.turnList){
             Debug.Log(character.NAME);

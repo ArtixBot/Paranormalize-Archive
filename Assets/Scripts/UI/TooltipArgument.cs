@@ -28,7 +28,7 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (argRef != null){
             argumentType.GetComponent<TextMeshProUGUI>().text = (argRef.isCore) ? "Core Argument" : "Argument";
             argumentName.GetComponent<TextMeshProUGUI>().text = argRef.NAME;
-            argumentDesc.GetComponent<TextMeshProUGUI>().text = FillParams(argRef.DESC);
+            argumentDesc.GetComponent<TextMeshProUGUI>().text = ParseTooltip(argRef.DESC);
             argumentStacks.GetComponent<TextMeshProUGUI>().text = "x" + argRef.stacks;
             argumentResolve.GetComponent<TextMeshProUGUI>().text = "RESOLVE " + argRef.curHP + "/" + argRef.maxHP;
         } else {
@@ -36,7 +36,7 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    public string FillParams(string s){
+    public string ParseTooltip(string s){
         MatchCollection matches = new Regex(@"\[[^\]]*\]").Matches(s);
         for (int i = 0; i < matches.Count; i++){
             Match match = matches[i];
@@ -50,7 +50,11 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 } else {                        // Handle [STACKS]
                     s = s.Replace(match.Value, (argRef.stacks).ToString());
                 }
-            }
+            } else if (match.Value.Contains("ENEMY")){
+                s = s.Replace(match.Value, TurnManager.Instance.GetEnemy().NAME);
+            } else if (match.Value.Contains("OWNER")){
+                s = s.Replace(match.Value, argRef.OWNER.NAME);
+            } 
         }
         return s;
     }

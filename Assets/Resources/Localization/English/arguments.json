@@ -1,14 +1,18 @@
 {
     "CORE_AI": {
         "NAME": "Combative",
-        "DESC": "Whenever one of Ai's arguments is destroyed, deal <style=\"Scalable\">[STACKS]</style> damage to a random enemy argument."
+        "DESC": "Whenever one of [OWNER]'s arguments is destroyed, deal <style=\"Scalable\">[STACKS]</style> damage to a random enemy argument."
     },
     "CORE_DECKARD": {
         "NAME": "Collected",
-        "DESC": "At the start of Deckard's turn, this argument gains <style=\"Scalable\">[STACKS]</style> <b>Poise</b>."
+        "DESC": "At the start of [OWNER]'s turn, this argument gains <style=\"Scalable\">[STACKS]</style> <b>Poise</b>."
     },
     "CORE_NO_ABILITY": {
-        "NAME": "N/A",
+        "NAME": "Boring",
         "DESC": "This argument has no special effects."
+    },
+    "TALISMAN_RESOLVE": {
+        "NAME": "Talisman of Renewal",
+        "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by <style=\"Scalable\">[STACKS]</style>.\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
     }
 }

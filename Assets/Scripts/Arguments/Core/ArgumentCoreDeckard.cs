@@ -10,7 +10,6 @@ public class ArgumentCoreDeckard : AbstractArgument
         Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
-        this.OWNER = FactionType.PLAYER;
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
         this.IMG = Resources.Load<Sprite>("Images/Arguments/composed");
 

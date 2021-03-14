@@ -13,7 +13,7 @@ public abstract class AbstractArgument
 
     // Gameplay
     public string ID;
-    public FactionType OWNER;
+    public AbstractCharacter OWNER;
     public ArgumentOrigin ORIGIN;
 
     public int maxHP;       // Maximum resolve
@@ -29,7 +29,7 @@ public abstract class AbstractArgument
     public virtual void TriggerOnAmbienceShift(){}
     public virtual void TriggerOnDestroy(){
         if (this.isCore){
-            if (this.OWNER == FactionType.PLAYER){
+            if (this.OWNER.FACTION == FactionType.PLAYER){
                 // lose the game!
                 return;
             } else {
