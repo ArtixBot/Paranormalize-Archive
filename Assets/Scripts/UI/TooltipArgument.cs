@@ -36,6 +36,8 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    // Takes in a string and replaces certain keywords enclosed within [] with values.
+    // Specifically, parses [STACKS], [STACKS*1], [STACKS/1] (any number can be used), [ENEMY], [OWNER].
     public string ParseTooltip(string s){
         MatchCollection matches = new Regex(@"\[[^\]]*\]").Matches(s);
         for (int i = 0; i < matches.Count; i++){
@@ -44,15 +46,15 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (match.Value.Contains("STACKS")){
                 Regex re = new Regex(@"\d+");
                 Match stackMultiplier = re.Match(match.Value);
-                if (stackMultiplier.Success){   // Handle [STACKS*X] and [STACKS/X]
+                if (stackMultiplier.Success){   // Handle [STACKS*X] and [STACKS/X]. [STACKS*3], for example, will convert 1 stack to a value of 3.
                     int mult = int.Parse(stackMultiplier.Value);
                     s = match.Value.Contains("*") ? s.Replace(match.Value, (argRef.stacks * mult).ToString()) : s.Replace(match.Value, (argRef.stacks / mult).ToString()) ;
-                } else {                        // Handle [STACKS]
+                } else {                        // Handle [STACKS] at a 1-to-1 ratio, so 4 stacks of an argument = a value of 4
                     s = s.Replace(match.Value, (argRef.stacks).ToString());
                 }
-            } else if (match.Value.Contains("ENEMY")){
+            } else if (match.Value.Contains("ENEMY")){  // Replace [ENEMY] with the name of the NON-OWNER for this argument.
                 s = s.Replace(match.Value, TurnManager.Instance.GetEnemy().NAME);
-            } else if (match.Value.Contains("OWNER")){
+            } else if (match.Value.Contains("OWNER")){  // Replace [OWNER] with the name of the OWNER for this argument.
                 s = s.Replace(match.Value, argRef.OWNER.NAME);
             } 
         }

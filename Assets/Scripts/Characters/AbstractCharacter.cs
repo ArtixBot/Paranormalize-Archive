@@ -54,6 +54,16 @@ public abstract class AbstractCharacter
         return;
     }
 
+    // Finds and returns the first argument instance IF it exists.
+    public AbstractArgument GetArgument(AbstractArgument argument){
+        foreach (AbstractArgument aa in this.nonCoreArguments){
+            if (argument.ID == aa.ID){
+                return aa;
+            }
+        }
+        return null;
+    }
+
     public AbstractArgument GetCoreArgument(){
         return this.coreArgument;
     }
