@@ -10,14 +10,15 @@ public class PlayerAi : AbstractCharacter
         this.coreArgument = new ArgumentCoreAi();
         this.coreArgument.OWNER = this;
         this.maxAP = 3;
+        
+        this.AddStarterDeck();
     }
 
     public override void AddStarterDeck(){
-        //TODO: change from drawPile to battleDeck and implement deep-copy method
-        // this.drawPile.AddCard("TINKER_ANCHOR_SLAM");
-        // this.drawPile.AddCard("TINKER_WEIGHTED_HAMMER");
-        // this.drawPile.AddCard("TINKER_FLASH_OF_BRILLIANCE");
-        // this.drawPile.AddCard("TINKER_DEFECTIVE_IMPROVEMENTS");
-        // this.drawPile.AddCard("TINKER_BLOCK");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
     }
 }

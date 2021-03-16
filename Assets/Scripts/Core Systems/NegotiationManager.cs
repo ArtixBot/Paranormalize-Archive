@@ -17,32 +17,44 @@ public class NegotiationManager
     public int round = 1;
     public int cardsPlayedThisTurn = 0;
 
+    // Cleans up anything remaining from the previous negotiation.
+    // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
     public void StartNegotiation(){
-        // Place the player in the queue.
-        // Add each enemy into the queue.
-        // For everyone in queue: deep-copy contents of battledeck into the drawpile, then draw (5 + drawModifier).
-        // Add intrinsic conditions to everyone.
+        this.round = 1;
+        this.cardsPlayedThisTurn = 0;
+
         ambience.state = AmbienceState.TENSE;
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
+
+        player.curAP = player.maxAP;
+        enemy.curAP = enemy.maxAP;
+        
+        Debug.Log("NegotiationManager.cs: Performing deep copy of deck contents for enemy and player.");
+        DeepCopyDeck(player);
+        DeepCopyDeck(enemy);
         
         player.Draw(5);
         enemy.Draw(5);
+        Debug.Log("Negotiation begins!");
     }
+
 
     public void NextTurn(){
         this.cardsPlayedThisTurn = 0;
         TurnManager.Instance.NextCharacter();
     }
 
+    // Game over!
     public void EndNegotiationLost(){
-        // Game over!
+        Cleanup(player);
+        Cleanup(enemy);
     }
 
+    // Victory!
     public void EndNegotiationWon(){
-        // Reset variables to their original state
-        this.round = 1;
-        this.cardsPlayedThisTurn = 0;
+        Cleanup(player);
+        Cleanup(enemy);
     }
 
     public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractCharacter target){
@@ -55,5 +67,29 @@ public class NegotiationManager
             Debug.LogWarning("Failed to play card, reason: " + ex.Message);
             return false;
         }
+    }
+
+    // (Hopefully) deep copy deck contents from permadeck to drawpile, then shuffle it.
+    public void DeepCopyDeck(AbstractCharacter character){
+        foreach(AbstractCard card in character.permaDeck.ToList()){
+            Type cardType = card.GetType();
+            object copiedCard = Activator.CreateInstance(cardType);
+
+            // This _should_ be acceptable enough for what I'm doing.
+            // https://stackoverflow.com/questions/12263099/function-to-clone-an-arbitrary-object
+            foreach(var property in cardType.GetProperties()){
+                object originalCardValue = property.GetValue(card);
+                property.SetValue(copiedCard, originalCardValue);
+            }
+            character.GetDrawPile().AddCard(copiedCard as AbstractCard);
+        }
+        character.GetDrawPile().Shuffle();
+    }
+
+    // post-negotiation cleanup helper function
+    public void Cleanup(AbstractCharacter character){
+        character.GetDrawPile().Clear();
+        character.hand.Clear();
+        character.GetDiscardPile().Clear();
     }
 }

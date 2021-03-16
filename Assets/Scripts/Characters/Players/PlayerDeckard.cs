@@ -10,6 +10,8 @@ public class PlayerDeckard : AbstractCharacter
         this.coreArgument = new ArgumentCoreDeckard();
         this.coreArgument.OWNER = this;
         this.maxAP = 3;
+
+        this.AddStarterDeck();
     }
 
     public override void AddStarterDeck(){

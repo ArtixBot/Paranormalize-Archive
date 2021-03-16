@@ -66,6 +66,11 @@ public class Deck
         return this.deck;
     }
 
+    // Remove all contents from the deck. Called when negotiation ends.
+    public void Clear(){
+        this.deck.Clear();
+    }
+
     // Returns the top <X> cards of the deck. If <X> exceeds decksize, only <decksize> cards are returned.
     public List<AbstractCard> GetTopXCards(int count){
         return this.deck.Take(count).ToList();  // If we try to get top 20 cards or whatever, but current deck size is 4, then just 4 elements will be returned. If nothing in the deck remains, the list returned is empty.

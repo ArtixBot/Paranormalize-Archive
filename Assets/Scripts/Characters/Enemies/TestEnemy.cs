@@ -10,6 +10,8 @@ public class TestEnemy : AbstractCharacter
         this.coreArgument = new ArgumentCoreNoAbility();
         this.coreArgument.OWNER = this;
         this.maxAP = 3;
+
+        this.AddStarterDeck();
     }
 
     public override void AddStarterDeck(){
