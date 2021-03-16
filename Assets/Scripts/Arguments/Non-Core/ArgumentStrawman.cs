@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArgumentTalismanResolve : AbstractArgument
+public class ArgumentStrawman : AbstractArgument
 {
-    public ArgumentTalismanResolve(){
-        this.ID = "TALISMAN_RESOLVE";
+    public ArgumentStrawman(){
+        this.ID = "STRAWMAN";
         Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
-        this.IMG = Resources.Load<Sprite>("Images/Arguments/talisman-renewal");
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/boring");
 
-        this.curHP = 3;
-        this.maxHP = 3;
-        this.stacks = 1;
+        this.stacks = 4;
+        this.curHP = this.stacks;
+        this.maxHP = this.stacks;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Renders the negotiation screen. Also invokes NegotiationManager's StartNegotiation() to set up game state.
 public class RenderNegotiation : MonoBehaviour
 {
     public NegotiationManager nm;
@@ -35,6 +36,9 @@ public class RenderNegotiation : MonoBehaviour
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
         coreEnemy.SetActive(true);      // Don't need a SetActive(false) since the prefab is disabled by default when instantiated
+        
+        Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
+        nm.StartNegotiation();      // Start negotiation!
     }
 
     // void Render(){

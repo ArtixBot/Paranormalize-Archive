@@ -1,4 +1,16 @@
 {
+    "AI_QUICK_TEMPER": {
+        "NAME": "Quick Temper",
+        "DESC": "Whenever [ENEMY] shuffles their deck, Deploy [D] Irked.",
+        "QUIPS": ["[NARRATOR][PLAYER] grimaces.",
+                  "Get to the point!"]
+    },
+    "AI_RIFLED_POCKETS": {
+        "NAME": "Rifled Pockets",
+        "DESC": "Unplayable. When drawn, copy [D] card(s) from [ENEMY]'s hand and add them to your hand, then Scour this.",
+        "QUIPS": ["[NARRATOR][PLAYER] filches something from [ENEMY].",
+                  "Look behind you!"]
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."

@@ -11,6 +11,9 @@ public class NegotiationManager
     public Ambience ambience = Ambience.Instance;
     public TurnManager tm = TurnManager.Instance;
 
+    public AbstractCharacter player;
+    public AbstractCharacter enemy;
+
     public int round = 1;
     public int cardsPlayedThisTurn = 0;
 
@@ -20,6 +23,11 @@ public class NegotiationManager
         // For everyone in queue: deep-copy contents of battledeck into the drawpile, then draw (5 + drawModifier).
         // Add intrinsic conditions to everyone.
         ambience.state = AmbienceState.TENSE;
+        player = tm.GetPlayer();
+        enemy = tm.GetEnemy();
+        
+        player.Draw(5);
+        enemy.Draw(5);
     }
 
     public void NextTurn(){

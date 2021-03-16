@@ -43,18 +43,26 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         for (int i = 0; i < matches.Count; i++){
             Match match = matches[i];
             
+            // Handle [STACKS], [STACKS*X] and [STACKS/X]. [STACKS*3], for example, will convert 1 stack to a value of 3.
             if (match.Value.Contains("STACKS")){
                 Regex re = new Regex(@"\d+");
+                string prefix = "<style=\"Scalable\">";
+                string suffix = "</style>";
                 Match stackMultiplier = re.Match(match.Value);
-                if (stackMultiplier.Success){   // Handle [STACKS*X] and [STACKS/X]. [STACKS*3], for example, will convert 1 stack to a value of 3.
+                if (stackMultiplier.Success){   
                     int mult = int.Parse(stackMultiplier.Value);
-                    s = match.Value.Contains("*") ? s.Replace(match.Value, (argRef.stacks * mult).ToString()) : s.Replace(match.Value, (argRef.stacks / mult).ToString()) ;
-                } else {                        // Handle [STACKS] at a 1-to-1 ratio, so 4 stacks of an argument = a value of 4
-                    s = s.Replace(match.Value, (argRef.stacks).ToString());
+                    s = match.Value.Contains("*") ? s.Replace(match.Value, prefix + (argRef.stacks * mult).ToString() + suffix) : s.Replace(match.Value, prefix + (argRef.stacks / mult).ToString() + suffix) ;
+                } else {
+                    s = s.Replace(match.Value, prefix + (argRef.stacks).ToString() + suffix);
                 }
-            } else if (match.Value.Contains("ENEMY")){  // Replace [ENEMY] with the name of the NON-OWNER for this argument.
+            }
+            // Handle [ENEMY] with the name of the NON-OWNER for this argument.
+            else if (match.Value.Contains("ENEMY")){
+                // BUG: Currently always returns ENEMY instead of NON-OWNER.
                 s = s.Replace(match.Value, TurnManager.Instance.GetEnemy().NAME);
-            } else if (match.Value.Contains("OWNER")){  // Replace [OWNER] with the name of the OWNER for this argument.
+            }
+            // Replace [OWNER] with the name of the OWNER for this argument.
+            else if (match.Value.Contains("OWNER")){
                 s = s.Replace(match.Value, argRef.OWNER.NAME);
             } 
         }
