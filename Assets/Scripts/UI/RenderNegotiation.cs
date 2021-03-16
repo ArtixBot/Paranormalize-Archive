@@ -11,9 +11,12 @@ public class RenderNegotiation : MonoBehaviour
     public AbstractCharacter enemy;
 
     public GameObject coreArgPrefab;
-    // Start is called before the first frame update
+    public GameObject handZone;
+
+    // Called whenever we load into the Negotiation scene.
     void Start()
     {
+        handZone = GameObject.Find("Canvas/HandZone");
         // Set variables
         nm = NegotiationManager.Instance;
         List<AbstractCharacter> characters = nm.tm.GetTurnList();       // This should only be size 2 at any given point.
@@ -30,12 +33,12 @@ public class RenderNegotiation : MonoBehaviour
         GameObject corePlayer = Instantiate(coreArgPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
         corePlayer.GetComponent<DisplayArgument>().reference = player.GetCoreArgument();
         corePlayer.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
-        corePlayer.SetActive(true);
+        corePlayer.SetActive(true);     // Invoke the core argument's OnEnable() function since the prefab is disabled by default
 
         GameObject coreEnemy = Instantiate(coreArgPrefab, GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform.position, Quaternion.identity);
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
-        coreEnemy.SetActive(true);      // Don't need a SetActive(false) since the prefab is disabled by default when instantiated
+        coreEnemy.SetActive(true);
         
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
         nm.StartNegotiation();      // Start negotiation!

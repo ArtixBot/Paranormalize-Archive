@@ -41,6 +41,7 @@ public class NegotiationManager
 
 
     public void NextTurn(){
+        Debug.Log("NegotiationManager.cs: Ending turn for " + TurnManager.Instance.GetCurrentCharacter().NAME + ".");
         this.cardsPlayedThisTurn = 0;
         TurnManager.Instance.NextCharacter();
     }
