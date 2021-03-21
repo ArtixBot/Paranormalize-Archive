@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckardDiplomacy : AbstractCard {
-
-    public static string cardID = "DECKARD_DIPLOMACY";
+public class AiBoorish : AbstractCard
+{
+    public static string cardID = "AI_BOORISH";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public DeckardDiplomacy() : base(
+    public AiBoorish() : base(
         cardID,
         cardStrings,
         cardCost,
-        CardAmbient.DIALOGUE,
+        CardAmbient.AGGRESSION,
         CardRarity.STARTER,
         CardType.ATTACK
     ){}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Renders the negotiation screen. Also invokes NegotiationManager's StartNegotiation() to set up game state.
+// Maybe have it also handle user input???
 public class RenderNegotiation : MonoBehaviour
 {
     public NegotiationManager nm;
@@ -10,24 +11,23 @@ public class RenderNegotiation : MonoBehaviour
     public AbstractCharacter player;
     public AbstractCharacter enemy;
 
+    public GameObject cardTemplatePrefab;
     public GameObject coreArgPrefab;
     public GameObject handZone;
 
     // Called whenever we load into the Negotiation scene.
     void Start()
     {
-        handZone = GameObject.Find("Canvas/HandZone");
-        // Set variables
         nm = NegotiationManager.Instance;
-        List<AbstractCharacter> characters = nm.tm.GetTurnList();       // This should only be size 2 at any given point.
-        for (int i = 0; i < characters.Count; i++){
-            if (characters[i].FACTION == FactionType.PLAYER){
-                player = characters[i];
-            } else {
-                enemy = characters[i];
-            }
-        }
+        Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
+        nm.StartNegotiation();      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
+        
+        handZone = GameObject.Find("Canvas/HandZone");
         coreArgPrefab = Resources.Load("Prefabs/CoreArgumentDisplay") as GameObject;
+        cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
+
+        player = nm.player;
+        enemy = nm.enemy;
 
         // Render core arguments
         GameObject corePlayer = Instantiate(coreArgPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
@@ -39,12 +39,29 @@ public class RenderNegotiation : MonoBehaviour
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
         coreEnemy.SetActive(true);
-        
-        Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
-        nm.StartNegotiation();      // Start negotiation!
+
+        this.RenderHand();  // Render player hand
     }
 
-    // void Render(){
+    void RenderHand(){
+        // get rid of the old hand to render a new one. maybe excessive - could we just rerender the hand?
+        foreach (Transform child in handZone.transform){
+            GameObject.Destroy(child.gameObject);
+        }
+        List<AbstractCard> playerHand = player.GetHand();
+        for(int i = 0; i < playerHand.Count; i++){
+            AbstractCard card = playerHand[i];
+            GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(i * 200.0f, 0, 0), Quaternion.identity);
+            cardDisplay.GetComponent<DisplayCard>().reference = card;
+            cardDisplay.transform.SetParent(handZone.transform);
+            cardDisplay.SetActive(true);        // calls OnEnable() for the card template prefab
+        }
+    }
 
-    // }
+    void Update(){
+        if (Input.GetKeyUp(KeyCode.E)){
+            NegotiationManager.Instance.NextTurn();
+            RenderHand();
+        }
+    }
 }

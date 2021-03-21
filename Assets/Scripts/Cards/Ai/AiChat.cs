@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckardDiplomacy : AbstractCard {
-
-    public static string cardID = "DECKARD_DIPLOMACY";
+public class AiChat : AbstractCard
+{
+    public static string cardID = "AI_CHAT";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public DeckardDiplomacy() : base(
+    public AiChat() : base(
         cardID,
         cardStrings,
         cardCost,

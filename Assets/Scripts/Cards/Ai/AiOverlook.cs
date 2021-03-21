@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckardDiplomacy : AbstractCard {
-
-    public static string cardID = "DECKARD_DIPLOMACY";
+public class AiOverlook : AbstractCard
+{
+    public static string cardID = "AI_OVERLOOK";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public DeckardDiplomacy() : base(
+    public AiOverlook() : base(
         cardID,
         cardStrings,
         cardCost,
-        CardAmbient.DIALOGUE,
+        CardAmbient.INFLUENCE,
         CardRarity.STARTER,
-        CardType.ATTACK
+        CardType.SKILL
     ){}
 
     public override void Play(AbstractCharacter source, AbstractCharacter target){

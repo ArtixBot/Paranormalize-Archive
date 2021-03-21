@@ -40,6 +40,7 @@ public abstract class AbstractCharacter
                 drawPile.deck.AddRange(discardPile.deck);
                 drawPile.Shuffle();
                 discardPile.deck.Clear();
+                Debug.Log(this.NAME + " shuffles their deck.");
             }
 
             // Actually add the card from the draw pile to your hand if it's not at max size, else it goes straight to discard.
@@ -52,6 +53,15 @@ public abstract class AbstractCharacter
             i--;        // Repeat process <numOfCards> times.
         }
         return;
+    }
+
+    public void EndTurn(){
+        for (int i = this.hand.Count - 1; i >= 0; i--){
+            this.discardPile.AddCard(this.hand[i]);  // Add the card to the discard pile first.
+            this.hand.RemoveAt(i);              // Then actually remove it from the hand.
+        }
+        this.curAP = this.maxAP;
+        this.Draw(5);
     }
 
     // Finds and returns the first argument instance IF it exists.

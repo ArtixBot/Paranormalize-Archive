@@ -15,10 +15,15 @@ public class PlayerAi : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
-        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
-        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
-        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
-        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("AI_BOORISH");
+        this.permaDeck.AddCard("AI_BOORISH");
+        this.permaDeck.AddCard("AI_BOORISH");
+        this.permaDeck.AddCard("AI_CHAT");
+        this.permaDeck.AddCard("AI_CHAT");
+        this.permaDeck.AddCard("AI_CHAT");
+        this.permaDeck.AddCard("AI_OVERLOOK");
+        this.permaDeck.AddCard("AI_OVERLOOK");
+        this.permaDeck.AddCard("AI_OVERLOOK");
+        this.permaDeck.AddCard("AI_OVERLOOK");
     }
 }

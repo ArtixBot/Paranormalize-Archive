@@ -1,4 +1,16 @@
 {
+    "AI_BOORISH": {
+        "NAME": "Boorish",
+        "DESC": "Deal [D]-[D] damage."
+    },
+    "AI_CHAT": {
+        "NAME": "Chat",
+        "DESC": "Deal [D]-[D] damage."
+    },
+    "AI_OVERLOOK": {
+        "NAME": "Overlook",
+        "DESC": "Apply [P] Poise."
+    },
     "AI_QUICK_TEMPER": {
         "NAME": "Quick Temper",
         "DESC": "Whenever [ENEMY] shuffles their deck, Deploy [D] Irked.",

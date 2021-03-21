@@ -5,6 +5,7 @@ using UnityEngine;
 
 // Note that CardType and CardRarity enums are defined outside so that any class can use them (hopefully?)
 public enum CardType {ATTACK, SKILL, TRAIT};
+public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS}
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard {
@@ -12,6 +13,7 @@ public abstract class AbstractCard {
     // Gameplay
     public string ID;               // Card ID
     public CardType TYPE;           // Card type
+    public CardAmbient AMBIENCE;    // Card ambience type
     public CardRarity RARITY;       // Card rarity
     public int COST;                // Card cost
 
@@ -23,11 +25,12 @@ public abstract class AbstractCard {
     
     public bool isUpgraded = false;
 
-    public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardRarity rarity, CardType type){
+    public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardAmbient ambience, CardRarity rarity, CardType type){
         this.ID = id;
         this.NAME = cardStrings["NAME"];
         this.DESC = cardStrings["DESC"];
         this.COST = cost;
+        this.AMBIENCE = ambience;
         this.RARITY = rarity;
         this.TYPE = type;
     }

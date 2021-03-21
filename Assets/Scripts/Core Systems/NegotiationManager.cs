@@ -20,6 +20,14 @@ public class NegotiationManager
     // Cleans up anything remaining from the previous negotiation.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
     public void StartNegotiation(){
+
+        // TODO: REMOVE THIS, CURRENTLY FOR TESTING
+        player = new PlayerAi();
+        enemy = new TestEnemy();
+        TurnManager.Instance.AddToTurnList(player);
+        TurnManager.Instance.AddToTurnList(enemy);
+        // END TODO
+
         this.round = 1;
         this.cardsPlayedThisTurn = 0;
 
