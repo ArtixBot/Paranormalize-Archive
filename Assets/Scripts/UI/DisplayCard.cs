@@ -9,16 +9,19 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     public AbstractCard reference;
 
-    public Sprite cardImage;
+    public Image cardImage;
+    public Image cardInsignia;
     public TextMeshProUGUI cardName;
     public TextMeshProUGUI cardCost;
     public TextMeshProUGUI cardType;
     public TextMeshProUGUI cardText;
 
+
     // Start is called before the first frame update
     void OnEnable()
     {
-        cardImage = transform.Find("CardImage").GetComponent<Sprite>();
+        cardImage = transform.Find("CardImage").GetComponent<Image>();
+        cardInsignia = transform.Find("CardInsignia").GetComponent<Image>();
         cardName = transform.Find("CardName").GetComponent<TextMeshProUGUI>();
         cardCost = transform.Find("CardCost").GetComponent<TextMeshProUGUI>();
         cardType = transform.Find("CardType").GetComponent<TextMeshProUGUI>();
@@ -26,7 +29,20 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (reference == null){
             return;
         }
-        cardImage = reference.IMAGE;
+        cardImage.sprite = reference.IMAGE;
+        switch(reference.AMBIENCE){
+            case CardAmbient.AGGRESSION:
+                cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-aggression");
+                break;
+            case CardAmbient.DIALOGUE:
+                cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-dialogue");
+                break;
+            case CardAmbient.INFLUENCE:
+                cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-influence");
+                break;
+            default:
+                break;
+        }
         cardName.text = reference.NAME;
         cardCost.text = reference.COST.ToString();
         cardType.text = reference.TYPE.ToString();

@@ -13,9 +13,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public GameObject tooltipInstance;
 
     public void OnEnable(){        
-        // Choose the tooltip to load when this argument is hovered (core argument/non-core argument tooltip)
-        tooltipPrefab = (reference.isCore) ? Resources.Load("Prefabs/ArgumentTooltip") as GameObject : Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
-
+        tooltipPrefab = Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
         transform.Find("Image").GetComponent<Image>().sprite = reference.IMG;
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
         stackCounter.text = "x" + reference.stacks;         // TODO: Update this when a card is played rather than just on start.
