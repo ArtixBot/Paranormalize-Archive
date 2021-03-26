@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DetectDrop : MonoBehaviour
+public class DetectDrop : MonoBehaviour, IDropHandler
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public AbstractArgument argRef;
+    public GameObject handDisplay;
+
+    void OnEnable(){
+        argRef = gameObject.GetComponent<DisplayArgument>().reference;
+        handDisplay = GameObject.Find("HandZone");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void OnDrop(PointerEventData eventData){
+        AbstractCard card = eventData.pointerDrag.GetComponent<DisplayCard>().reference;
+        if (card != null){
+            try {
+                NegotiationManager.Instance.PlayCard(card, TurnManager.Instance.GetCurrentCharacter(), argRef);
+                Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
+                // handDisplay.GetComponent<HandDisplay>().DisplayHand();
+            } catch (Exception ex) {
+                Debug.LogWarning("Failed to play card, reason: " + ex.Message);
+            }
+        }
     }
 }

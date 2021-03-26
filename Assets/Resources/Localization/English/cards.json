@@ -21,10 +21,16 @@
         "NAME": "Rifled Pockets",
         "DESC": "Unplayable. When drawn, copy [D] card(s) from [ENEMY]'s hand and add them to your hand, then Scour this.",
         "QUIPS": ["[NARRATOR][PLAYER] filches something from [ENEMY].",
-                  "Look behind you!"]
+                  "Behind you!"]
     },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."
+    },
+    "ESPHER_JUXTAPOSITION": {
+        "NAME": "Juxtaposition",
+        "DESC": "Refresh the use of your partner ability this negotiation. Scour.",
+        "QUIPS": ["[PARTNER]! Take this over for a bit.",
+                  "[NARRATOR][PARTNER] steps in front of [PLAYER]."]
     }
 }

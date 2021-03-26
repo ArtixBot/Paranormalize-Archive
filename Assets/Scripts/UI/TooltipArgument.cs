@@ -58,8 +58,7 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
             }
             // Handle [ENEMY] with the name of the NON-OWNER for this argument.
             else if (match.Value.Contains("ENEMY")){
-                // BUG: Currently always returns ENEMY instead of NON-OWNER.
-                s = s.Replace(match.Value, TurnManager.Instance.GetEnemy().NAME);
+                s = s.Replace(match.Value, TurnManager.Instance.GetOtherCharacter(argRef.OWNER).NAME);
             }
             // Replace [OWNER] with the name of the OWNER for this argument.
             else if (match.Value.Contains("OWNER")){

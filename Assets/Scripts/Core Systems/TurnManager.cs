@@ -45,6 +45,17 @@ public class TurnManager
         return null;
     }
 
+    // Return the character whose name does NOT equal that of returnOtherChar.
+    // Called by TooltipArgument for [ENEMY] tag. Doesn't have much of a use otherwise.
+    public AbstractCharacter GetOtherCharacter(AbstractCharacter returnOtherChar){
+        for (int i = 0; i < turnList.Count; i++){
+            if (turnList[i].NAME != returnOtherChar.NAME){
+                return turnList[i];
+            }
+        }
+        return null;
+    }
+
     public void DebugTurnList(){
         foreach(var character in this.turnList){
             Debug.Log(character.NAME);

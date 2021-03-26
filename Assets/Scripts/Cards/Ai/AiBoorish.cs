@@ -17,7 +17,7 @@ public class AiBoorish : AbstractCard
         CardType.ATTACK
     ){}
 
-    public override void Play(AbstractCharacter source, AbstractCharacter target){
+    public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
     }
 

@@ -22,7 +22,8 @@ public abstract class AbstractCard {
     public Sprite IMAGE;            // Card image path
     public string DESC;             // Card description
     public string FLAVOR;           // Flavor text
-    
+    public List<string> QUIPS;      // Say something when a card is played
+
     public bool isUpgraded = false;
 
     public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardAmbient ambience, CardRarity rarity, CardType type){
@@ -35,7 +36,9 @@ public abstract class AbstractCard {
         this.TYPE = type;
     }
 
-    public virtual void Play(AbstractCharacter source, AbstractCharacter target){}
+    public virtual void Play(AbstractCharacter source, AbstractArgument target){
+
+    }
 
     public virtual void Upgrade(){
         this.isUpgraded = true;

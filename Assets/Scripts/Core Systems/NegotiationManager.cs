@@ -34,13 +34,13 @@ public class NegotiationManager
         ambience.state = AmbienceState.TENSE;
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
-
-        player.curAP = player.maxAP;
-        enemy.curAP = enemy.maxAP;
         
         Debug.Log("NegotiationManager.cs: Performing deep copy of deck contents for enemy and player.");
         DeepCopyDeck(player);
         DeepCopyDeck(enemy);
+
+        player.curAP = player.maxAP;
+        enemy.curAP = enemy.maxAP;
         
         player.Draw(5);
         enemy.Draw(5);
@@ -66,7 +66,7 @@ public class NegotiationManager
         Cleanup(enemy);
     }
 
-    public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractCharacter target){
+    public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractArgument target){
         if (card == null) return false;
         try {
             card.Play(source, target);

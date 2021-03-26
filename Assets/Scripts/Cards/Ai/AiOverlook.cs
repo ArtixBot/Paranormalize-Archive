@@ -17,7 +17,7 @@ public class AiOverlook : AbstractCard
         CardType.SKILL
     ){}
 
-    public override void Play(AbstractCharacter source, AbstractCharacter target){
+    public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
     }
 
