@@ -26,6 +26,14 @@ public abstract class AbstractCharacter
     protected Deck drawPile = new Deck();
     protected Deck discardPile = new Deck();
 
+    public bool canPlayCards = true;
+    public bool canPlayAttacks = true;
+    public bool canPlaySkills = true;
+    public bool canPlayTraits = true;
+    public bool canPlayDialogue = true;
+    public bool canPlayAggression = true;
+    public bool canPlayInfluence = true;
+
     public abstract void AddStarterDeck();      // Should be called at the start of character creation (for players) or at start of combat (for enemies.)
 
     public void Draw(int numOfCards){

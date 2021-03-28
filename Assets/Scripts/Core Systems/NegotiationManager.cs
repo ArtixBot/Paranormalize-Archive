@@ -7,7 +7,7 @@ using UnityEngine;
 public class NegotiationManager
 {
     public static readonly NegotiationManager Instance = new NegotiationManager();
-    // public List<AbstractAction> actionQueue = new List<AbstractAction>();
+    public List<AbstractAction> actionQueue = new List<AbstractAction>();
     public Ambience ambience = Ambience.Instance;
     public TurnManager tm = TurnManager.Instance;
 
@@ -58,12 +58,16 @@ public class NegotiationManager
     public void EndNegotiationLost(){
         Cleanup(player);
         Cleanup(enemy);
+        actionQueue.Clear();
+        // change scene to loss
     }
 
     // Victory!
     public void EndNegotiationWon(){
         Cleanup(player);
         Cleanup(enemy);
+        actionQueue.Clear();
+        // change scene to win
     }
 
     public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractArgument target){

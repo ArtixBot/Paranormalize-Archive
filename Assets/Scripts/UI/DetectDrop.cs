@@ -19,7 +19,7 @@ public class DetectDrop : MonoBehaviour, IDropHandler
         if (card != null){
             try {
                 NegotiationManager.Instance.PlayCard(card, TurnManager.Instance.GetCurrentCharacter(), argRef);
-                Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
+                // Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
                 // handDisplay.GetComponent<HandDisplay>().DisplayHand();
             } catch (Exception ex) {
                 Debug.LogWarning("Failed to play card, reason: " + ex.Message);

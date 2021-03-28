@@ -5,7 +5,7 @@ using UnityEngine;
 
 // Note that CardType and CardRarity enums are defined outside so that any class can use them (hopefully?)
 public enum CardType {ATTACK, SKILL, TRAIT};
-public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS}
+public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS};
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard {
@@ -37,7 +37,19 @@ public abstract class AbstractCard {
     }
 
     public virtual void Play(AbstractCharacter source, AbstractArgument target){
-
+        if (!source.canPlayCards){
+            throw new Exception(source.NAME + " cannot play cards!");
+        }
+        if ((this.IsAttack() && !source.canPlayAttacks) || (this.IsSkill() && !source.canPlaySkills) || (this.IsTrait() && !source.canPlayTraits)){
+            throw new Exception(source.NAME + " cannot play card of type " + this.TYPE.ToString());
+        }
+        if ((this.IsDialogue() && !source.canPlayDialogue) || (this.IsAggression() && !source.canPlayAggression) || (this.IsInfluence() && !source.canPlayInfluence)){
+            throw new Exception(source.NAME + " cannot play card of type " + this.AMBIENCE.ToString());
+        }
+        if (source.curAP < this.COST){
+            throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
+        }
+        source.curAP -= this.COST;
     }
 
     public virtual void Upgrade(){
@@ -55,5 +67,17 @@ public abstract class AbstractCard {
 
     public bool IsTrait(){
         return this.TYPE == CardType.TRAIT;
+    }
+
+    public bool IsDialogue(){
+        return this.AMBIENCE == CardAmbient.DIALOGUE;
+    }
+
+    public bool IsAggression(){
+        return this.AMBIENCE == CardAmbient.AGGRESSION;
+    }
+    
+    public bool IsInfluence(){
+        return this.AMBIENCE == CardAmbient.INFLUENCE;
     }
 }

@@ -21,6 +21,7 @@ public abstract class AbstractArgument
     public int defense;     // Poise value
     public int stacks;      // Stack count
     public bool isCore = false; // Is a core argument (default false)
+    // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
     public virtual void TriggerOnDeploy(){}
     public virtual void TriggerOnStartTurn(){}
@@ -30,10 +31,10 @@ public abstract class AbstractArgument
     public virtual void TriggerOnDestroy(){
         if (this.isCore){
             if (this.OWNER.FACTION == FactionType.PLAYER){
-                // lose the game!
+                NegotiationManager.Instance.EndNegotiationLost();
                 return;
             } else {
-                // win the negotiation!
+                NegotiationManager.Instance.EndNegotiationWon();
                 return;
             }
         }

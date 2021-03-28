@@ -5,18 +5,26 @@
     },
     "CORE_DECKARD": {
         "NAME": "Collected",
-        "DESC": "At the start of [OWNER]'s turn, this argument gains [STACKS] <b>Poise</b>."
+        "DESC": "At the start of [OWNER]'s turn, this gains [STACKS] <b>Poise</b>."
     },
     "CORE_NO_ABILITY": {
         "NAME": "Boring",
-        "DESC": "This argument has no special effects."
+        "DESC": "This has no special effects."
+    },
+    "CORE_PICKPOCKET": {
+        "NAME": "Pickpocket",
+        "DESC": "At the end of [OWNER]'s turn, steal [STACKS*15] Gold from [ENEMY] and <b>Deploy</b> [STACKS*15] Sticky Fingers."
     },
     "TALISMAN_RESOLVE": {
         "NAME": "Talisman of Renewal",
         "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by [STACKS].\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
     },
+    "STICKY_FINGERS":{
+        "NAME": "Sticky Fingers",
+        "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
+    },
     "STRAWMAN": {
         "NAME": "Strawman",
-        "DESC": "This argument must be destroyed before targeting [OWNER]'s other arguments.\n\nThis argument's max resolve is equal to its stacks (currently [STACKS])."
+        "DESC": "This must be destroyed before targeting [OWNER]'s other arguments.\n\nThis has max resolve equal to stack count (currently [STACKS])."
     }
 }
