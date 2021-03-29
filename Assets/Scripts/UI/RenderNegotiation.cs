@@ -43,7 +43,7 @@ public class RenderNegotiation : MonoBehaviour
         this.RenderHand();  // Render player hand
     }
 
-    void RenderHand(){
+    public void RenderHand(){
         // get rid of the old hand to render a new one. maybe excessive - could we just rerender the hand?
         foreach (Transform child in handZone.transform){
             GameObject.Destroy(child.gameObject);

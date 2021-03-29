@@ -15,7 +15,6 @@ public class PlayerDeckard : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        //TODO: change from drawPile to permaDeck and implement deep-copy method
-        this.drawPile.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_DIPLOMACY");
     }
 }

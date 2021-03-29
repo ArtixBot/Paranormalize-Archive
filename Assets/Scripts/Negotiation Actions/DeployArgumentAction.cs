@@ -7,8 +7,10 @@ using UnityEngine;
 // Else create a new argument of the type.
 public class DeployArgumentAction : AbstractAction {
 
-    public AbstractArgument argumentToDeploy;
-    public int stacksToDeploy;
+    private AbstractCharacter source;
+    private AbstractArgument argumentToDeploy;
+    private int stacksToDeploy;
+    
     public DeployArgumentAction(AbstractCharacter source, AbstractArgument argumentToDeploy, int stacksToDeploy){
         this.source = source;
         this.argumentToDeploy = argumentToDeploy;

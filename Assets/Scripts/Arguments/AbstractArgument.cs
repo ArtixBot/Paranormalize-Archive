@@ -18,7 +18,7 @@ public abstract class AbstractArgument
 
     public int maxHP;       // Maximum resolve
     public int curHP;       // Current resolve
-    public int defense;     // Poise value
+    public int poise;     // Poise value
     public int stacks;      // Stack count
     public bool isCore = false; // Is a core argument (default false)
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced

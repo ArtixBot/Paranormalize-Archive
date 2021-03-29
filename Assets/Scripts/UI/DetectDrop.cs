@@ -7,11 +7,11 @@ using UnityEngine.EventSystems;
 public class DetectDrop : MonoBehaviour, IDropHandler
 {
     public AbstractArgument argRef;
-    public GameObject handDisplay;
+    public GameObject render;
 
     void OnEnable(){
         argRef = gameObject.GetComponent<DisplayArgument>().reference;
-        handDisplay = GameObject.Find("HandZone");
+        render = GameObject.Find("RenderNegotiation");
     }
 
     public void OnDrop(PointerEventData eventData){
@@ -20,7 +20,7 @@ public class DetectDrop : MonoBehaviour, IDropHandler
             try {
                 NegotiationManager.Instance.PlayCard(card, TurnManager.Instance.GetCurrentCharacter(), argRef);
                 // Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
-                // handDisplay.GetComponent<HandDisplay>().DisplayHand();
+                render.GetComponent<RenderNegotiation>().RenderHand();
             } catch (Exception ex) {
                 Debug.LogWarning("Failed to play card, reason: " + ex.Message);
             }

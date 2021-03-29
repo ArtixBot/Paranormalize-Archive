@@ -47,11 +47,17 @@ public class NegotiationManager
         Debug.Log("Negotiation begins!");
     }
 
-
     public void NextTurn(){
-        Debug.Log("NegotiationManager.cs: Ending turn for " + TurnManager.Instance.GetCurrentCharacter().NAME + ".");
         this.cardsPlayedThisTurn = 0;
         TurnManager.Instance.NextCharacter();
+    }
+
+    public void AddAction(AbstractAction action){
+        actionQueue.Add(action);
+        while (actionQueue.Count > 0){
+            actionQueue[0].Resolve();
+            actionQueue.RemoveAt(0);
+        }
     }
 
     // Game over!

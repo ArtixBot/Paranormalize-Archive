@@ -8,6 +8,9 @@ public class AiBoorish : AbstractCard
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
+    public int MIN_DAMAGE = 1;
+    public int MAX_DAMAGE = 4;
+
     public AiBoorish() : base(
         cardID,
         cardStrings,
@@ -19,6 +22,7 @@ public class AiBoorish : AbstractCard
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
+        NegotiationManager.Instance.AddAction(new DamageAction(source, target, MIN_DAMAGE, MAX_DAMAGE));
     }
 
     public override void Upgrade(){
