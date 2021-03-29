@@ -8,6 +8,8 @@ public class AiOverlook : AbstractCard
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
+    public int poise = 2;
+
     public AiOverlook() : base(
         cardID,
         cardStrings,
@@ -19,9 +21,11 @@ public class AiOverlook : AbstractCard
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
+        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, target, poise));
     }
 
     public override void Upgrade(){
         base.Upgrade();
+        this.poise += 2;
     }
 }

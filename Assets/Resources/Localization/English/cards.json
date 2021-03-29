@@ -23,13 +23,17 @@
         "QUIPS": ["[NARRATOR][PLAYER] filches something from [ENEMY].",
                   "Behind you!"]
     },
+    "AI_RITES": {
+        "NAME": "Rites",
+        "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to the number of your <b>Talisman</b> arguments (currently [N])."
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."
     },
     "ESPHER_JUXTAPOSITION": {
         "NAME": "Juxtaposition",
-        "DESC": "Refresh the use of your partner ability this negotiation. Scour.",
+        "DESC": "Refresh the use of your partner ability this negotiation.\n<b>Scour</b>.",
         "QUIPS": ["[PARTNER]! Take this over for a bit.",
                   "[NARRATOR][PARTNER] steps in front of [PLAYER]."]
     }

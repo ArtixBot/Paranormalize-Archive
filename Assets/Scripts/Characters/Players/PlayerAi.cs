@@ -18,7 +18,7 @@ public class PlayerAi : AbstractCharacter
         this.permaDeck.AddCard("AI_BOORISH");
         this.permaDeck.AddCard("AI_BOORISH");
         this.permaDeck.AddCard("AI_BOORISH");
-        this.permaDeck.AddCard("AI_CHAT");
+        this.permaDeck.AddCard("AI_RITES");
         this.permaDeck.AddCard("AI_CHAT");
         this.permaDeck.AddCard("AI_CHAT");
         this.permaDeck.AddCard("AI_OVERLOOK");

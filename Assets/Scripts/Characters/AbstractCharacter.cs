@@ -12,7 +12,7 @@ public abstract class AbstractCharacter
     
     // HP is based on your core argument.
     public AbstractArgument coreArgument;
-    public List<AbstractArgument> nonCoreArguments;
+    public List<AbstractArgument> nonCoreArguments = new List<AbstractArgument>();
     
     // At end of turn, draw 5 + <drawMod>
     public int drawMod = 0;
@@ -80,6 +80,11 @@ public abstract class AbstractCharacter
             }
         }
         return null;
+    }
+
+    // Return all non-core arguments.
+    public List<AbstractArgument> GetArguments(){
+        return this.nonCoreArguments;
     }
 
     public AbstractArgument GetCoreArgument(){

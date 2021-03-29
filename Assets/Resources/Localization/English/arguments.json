@@ -19,6 +19,14 @@
         "NAME": "Talisman of Renewal",
         "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by [STACKS].\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
     },
+    "TALISMAN_EXPULSE": {
+        "NAME": "Talisman of Expulsion",
+        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to all enemy arguments.\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
+    },
+    "TALISMAN_PURIFICATION": {
+        "NAME": "Talisman of Purification",
+        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument.\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
+    },
     "STICKY_FINGERS":{
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."

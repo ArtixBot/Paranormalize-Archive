@@ -27,5 +27,6 @@ public class AiBoorish : AbstractCard
 
     public override void Upgrade(){
         base.Upgrade();
+        this.MIN_DAMAGE += 2;
     }
 }
