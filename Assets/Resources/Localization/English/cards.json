@@ -27,6 +27,10 @@
         "NAME": "Rites",
         "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to the number of your <b>Talisman</b> arguments (currently [N])."
     },
+    "AI_TALISMAN_PURIFICATION": {
+        "NAME": "Talisman of Purification",
+        "DESC": "<b>Deploy</b> [N] <b>Talisman of Purification</b>.\n<b>Scour</b>."
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."

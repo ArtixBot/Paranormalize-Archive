@@ -16,6 +16,7 @@ public class DeployArgumentAction : AbstractAction {
         this.argumentToDeploy = argumentToDeploy;
         this.stacksToDeploy = stacksToDeploy;
         
+        argumentToDeploy.ORIGIN = ArgumentOrigin.DEPLOYED;
         argumentToDeploy.OWNER = source;
         argumentToDeploy.stacks = this.stacksToDeploy;
     }
