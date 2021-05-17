@@ -58,30 +58,30 @@ public class RenderNegotiation : MonoBehaviour
         }
     }
 
-    public void RenderNonCoreArguments(){
-        // foreach (Transform child in GameObject.Find("Canvas/PlayerSide").transform){
-        //     if (!child.gameObject.GetComponent<DisplayArgument>().reference.isCore){
-        //         GameObject.Destroy(child.gameObject);
-        //     }
-        // }
-        int playerArgCount = player.nonCoreArguments.Count;
-        for (int i = 0; i < playerArgCount; i++){
-            float radius = 50;
-            float angle = i * Mathf.PI * 2f / radius;
-            Vector3 newPos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
-            GameObject arg = Instantiate(coreArgPrefab, newPos, Quaternion.Euler(0, 0, 0));
+    // public void RenderNonCoreArguments(){
+    //     // foreach (Transform child in GameObject.Find("Canvas/PlayerSide").transform){
+    //     //     if (!child.gameObject.GetComponent<DisplayArgument>().reference.isCore){
+    //     //         GameObject.Destroy(child.gameObject);
+    //     //     }
+    //     // }
+    //     int playerArgCount = player.nonCoreArguments.Count;
+    //     for (int i = 0; i < playerArgCount; i++){
+    //         float radius = 500;
+    //         float angle = i * Mathf.PI * 2f / radius;
+    //         Vector3 newPos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
+    //         GameObject arg = Instantiate(coreArgPrefab, newPos, Quaternion.Euler(0, 0, 0));
 
-            arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
-            arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
-            arg.SetActive(true);
-        }
-    }
+    //         arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
+    //         arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
+    //         arg.SetActive(true);
+    //     }
+    // }
 
     void Update(){
         if (Input.GetKeyUp(KeyCode.E)){
             NegotiationManager.Instance.NextTurn();
             RenderHand();
-            RenderNonCoreArguments();
+            // RenderNonCoreArguments();
         }
     }
 }

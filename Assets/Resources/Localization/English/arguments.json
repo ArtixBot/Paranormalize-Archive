@@ -3,6 +3,10 @@
         "NAME": "Combative",
         "DESC": "Whenever one of [OWNER]'s arguments is destroyed, deal [STACKS] damage to a random enemy argument."
     },
+    "CORE_CEASELESS": {
+        "NAME": "Ceaseless",
+        "DESC": "Whenever one of [OWNER]'s arguments is destroyed, <b>Deploy</b> it with [STACKS] stack(s)."
+    },
     "CORE_DECKARD": {
         "NAME": "Collected",
         "DESC": "At the start of [OWNER]'s turn, this gains [STACKS] <b>Poise</b>."

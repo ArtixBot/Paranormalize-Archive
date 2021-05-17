@@ -22,7 +22,7 @@ public class NegotiationManager
     public void StartNegotiation(){
 
         // TODO: REMOVE THIS, CURRENTLY FOR TESTING
-        player = new PlayerAi();
+        player = new PlayerDeckard();
         enemy = new TestEnemy();
         TurnManager.Instance.AddToTurnList(player);
         TurnManager.Instance.AddToTurnList(enemy);
@@ -31,7 +31,7 @@ public class NegotiationManager
         this.round = 1;
         this.cardsPlayedThisTurn = 0;
 
-        ambience.state = AmbienceState.TENSE;
+        ambience.score = 0;
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
         

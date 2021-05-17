@@ -8,6 +8,9 @@ public class DeckardDiplomacy : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
+    public int MIN_DAMAGE = 1;
+    public int MAX_DAMAGE = 3;
+
     public DeckardDiplomacy() : base(
         cardID,
         cardStrings,
@@ -19,9 +22,11 @@ public class DeckardDiplomacy : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
+        NegotiationManager.Instance.AddAction(new DamageAction(target, MIN_DAMAGE, MAX_DAMAGE));
     }
 
     public override void Upgrade(){
         base.Upgrade();
+        this.MAX_DAMAGE += 2;
     }
 }

@@ -28,7 +28,7 @@ public class AiRites : AbstractCard
                 cnt++;
             }
         }
-        NegotiationManager.Instance.AddAction(new DamageAction(source, target, MIN_DAMAGE + cnt, MAX_DAMAGE + cnt));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, MIN_DAMAGE + cnt, MAX_DAMAGE + cnt));
     }
 
     public override void Upgrade(){
