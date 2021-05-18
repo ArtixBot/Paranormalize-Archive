@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Handles negotiation. Also stores negotiation state variables, like current round, how many cards were played during this turn, etc.
+// Singleton.
 public class NegotiationManager
 {
     public static readonly NegotiationManager Instance = new NegotiationManager();
     public List<AbstractAction> actionQueue = new List<AbstractAction>();
+
     public Ambience ambience = Ambience.Instance;
     public TurnManager tm = TurnManager.Instance;
+    public EventSystemManager em = EventSystemManager.Instance;
 
     public AbstractCharacter player;
     public AbstractCharacter enemy;
@@ -17,7 +20,7 @@ public class NegotiationManager
     public int round = 1;
     public int cardsPlayedThisTurn = 0;
 
-    // Cleans up anything remaining from the previous negotiation.
+    // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
     public void StartNegotiation(){
 
@@ -28,10 +31,6 @@ public class NegotiationManager
         TurnManager.Instance.AddToTurnList(enemy);
         // END TODO
 
-        this.round = 1;
-        this.cardsPlayedThisTurn = 0;
-
-        ambience.score = 0;
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
         
@@ -64,7 +63,12 @@ public class NegotiationManager
     public void EndNegotiationLost(){
         Cleanup(player);
         Cleanup(enemy);
+        Debug.Log("Player loses!");
         actionQueue.Clear();
+
+        this.round = 1;
+        this.cardsPlayedThisTurn = 0;
+        ambience.score = 0;
         // change scene to loss
     }
 
@@ -72,7 +76,12 @@ public class NegotiationManager
     public void EndNegotiationWon(){
         Cleanup(player);
         Cleanup(enemy);
+        Debug.Log("Player wins!");
         actionQueue.Clear();
+
+        this.round = 1;
+        this.cardsPlayedThisTurn = 0;
+        ambience.score = 0;
         // change scene to win
     }
 

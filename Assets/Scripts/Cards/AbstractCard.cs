@@ -50,7 +50,7 @@ public abstract class AbstractCard {
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
         }
         source.curAP -= this.COST;
-        source.GetHand().Remove(this);      // Currently removes the first occurrence of a card instead of the actual card itself. Fix by using ID check instead?
+        source.GetHand().Remove(this);      // Currently removes the first occurrence of a card instead of the actual card itself...I think. Fix by using ID check instead?
         source.GetDiscardPile().AddCard(this);
     }
 

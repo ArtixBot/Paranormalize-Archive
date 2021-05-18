@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ArgumentOrigin {DEPLOYED, PLANTED};
-public abstract class AbstractArgument
+public abstract class AbstractArgument : EventSubscriber
 {
 
     // Cosmetic
