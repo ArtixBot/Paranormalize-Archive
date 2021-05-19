@@ -27,6 +27,7 @@ public class DeployArgumentAction : AbstractAction {
             instance.stacks += stacksToDeploy;
         } else {
             this.source.nonCoreArguments.Add(argumentToDeploy);
+            EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToDeploy));
         }
     }
 }

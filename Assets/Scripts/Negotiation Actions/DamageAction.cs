@@ -23,18 +23,28 @@ public class DamageAction : AbstractAction {
 
     public override void Resolve(){
         int damageDealt = Random.Range(damageMin, damageMax+1);
-        if (damageDealt > this.target.poise){
-            // TODO: Also trigger any OnPoiseDestroy() events
-            this.target.poise = 0;
-            this.target.curHP -= (damageDealt - this.target.poise);
 
-            if (this.target.curHP <= 0){        // argument is destroyed
-                EventSystemManager.Instance.TriggerEvent(EventType.ARGUMENT_DESTROYED);
-                this.target.TriggerOnDestroy();                             // trigger argument's on-destroy effects (if any)
-                this.target.OWNER.nonCoreArguments.Remove(this.target);     // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
-            }   
-        } else {
-            this.target.poise -= damageDealt;
+        // Handle Poise removal.
+        if (this.target.poise > 0){
+            if ( (damageDealt - this.target.poise) > 0){
+                damageDealt -= this.target.poise;
+                this.target.poise = 0;
+            } else {
+                this.target.poise -= damageDealt;
+                EventSystemManager.Instance.TriggerEvent(new EventArgAttackedBlocked(target, damageDealt));
+                return;
+            }
+        }
+
+        this.target.curHP -= damageDealt;
+        EventSystemManager.Instance.TriggerEvent(new EventArgAttackedUnblocked(target, damageDealt));
+
+        // Check to see if the target argument should be destroyed.
+        if (this.target.curHP <= 0){
+            this.target.TriggerOnDestroy();                             // trigger argument's on-destroy effects (if any)
+            this.target.OWNER.nonCoreArguments.Remove(this.target);     // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
+            EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(target));
+            return;
         }
     }
 }

@@ -63,6 +63,14 @@ public abstract class AbstractCharacter
         return;
     }
 
+    public void StartTurn(){
+        // remove poise from all arguments
+        coreArgument.poise = 0;
+        foreach (AbstractArgument aa in this.nonCoreArguments){
+            aa.poise = 0;
+        }
+    }
+
     public void EndTurn(){
         for (int i = this.hand.Count - 1; i >= 0; i--){
             this.discardPile.AddCard(this.hand[i]);  // Add the card to the discard pile first.
@@ -71,6 +79,7 @@ public abstract class AbstractCharacter
         this.curAP = this.maxAP;
         this.Draw(5);
     }
+
 
     // Finds and returns the first argument instance IF it exists.
     public AbstractArgument GetArgument(AbstractArgument argument){

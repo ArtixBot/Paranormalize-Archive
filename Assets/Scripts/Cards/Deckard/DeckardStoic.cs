@@ -21,7 +21,7 @@ public class DeckardStoic : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), POISE));
+        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, target, POISE));
     }
 
     public override void Upgrade(){
