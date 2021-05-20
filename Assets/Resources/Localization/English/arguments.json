@@ -5,7 +5,7 @@
     },
     "CORE_CEASELESS": {
         "NAME": "Ceaseless",
-        "DESC": "Whenever one of [OWNER]'s arguments is destroyed, <b>Deploy</b> it with [STACKS] stack(s)."
+        "DESC": "Whenever one of [OWNER]'s non-core arguments is destroyed, <b>Deploy</b> it with [STACKS] stack(s)."
     },
     "CORE_DECKARD": {
         "NAME": "Collected",
@@ -18,6 +18,10 @@
     "CORE_PICKPOCKET": {
         "NAME": "Pickpocket",
         "DESC": "At the end of [OWNER]'s turn, steal [STACKS*15] Gold from [ENEMY] and <b>Deploy</b> [STACKS*15] Sticky Fingers."
+    },
+    "CORE_VOLATILE": {
+        "NAME": "Volatile",
+        "DESC": "Whenever this argument is attacked, deal [STACKS] damage to a random enemy argument."
     },
     "TALISMAN_RESOLVE": {
         "NAME": "Talisman of Renewal",

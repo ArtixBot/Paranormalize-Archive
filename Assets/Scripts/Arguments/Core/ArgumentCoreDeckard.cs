@@ -18,4 +18,21 @@ public class ArgumentCoreDeckard : AbstractArgument
         this.stacks = 1;
         this.isCore = true;
     }
+
+    public override void TriggerOnDeploy(){
+        base.TriggerOnDeploy();
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
+    }
+
+    public override void TriggerOnDestroy(){
+        base.TriggerOnDestroy();
+        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.TURN_START);
+    }
+
+    public override void NotifyOfEvent(AbstractEvent eventData){
+        EventTurnStart data = (EventTurnStart) eventData;
+        if (data.start == this.OWNER){
+            this.poise += 1;
+        }
+    }
 }

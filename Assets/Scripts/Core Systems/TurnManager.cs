@@ -18,10 +18,6 @@ public class TurnManager
         turnList.Add(GetCurrentCharacter());    // Add current character to the back of the queue.
         turnList.RemoveAt(0);                   // Remove them from the front (turn ended).
         GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
-        if (GetCurrentCharacter().FACTION == FactionType.ENEMY){
-            // TODO: Run AI code, but for now just skip turn
-            NextCharacter();
-        }
     }
     
     public AbstractCharacter GetCurrentCharacter(){

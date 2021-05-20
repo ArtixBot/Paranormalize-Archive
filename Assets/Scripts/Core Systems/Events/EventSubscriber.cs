@@ -6,5 +6,5 @@ public class EventSubscriber
 {
     // Triggered by EventSystemManager.
     // Can be overwritten by any arguments/relics to perform behavior.
-    public virtual void Notify(AbstractEvent eventData){}      
+    public virtual void NotifyOfEvent(AbstractEvent eventData){}      
 }

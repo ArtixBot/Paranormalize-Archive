@@ -27,8 +27,8 @@ public class NegotiationManager
         // TODO: REMOVE THIS, CURRENTLY FOR TESTING
         player = new PlayerDeckard();
         enemy = new TestEnemy();
-        TurnManager.Instance.AddToTurnList(player);
-        TurnManager.Instance.AddToTurnList(enemy);
+        tm.AddToTurnList(player);
+        tm.AddToTurnList(enemy);
         // END TODO
 
         player = tm.GetPlayer();
@@ -43,12 +43,22 @@ public class NegotiationManager
         
         player.Draw(5);
         enemy.Draw(5);
+
+        player.coreArgument.TriggerOnDeploy();
+        enemy.coreArgument.TriggerOnDeploy();
+        em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
+
         Debug.Log("Negotiation begins!");
     }
 
     public void NextTurn(){
         this.cardsPlayedThisTurn = 0;
-        TurnManager.Instance.NextCharacter();
+        em.TriggerEvent(new EventTurnEnd(tm.GetCurrentCharacter()));
+        tm.NextCharacter();
+        em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
+        if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
+            this.NextTurn();
+        }
     }
 
     public void AddAction(AbstractAction action){
@@ -90,6 +100,7 @@ public class NegotiationManager
         try {
             card.Play(source, target);
             cardsPlayedThisTurn += 1;
+            em.TriggerEvent(new EventCardPlayed(card, source));
             return true;
         } catch (Exception ex){
             Debug.LogWarning("Failed to play card, reason: " + ex.Message);

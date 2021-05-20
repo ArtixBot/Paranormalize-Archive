@@ -41,9 +41,9 @@ public class DamageAction : AbstractAction {
 
         // Check to see if the target argument should be destroyed.
         if (this.target.curHP <= 0){
-            this.target.TriggerOnDestroy();                             // trigger argument's on-destroy effects (if any)
+            EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(target));    // trigger on-destroy effects (if any)
+            this.target.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
             this.target.OWNER.nonCoreArguments.Remove(this.target);     // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
-            EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(target));
             return;
         }
     }

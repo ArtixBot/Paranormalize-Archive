@@ -23,12 +23,8 @@ public abstract class AbstractArgument : EventSubscriber
     public bool isCore = false; // Is a core argument (default false)
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
-    public virtual void TriggerOnDeploy(){}
-    public virtual void TriggerOnStartTurn(){}
-    public virtual void TriggerOnEndTurn(){}
-    public virtual void TriggerOnCardPlayed(){}
-    public virtual void TriggerOnAmbienceShift(){}
-    public virtual void TriggerOnDestroy(){
+    public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events.
+    public virtual void TriggerOnDestroy(){     // Win/lose if it's a core argument; else make sure to unsubscribe from all relevant events!
         if (this.isCore){
             if (this.OWNER.FACTION == FactionType.PLAYER){
                 NegotiationManager.Instance.EndNegotiationLost();

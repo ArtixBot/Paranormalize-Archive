@@ -7,7 +7,7 @@ public class TestEnemy : AbstractCharacter
     public TestEnemy(){
         this.NAME = "Test Dummy";
         this.FACTION = FactionType.ENEMY;
-        this.coreArgument = new ArgumentCoreNoAbility();
+        this.coreArgument = new ArgumentCoreVolatile();
         this.coreArgument.OWNER = this;
         this.maxAP = 3;
 

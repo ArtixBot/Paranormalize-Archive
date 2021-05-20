@@ -24,7 +24,7 @@ public class EventSystemManager
         List<EventSubscriber> subscribers = events[eventData.type];
         Debug.Log(eventData.type.ToString() + " triggered; notifying " + subscribers.Count + " subscriber(s) to that event type");
         foreach (EventSubscriber subscriber in subscribers){
-            subscriber.Notify(eventData);
+            subscriber.NotifyOfEvent(eventData);
         }
     }
 

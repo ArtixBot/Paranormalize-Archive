@@ -7,12 +7,12 @@ using UnityEngine;
 // Else create a new argument of the type.
 public class DeployArgumentAction : AbstractAction {
 
-    private AbstractCharacter source;
+    private AbstractCharacter owner;
     private AbstractArgument argumentToDeploy;
     private int stacksToDeploy;
     
     public DeployArgumentAction(AbstractCharacter source, AbstractArgument argumentToDeploy, int stacksToDeploy){
-        this.source = source;
+        this.owner = source;
         this.argumentToDeploy = argumentToDeploy;
         this.stacksToDeploy = stacksToDeploy;
         
@@ -22,11 +22,12 @@ public class DeployArgumentAction : AbstractAction {
     }
 
     public override void Resolve(){
-        AbstractArgument instance = this.source.GetArgument(argumentToDeploy);
+        AbstractArgument instance = this.owner.GetArgument(argumentToDeploy);
         if (instance != null){
             instance.stacks += stacksToDeploy;
         } else {
-            this.source.nonCoreArguments.Add(argumentToDeploy);
+            this.owner.nonCoreArguments.Add(argumentToDeploy);
+            argumentToDeploy.TriggerOnDeploy();     // Add event subscriptions
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToDeploy));
         }
     }

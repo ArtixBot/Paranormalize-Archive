@@ -11,18 +11,36 @@ public enum EventType {
     ARGUMENT_ATTACKED_UNBLOCKED,
     ARGUMENT_CREATED,
     ARGUMENT_DESTROYED,
-    CARD_PLAYED,                    // events like DIALOGUE_CARD_PLAYED or AGGRESSION_CARD_PLAYED should also trigger CARD_PLAYED.
-    DIALOGUE_CARD_PLAYED,
-    AGGRESSION_CARD_PLAYED,
-    INFLUENCE_CARD_PLAYED,
-    ATTACK_CARD_PLAYED,
-    SKILL_CARD_PLAYED,
-    TRAIT_CARD_PLAYED
+    CARD_PLAYED,
+    TURN_START,
+    TURN_END
 };
 
 public abstract class AbstractEvent
 {
     public EventType type;
+}
+
+public class EventTurnStart : AbstractEvent{
+    public AbstractCharacter start;
+    ///<summary>
+    ///Trigger when a character's turn starts.
+    ///</summary>
+    public EventTurnStart(AbstractCharacter character){
+        this.type = EventType.TURN_START;
+        this.start = character;
+    }
+}
+
+public class EventTurnEnd : AbstractEvent{
+    public AbstractCharacter end;
+    ///<summary>
+    ///Trigger when a character's turn ends.
+    ///</summary>
+    public EventTurnEnd(AbstractCharacter character){
+        this.type = EventType.TURN_END;
+        this.end = character;
+    }
 }
 
 public class EventArgAttackedBlocked : AbstractEvent{
@@ -70,5 +88,23 @@ public class EventArgDestroyed : AbstractEvent{
     public EventArgDestroyed(AbstractArgument argDestroyed){
         this.type = EventType.ARGUMENT_DESTROYED;
         this.argumentDestroyed = argDestroyed;
+    }
+}
+
+public class EventCardPlayed : AbstractEvent{
+    public AbstractCard cardPlayed;
+    public AbstractCharacter playedBy;
+    public CardType cardType;
+    public CardAmbient cardAmbient;
+    ///<summary>
+    ///Trigger when a card is played. card represents the card being played, ac represents the character playing the card.
+    ///</summary>
+    public EventCardPlayed(AbstractCard card, AbstractCharacter player){
+        this.type = EventType.CARD_PLAYED;
+        this.playedBy = player;
+
+        this.cardPlayed = card;
+        this.cardAmbient = card.AMBIENCE;
+        this.cardType = card.TYPE;
     }
 }
