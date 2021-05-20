@@ -9,7 +9,7 @@
     },
     "CORE_DECKARD": {
         "NAME": "Collected",
-        "DESC": "At the start of [OWNER]'s turn, this gains [STACKS] <b>Poise</b>."
+        "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to this argument."
     },
     "CORE_NO_ABILITY": {
         "NAME": "Boring",

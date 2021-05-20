@@ -33,6 +33,7 @@ public class EventSystemManager
     }
 
     public void SubscribeToEvent(EventSubscriber subscriber, EventType type){
+        subscriber.eventsSubscribedTo.Add(type);
         events[type].Add(subscriber);
     }
 
