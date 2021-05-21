@@ -31,6 +31,8 @@ public class NegotiationManager
         tm.AddToTurnList(enemy);
         // END TODO
 
+        em.ClearAllSubscribers();
+
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
         

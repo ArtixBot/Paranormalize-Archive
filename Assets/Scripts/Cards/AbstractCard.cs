@@ -8,7 +8,7 @@ public enum CardType {ATTACK, SKILL, TRAIT};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS};
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
-public abstract class AbstractCard {
+public abstract class AbstractCard : EventSubscriber {
 
     // Gameplay
     public string ID;               // Card ID

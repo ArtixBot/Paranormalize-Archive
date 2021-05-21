@@ -35,6 +35,26 @@
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."
     },
+    "DECKARD_FOLLOW_UP": {
+        "NAME": "Follow Up",
+        "DESC": "Deal [D] damage.\nWhenever the Ambience level changes, return this card from your discard pile to your hand."
+    },
+    "DECKARD_GOOD_IMPRESSION": {
+        "NAME": "Good Impression",
+        "DESC": "Deal [D]-[D] damage.\nIncrease the cost of this card by 1 for the rest of negotiation."
+    },
+    "DECKARD_GRUFF": {
+        "NAME": "Gruff",
+        "DESC": "Deal [D]-[D] damage."
+    },
+    "DECKARD_JABBER": {
+        "NAME": "Jabber",
+        "DESC": "Deal [D]-[D] damage.\nApply [P] Poise to your core argument."
+    },
+    "DECKARD_STOIC": {
+        "NAME": "Stoic",
+        "DESC": "Apply [P] Poise."
+    },
     "ESPHER_JUXTAPOSITION": {
         "NAME": "Juxtaposition",
         "DESC": "Refresh the use of your partner ability this negotiation.\n<b>Scour</b>.",

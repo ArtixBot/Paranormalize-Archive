@@ -16,7 +16,10 @@ public class PlayerDeckard : AbstractCharacter
 
     public override void AddStarterDeck(){
         this.permaDeck.AddCard("DECKARD_DIPLOMACY");
+        this.permaDeck.AddCard("DECKARD_GOOD_IMPRESSION");
         this.permaDeck.AddCard("DECKARD_GRUFF");
         this.permaDeck.AddCard("DECKARD_STOIC");
+        this.permaDeck.AddCard("DECKARD_JABBER");
+        this.permaDeck.AddCard("DECKARD_FOLLOW_UP");
     }
 }

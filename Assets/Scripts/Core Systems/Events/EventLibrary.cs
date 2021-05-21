@@ -7,6 +7,7 @@ using UnityEngine;
 // A list of every triggerable event.
 
 public enum EventType {
+    AMBIENCE_STATE_SHIFT,
     ARGUMENT_ATTACKED_BLOCKED,
     ARGUMENT_ATTACKED_UNBLOCKED,
     ARGUMENT_CREATED,
@@ -19,6 +20,18 @@ public enum EventType {
 public abstract class AbstractEvent
 {
     public EventType type;
+}
+
+public class EventAmbientStateShift : AbstractEvent {
+    public AmbienceState oldState;
+    public AmbienceState newState;
+    ///<summary>
+    ///Trigger when the ambience state shifts. Takes in an oldState (the previous ambience) and newState (the new ambience).
+    ///</summary>
+    public EventAmbientStateShift(AmbienceState oldState, AmbienceState newState){
+        this.oldState = oldState;
+        this.newState = newState;
+    }
 }
 
 public class EventTurnStart : AbstractEvent{

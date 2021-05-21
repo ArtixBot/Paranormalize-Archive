@@ -40,4 +40,10 @@ public class EventSystemManager
     public void UnsubscribeFromEvent(EventSubscriber subscriber, EventType type){
         events[type].Remove(subscriber);
     }
+
+    public void ClearAllSubscribers(){
+        foreach (EventType type in Enum.GetValues(typeof(EventType))){
+            events[type].Clear();
+        }
+    }
 }
