@@ -55,6 +55,7 @@ public abstract class AbstractCharacter
             AbstractCard drawnCard = drawPile.PopTopCard();
             if (hand.Count < 10){
                 hand.Add(drawnCard);
+                EventSystemManager.Instance.TriggerEvent(new EventCardDrawn(drawnCard, this));
             } else {
                 discardPile.AddCard(drawnCard);
             }
@@ -81,7 +82,7 @@ public abstract class AbstractCharacter
     }
 
 
-    // Finds and returns the first argument instance IF it exists.
+    /// <summary> Finds and returns the first argument instance IF it exists. </summary>
     public AbstractArgument GetArgument(AbstractArgument argument){
         foreach (AbstractArgument aa in this.nonCoreArguments){
             if (argument.ID == aa.ID){

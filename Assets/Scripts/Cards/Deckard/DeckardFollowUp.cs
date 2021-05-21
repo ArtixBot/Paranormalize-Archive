@@ -19,7 +19,7 @@ public class DeckardFollowUp : AbstractCard {
         CardRarity.COMMON,
         CardType.ATTACK
     ){
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.AMBIENCE_STATE_SHIFT);     // TODO: UNSUBSCRIBE THIS WHEN THE CARD IS REMOVED FROM A DECK!
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.AMBIENCE_STATE_SHIFT);
     }
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

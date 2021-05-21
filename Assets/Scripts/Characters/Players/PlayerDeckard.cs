@@ -18,8 +18,10 @@ public class PlayerDeckard : AbstractCharacter
         this.permaDeck.AddCard("DECKARD_DIPLOMACY");
         this.permaDeck.AddCard("DECKARD_GOOD_IMPRESSION");
         this.permaDeck.AddCard("DECKARD_GRUFF");
+        this.permaDeck.AddCard("DECKARD_CALM");
         this.permaDeck.AddCard("DECKARD_STOIC");
         this.permaDeck.AddCard("DECKARD_JABBER");
         this.permaDeck.AddCard("DECKARD_FOLLOW_UP");
+        this.permaDeck.AddCard("DECKARD_ADDENDUM");
     }
 }

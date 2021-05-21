@@ -12,6 +12,7 @@ public enum EventType {
     ARGUMENT_ATTACKED_UNBLOCKED,
     ARGUMENT_CREATED,
     ARGUMENT_DESTROYED,
+    CARD_DRAWN,
     CARD_PLAYED,
     TURN_START,
     TURN_END
@@ -29,8 +30,22 @@ public class EventAmbientStateShift : AbstractEvent {
     ///Trigger when the ambience state shifts. Takes in an oldState (the previous ambience) and newState (the new ambience).
     ///</summary>
     public EventAmbientStateShift(AmbienceState oldState, AmbienceState newState){
+        this.type = EventType.AMBIENCE_STATE_SHIFT;
         this.oldState = oldState;
         this.newState = newState;
+    }
+}
+
+public class EventCardDrawn : AbstractEvent {
+    public AbstractCard cardDrawn;
+    public AbstractCharacter owner;
+    ///<summary>
+    ///Trigger when a card is drawn. Takes two arguments - card, representing the card drawn; and cardOwner, representing the owner of that card.
+    ///</summary>
+    public EventCardDrawn(AbstractCard card, AbstractCharacter cardOwner){
+        this.type = EventType.CARD_DRAWN;
+        this.cardDrawn = card;
+        this.owner = cardOwner;
     }
 }
 

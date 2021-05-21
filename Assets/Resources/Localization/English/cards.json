@@ -31,6 +31,14 @@
         "NAME": "Talisman of Purification",
         "DESC": "<b>Deploy</b> [N] <b>Talisman of Purification</b>.\n<b>Scour</b>."
     },
+    "DECKARD_ADDENDUM": {
+        "NAME": "Addendum",
+        "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
+    },
+    "DECKARD_CALM": {
+        "NAME": "Calm",
+        "DESC": "Apply [P] Poise to all your arguments.\nDouble your Poise."
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D]-[D] damage."
