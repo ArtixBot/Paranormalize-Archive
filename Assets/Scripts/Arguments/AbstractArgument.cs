@@ -39,7 +39,6 @@ public abstract class AbstractArgument : EventSubscriber
         foreach (EventType type in this.eventsSubscribedTo){
             EventSystemManager.Instance.UnsubscribeFromEvent(this, type);
         }
-        this.eventsSubscribedTo.Clear();
     }
 
     public bool IsDeployed(){

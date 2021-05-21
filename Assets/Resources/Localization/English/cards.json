@@ -13,13 +13,13 @@
     },
     "AI_QUICK_TEMPER": {
         "NAME": "Quick Temper",
-        "DESC": "Whenever [ENEMY] shuffles their deck, Deploy [D] Irked.",
+        "DESC": "Whenever [ENEMY] shuffles their deck, Deploy [S] Irked.",
         "QUIPS": ["[NARRATOR][PLAYER] grimaces.",
                   "Get to the point!"]
     },
     "AI_RIFLED_POCKETS": {
         "NAME": "Rifled Pockets",
-        "DESC": "Unplayable. When drawn, copy [D] card(s) from [ENEMY]'s hand and add them to your hand, then Scour this.",
+        "DESC": "Unplayable. When drawn, copy [N] card(s) from [ENEMY]'s hand and add them to your hand, then Scour this.",
         "QUIPS": ["[NARRATOR][PLAYER] filches something from [ENEMY].",
                   "Behind you!"]
     },
@@ -38,6 +38,10 @@
     "DECKARD_CALM": {
         "NAME": "Calm",
         "DESC": "Apply [P] Poise to all your arguments.\nDouble your Poise."
+    },
+    "DECKARD_DEEP_BREATH": {
+        "NAME": "Deep Breath",
+        "DESC": "Apply [P] Poise.\nDraw [N] card(s)."
     },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",

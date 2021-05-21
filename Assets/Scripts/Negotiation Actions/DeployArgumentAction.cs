@@ -21,7 +21,8 @@ public class DeployArgumentAction : AbstractAction {
         argumentToDeploy.stacks = this.stacksToDeploy;
     }
 
-    public override void Resolve(){
+    ///<returns>An integer of how many stacks were added.</returns>
+    public override int Resolve(){
         AbstractArgument instance = this.owner.GetArgument(argumentToDeploy);
         if (instance != null){
             instance.stacks += stacksToDeploy;
@@ -30,5 +31,6 @@ public class DeployArgumentAction : AbstractAction {
             argumentToDeploy.TriggerOnDeploy();     // Add event subscriptions
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToDeploy));
         }
+        return this.stacksToDeploy;
     }
 }

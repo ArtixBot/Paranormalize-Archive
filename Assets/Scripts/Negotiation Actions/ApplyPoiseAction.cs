@@ -7,6 +7,7 @@ public class ApplyPoiseAction : AbstractAction {
     private AbstractCharacter source;
     private AbstractArgument target;
     private int poise;
+    private bool multiply;
 
     ///<summary>
     ///Apply Poise to an argument. Damage to an argument is removed from Poise before its resolve.
@@ -14,15 +15,23 @@ public class ApplyPoiseAction : AbstractAction {
     ///<item><term>src</term><description>The character applying the Poise.</description></item>
     ///<item><term>target</term><description>The argument receiving the Poise.</description></item>
     ///<item><term>poiseToApply</term><description>The amount of Poise to apply.</description></item>
+    ///<item><term>multiply</term><description>Defaults to false. If true, poiseToApply is instead a multiplicative value and will multiply the amount of existing Poise on an argument (See DeckardCalm for an example).</description></item>
     ///</list>
     ///</summary>
-    public ApplyPoiseAction(AbstractCharacter src, AbstractArgument target, int poiseToApply){
+    public ApplyPoiseAction(AbstractCharacter src, AbstractArgument target, int poiseToApply, bool multiply = false){
         this.source = src;
         this.target = target;
         this.poise = poiseToApply;
+        this.multiply = multiply;
     }
 
-    public override void Resolve(){
-        this.target.poise += this.poise;
+    ///<returns>Integer value zero.</returns>
+    public override int Resolve(){
+        if (this.multiply){
+            this.target.poise *= this.poise;
+        } else {
+            this.target.poise += this.poise;
+        }
+        return 0;
     }
 }

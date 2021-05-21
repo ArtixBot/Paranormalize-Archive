@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractAction
 {
-    public abstract void Resolve();
+    public abstract int Resolve();
 }

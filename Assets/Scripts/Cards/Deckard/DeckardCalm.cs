@@ -23,11 +23,11 @@ public class DeckardCalm : AbstractCard {
         base.Play(source, target);
 
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), POISE));
-        source.GetCoreArgument().poise *= 2;
+        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), 2, true));
 
         foreach(AbstractArgument arg in source.GetArguments()){
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, POISE));
-            arg.poise *= 2;
+            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, 2, true));
         }
     }
 

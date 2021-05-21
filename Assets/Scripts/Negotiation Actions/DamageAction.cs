@@ -9,7 +9,8 @@ public class DamageAction : AbstractAction {
     private int damageMax;
 
     ///<summary>
-    ///Damage an argument. Triggers an ARGUMENT_DESTROYED event if the target is destroyed post-damage resolution.
+    ///Damage an argument. Triggers an ARGUMENT_ATTACKED_BLOCKED if all damage was negated by Poise, and ARGUMENT_ATTACKED_UNBLOCKED otherwise.
+    ///If the target is destroyed post-damage resolution, triggers an ARGUMENT_DESTROYED event.
     ///<list type="bullet">
     ///<item><term>target</term><description>The argument being damaged.</description></item>
     ///<item><term>damageMin, damageMax</term><description>Deal [damageMin] - [damageMax] damage.</description></item>
@@ -21,7 +22,8 @@ public class DamageAction : AbstractAction {
         this.damageMax = damageMax;
     }
 
-    public override void Resolve(){
+    ///<returns>An integer of how much damage was dealt by this action.</returns>
+    public override int Resolve(){
         int damageDealt = Random.Range(damageMin, damageMax+1);
 
         // Handle Poise removal.
@@ -32,7 +34,7 @@ public class DamageAction : AbstractAction {
             } else {
                 this.target.poise -= damageDealt;
                 EventSystemManager.Instance.TriggerEvent(new EventArgAttackedBlocked(target, damageDealt));
-                return;
+                return damageDealt;
             }
         }
 
@@ -44,7 +46,7 @@ public class DamageAction : AbstractAction {
             EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(target));    // trigger on-destroy effects (if any)
             this.target.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
             this.target.OWNER.nonCoreArguments.Remove(this.target);     // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
-            return;
         }
+        return damageDealt;
     }
 }

@@ -29,19 +29,27 @@ public class EventSystemManager
     }
 
     public void TriggerEvent(AbstractEvent ae){
-        NotifySubscribers(ae);      // TODO: Replace second param with actual value!
+        NotifySubscribers(ae);
     }
 
     public void SubscribeToEvent(EventSubscriber subscriber, EventType type){
-        subscriber.eventsSubscribedTo.Add(type);
-        events[type].Add(subscriber);
+        if (!subscriber.eventsSubscribedTo.Contains(type)){
+            subscriber.eventsSubscribedTo.Add(type);
+            events[type].Add(subscriber);
+        }
     }
 
     public void UnsubscribeFromEvent(EventSubscriber subscriber, EventType type){
+        subscriber.eventsSubscribedTo.Remove(type);
         events[type].Remove(subscriber);
     }
 
     public void ClearAllSubscribers(){
+        foreach (EventType type in Enum.GetValues(typeof(EventType))){
+            foreach (EventSubscriber sub in events[type]){
+                sub.eventsSubscribedTo.Clear();
+            }
+        }
         foreach (EventType type in Enum.GetValues(typeof(EventType))){
             events[type].Clear();
         }
