@@ -19,10 +19,9 @@ public class DrawCardsAction : AbstractAction {
         this.cardsToDraw = cardsToDraw;
     }
 
-    ///<returns>An integer of how many cards were drawn.</returns>
     public override int Resolve(){
         // AbstractCharacter Draw() implementation handles special cases of max hand size, not being able to draw, etc. automatically, so that work doesn't need to be done here.
         source.Draw(this.cardsToDraw);
-        return this.cardsToDraw;
+        return 0;
     }
 }

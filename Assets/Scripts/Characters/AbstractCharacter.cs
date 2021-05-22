@@ -66,7 +66,7 @@ public abstract class AbstractCharacter
     }
 
     public void StartTurn(){
-        Debug.Log("Starting turn of " + this.NAME + ", who has " + this.nonCoreArguments.Count + " non-core arguments.");
+        // Debug.Log("Starting turn of " + this.NAME + ".");
         // remove poise from all arguments
         coreArgument.poise = 0;
         foreach (AbstractArgument aa in this.nonCoreArguments){
@@ -75,13 +75,13 @@ public abstract class AbstractCharacter
     }
 
     public void EndTurn(){
+        // Debug.Log("Ending turn of " + this.NAME + ".");
         for (int i = this.hand.Count - 1; i >= 0; i--){
             this.discardPile.AddCard(this.hand[i]);  // Add the card to the discard pile first.
             this.hand.RemoveAt(i);                   // Then actually remove it from the hand.
         }
         this.curAP = this.maxAP;
         this.Draw(5);
-        Debug.Log("Ending turn of " + this.NAME + ", who has " + this.nonCoreArguments.Count + " non-core arguments.");
     }
 
 

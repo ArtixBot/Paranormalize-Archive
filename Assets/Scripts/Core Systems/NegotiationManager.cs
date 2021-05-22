@@ -54,21 +54,30 @@ public class NegotiationManager
     }
 
     public void NextTurn(){
-        this.cardsPlayedThisTurn = 0;
         em.TriggerEvent(new EventTurnEnd(tm.GetCurrentCharacter()));
+        tm.GetCurrentCharacter().EndTurn();        // Run end-of-turn function for current character.
         tm.NextCharacter();
+        this.cardsPlayedThisTurn = 0;
+        tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
             this.NextTurn();
         }
     }
 
+    bool currentlyResolving = false;
     public void AddAction(AbstractAction action){
         actionQueue.Add(action);
-        while (actionQueue.Count > 0){
-            AbstractAction topAction = actionQueue[0];
-            topAction.Resolve();
-            actionQueue.RemoveAt(0);
+        if (this.currentlyResolving){       // While the queue is already being resolved, don't try to re-resolve it as we'll repeat calls to one action!
+            return;
+        } else {
+            this.currentlyResolving = true;
+            while (actionQueue.Count > 0){
+                AbstractAction topAction = actionQueue[0];
+                topAction.Resolve();
+                actionQueue.RemoveAt(0);
+            }
+            this.currentlyResolving = false;
         }
     }
 
@@ -106,7 +115,7 @@ public class NegotiationManager
             em.TriggerEvent(new EventCardPlayed(card, source));
             return true;
         } catch (Exception ex){
-            Debug.LogWarning("PlayCard.cs failed to play card, reason: " + ex.Message);
+            Debug.LogWarning("NegotiationManager.cs failed to play " +  card.NAME + ", reason: " + ex.Message);
             return false;
         }
     }

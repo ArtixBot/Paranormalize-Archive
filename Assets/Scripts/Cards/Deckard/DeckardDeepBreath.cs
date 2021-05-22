@@ -9,7 +9,7 @@ public class DeckardDeepBreath : AbstractCard {
     private static int cardCost = 1;
 
     public int POISE = 3;
-    public int DRAW = 1;
+    public int DRAW = 4;
 
     public DeckardDeepBreath() : base(
         cardID,
