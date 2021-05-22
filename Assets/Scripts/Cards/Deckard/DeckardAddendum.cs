@@ -35,9 +35,7 @@ public class DeckardAddendum : AbstractCard {
     public override void NotifyOfEvent(AbstractEvent eventData){
         EventCardDrawn data = (EventCardDrawn) eventData;
 
-        // TODO: FIX THIS -- If this card is drawn by something like DeckardDeepBreath, we get an "Index out of range" warning for some reason which makes it draw 1 more than normal!
         if (data.cardDrawn == this){
-            // Debug.Log("Addendum drawn " + data.owner);
             NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(data.owner), MIN_DAMAGE, MAX_DAMAGE));
             // NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentStrawman(), STACKS)); //TODO: Change to Finesse argument
         }

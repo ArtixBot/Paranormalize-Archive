@@ -56,7 +56,7 @@ public class NegotiationManager
     public void NextTurn(){
         em.TriggerEvent(new EventTurnEnd(tm.GetCurrentCharacter()));
         tm.GetCurrentCharacter().EndTurn();        // Run end-of-turn function for current character.
-        tm.NextCharacter();
+        tm.NextCharacter();                        // Switch characters.
         this.cardsPlayedThisTurn = 0;
         tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
