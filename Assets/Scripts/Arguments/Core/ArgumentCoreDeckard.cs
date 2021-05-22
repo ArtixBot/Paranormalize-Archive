@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ArgumentCoreDeckard : AbstractArgument
 {
-
     public ArgumentCoreDeckard(){
         this.ID = "CORE_DECKARD";
         Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);

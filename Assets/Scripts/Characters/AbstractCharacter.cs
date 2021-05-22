@@ -42,6 +42,7 @@ public abstract class AbstractCharacter
             if (drawPile.IsEmpty()){
                 // Special case where the draw pile and discard pile are both empty and therefore remaining draws cannot occur.
                 if (discardPile.IsEmpty()){
+                    Debug.Log("No cards in draw or discard pile for " + this.NAME + "; returning early from draw function");
                     return;
                 }
                 // Draw pile is empty; copy all card references from discard pile to draw pile and shuffle the draw pile, then clear out the discard pile.
@@ -65,6 +66,7 @@ public abstract class AbstractCharacter
     }
 
     public void StartTurn(){
+        Debug.Log("Starting turn of " + this.NAME + ", who has " + this.nonCoreArguments.Count + " non-core arguments.");
         // remove poise from all arguments
         coreArgument.poise = 0;
         foreach (AbstractArgument aa in this.nonCoreArguments){
@@ -79,6 +81,7 @@ public abstract class AbstractCharacter
         }
         this.curAP = this.maxAP;
         this.Draw(5);
+        Debug.Log("Ending turn of " + this.NAME + ", who has " + this.nonCoreArguments.Count + " non-core arguments.");
     }
 
 

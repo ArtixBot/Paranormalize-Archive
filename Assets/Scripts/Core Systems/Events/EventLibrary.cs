@@ -125,7 +125,7 @@ public class EventCardPlayed : AbstractEvent{
     public CardType cardType;
     public CardAmbient cardAmbient;
     ///<summary>
-    ///Trigger when a card is played. card represents the card being played, ac represents the character playing the card.
+    ///Trigger when a card is played. card represents the card being played, player represents the character playing the card.
     ///</summary>
     public EventCardPlayed(AbstractCard card, AbstractCharacter player){
         this.type = EventType.CARD_PLAYED;

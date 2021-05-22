@@ -12,12 +12,21 @@ public class DamageAction : AbstractAction {
     ///Damage an argument. Triggers an ARGUMENT_ATTACKED_BLOCKED if all damage was negated by Poise, and ARGUMENT_ATTACKED_UNBLOCKED otherwise.
     ///If the target is destroyed post-damage resolution, triggers an ARGUMENT_DESTROYED event.
     ///<list type="bullet">
-    ///<item><term>target</term><description>The argument being damaged.</description></item>
+    ///<item><term>target</term><description>The argument being damaged. If null, damages a random enemy argument instead.</description></item>
+    ///<item><term>argumentOwner</term><description>The owner of the argument. This should NEVER be null!</description></item>
     ///<item><term>damageMin, damageMax</term><description>Deal [damageMin] - [damageMax] damage.</description></item>
     ///</list>
     ///</summary>
-    public DamageAction(AbstractArgument target, int damageMin, int damageMax){
-        this.target = target;
+    public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax){
+        if (target == null){
+            // TODO: Verify this random targeting works as expected!
+            int range = argumentOwner.GetArguments().Count + 1;
+            var rng = new System.Random();
+            int index = rng.Next(range);
+            this.target = (index == 0) ? argumentOwner.GetCoreArgument() : argumentOwner.GetArguments()[index - 1];
+        } else {
+            this.target = target;
+        }
         this.damageMin = damageMin;
         this.damageMax = damageMax;
     }

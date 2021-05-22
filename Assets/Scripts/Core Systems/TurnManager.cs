@@ -13,7 +13,7 @@ public class TurnManager
     }
 
     public void NextCharacter(){
-        Debug.Log("TurnManager.cs: Ending turn for " + GetCurrentCharacter().NAME + ".");
+        // Debug.Log("TurnManager.cs: Ending turn for " + GetCurrentCharacter().NAME + ".");
         GetCurrentCharacter().EndTurn();        // Run end-of-turn function for current character.
         turnList.Add(GetCurrentCharacter());    // Add current character to the back of the queue.
         turnList.RemoveAt(0);                   // Remove them from the front (turn ended).

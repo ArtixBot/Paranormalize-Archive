@@ -66,7 +66,8 @@ public class NegotiationManager
     public void AddAction(AbstractAction action){
         actionQueue.Add(action);
         while (actionQueue.Count > 0){
-            actionQueue[0].Resolve();
+            AbstractAction topAction = actionQueue[0];
+            topAction.Resolve();
             actionQueue.RemoveAt(0);
         }
     }
@@ -105,7 +106,7 @@ public class NegotiationManager
             em.TriggerEvent(new EventCardPlayed(card, source));
             return true;
         } catch (Exception ex){
-            Debug.LogWarning("Failed to play card, reason: " + ex.Message);
+            Debug.LogWarning("PlayCard.cs failed to play card, reason: " + ex.Message);
             return false;
         }
     }

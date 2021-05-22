@@ -37,14 +37,8 @@ public class DeckardAddendum : AbstractCard {
 
         // target a random enemy argument
         if (data.cardDrawn == this){
-            Debug.Log("Addendum triggers!");
-            List<AbstractArgument> targets = TurnManager.Instance.GetOtherCharacter(data.owner).GetArguments();
-            targets.Add(TurnManager.Instance.GetOtherCharacter(data.owner).GetCoreArgument());
-            var random = new System.Random();
-            int index = random.Next(targets.Count);
-
-            NegotiationManager.Instance.AddAction(new DamageAction(targets[index], MIN_DAMAGE, MAX_DAMAGE));
-            NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentStrawman(), STACKS)); //TODO: Change to Finesse argument
+            NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(data.owner), MIN_DAMAGE, MAX_DAMAGE));
+            // NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentStrawman(), STACKS)); //TODO: Change to Finesse argument
         }
     }
 }

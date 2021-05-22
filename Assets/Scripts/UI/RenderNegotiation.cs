@@ -6,7 +6,7 @@ using UnityEngine;
 // Maybe have it also handle user input???
 public class RenderNegotiation : MonoBehaviour
 {
-    public NegotiationManager nm;
+    public NegotiationManager nm = NegotiationManager.Instance;
 
     public AbstractCharacter player;
     public AbstractCharacter enemy;
@@ -18,7 +18,6 @@ public class RenderNegotiation : MonoBehaviour
     // Called whenever we load into the Negotiation scene.
     void Start()
     {
-        nm = NegotiationManager.Instance;
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
         nm.StartNegotiation();      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
         
@@ -28,6 +27,8 @@ public class RenderNegotiation : MonoBehaviour
 
         player = nm.player;
         enemy = nm.enemy;
+        // Debug.Log(enemy.nonCoreArguments.Count);        // WTF?????
+        // Debug.Log(enemy.nonCoreArguments[0].NAME);
 
         // Render core arguments
         GameObject corePlayer = Instantiate(coreArgPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);

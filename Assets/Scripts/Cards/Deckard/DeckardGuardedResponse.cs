@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: FIX THE EVERLASTING CRAP OUT OF THIS
 public class DeckardGuardedResponse : AbstractCard {
 
     public static string cardID = "DECKARD_GUARDED_RESPONSE";
@@ -30,7 +31,7 @@ public class DeckardGuardedResponse : AbstractCard {
         this.charToApplyPoiseTo = source;
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_BLOCKED);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, MIN_DAMAGE, MAX_DAMAGE));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
         EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.ARGUMENT_ATTACKED_BLOCKED);
         EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
     }

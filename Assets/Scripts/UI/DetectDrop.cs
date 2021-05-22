@@ -22,8 +22,10 @@ public class DetectDrop : MonoBehaviour, IDropHandler
                 // Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
                 render.GetComponent<RenderNegotiation>().RenderHand();
             } catch (Exception ex) {
-                Debug.LogWarning("Failed to play card, reason: " + ex.Message);
+                Debug.LogWarning("DetectDrop.cs failed to play card, reason: " + ex.Message);
             }
+        } else {
+            Debug.LogWarning("Failed to play card, card is null!");
         }
     }
 }
