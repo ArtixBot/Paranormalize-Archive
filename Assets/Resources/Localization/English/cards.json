@@ -83,9 +83,21 @@
         "NAME": "Jabber",
         "DESC": "Deal [D]-[D] damage.\nApply [P] Poise to your core argument."
     },
+    "DECKARD_SNIPING_REMARK": {
+        "NAME": "Sniping Remark",
+        "DESC": "Remove all Poise from target argument.\nDeal [D] damage."
+    },
+    "DECKARD_STAY_COOL": {
+        "NAME": "Stay Cool",
+        "DESC": "At the start of your turn, apply [S] Poise to your core argument."
+    },
     "DECKARD_STOIC": {
         "NAME": "Stoic",
         "DESC": "Apply [P] Poise."
+    },
+    "DECKARD_TRASH_TALK": {
+        "NAME": "Trash Talk",
+        "DESC": "Deal [D] damage to a random enemy argument [T] times."
     },
     "ESPHER_JUXTAPOSITION": {
         "NAME": "Juxtaposition",

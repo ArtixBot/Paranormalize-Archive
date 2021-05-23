@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArgumentCoreDeckard : AbstractArgument
+public class ArgumentStayCool : AbstractArgument
 {
-    public ArgumentCoreDeckard(){
-        this.ID = "CORE_DECKARD";
+    public ArgumentStayCool(){
+        this.ID = "STAY_COOL";
         Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
-        this.IMG = Resources.Load<Sprite>("Images/Arguments/composed");
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/stay-cool");
 
         this.curHP = 30;
         this.maxHP = 30;
-        this.stacks = 1;
+        this.stacks = 3;
         this.isCore = true;
+        this.isTrait = true;
     }
 
     public override void TriggerOnDeploy(){
@@ -26,7 +27,7 @@ public class ArgumentCoreDeckard : AbstractArgument
     public override void NotifyOfEvent(AbstractEvent eventData){
         EventTurnStart data = (EventTurnStart) eventData;
         if (data.start == this.OWNER){
-            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this, this.stacks));
+            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this.OWNER.GetCoreArgument(), this.stacks));
         }
     }
 }

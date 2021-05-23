@@ -21,6 +21,7 @@ public abstract class AbstractArgument : EventSubscriber
     public int poise;     // Poise value
     public int stacks;      // Stack count
     public bool isCore = false; // Is a core argument (default false)
+    public bool isTrait = false;    // Is a trait (default false). Traits cannot be destroyed.
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
     public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events by overriding this function.

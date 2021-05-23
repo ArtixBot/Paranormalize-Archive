@@ -39,6 +39,10 @@
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
     },
+    "STAY_COOL":{
+        "NAME": "Stay Cool",
+        "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to [OWNER]'s core argument."
+    },
     "STRAWMAN": {
         "NAME": "Strawman",
         "DESC": "This must be destroyed before targeting [OWNER]'s other arguments.\n\nThis has max resolve equal to stack count (currently [STACKS])."

@@ -21,6 +21,9 @@ public class PlayerDeckard : AbstractCharacter
         this.permaDeck.AddCard("DECKARD_GOOD_IMPRESSION");
         this.permaDeck.AddCard("DECKARD_GRUFF");
         this.permaDeck.AddCard("DECKARD_CALM");
+        this.permaDeck.AddCard("DECKARD_SNIPING_REMARK");
+        this.permaDeck.AddCard("DECKARD_STAY_COOL");
+        this.permaDeck.AddCard("DECKARD_TRASH_TALK");
         this.permaDeck.AddCard("DECKARD_STOIC");
         this.permaDeck.AddCard("DECKARD_INTERVENE");
         this.permaDeck.AddCard("DECKARD_CHALLENGE");
