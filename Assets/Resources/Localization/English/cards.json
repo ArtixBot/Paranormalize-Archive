@@ -35,9 +35,21 @@
         "NAME": "Addendum",
         "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
     },
+    "DECKARD_BARREL_THROUGH": {
+        "NAME": "Barrel Through",
+        "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to half your Poise."
+    },
+    "DECKARD_BRASH": {
+        "NAME": "Brash",
+        "DESC": "Deal [D] damage to all enemy arguments."
+    },
     "DECKARD_CALM": {
         "NAME": "Calm",
         "DESC": "Apply [P] Poise to all your arguments.\nDouble your Poise."
+    },
+    "DECKARD_CHALLENGE": {
+        "NAME": "Challenge",
+        "DESC": "Remove all Poise from your core argument to deal damage equal to Poise removed."
     },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",
@@ -58,6 +70,14 @@
     "DECKARD_GRUFF": {
         "NAME": "Gruff",
         "DESC": "Deal [D]-[D] damage."
+    },
+    "DECKARD_GUARDED_RESPONSE": {
+        "NAME": "Guarded Response",
+        "DESC": "Deal [D]-[D] damage.\nApply Poise to all your arguments equal to damage dealt by this card."
+    },
+    "DECKARD_INTERVENE": {
+        "NAME": "Intervene",
+        "DESC": "Apply [P] Poise."
     },
     "DECKARD_JABBER": {
         "NAME": "Jabber",

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Note that CardType and CardRarity enums are defined outside so that any class can use them (hopefully?)
 public enum CardType {ATTACK, SKILL, TRAIT};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS};
+public enum CardTags {INHERIT, SCOUR};
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard : EventSubscriber {

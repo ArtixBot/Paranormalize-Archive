@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: FIX THE EVERLASTING CRAP OUT OF THIS
 public class DeckardGuardedResponse : AbstractCard {
 
     public static string cardID = "DECKARD_GUARDED_RESPONSE";
@@ -44,19 +43,14 @@ public class DeckardGuardedResponse : AbstractCard {
 
     public override void NotifyOfEvent(AbstractEvent eventData){
         int poiseToApply = 0;
-        switch (eventData.type){
-            case EventType.ARGUMENT_ATTACKED_BLOCKED:
-                EventArgAttackedBlocked data = (EventArgAttackedBlocked) eventData;
-                poiseToApply = data.damageDealt;
-                break;
-            case EventType.ARGUMENT_ATTACKED_UNBLOCKED:
-                EventArgAttackedUnblocked data2 = (EventArgAttackedUnblocked) eventData;
-                poiseToApply = data2.damageDealt;
-                break;
-            default:
-                break;
+        // need to cast to access "damageDealt" field
+        if (eventData.type == EventType.ARGUMENT_ATTACKED_BLOCKED){
+            EventArgAttackedBlocked data = eventData as EventArgAttackedBlocked;
+            poiseToApply = data.damageDealt;
+        } else {
+            EventArgAttackedUnblocked data = eventData as EventArgAttackedUnblocked;
+            poiseToApply = data.damageDealt;
         }
-        Debug.Log("OH JOY: " + poiseToApply);
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(charToApplyPoiseTo, charToApplyPoiseTo.GetCoreArgument(), poiseToApply));
         foreach(AbstractArgument arg in charToApplyPoiseTo.GetArguments()){
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(charToApplyPoiseTo, arg, poiseToApply));

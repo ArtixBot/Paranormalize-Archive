@@ -13,7 +13,7 @@ public class DamageAction : AbstractAction {
     ///If the target is destroyed post-damage resolution, triggers an ARGUMENT_DESTROYED event.
     ///<list type="bullet">
     ///<item><term>target</term><description>The argument being damaged. If null, damages a random argument instead. The random target will be filtered based on argumentOwner.</description></item>
-    ///<item><term>argumentOwner</term><description>The owner of the argument. This should NEVER be null!</description></item>
+    ///<item><term>argumentOwner</term><description>The owner of the argument. Does nothing if target is null, else determines filter for random targeting.</description></item>
     ///<item><term>damageMin, damageMax</term><description>Deal [damageMin] - [damageMax] damage.</description></item>
     ///</list>
     ///</summary>

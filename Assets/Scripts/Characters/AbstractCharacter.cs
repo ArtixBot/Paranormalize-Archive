@@ -25,6 +25,7 @@ public abstract class AbstractCharacter
     public List<AbstractCard> hand = new List<AbstractCard>();
     protected Deck drawPile = new Deck();
     protected Deck discardPile = new Deck();
+    protected Deck scourPile = new Deck();
 
     public bool canPlayCards = true;
     public bool canPlayAttacks = true;
@@ -114,5 +115,9 @@ public abstract class AbstractCharacter
 
     public Deck GetDiscardPile(){
         return this.discardPile;
+    }
+    
+    public Deck GetScourPile(){
+        return this.scourPile;
     }
 }
