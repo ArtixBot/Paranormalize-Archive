@@ -17,4 +17,28 @@ public class ArgumentCoreHardenedResolve : AbstractArgument
         this.stacks = 1;
         this.isCore = true;
     }
+
+    public override void TriggerOnDeploy(){
+        base.TriggerOnDeploy();
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
+    }
+
+    public override void NotifyOfEvent(AbstractEvent eventData){
+        switch (eventData.type){
+            case EventType.TURN_START:
+                EventTurnStart data = (EventTurnStart) eventData;
+                if (data.start == this.OWNER){
+                    this.stacks = 1;
+                }
+                break;
+            case EventType.ARGUMENT_ATTACKED_UNBLOCKED:
+                EventArgAttackedUnblocked attacked = (EventArgAttackedUnblocked) eventData;
+                if (attacked.argumentAttacked == this){
+                    NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this, this.stacks));
+                    this.stacks += 1;
+                }
+                break;
+        }
+    }
 }
