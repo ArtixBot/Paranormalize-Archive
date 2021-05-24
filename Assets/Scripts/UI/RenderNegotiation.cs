@@ -12,7 +12,7 @@ public class RenderNegotiation : MonoBehaviour
     public AbstractCharacter enemy;
 
     public GameObject cardTemplatePrefab;
-    public GameObject coreArgPrefab;
+    public GameObject argPrefab;
     public GameObject handZone;
 
     // Called whenever we load into the Negotiation scene.
@@ -22,21 +22,19 @@ public class RenderNegotiation : MonoBehaviour
         nm.StartNegotiation();      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
         
         handZone = GameObject.Find("Canvas/HandZone");
-        coreArgPrefab = Resources.Load("Prefabs/CoreArgumentDisplay") as GameObject;
+        argPrefab = Resources.Load("Prefabs/ArgumentDisplay") as GameObject;
         cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
 
         player = nm.player;
         enemy = nm.enemy;
-        // Debug.Log(enemy.nonCoreArguments.Count);        // WTF?????
-        // Debug.Log(enemy.nonCoreArguments[0].NAME);
 
         // Render core arguments
-        GameObject corePlayer = Instantiate(coreArgPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
+        GameObject corePlayer = Instantiate(argPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
         corePlayer.GetComponent<DisplayArgument>().reference = player.GetCoreArgument();
         corePlayer.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
         corePlayer.SetActive(true);     // Invoke the core argument's OnEnable() function since the prefab is disabled by default
 
-        GameObject coreEnemy = Instantiate(coreArgPrefab, GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform.position, Quaternion.identity);
+        GameObject coreEnemy = Instantiate(argPrefab, GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform.position, Quaternion.identity);
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
         coreEnemy.SetActive(true);

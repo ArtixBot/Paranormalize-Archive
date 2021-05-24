@@ -5,7 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public interface ITriggerOnEvent{
+    void TriggerOnEvent(AbstractEvent eventData);  
+}
+
+public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ITriggerOnEvent
 {
     public AbstractArgument reference;
     public TextMeshProUGUI stackCounter;
@@ -17,6 +21,10 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         transform.Find("Image").GetComponent<Image>().sprite = reference.IMG;
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
         stackCounter.text = "x" + reference.stacks;         // TODO: Update this when a card is played rather than just on start.
+
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
     }
     
     public void OnPointerEnter(PointerEventData eventData){
@@ -32,5 +40,9 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData){
         Destroy(tooltipInstance);
+    }
+
+    public void TriggerOnEvent(AbstractEvent eventData){
+        stackCounter.text = "x" + reference.stacks;
     }
 }
