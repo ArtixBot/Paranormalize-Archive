@@ -12,15 +12,20 @@ public interface ITriggerOnEvent{
 public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ITriggerOnEvent
 {
     public AbstractArgument reference;
+
     public TextMeshProUGUI stackCounter;
     public GameObject tooltipPrefab;
     public GameObject tooltipInstance;
+    public Image healthBarImageFill;
+    public TextMeshProUGUI healthBarText;
 
     public void OnEnable(){        
         tooltipPrefab = Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
         transform.Find("Image").GetComponent<Image>().sprite = reference.IMG;
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
-        stackCounter.text = "x" + reference.stacks;         // TODO: Update this when a card is played rather than just on start.
+
+        healthBarImageFill = transform.Find("HealthBar/Fill").GetComponent<Image>();
+        healthBarText = transform.Find("HealthBar/Text").GetComponent<TextMeshProUGUI>();
 
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
@@ -44,5 +49,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void TriggerOnEvent(AbstractEvent eventData){
         stackCounter.text = "x" + reference.stacks;
+        healthBarImageFill.fillAmount =  (float)reference.curHP / (float)reference.maxHP;
+        healthBarText.text = reference.curHP + "/" + reference.maxHP + " (" + reference.poise + ")";
     }
 }

@@ -130,6 +130,8 @@ MonoBehaviour:
   stackCounter: {fileID: 0}
   tooltipPrefab: {fileID: 0}
   tooltipInstance: {fileID: 0}
+  healthBarImageFill: {fileID: 0}
+  healthBarText: {fileID: 0}
 --- !u!114 &4727952517543739015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,6 +293,10 @@ PrefabInstance:
     - target: {fileID: 8318003564965335430, guid: f48421a70e82b674dae9f56f70768147, type: 3}
       propertyPath: m_SizeDelta.x
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318003564965335431, guid: f48421a70e82b674dae9f56f70768147, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318003565091532906, guid: f48421a70e82b674dae9f56f70768147, type: 3}
       propertyPath: m_Name

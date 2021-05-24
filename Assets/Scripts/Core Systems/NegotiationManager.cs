@@ -5,7 +5,7 @@ using UnityEngine;
 
 // Handles negotiation. Also stores negotiation state variables, like current round, how many cards were played during this turn, etc.
 // Singleton.
-public class NegotiationManager
+public class NegotiationManager : EventSubscriber
 {
     public static readonly NegotiationManager Instance = new NegotiationManager();
     public List<AbstractAction> actionQueue = new List<AbstractAction>();
@@ -32,6 +32,7 @@ public class NegotiationManager
         // END TODO
 
         em.ClearAllSubscribers();
+        em.SubscribeToEvent(this, EventType.CARD_PLAYED);       // Subscribe to CARD_PLAYED event to perform all post-card play processing (ambience shift, adjusting global values, etc.)
 
         player = tm.GetPlayer();
         enemy = tm.GetEnemy();
@@ -90,7 +91,7 @@ public class NegotiationManager
 
         this.round = 1;
         this.cardsPlayedThisTurn = 0;
-        ambience.score = 0;
+        ambience.SetState(AmbienceState.TENSE);
         // change scene to loss
     }
 
@@ -103,7 +104,7 @@ public class NegotiationManager
 
         this.round = 1;
         this.cardsPlayedThisTurn = 0;
-        ambience.score = 0;
+        ambience.SetState(AmbienceState.TENSE);
         // change scene to win
     }
 
@@ -142,5 +143,17 @@ public class NegotiationManager
         character.GetDrawPile().Clear();
         character.hand.Clear();
         character.GetDiscardPile().Clear();
+    }
+
+    public override void NotifyOfEvent(AbstractEvent eventData){
+        EventCardPlayed data = (EventCardPlayed) eventData;
+        cardsPlayedThisTurn += 1;
+
+        if (data.cardAmbient == CardAmbient.DIALOGUE){
+            ambience.AdjustState(-1);
+        } else if (data.cardAmbient == CardAmbient.AGGRESSION){
+            ambience.AdjustState(1);
+        }
+        Debug.Log("Current ambience: " + ambience.GetState());
     }
 }

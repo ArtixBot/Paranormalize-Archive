@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO - All event subscribers currently have a 'global' scope, i.e. they trigger whenever ANYONE triggers an EventType.
-// Need to make it so we can trigger certain subscribers - e.g. only have an effect when the OTHER player plays a Dialogue card (not any player).
-// Manages all negotiation gameEvents, like notify on argument destroyed.
-// Arguments and relics can subscribe to gameEvents and then activate when their subscribed event triggers.
-// In *general*, calls to EventSystemManager.Instance should run after all other effects occur.
+// Manages all negotiation game events, like notify on argument destroyed.
+// Cards, artifacts, arguments, and the negotiation manager itself use gameEvents.
+// UI elements inherit from MonoBehavior and thus use ITriggerOnEvent instead -- they are stored in UIEvents.
+// gameEvents update first, then UIEvents update afterwards.
 // Singleton.
 public class EventSystemManager
 {
