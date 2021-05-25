@@ -15,6 +15,8 @@ public class RenderNegotiation : MonoBehaviour
     public GameObject argPrefab;
     public GameObject handZone;
 
+    public Camera mainCamera;
+
     // Called whenever we load into the Negotiation scene.
     void Start()
     {
@@ -39,6 +41,7 @@ public class RenderNegotiation : MonoBehaviour
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
         coreEnemy.SetActive(true);
 
+        mainCamera = Camera.main;       // grab main camera
         this.RenderHand();  // Render player hand
     }
 
@@ -67,8 +70,8 @@ public class RenderNegotiation : MonoBehaviour
     //     for (int i = 0; i < playerArgCount; i++){
     //         float radius = 500;
     //         float angle = i * Mathf.PI * 2f / radius;
-    //         Vector3 newPos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
-    //         GameObject arg = Instantiate(coreArgPrefab, newPos, Quaternion.Euler(0, 0, 0));
+    //         Vector3 enemyPos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
+    //         GameObject arg = Instantiate(coreArgPrefab, enemyPos, Quaternion.Euler(0, 0, 0));
 
     //         arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
     //         arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
@@ -76,11 +79,38 @@ public class RenderNegotiation : MonoBehaviour
     //     }
     // }
 
+    bool moveTheCam = false;
+    bool swap = true;
+    Vector3 playerPos;
+    Vector3 enemyPos;
     void Update(){
         if (Input.GetKeyUp(KeyCode.E)){
             NegotiationManager.Instance.NextTurn();
             RenderHand();
             // RenderNonCoreArguments();
+
+            playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
+            enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
+            moveTheCam = true;
+        }
+    }
+
+    public float cameraSpeed = 100f;
+    bool moveCameraRight = true;
+    void LateUpdate(){
+        if (moveTheCam){
+            float value = (moveCameraRight) ? (cameraSpeed * Time.deltaTime) : -(cameraSpeed * Time.deltaTime);
+
+            Vector3 camPos = new Vector3(mainCamera.transform.position.x + value, mainCamera.transform.position.y, -10);
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, camPos, cameraSpeed);
+
+            if (moveCameraRight && mainCamera.transform.position.x > enemyPos.x){
+                moveTheCam = false;
+                moveCameraRight = false;
+            } else if (!moveCameraRight && mainCamera.transform.position.x < playerPos.x){
+                moveTheCam = false;
+                moveCameraRight = true;
+            }
         }
     }
 }
