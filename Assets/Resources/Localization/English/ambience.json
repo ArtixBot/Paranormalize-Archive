@@ -1,0 +1,27 @@
+{
+    "GUARDED": {
+        "NAME": "Guarded",
+        "FLAVOR": "The atmosphere could almost be considered cordial.",
+        "DESC": "- At the start of a character's turn, restore 1 resolve to their core argument."
+    },
+    "TENSE": {
+        "NAME": "Tense",
+        "FLAVOR": "Paranormalization holding steady. Nothing too dicey, for now.",
+        "DESC": "- No special effects."
+    },
+    "AGITATED": {
+        "NAME": "Agitated",
+        "FLAVOR": "Another wrong step could further devolve relations.",
+        "DESC": "- Attacks deal +1 damage."
+    },
+    "VOLATILE": {
+        "NAME": "Volatile",
+        "FLAVOR": "The air crackles with tension. Someone's not going to remain on this mortal realm much longer.",
+        "DESC": "- Aggression attacks deal +2 damage.\n- Diplomacy attacks deal -2 damage."
+    },
+    "DANGEROUS": {
+        "NAME": "Dangerous",
+        "FLAVOR": "This is going to be ugly.",
+        "DESC": "- Aggression attacks deal +3 damage.\n- Diplomacy attacks deal -3 damage.\n- All Poise gain is reduced by 50%."
+    }
+}

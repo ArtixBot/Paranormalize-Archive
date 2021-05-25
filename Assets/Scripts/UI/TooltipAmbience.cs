@@ -19,9 +19,10 @@ public class TooltipAmbience : MonoBehaviour, IPointerEnterHandler, IPointerExit
         ambienceEffects = transform.Find("BG/Ambience Effects").GetComponent<TextMeshProUGUI>();
 
         // TODO: This stuff should be read from a .json file.
-        ambienceState.text = ambRef.GetState().ToString();
-        ambienceDesc.text = "Paranormalization holding steady. Nothing too dicey, for now.";
-        ambienceEffects.text = "- No special effects.\n- Play X|Y Dialogue|Aggression cards to change Ambience.";
+        Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetAmbienceStrings(ambRef.GetState().ToString());
+        ambienceState.text = cardStrings["NAME"];
+        ambienceDesc.text = cardStrings["FLAVOR"];
+        ambienceEffects.text = cardStrings["DESC"];
     }
 
     public void OnPointerEnter(PointerEventData eventData){}
