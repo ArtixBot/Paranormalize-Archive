@@ -15,11 +15,13 @@ public class DetectDrop : MonoBehaviour, IDropHandler
     }
 
     public void OnDrop(PointerEventData eventData){
+        if (eventData.pointerDrag.GetComponent<DisplayCard>() == null){return;}
         AbstractCard card = eventData.pointerDrag.GetComponent<DisplayCard>().reference;
         if (card != null){
             // Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
             NegotiationManager.Instance.PlayCard(card, TurnManager.Instance.GetCurrentCharacter(), argRef);
             render.GetComponent<RenderNegotiation>().RenderHand();
+            render.GetComponent<RenderNegotiation>().RenderNonCoreArguments();
             return;
         }
         Debug.LogWarning("Failed to play card, card is null!");

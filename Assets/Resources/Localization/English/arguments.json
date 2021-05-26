@@ -43,6 +43,14 @@
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
     },
+    "HOTHEADED":{
+        "NAME": "Hotheaded",
+        "DESC": "Whenever the Ambience shifts towards Dangerous, [OWNER] draws [STACKS] card(s)."
+    },
+    "PARADOX":{
+        "NAME": "Paradox",
+        "DESC": "When destroyed, deal [STACKS] damage to [OWNER]'s core argument.\n\nAt the end of [OWNER]'s turn, add [STACKS] stack(s) to this argument."
+    },
     "STAY_COOL":{
         "NAME": "Stay Cool",
         "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to [OWNER]'s core argument."

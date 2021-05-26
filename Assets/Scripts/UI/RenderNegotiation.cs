@@ -60,34 +60,37 @@ public class RenderNegotiation : MonoBehaviour
         }
     }
 
-    // public void RenderNonCoreArguments(){
-    //     // foreach (Transform child in GameObject.Find("Canvas/PlayerSide").transform){
-    //     //     if (!child.gameObject.GetComponent<DisplayArgument>().reference.isCore){
-    //     //         GameObject.Destroy(child.gameObject);
-    //     //     }
-    //     // }
-    //     int playerArgCount = player.nonCoreArguments.Count;
-    //     for (int i = 0; i < playerArgCount; i++){
-    //         float radius = 500;
-    //         float angle = i * Mathf.PI * 2f / radius;
-    //         Vector3 enemyPos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
-    //         GameObject arg = Instantiate(coreArgPrefab, enemyPos, Quaternion.Euler(0, 0, 0));
+    public void RenderNonCoreArguments(){
+        // foreach (Transform child in GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform){
+        //     if (!child.gameObject.GetComponent<DisplayArgument>().reference.isCore){
+        //         GameObject.Destroy(child.gameObject);
+        //     }
+        // }
+        Transform parent = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform;
+        foreach (Transform child in parent){
+            GameObject.Destroy(child.gameObject.GetComponent<DisplayArgument>().tooltipInstance);
+            GameObject.Destroy(child.gameObject);
+        }
 
-    //         arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
-    //         arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
-    //         arg.SetActive(true);
-    //     }
-    // }
+        for (int i = 0; i < player.nonCoreArguments.Count; i++){
+            // float radius = 500;
+            // Vector3 pos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
+            // float angle = i * Mathf.PI * 2f / radius;
+            GameObject arg = Instantiate(argPrefab, new Vector3(parent.position.x, parent.position.y + 200.0f * i, 0), Quaternion.identity);
+            arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
+            arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform);
+            arg.SetActive(true);
+        }
+    }
 
     bool moveTheCam = false;
-    bool swap = true;
     Vector3 playerPos;
     Vector3 enemyPos;
     void Update(){
         if (Input.GetKeyUp(KeyCode.E)){
             NegotiationManager.Instance.NextTurn();
             RenderHand();
-            // RenderNonCoreArguments();
+            RenderNonCoreArguments();
 
             playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
             enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);

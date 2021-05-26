@@ -30,6 +30,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
+        Debug.Log("Enabled all things for " + reference.NAME);
     }
     
     public void OnPointerEnter(PointerEventData eventData){

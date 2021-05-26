@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArgumentStayCool : AbstractArgument
+public class ArgumentHotheaded : AbstractArgument
 {
-    public ArgumentStayCool(){
-        this.ID = "STAY_COOL";
+    public ArgumentHotheaded(){
+        this.ID = "HOTHEADED";
         Dictionary<string, string> strings = LocalizationLibrary.Instance.GetArgumentStrings(this.ID);
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
@@ -14,18 +14,19 @@ public class ArgumentStayCool : AbstractArgument
 
         this.curHP = 30;
         this.maxHP = 30;
+        this.stacks = 2;
         this.isTrait = true;
     }
 
     public override void TriggerOnDeploy(){
         base.TriggerOnDeploy();
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.AMBIENCE_STATE_SHIFT);
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){
-        EventTurnStart data = (EventTurnStart) eventData;
-        if (data.start == this.OWNER){
-            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this.OWNER.GetCoreArgument(), this.stacks));
+        EventAmbientStateShift data = (EventAmbientStateShift) eventData;
+        if (data.newState > data.oldState){
+            NegotiationManager.Instance.AddAction(new DrawCardsAction(this.OWNER, this.stacks));
         }
     }
 }

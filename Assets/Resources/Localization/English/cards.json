@@ -75,6 +75,10 @@
         "NAME": "Guarded Response",
         "DESC": "Deal [D]-[D] damage.\nApply Poise to all your arguments equal to damage dealt by this card."
     },
+    "DECKARD_HOTHEADED": {
+        "NAME": "Hotheaded",
+        "DESC": "Whenever Ambience changes towards Dangerous, draw [C] cards."
+    },
     "DECKARD_INTERVENE": {
         "NAME": "Intervene",
         "DESC": "Apply [P] Poise."
