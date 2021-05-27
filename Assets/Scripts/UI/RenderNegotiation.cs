@@ -83,7 +83,8 @@ public class RenderNegotiation : MonoBehaviour
         }
     }
 
-    bool moveTheCam = false;
+    // bool moveTheCam = false;
+    bool moveCameraRight = true;
     Vector3 playerPos;
     Vector3 enemyPos;
     void Update(){
@@ -94,26 +95,24 @@ public class RenderNegotiation : MonoBehaviour
 
             playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
             enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
-            moveTheCam = true;
+            moveCameraRight = !moveCameraRight;
         }
     }
 
-    public float cameraSpeed = 100f;
-    bool moveCameraRight = true;
+    public float duration = 1f;       // this doesn't seem to do anything for some reason
     void LateUpdate(){
-        if (moveTheCam){
-            float value = (moveCameraRight) ? (cameraSpeed * Time.deltaTime) : -(cameraSpeed * Time.deltaTime);
-
-            Vector3 camPos = new Vector3(mainCamera.transform.position.x + value, mainCamera.transform.position.y, -10);
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, camPos, cameraSpeed);
-
-            if (moveCameraRight && mainCamera.transform.position.x > enemyPos.x){
-                moveTheCam = false;
-                moveCameraRight = false;
-            } else if (!moveCameraRight && mainCamera.transform.position.x < playerPos.x){
-                moveTheCam = false;
-                moveCameraRight = true;
-            }
+        if (moveCameraRight){
+            StartCoroutine(MoveCameraTo(mainCamera.transform.position, enemyPos, duration));
+        } else {
+            StartCoroutine(MoveCameraTo(mainCamera.transform.position, playerPos, duration));
         }
+    }
+
+    IEnumerator MoveCameraTo(Vector3 oldPos, Vector3 newPos, float duration){
+        for (float f = 0f; f < duration/4; f += 3*Time.deltaTime){
+            mainCamera.transform.position = Vector3.Lerp(oldPos, newPos, f/duration);
+            yield return 0;
+        }
+        mainCamera.transform.position = newPos;
     }
 }

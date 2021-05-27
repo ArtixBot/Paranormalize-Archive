@@ -154,6 +154,6 @@ public class NegotiationManager : EventSubscriber
         } else if (data.cardAmbient == CardAmbient.AGGRESSION){
             ambience.AdjustState(1);
         }
-        Debug.Log("Current ambience: " + ambience.GetState());
+        // Debug.Log("Current ambience: " + ambience.GetState());
     }
 }

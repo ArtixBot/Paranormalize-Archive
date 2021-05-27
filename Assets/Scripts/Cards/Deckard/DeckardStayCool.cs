@@ -8,7 +8,7 @@ public class DeckardStayCool : AbstractCard
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int STACKS = 3;
+    public int STACKS = 2;
 
     public DeckardStayCool() : base(
         cardID,

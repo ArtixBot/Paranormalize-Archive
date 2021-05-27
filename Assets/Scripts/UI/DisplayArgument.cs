@@ -13,24 +13,32 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
     public AbstractArgument reference;
 
+    public Image argumentImage;
     public TextMeshProUGUI stackCounter;
     public GameObject tooltipPrefab;
     public GameObject tooltipInstance;
     public Image healthBarImageFill;
     public TextMeshProUGUI healthBarText;
 
+
     public void OnEnable(){        
         tooltipPrefab = Resources.Load("Prefabs/ArgumentTooltip") as GameObject;
-        transform.Find("Image").GetComponent<Image>().sprite = reference.IMG;
+        argumentImage = transform.Find("Image").GetComponent<Image>();
         stackCounter = transform.Find("StackCount").GetComponent<TextMeshProUGUI>();
 
         healthBarImageFill = transform.Find("HealthBar/Fill").GetComponent<Image>();
         healthBarText = transform.Find("HealthBar/Text").GetComponent<TextMeshProUGUI>();
 
+        argumentImage.sprite = reference.IMG;
+
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
-        Debug.Log("Enabled all things for " + reference.NAME);
+
+        // stackCounter.text = "x" + reference.stacks;
+        // healthBarImageFill.fillAmount =  (float)reference.curHP / (float)reference.maxHP;
+        // healthBarText.text = reference.curHP + "/" + reference.maxHP + " (" + reference.poise + ")";
+        // Debug.Log("Enabled all things for " + reference.NAME);
     }
     
     public void OnPointerEnter(PointerEventData eventData){

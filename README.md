@@ -1,2 +1,2 @@
 # Paranormalize
-A tactical negotiation card game.
+A tactical negotiation card game about exorcising spirits.
