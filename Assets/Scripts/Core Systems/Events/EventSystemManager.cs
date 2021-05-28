@@ -55,6 +55,10 @@ public class EventSystemManager
         gameEvents[type].Remove(subscriber);
     }
 
+    public void UnsubscribeFromEvent(ITriggerOnEvent subscriber, EventType type){
+        UIEvents[type].Remove(subscriber);
+    }
+
     public void ClearAllSubscribers(){
         foreach (EventType type in Enum.GetValues(typeof(EventType))){
             foreach (EventSubscriber sub in gameEvents[type]){

@@ -101,6 +101,9 @@ public class RenderNegotiation : MonoBehaviour
 
     public float duration = 1f;       // this doesn't seem to do anything for some reason
     void LateUpdate(){
+        if (mainCamera.transform.position.z > -10){
+            mainCamera.transform.position = mainCamera.transform.position + new Vector3(0, 0, -10);
+        }
         if (moveCameraRight){
             StartCoroutine(MoveCameraTo(mainCamera.transform.position, enemyPos, duration));
         } else {

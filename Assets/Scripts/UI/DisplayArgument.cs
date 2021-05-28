@@ -35,10 +35,16 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
 
-        // stackCounter.text = "x" + reference.stacks;
-        // healthBarImageFill.fillAmount =  (float)reference.curHP / (float)reference.maxHP;
-        // healthBarText.text = reference.curHP + "/" + reference.maxHP + " (" + reference.poise + ")";
+        stackCounter.text = "x" + reference.stacks;
+        healthBarImageFill.fillAmount =  (float)reference.curHP / (float)reference.maxHP;
+        healthBarText.text = reference.curHP + "/" + reference.maxHP + " (" + reference.poise + ")";
         // Debug.Log("Enabled all things for " + reference.NAME);
+    }
+
+    public void OnDisable(){
+        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.TURN_START);
+        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.TURN_END);
+        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.CARD_PLAYED);
     }
     
     public void OnPointerEnter(PointerEventData eventData){
