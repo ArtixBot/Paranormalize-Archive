@@ -12,8 +12,8 @@ public class ArgumentStayCool : AbstractArgument
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
         this.IMG = Resources.Load<Sprite>("Images/Arguments/stay-cool");
 
-        this.curHP = 30;
-        this.maxHP = 30;
+        this.curHP = 1;
+        this.maxHP = 1;
         this.isTrait = true;
     }
 

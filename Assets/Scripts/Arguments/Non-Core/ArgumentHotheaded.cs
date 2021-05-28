@@ -12,8 +12,8 @@ public class ArgumentHotheaded : AbstractArgument
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
         this.IMG = Resources.Load<Sprite>("Images/Arguments/combative");
 
-        this.curHP = 30;
-        this.maxHP = 30;
+        this.curHP = 1;
+        this.maxHP = 1;
         this.stacks = 2;
         this.isTrait = true;
     }

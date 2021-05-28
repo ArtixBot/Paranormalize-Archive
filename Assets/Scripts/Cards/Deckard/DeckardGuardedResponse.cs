@@ -31,8 +31,7 @@ public class DeckardGuardedResponse : AbstractCard {
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_BLOCKED);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
         NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
-        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.ARGUMENT_ATTACKED_BLOCKED);
-        EventSystemManager.Instance.UnsubscribeFromEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
+        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
     }
 
     public override void Upgrade(){

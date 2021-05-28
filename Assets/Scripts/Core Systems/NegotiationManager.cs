@@ -113,9 +113,7 @@ public class NegotiationManager : EventSubscriber
         try {
             card.Play(source, target);
             cardsPlayedThisTurn += 1;
-            Debug.Log("play " + card.NAME + " on" + target.NAME);
             em.TriggerEvent(new EventCardPlayed(card, source));
-            Debug.Log("post-play");
             return true;
         } catch (Exception ex){
             Debug.LogWarning("NegotiationManager.cs failed to play " +  card.NAME + ", reason: " + ex.Message);

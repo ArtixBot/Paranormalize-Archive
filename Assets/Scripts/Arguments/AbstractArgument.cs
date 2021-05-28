@@ -35,11 +35,7 @@ public abstract class AbstractArgument : EventSubscriber
                 return;
             }
         }
-
-        // Automatically unsubscribe from all relevant events (a list of event types is maintained in eventsSubscribedTo, which is inherited from EventSubscriber)
-        foreach (EventType type in this.eventsSubscribedTo){
-            EventSystemManager.Instance.UnsubscribeFromEvent(this, type);
-        }
+        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
     }
 
     public bool IsDeployed(){

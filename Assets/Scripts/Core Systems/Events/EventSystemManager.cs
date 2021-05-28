@@ -50,13 +50,19 @@ public class EventSystemManager
         UIEvents[type].Add(subscriber);
     }
 
-    public void UnsubscribeFromEvent(EventSubscriber subscriber, EventType type){
-        subscriber.eventsSubscribedTo.Remove(type);
+    private void UnsubscribeFromEvent(EventSubscriber subscriber, EventType type){
         gameEvents[type].Remove(subscriber);
     }
 
     public void UnsubscribeFromEvent(ITriggerOnEvent subscriber, EventType type){
         UIEvents[type].Remove(subscriber);
+    }
+
+    public void UnsubscribeFromAllEvents(EventSubscriber subscriber){
+        foreach (EventType type in subscriber.eventsSubscribedTo){
+            EventSystemManager.Instance.UnsubscribeFromEvent(subscriber, type);
+        }
+        subscriber.eventsSubscribedTo.Clear();
     }
 
     public void ClearAllSubscribers(){
