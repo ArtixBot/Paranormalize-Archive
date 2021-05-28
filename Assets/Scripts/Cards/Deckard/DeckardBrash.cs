@@ -20,12 +20,14 @@ public class DeckardBrash : AbstractCard {
         CardType.ATTACK
     ){}
 
+    // TODO: Fix issue with card not working if it destroys a non-core argument due to modifying collection
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new DamageAction(target.OWNER.GetCoreArgument(), target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
-        foreach(AbstractArgument arg in target.OWNER.GetArguments()){
-            NegotiationManager.Instance.AddAction(new DamageAction(arg, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
-        }
+        // NegotiationManager.Instance.AddAction(new DamageAction(target.OWNER.GetCoreArgument(), target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+        // List<AbstractArgument> nonCoreArgs = target.OWNER.GetArguments();
+        // foreach(AbstractArgument arg in nonCoreArgs){
+        // NegotiationManager.Instance.AddAction(new DamageAction(target.OWNER.nonCoreArguments[i], target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+        // }
     }
 
     public override void Upgrade(){
