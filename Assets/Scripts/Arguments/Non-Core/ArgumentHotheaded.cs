@@ -10,7 +10,7 @@ public class ArgumentHotheaded : AbstractArgument
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
-        this.IMG = Resources.Load<Sprite>("Images/Arguments/combative");
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/hotheaded");
 
         this.curHP = 1;
         this.maxHP = 1;

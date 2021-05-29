@@ -38,6 +38,13 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         stackCounter.text = "x" + reference.stacks;
         healthBarImageFill.fillAmount =  (float)reference.curHP / (float)reference.maxHP;
         healthBarText.text = reference.curHP + "/" + reference.maxHP + " (" + reference.poise + ")";
+
+        if (reference.isTrait){
+            transform.Find("HealthBar").gameObject.SetActive(false);
+        }
+        // if (!reference.isCore){
+        //     argumentImage.rectTransform.sizeDelta = new Vector2(100, 100);
+        // }
         // Debug.Log("Enabled all things for " + reference.NAME);
     }
 

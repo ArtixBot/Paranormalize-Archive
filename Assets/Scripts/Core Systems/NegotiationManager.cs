@@ -156,4 +156,20 @@ public class NegotiationManager : EventSubscriber
         }
         // Debug.Log("Current ambience: " + ambience.GetState());
     }
+
+    ///<summary>
+    ///Calls upon RenderNegotiation to render a card selection menu. Returns a list of cards selected from the menu.
+    ///<list type="bullet">
+    ///<item><term>cardsToDisplay</term><description>The cards to be displayed in the selection menu.</description></item>
+    ///<item><term>numToSelect</term><description>How many cards the user may/must select from the menu.</description></item>
+    ///<item><term>mustSelectExact</term><description>If true, the user must select exactly [numToSelect] cards, else the user may select up to [numToSelect] cards.</description></item>
+    ///</list>
+    ///</summary>
+    public List<AbstractCard> SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact){
+        if (cardsToDisplay.Count == 0 || (cardsToDisplay.Count <= numToSelect && mustSelectExact)){
+            return cardsToDisplay;
+        }
+        List<AbstractCard> selectedCards = new List<AbstractCard>();
+        return selectedCards;
+    }
 }

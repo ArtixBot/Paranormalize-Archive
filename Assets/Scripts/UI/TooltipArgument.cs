@@ -30,7 +30,11 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
             argumentName.GetComponent<TextMeshProUGUI>().text = argRef.NAME;
             argumentDesc.GetComponent<TextMeshProUGUI>().text = ParseTooltip(argRef.DESC);
             argumentStacks.GetComponent<TextMeshProUGUI>().text = "x" + argRef.stacks;
-            argumentResolve.GetComponent<TextMeshProUGUI>().text = "RESOLVE " + argRef.curHP + "/" + argRef.maxHP + " (" + argRef.poise + ")";
+            if (argRef.isTrait){
+                argumentResolve.GetComponent<TextMeshProUGUI>().text = "TRAIT";
+            } else {
+                argumentResolve.GetComponent<TextMeshProUGUI>().text = "RESOLVE " + argRef.curHP + "/" + argRef.maxHP + " (" + argRef.poise + ")";
+            }
         } else {
             argumentName.GetComponent<TextMeshProUGUI>().text = "MISSING ARGUMENT REF";
         }

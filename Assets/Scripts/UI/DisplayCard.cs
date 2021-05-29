@@ -16,8 +16,6 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public TextMeshProUGUI cardType;
     public TextMeshProUGUI cardText;
 
-
-    // Start is called before the first frame update
     void OnEnable()
     {
         cardImage = transform.Find("CardImage").GetComponent<Image>();
