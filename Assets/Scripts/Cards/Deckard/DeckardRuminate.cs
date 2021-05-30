@@ -19,15 +19,12 @@ public class DeckardRuminate : AbstractCard
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        List<AbstractCard> selectedCard = NegotiationManager.Instance.SelectCardsFromList(source.GetHand(), 1, true, this);
-        if (selectedCard != null){
-            PlayCardsSelected(selectedCard);
-        }
+        NegotiationManager.Instance.SelectCardsFromList(source.GetHand(), 1, true, this);
     }
 
     public override void PlayCardsSelected(List<AbstractCard> selectedCards){
         foreach(AbstractCard card in selectedCards){
-            card.COST += 1;
+            card.COST += 1;         // TODO: This obviously doesn't do what the card description states it does.
         }
     }
 

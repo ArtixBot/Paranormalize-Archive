@@ -118,6 +118,7 @@ public class RenderNegotiation : MonoBehaviour
     public void DisplayCardSelectScreen(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact){
         GameObject prefab = Resources.Load("Prefabs/SelectCardOverlay") as GameObject;
         Transform parentLoc = GameObject.Find("Canvas").transform;
+
         SelectCardOverlay screen = Instantiate(prefab, parentLoc.position, Quaternion.identity).GetComponent<SelectCardOverlay>();
         screen.cardsToDisplay = cardsToDisplay;
         screen.selectXCards = numToSelect;

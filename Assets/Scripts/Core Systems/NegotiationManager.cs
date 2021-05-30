@@ -171,13 +171,13 @@ public class NegotiationManager : EventSubscriber
     ///</list>
     ///</summary>
     AbstractCard caller;
-    public List<AbstractCard> SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact, AbstractCard caller){
+    public void SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact, AbstractCard caller){
         this.caller = caller;
         if (cardsToDisplay.Count == 0 || (cardsToDisplay.Count <= numToSelect && mustSelectExact)){
-            return cardsToDisplay;
+            SelectedCards(cardsToDisplay);
+            return;
         }
         renderer.DisplayCardSelectScreen(cardsToDisplay, numToSelect, mustSelectExact);
-        return null;
     }
 
     // Called by RenderNegotiation (and should only ever be called by RenderNegotiation)

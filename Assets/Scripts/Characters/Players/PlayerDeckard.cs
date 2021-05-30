@@ -29,14 +29,14 @@ public class PlayerDeckard : AbstractCharacter
         // this.permaDeck.AddCard("DECKARD_INTERVENE");
         // this.permaDeck.AddCard("DECKARD_CHALLENGE");
         // this.permaDeck.AddCard("DECKARD_JABBER");
-        // this.permaDeck.AddCard("DECKARD_FOLLOW_UP");
-        // this.permaDeck.AddCard("DECKARD_ADDENDUM");
-        // this.permaDeck.AddCard("DECKARD_DEEP_BREATH");
-        // this.permaDeck.AddCard("DECKARD_GUARDED_RESPONSE");
+        this.permaDeck.AddCard("DECKARD_FOLLOW_UP");
+        this.permaDeck.AddCard("DECKARD_ADDENDUM");
+        this.permaDeck.AddCard("DECKARD_DEEP_BREATH");
+        this.permaDeck.AddCard("DECKARD_GUARDED_RESPONSE");
         this.permaDeck.AddCard("DECKARD_RUMINATE");
-        this.permaDeck.AddCard("DECKARD_RUMINATE");
-        this.permaDeck.AddCard("DECKARD_RUMINATE");
-        this.permaDeck.AddCard("DECKARD_RUMINATE");
-        this.permaDeck.AddCard("DECKARD_RUMINATE");
+        // this.permaDeck.AddCard("DECKARD_RUMINATE");
+        // this.permaDeck.AddCard("DECKARD_RUMINATE");
+        // this.permaDeck.AddCard("DECKARD_RUMINATE");
+        // this.permaDeck.AddCard("DECKARD_RUMINATE");
     }
 }
