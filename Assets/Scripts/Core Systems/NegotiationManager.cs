@@ -13,6 +13,7 @@ public class NegotiationManager : EventSubscriber
     public Ambience ambience = Ambience.Instance;
     public TurnManager tm = TurnManager.Instance;
     public EventSystemManager em = EventSystemManager.Instance;
+    public RenderNegotiation renderer;
 
     public AbstractCharacter player;
     public AbstractCharacter enemy;
@@ -22,7 +23,7 @@ public class NegotiationManager : EventSubscriber
 
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
-    public void StartNegotiation(){
+    public void StartNegotiation(RenderNegotiation renderer){
 
         // TODO: REMOVE THIS, CURRENTLY FOR TESTING
         player = new PlayerDeckard();
@@ -30,6 +31,7 @@ public class NegotiationManager : EventSubscriber
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
         // END TODO
+        this.renderer = renderer;
 
         em.ClearAllSubscribers();
         em.SubscribeToEvent(this, EventType.CARD_PLAYED);       // Subscribe to CARD_PLAYED event to perform all post-card play processing (ambience shift, adjusting global values, etc.)
@@ -170,6 +172,7 @@ public class NegotiationManager : EventSubscriber
             return cardsToDisplay;
         }
         List<AbstractCard> selectedCards = new List<AbstractCard>();
+        renderer.DisplayCardSelectScreen(cardsToDisplay, numToSelect, mustSelectExact);
         return selectedCards;
     }
 }

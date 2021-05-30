@@ -68,7 +68,9 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void OnPointerClick(PointerEventData eventData){
         if (isInCardOverlay){
             selectedInCardOverlay = !selectedInCardOverlay;
-            SelectCardOverlay instance = GameObject.Find("SelectCardOverlay").GetComponent<SelectCardOverlay>();
+            // TODO: Probably change from GameObject.Find("SelectCardOverlay(Clone)") to instead grab parent directly
+            // Grabbing parent directly should work since isInCardOverlay is checked
+            SelectCardOverlay instance = GameObject.Find("SelectCardOverlay(Clone)").GetComponent<SelectCardOverlay>();
 
             if (selectedInCardOverlay){
                 instance.selectedCards.Add(reference);

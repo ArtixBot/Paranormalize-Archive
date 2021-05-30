@@ -87,6 +87,10 @@
         "NAME": "Jabber",
         "DESC": "Deal [D]-[D] damage.\nApply [P] Poise to your core argument."
     },
+    "DECKARD_RUMINATE": {
+        "NAME": "Ruminate",
+        "DESC": "Choose a card in hand. Give it Preserve."
+    },
     "DECKARD_SNIPING_REMARK": {
         "NAME": "Sniping Remark",
         "DESC": "Remove all Poise from target argument.\nDeal [D] damage."

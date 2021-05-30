@@ -11,7 +11,10 @@ public class SelectCardOverlay : MonoBehaviour
 	public Button confirmButton;
     public TextMeshProUGUI title;
 
+	public List<AbstractCard> cardsToDisplay = new List<AbstractCard>();
 	public List<AbstractCard> selectedCards = new List<AbstractCard>();
+
+	public bool isDone = false;
 
 	// public so we can fiddle around with values in-editor, but these values should be supplied when instantiating the prefab
 	public int selectXCards;				// User must select [selectXCards] cards.
@@ -19,6 +22,10 @@ public class SelectCardOverlay : MonoBehaviour
 
     // TODO: Change to OnEnable and have Start() just notify if the prefab is disabled
     void Start(){
+		// Debug.Log("SelectCardOverlay started; assign cards to cardsToDisplay BEFORE enabling the prefab!");
+    }
+
+	void OnEnable(){
 		// initialization and cleanup from previous instance
         cardPrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
         populateGridLayout = transform.Find("Scroll View/Viewport/Content").gameObject;
@@ -26,22 +33,16 @@ public class SelectCardOverlay : MonoBehaviour
 		title = transform.Find("Title").gameObject.GetComponent<TextMeshProUGUI>();
 		confirmButton.onClick.AddListener(ReturnSelectedCards);
 
-		string query = (mustSelectExact) ? " " : " up to ";
-		title.text = "Select" + query + selectXCards + " cards";
-
+		isDone = false;
 		selectedCards.Clear();
 		confirmButton.interactable = false;
 
-		List<AbstractCard> test = new List<AbstractCard>();
-		test.Add(new DeckardCalm());
-		test.Add(new DeckardChallenge());
-		test.Add(new DeckardBrash());
-		test.Add(new DeckardDeepBreath());
-		test.Add(new DeckardGoodImpression());
-        PopulateGrid(test);
-
+		string query = (mustSelectExact) ? " " : " up to ";
+		string plural = (selectXCards == 1) ? " card" : " cards";
+		title.text = "Select" + query + selectXCards + plural;
+        PopulateGrid(cardsToDisplay);
 		EnableButtonIfConditionsMet();			// check for when we can return nothing
-    }
+	}
 
 	public void PopulateGrid(List<AbstractCard> cardsToRender){
 		for (int i = 0; i < cardsToRender.Count; i++){
@@ -61,21 +62,16 @@ public class SelectCardOverlay : MonoBehaviour
 
 	public void EnableButtonIfConditionsMet(){
 		int currentCount = selectedCards.Count;
-		if (mustSelectExact){
-			if (currentCount == selectXCards){
-				confirmButton.interactable = true;
-				return;
-			}
-		} else {
-			if (currentCount <= selectXCards){
-				confirmButton.interactable = true;
-				return;
-			}
+		if ( (mustSelectExact && currentCount == selectXCards) || (!mustSelectExact && currentCount <= selectXCards) ){
+			confirmButton.interactable = true;
+			return;
 		}
 		confirmButton.interactable = false;
 	}
 
 	void ReturnSelectedCards(){
 		List<AbstractCard> cards = GetSelectedCards();
+		this.isDone = true;
+		Destroy(this.gameObject);
 	}
 }

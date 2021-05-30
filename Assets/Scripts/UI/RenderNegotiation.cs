@@ -21,7 +21,7 @@ public class RenderNegotiation : MonoBehaviour
     void Start()
     {
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
-        nm.StartNegotiation();      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
+        nm.StartNegotiation(this);      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
         
         handZone = GameObject.Find("Canvas/HandZone");
         argPrefab = Resources.Load("Prefabs/ArgumentDisplay") as GameObject;
@@ -113,5 +113,16 @@ public class RenderNegotiation : MonoBehaviour
             yield return 0;
         }
         mainCamera.transform.position = newPos;
+    }
+
+    public void DisplayCardSelectScreen(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact){
+        GameObject prefab = Resources.Load("Prefabs/SelectCardOverlay") as GameObject;
+        Transform parentLoc = GameObject.Find("Canvas").transform;
+        SelectCardOverlay screen = Instantiate(prefab, parentLoc.position, Quaternion.identity).GetComponent<SelectCardOverlay>();
+        screen.cardsToDisplay = cardsToDisplay;
+        screen.selectXCards = numToSelect;
+        screen.mustSelectExact = mustSelectExact;
+        screen.gameObject.SetActive(true);
+        screen.gameObject.transform.SetParent(parentLoc);
     }
 }
