@@ -15,15 +15,15 @@ public class PlayerAi : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        this.permaDeck.AddCard("AI_BOORISH");
-        this.permaDeck.AddCard("AI_BOORISH");
-        this.permaDeck.AddCard("AI_TALISMAN_PURIFICATION");
-        this.permaDeck.AddCard("AI_RITES");
-        this.permaDeck.AddCard("AI_CHAT");
-        this.permaDeck.AddCard("AI_CHAT");
-        this.permaDeck.AddCard("AI_OVERLOOK");
-        this.permaDeck.AddCard("AI_OVERLOOK");
-        this.permaDeck.AddCard("AI_OVERLOOK");
-        this.permaDeck.AddCard("AI_OVERLOOK");
+        this.AddCardToPermaDeck("AI_BOORISH");
+        this.AddCardToPermaDeck("AI_BOORISH");
+        this.AddCardToPermaDeck("AI_TALISMAN_PURIFICATION");
+        this.AddCardToPermaDeck("AI_RITES");
+        this.AddCardToPermaDeck("AI_CHAT");
+        this.AddCardToPermaDeck("AI_CHAT");
+        this.AddCardToPermaDeck("AI_OVERLOOK");
+        this.AddCardToPermaDeck("AI_OVERLOOK");
+        this.AddCardToPermaDeck("AI_OVERLOOK");
+        this.AddCardToPermaDeck("AI_OVERLOOK");
     }
 }

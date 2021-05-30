@@ -189,8 +189,8 @@ public class NegotiationManager : EventSubscriber
         if (this.caller != null){
             this.caller.PlayCardsSelected(list);
         } 
+        em.TriggerEvent(new EventCardPlayed(caller, caller.OWNER));
         this.caller = null;
-        em.TriggerEvent(new EventCardPlayed(caller, caller.source));
         renderer.RenderHand();
     }
 }

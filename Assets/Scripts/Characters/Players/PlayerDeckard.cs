@@ -15,28 +15,28 @@ public class PlayerDeckard : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        // this.permaDeck.AddCard("DECKARD_DIPLOMACY");
-        // this.permaDeck.AddCard("DECKARD_BARREL_THROUGH");
-        // this.permaDeck.AddCard("DECKARD_BRASH");
-        // this.permaDeck.AddCard("DECKARD_GOOD_IMPRESSION");
-        // this.permaDeck.AddCard("DECKARD_GRUFF");
-        // this.permaDeck.AddCard("DECKARD_CALM");
-        // this.permaDeck.AddCard("DECKARD_HOTHEADED");
-        // this.permaDeck.AddCard("DECKARD_SNIPING_REMARK");
-        // this.permaDeck.AddCard("DECKARD_STAY_COOL");
-        // this.permaDeck.AddCard("DECKARD_TRASH_TALK");
-        // this.permaDeck.AddCard("DECKARD_STOIC");
-        // this.permaDeck.AddCard("DECKARD_INTERVENE");
-        // this.permaDeck.AddCard("DECKARD_CHALLENGE");
-        // this.permaDeck.AddCard("DECKARD_JABBER");
-        this.permaDeck.AddCard("DECKARD_FOLLOW_UP");
-        this.permaDeck.AddCard("DECKARD_ADDENDUM");
-        this.permaDeck.AddCard("DECKARD_DEEP_BREATH");
-        this.permaDeck.AddCard("DECKARD_GUARDED_RESPONSE");
-        this.permaDeck.AddCard("DECKARD_RUMINATE");
-        // this.permaDeck.AddCard("DECKARD_RUMINATE");
-        // this.permaDeck.AddCard("DECKARD_RUMINATE");
-        // this.permaDeck.AddCard("DECKARD_RUMINATE");
-        // this.permaDeck.AddCard("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_BARREL_THROUGH");
+        // this.AddCardToPermaDeck("DECKARD_BRASH");
+        // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
+        // this.AddCardToPermaDeck("DECKARD_GRUFF");
+        // this.AddCardToPermaDeck("DECKARD_CALM");
+        // this.AddCardToPermaDeck("DECKARD_HOTHEADED");
+        // this.AddCardToPermaDeck("DECKARD_SNIPING_REMARK");
+        // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
+        // this.AddCardToPermaDeck("DECKARD_TRASH_TALK");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_INTERVENE");
+        this.AddCardToPermaDeck("DECKARD_CHALLENGE");
+        this.AddCardToPermaDeck("DECKARD_JABBER");
+        this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
+        this.AddCardToPermaDeck("DECKARD_ADDENDUM");
+        this.AddCardToPermaDeck("DECKARD_DEEP_BREATH");
+        this.AddCardToPermaDeck("DECKARD_GUARDED_RESPONSE");
+        this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
     }
 }

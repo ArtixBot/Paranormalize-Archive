@@ -28,17 +28,20 @@ public class Deck
     // Returns true if the deck is empty.
     public bool IsEmpty(){ return this.deck.Count == 0; }
 
-    // Add a card to the back of the deck via string ID. By default adds an unupgraded version to the deck, but can be upgraded by setting isUpgraded to true.
-    public void AddCard(string cardID, bool isUpgraded = false){
+    // Add a card to the back of the deck via string ID.
+    // By default adds an unupgraded version to the deck, but can be upgraded by setting isUpgraded to true.
+    // Returns the created card instance.
+    public AbstractCard AddCard(string cardID, bool isUpgraded = false){
         Type cardClass = CardLibrary.Instance.Lookup(cardID);
         if (cardClass == null){
-            return;
+            return null;
         }
         AbstractCard card = Activator.CreateInstance(cardClass) as AbstractCard;
         if (isUpgraded){
             card.Upgrade();
         }
         this.deck.Add(card);
+        return card;
     }
 
     // Add a card to the back of the deck via reference. Example usage: When the user discards their hand, all non-retaining cards need to be put into the discard pile, which is classified as a deck.

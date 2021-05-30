@@ -86,7 +86,6 @@ public abstract class AbstractCharacter
         this.Draw(5);
     }
 
-
     /// <summary> Finds and returns the first argument instance IF it exists. </summary>
     public AbstractArgument GetArgument(AbstractArgument argument){
         foreach (AbstractArgument aa in this.nonCoreArguments){
@@ -120,5 +119,15 @@ public abstract class AbstractCharacter
     
     public Deck GetScourPile(){
         return this.scourPile;
+    }
+
+    public bool AddCardToPermaDeck(string ID, bool isUpgraded = false){
+        AbstractCard reference = this.permaDeck.AddCard(ID, isUpgraded);
+        if (reference == null){
+            return false;
+        } else {
+            reference.OWNER = this;
+            return true;
+        }
     }
 }
