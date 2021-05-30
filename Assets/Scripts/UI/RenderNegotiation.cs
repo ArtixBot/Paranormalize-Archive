@@ -62,11 +62,6 @@ public class RenderNegotiation : MonoBehaviour
     }
 
     public void RenderNonCoreArguments(){
-        // foreach (Transform child in GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform){
-        //     if (!child.gameObject.GetComponent<DisplayArgument>().reference.isCore){
-        //         GameObject.Destroy(child.gameObject);
-        //     }
-        // }
         Transform parent = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform;
         foreach (Transform child in parent){
             GameObject.Destroy(child.gameObject.GetComponent<DisplayArgument>().tooltipInstance);

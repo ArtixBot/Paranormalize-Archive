@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 
-public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public AbstractCard reference;
 
+    public Image cardBG;
     public Image cardImage;
     public Image cardInsignia;
     public TextMeshProUGUI cardName;
@@ -16,8 +17,12 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public TextMeshProUGUI cardType;
     public TextMeshProUGUI cardText;
 
+    public bool isInCardOverlay = false;
+    public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
+
     public void Render()
     {
+        cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
         cardInsignia = transform.Find("CardInsignia").GetComponent<Image>();
         cardName = transform.Find("CardName").GetComponent<TextMeshProUGUI>();
@@ -58,5 +63,21 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         transform.localScale -= new Vector3(0.1f, 0.1f, 0);
         // transform.position = transform.position + new Vector3(0, 0, -1);
         // transform.SetSiblingIndex(0);    
+    }
+
+    public void OnPointerClick(PointerEventData eventData){
+        if (isInCardOverlay){
+            selectedInCardOverlay = !selectedInCardOverlay;
+            SelectCardOverlay instance = GameObject.Find("SelectCardOverlay").GetComponent<SelectCardOverlay>();
+
+            if (selectedInCardOverlay){
+                instance.selectedCards.Add(reference);
+                cardBG.color = Color.green;
+            } else {
+                instance.selectedCards.Remove(reference);
+                cardBG.color = new Color32(159, 159, 159, 255);
+            }
+            instance.EnableButtonIfConditionsMet();
+        }
     }
 }

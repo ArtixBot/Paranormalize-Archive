@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 33608636}
   - component: {fileID: 33608638}
   - component: {fileID: 33608639}
-  - component: {fileID: 33608637}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -161,20 +160,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.00001243895}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &33608637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33608635}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef70963266de9b14e952f3cc02473175, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1845875921644247658, guid: 213411f1fee7a4847bffc107d0f468a5, type: 3}
-  numberToCreate: 5
 --- !u!114 &33608638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +181,8 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 300, y: 500}
-  m_Spacing: {x: 5, y: 5}
-  m_Constraint: 0
+  m_Spacing: {x: 10, y: 10}
+  m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!114 &33608639
 MonoBehaviour:
@@ -417,7 +402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 0}
   populateGridLayout: {fileID: 0}
-  numberToCreate: 20
+  confirmButton: {fileID: 0}
+  title: {fileID: 0}
+  selectXCards: 2
+  mustSelectExact: 0
 --- !u!1 &517965005
 GameObject:
   m_ObjectHideFlags: 0
