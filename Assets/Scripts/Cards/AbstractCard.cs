@@ -50,9 +50,12 @@ public abstract class AbstractCard : EventSubscriber {
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
         }
         source.curAP -= this.COST;
-        source.GetHand().Remove(this);      // Currently removes the first occurrence of a card instead of the actual card itself...I think. Fix by using ID check instead?
+        source.GetHand().Remove(this);      // TODO: Currently removes the first occurrence of a card instead of the actual card itself...I think. Fix by using ID check instead?
         source.GetDiscardPile().AddCard(this);
     }
+
+    // Should only ever be overridden whenever a card makes a call to NegotiationManager.Instance.SelectCardsFromList.
+    public virtual void PlayCardsSelected(List<AbstractCard> selectedCards){}
 
     public virtual void Upgrade(){
         this.isUpgraded = true;

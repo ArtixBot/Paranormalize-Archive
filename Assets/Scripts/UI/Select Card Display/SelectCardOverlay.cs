@@ -70,8 +70,7 @@ public class SelectCardOverlay : MonoBehaviour
 	}
 
 	void ReturnSelectedCards(){
-		List<AbstractCard> cards = GetSelectedCards();
-		this.isDone = true;
+		isDone = true;
 		Destroy(this.gameObject);
 	}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using GameEvent;
 
@@ -166,14 +167,25 @@ public class NegotiationManager : EventSubscriber
     ///<item><term>cardsToDisplay</term><description>The cards to be displayed in the selection menu.</description></item>
     ///<item><term>numToSelect</term><description>How many cards the user may/must select from the menu.</description></item>
     ///<item><term>mustSelectExact</term><description>If true, the user must select exactly [numToSelect] cards, else the user may select up to [numToSelect] cards.</description></item>
+    ///<item><term>caller</term><description>The card calling this function.</description></item>
     ///</list>
     ///</summary>
-    public List<AbstractCard> SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact){
+    AbstractCard caller;
+    public List<AbstractCard> SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact, AbstractCard caller){
+        this.caller = caller;
         if (cardsToDisplay.Count == 0 || (cardsToDisplay.Count <= numToSelect && mustSelectExact)){
             return cardsToDisplay;
         }
-        List<AbstractCard> selectedCards = new List<AbstractCard>();
         renderer.DisplayCardSelectScreen(cardsToDisplay, numToSelect, mustSelectExact);
-        return selectedCards;
+        return null;
+    }
+
+    // Called by RenderNegotiation (and should only ever be called by RenderNegotiation)
+    public void SelectedCards(List<AbstractCard> list){
+        if (this.caller != null){
+            this.caller.PlayCardsSelected(list);
+        }
+        this.caller = null;
+        renderer.RenderHand();
     }
 }

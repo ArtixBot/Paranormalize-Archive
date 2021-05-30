@@ -124,5 +124,14 @@ public class RenderNegotiation : MonoBehaviour
         screen.mustSelectExact = mustSelectExact;
         screen.gameObject.SetActive(true);
         screen.gameObject.transform.SetParent(parentLoc);
+
+        StartCoroutine(WaitUntilSelected(screen));
+    }
+
+    IEnumerator WaitUntilSelected(SelectCardOverlay screen){
+        while (!screen.isDone){
+            yield return null;
+        }
+        nm.SelectedCards(screen.selectedCards);
     }
 }
