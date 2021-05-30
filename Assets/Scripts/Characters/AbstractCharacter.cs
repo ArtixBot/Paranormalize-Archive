@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using GameEvent;
 
 public enum FactionType {PLAYER, ENEMY};
 public abstract class AbstractCharacter

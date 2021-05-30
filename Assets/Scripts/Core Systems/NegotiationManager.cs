@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameEvent;
 
 // Handles negotiation. Also stores negotiation state variables, like current round, how many cards were played during this turn, etc.
 // Singleton.

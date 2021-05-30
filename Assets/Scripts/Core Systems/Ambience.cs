@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameEvent;
 
 // The ambience level of the current negotiation.
 // Represented by a 'score' that ranges from [-8, 18]. Playing a Diplomacy card adds -1, an Aggression card +1 by default.
