@@ -24,7 +24,10 @@ public abstract class AbstractCard : EventSubscriber {
     public string FLAVOR;           // Flavor text
     public List<string> QUIPS;      // Say something when a card is played
 
+    public AbstractCharacter source;
+
     public bool isUpgraded = false;
+    public bool suppressEventCalls = false;     // should only be true when a card invokes NegotiationManager.Instance.SelectCardsFromList
 
     public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardAmbient ambience, CardRarity rarity, CardType type){
         this.ID = id;
@@ -37,6 +40,7 @@ public abstract class AbstractCard : EventSubscriber {
     }
 
     public virtual void Play(AbstractCharacter source, AbstractArgument target){
+        this.source = source;
         if (!source.canPlayCards){
             throw new Exception(source.NAME + " cannot play cards!");
         }

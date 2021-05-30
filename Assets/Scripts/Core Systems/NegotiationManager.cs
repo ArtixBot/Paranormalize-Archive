@@ -117,7 +117,9 @@ public class NegotiationManager : EventSubscriber
         try {
             card.Play(source, target);
             cardsPlayedThisTurn += 1;
-            em.TriggerEvent(new EventCardPlayed(card, source));
+            if (!card.suppressEventCalls){  // Event calls are suppressed here if SelectCardsFromList is invoked; instead invoked after SelectedCards is played
+                em.TriggerEvent(new EventCardPlayed(card, source));
+            }
             return true;
         } catch (Exception ex){
             Debug.LogWarning("NegotiationManager.cs failed to play " +  card.NAME + ", reason: " + ex.Message);
@@ -173,6 +175,7 @@ public class NegotiationManager : EventSubscriber
     AbstractCard caller;
     public void SelectCardsFromList(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact, AbstractCard caller){
         this.caller = caller;
+        this.caller.suppressEventCalls = true;
         if (cardsToDisplay.Count == 0 || (cardsToDisplay.Count <= numToSelect && mustSelectExact)){
             SelectedCards(cardsToDisplay);
             return;
@@ -180,12 +183,14 @@ public class NegotiationManager : EventSubscriber
         renderer.DisplayCardSelectScreen(cardsToDisplay, numToSelect, mustSelectExact);
     }
 
-    // Called by RenderNegotiation (and should only ever be called by RenderNegotiation)
+    // Called by RenderNegotiation/NegotiationManager (and should only ever be called by those two classes)
+    // Any call to SelectCardsFromList will always end up calling SelectedCards.
     public void SelectedCards(List<AbstractCard> list){
         if (this.caller != null){
             this.caller.PlayCardsSelected(list);
-        }
+        } 
         this.caller = null;
+        em.TriggerEvent(new EventCardPlayed(caller, caller.source));
         renderer.RenderHand();
     }
 }
