@@ -54,9 +54,10 @@ public class RenderNegotiation : MonoBehaviour
         for(int i = 0; i < playerHand.Count; i++){
             AbstractCard card = playerHand[i];
             GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(i * 200.0f, 0, 0), Quaternion.identity);
-            cardDisplay.GetComponent<DisplayCard>().reference = card;
             cardDisplay.transform.SetParent(handZone.transform);
-            cardDisplay.SetActive(true);        // calls OnEnable() for the card template prefab
+            cardDisplay.GetComponent<DisplayCard>().reference = card;
+            cardDisplay.GetComponent<DisplayCard>().Render();
+            // cardDisplay.SetActive(true);        // calls OnEnable() for the card template prefab
         }
     }
 

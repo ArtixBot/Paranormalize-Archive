@@ -16,7 +16,7 @@ public class DetectDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         this.lr.SetPosition(0, Camera.main.ScreenToWorldPoint(eventData.position) + new Vector3(0, 0, 10));
         this.lr.SetPosition(1, Camera.main.ScreenToWorldPoint(eventData.position) + new Vector3(0, 0, 10));
 
-        transform.position += new Vector3(0, 100, 0);
+        // transform.position += new Vector3(0, 100, 0);
     }
 
     public void OnDrag(PointerEventData eventData){
@@ -28,6 +28,6 @@ public class DetectDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         this.transform.SetParent(this.transform);
         this.lr.enabled = false;
 
-        transform.position -= new Vector3(0, 100, 0);
+        // transform.position -= new Vector3(0, 100, 0);
     }
 }

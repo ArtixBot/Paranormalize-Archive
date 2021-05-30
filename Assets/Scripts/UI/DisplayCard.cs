@@ -16,7 +16,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public TextMeshProUGUI cardType;
     public TextMeshProUGUI cardText;
 
-    void OnEnable()
+    public void Render()
     {
         cardImage = transform.Find("CardImage").GetComponent<Image>();
         cardInsignia = transform.Find("CardInsignia").GetComponent<Image>();
@@ -47,22 +47,16 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardText.text = reference.DESC;
     }
 
-    public void RefreshText(){
-        if (reference == null){
-            return;
-        }
-        cardCost.text = reference.COST.ToString();
-        cardText.text = reference.DESC.ToString();      // TODO: Handle [] params in the description
-    }
-
     // Hover
     public void OnPointerEnter(PointerEventData eventData){
         transform.localScale += new Vector3(0.1f, 0.1f, 0);
-        transform.SetAsLastSibling();
+        // transform.position = transform.position + new Vector3(0, 0, 1);
+        // transform.SetAsLastSibling();
     }
 
     public void OnPointerExit(PointerEventData eventData){
         transform.localScale -= new Vector3(0.1f, 0.1f, 0);
-        transform.SetSiblingIndex(0);    
+        // transform.position = transform.position + new Vector3(0, 0, -1);
+        // transform.SetSiblingIndex(0);    
     }
 }
