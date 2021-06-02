@@ -6,22 +6,27 @@ public enum ArgumentOrigin {DEPLOYED, PLANTED};
 public abstract class AbstractArgument : EventSubscriber
 {
 
-    // Cosmetic
+    // Cosmetic constants
     public string NAME;
     public string DESC;
     public Sprite IMG;
 
-    // Gameplay
+    // Gameplay constants
     public string ID;
     public AbstractCharacter OWNER;
     public ArgumentOrigin ORIGIN;
 
+    // Stat values
     public int maxHP;       // Maximum resolve
     public int curHP;       // Current resolve
     public int poise;     // Poise value
     public int stacks;      // Stack count
     public bool isCore = false; // Is a core argument (default false)
     public bool isTrait = false;    // Is a trait (default false). Traits cannot be destroyed.
+
+    // Stat modifiers
+    public float dmgTakenMult = 1.0f;       // This argument takes [dmgTakenMult]x damage (default 1.0x)
+    public int dmgTakenAdd = 0;           // This argument takes +[dmgTakenAdd] damage (default 0).
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
     public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events by overriding this function.

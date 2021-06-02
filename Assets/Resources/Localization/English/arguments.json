@@ -1,4 +1,8 @@
 {
+    "ADAPTIVE": {
+        "NAME": "Adaptive",
+        "DESC": "Whenever the Ambience level changes, apply [STACKS] <b>Poise</b> to all of [OWNER]'s arguments."
+    },
     "CORE_AI": {
         "NAME": "Combative",
         "DESC": "Whenever one of [OWNER]'s arguments is destroyed, deal [STACKS] damage to a random enemy argument."

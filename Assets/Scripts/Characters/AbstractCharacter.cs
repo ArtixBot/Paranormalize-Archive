@@ -15,11 +15,13 @@ public abstract class AbstractCharacter
     public AbstractArgument coreArgument;
     public List<AbstractArgument> nonCoreArguments = new List<AbstractArgument>();
     
-    // At end of turn, draw 5 + <drawMod>
-    public int drawMod = 0;
-
-    // Action points
-    public int maxAP = 3, curAP = 3;
+    // STAT MODIFIERS
+    public int drawMod          = 0;    // At end of turn, draw 5 + <drawMod>
+    public int maxAP = 3, curAP = 3;    // Action points
+    public float dmgDealtMult   = 1.0f; // Universal damage multiplier of the character.
+    public int dmgDealtAdd      = 0;    // Universal damage adder of the character.
+    // When playing an attack, damage dealt by the character is X = (damage + dmgDealtAdd) * dmgDealtMult
+    // The argument taking damage is then modified by (X + AbstractArgument.dmgTakenAdd) * AbstractArgument.dmgTakenMult
 
     public Deck permaDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
 
@@ -35,6 +37,7 @@ public abstract class AbstractCharacter
     public bool canPlayDialogue = true;
     public bool canPlayAggression = true;
     public bool canPlayInfluence = true;
+
 
     public abstract void AddStarterDeck();      // Should be called at the start of character creation (for players) or at start of combat (for enemies.)
 

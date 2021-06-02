@@ -80,7 +80,7 @@ public class RenderNegotiation : MonoBehaviour
     }
 
     // bool moveTheCam = false;
-    bool moveCameraRight = true;
+    bool moveCameraRight = false;
     Vector3 playerPos;
     Vector3 enemyPos;
     void Update(){

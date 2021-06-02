@@ -31,6 +31,10 @@
         "NAME": "Talisman of Purification",
         "DESC": "<b>Deploy</b> [N] <b>Talisman of Purification</b>.\n<b>Scour</b>."
     },
+    "DECKARD_ADAPTIVE": {
+        "NAME": "Adaptive",
+        "DESC": "Whenever the Ambience level changes, apply [P] Poise to all your arguments."
+    },
     "DECKARD_ADDENDUM": {
         "NAME": "Addendum",
         "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
@@ -38,6 +42,10 @@
     "DECKARD_BARREL_THROUGH": {
         "NAME": "Barrel Through",
         "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to half your Poise."
+    },
+    "DECKARD_BREAKTHROUGH": {
+        "NAME": "Breakthrough",
+        "DESC": "Deal [D]-[D] damage.\nWhenever the Ambience shifts towards Guarded, this card costs 0 until your next turn."
     },
     "DECKARD_BRASH": {
         "NAME": "Brash",
