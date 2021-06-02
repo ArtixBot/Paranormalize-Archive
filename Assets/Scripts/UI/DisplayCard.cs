@@ -75,9 +75,17 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 } else if (match.Value == "[P]"){           // Poise parsing
                     int poise = (int)reference.GetType().GetField("POISE").GetValue(reference);
                     s = s.Replace(match.Value, poise.ToString());
+                } else if (match.Value == "[N]"){           // Draw parsing
+                    int poise = (int)reference.GetType().GetField("DRAW").GetValue(reference);
+                    s = s.Replace(match.Value, poise.ToString());
+                }else {                                     // Custom parsing (e.g. if we do [ABC], searches for an 'ABC' field in the card)
+                    string parsed = match.Value.Substring(1, match.Value.Length-2);     // Remove [ and ] characters
+                    Debug.Log(parsed);
+                    int customValue = (int)reference.GetType().GetField(parsed).GetValue(reference);
+                    s = s.Replace(match.Value, customValue.ToString());
                 }
             } catch{
-                Debug.Log("Unable to parse " + reference.NAME + ": check .json and .cs files to make sure right field names are used!");
+                Debug.Log("Unable to parse " + match.Value + " for " + reference.NAME + ": check .json and .cs files to make sure right field names are used!");
                 continue;
             }
         }

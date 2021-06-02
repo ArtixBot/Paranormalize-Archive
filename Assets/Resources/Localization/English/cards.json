@@ -85,7 +85,7 @@
     },
     "DECKARD_HOTHEADED": {
         "NAME": "Hotheaded",
-        "DESC": "Whenever Ambience changes towards Dangerous, draw [C] cards."
+        "DESC": "Whenever Ambience changes towards Dangerous, draw [S] cards."
     },
     "DECKARD_INTERVENE": {
         "NAME": "Intervene",
