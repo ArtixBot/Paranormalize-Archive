@@ -42,7 +42,7 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     // Takes in a string and replaces certain keywords enclosed within [] with values.
     // Specifically, parses [STACKS], [STACKS*1], [STACKS/1] (any number can be used), [ENEMY], [OWNER].
-    public string ParseTooltip(string s){
+    string ParseTooltip(string s){
         MatchCollection matches = new Regex(@"\[[^\]]*\]").Matches(s);
         for (int i = 0; i < matches.Count; i++){
             Match match = matches[i];

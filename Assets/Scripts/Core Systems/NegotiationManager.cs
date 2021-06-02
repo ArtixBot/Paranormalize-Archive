@@ -135,9 +135,9 @@ public class NegotiationManager : EventSubscriber
 
             // This _should_ be acceptable enough for what I'm doing.
             // https://stackoverflow.com/questions/12263099/function-to-clone-an-arbitrary-object
-            foreach(var property in cardType.GetProperties()){
-                object originalCardValue = property.GetValue(card);
-                property.SetValue(copiedCard, originalCardValue);
+            foreach(var field in cardType.GetFields()){
+                object originalCardValue = field.GetValue(card);
+                field.SetValue(copiedCard, originalCardValue);
             }
             character.GetDrawPile().AddCard(copiedCard as AbstractCard);
         }

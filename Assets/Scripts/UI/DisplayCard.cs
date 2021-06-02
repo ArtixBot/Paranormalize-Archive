@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -49,7 +52,36 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardName.text = reference.NAME;
         cardCost.text = reference.COST.ToString();
         cardType.text = reference.TYPE.ToString();
-        cardText.text = reference.DESC;
+        cardText.text = ParseText(reference.DESC);
+    }
+
+    private string ParseText(string s){
+        MatchCollection matches = new Regex(@"\[[^\]]*\]").Matches(s);
+        for (int i = 0; i < matches.Count; i++){
+            Match match = matches[i];
+            
+            try{
+                if (match.Value == "[S]"){                  // Argument stack parsing
+                    int stacks = (int)reference.GetType().GetField("STACKS").GetValue(reference);
+                    s = s.Replace(match.Value, stacks.ToString());
+                } else if (match.Value == "[D]"){           // Damage parsing
+                    int min = (int)reference.GetType().GetField("MIN_DAMAGE").GetValue(reference);
+                    int max = (int)reference.GetType().GetField("MAX_DAMAGE").GetValue(reference);
+                    if (min == max){
+                        s = s.Replace(match.Value, min.ToString());
+                    } else {
+                        s = s.Replace(match.Value, min.ToString() + "-" + max.ToString());
+                    }
+                } else if (match.Value == "[P]"){           // Poise parsing
+                    int poise = (int)reference.GetType().GetField("POISE").GetValue(reference);
+                    s = s.Replace(match.Value, poise.ToString());
+                }
+            } catch{
+                Debug.Log("Unable to parse " + reference.NAME + ": check .json and .cs files to make sure right field names are used!");
+                continue;
+            }
+        }
+        return s;
     }
 
     // Hover

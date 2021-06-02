@@ -1,0 +1,24 @@
+{
+    "AI_GENERIC_DIALOGUE": [
+        "I'd like to handle this *peacefully*."
+    ],
+    "AI_GENERIC_AGGRESSION": [
+        "[NARRATOR][PLAYER] rolls their eyes.",
+        "[NARRATOR][PLAYER] grimaces.",
+        "Ugh...",
+        "Just listen to me here!"
+    ],
+    "AI_GENERIC_INFLUENCE": [
+        "[NARRATOR][PLAYER] fishes their pockets."
+    ],
+    "DECKARD_GENERIC_DIALOGUE": [
+        "Consider the following..."
+    ],
+    "DECKARD_GENERIC_AGGRESSION": [
+        "I don't get paid enough for this!",
+        "[NARRATOR][PLAYER] sighs deeply."
+    ],
+    "DECKARD_GENERIC_INFLUENCE": [
+        "You're just looking at it the wrong way..."
+    ]
+}

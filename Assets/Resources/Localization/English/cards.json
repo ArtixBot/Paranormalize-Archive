@@ -1,11 +1,11 @@
 {
     "AI_BOORISH": {
         "NAME": "Boorish",
-        "DESC": "Deal [D]-[D] damage."
+        "DESC": "Deal [D] damage."
     },
     "AI_CHAT": {
         "NAME": "Chat",
-        "DESC": "Deal [D]-[D] damage."
+        "DESC": "Deal [D] damage."
     },
     "AI_OVERLOOK": {
         "NAME": "Overlook",
@@ -25,7 +25,7 @@
     },
     "AI_RITES": {
         "NAME": "Rites",
-        "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to the number of your <b>Talisman</b> arguments (currently [N])."
+        "DESC": "Deal [D] damage.\nDeals bonus damage equal to the number of your <b>Talisman</b> arguments (currently [N])."
     },
     "AI_TALISMAN_PURIFICATION": {
         "NAME": "Talisman of Purification",
@@ -33,7 +33,7 @@
     },
     "DECKARD_ADAPTIVE": {
         "NAME": "Adaptive",
-        "DESC": "Whenever the Ambience level changes, apply [P] Poise to all your arguments."
+        "DESC": "Whenever the Ambience level changes, apply [S] Poise to all your arguments."
     },
     "DECKARD_ADDENDUM": {
         "NAME": "Addendum",
@@ -41,11 +41,11 @@
     },
     "DECKARD_BARREL_THROUGH": {
         "NAME": "Barrel Through",
-        "DESC": "Deal [D]-[D] damage.\nDeals bonus damage equal to half your Poise."
+        "DESC": "Deal [D] damage.\nDeals bonus damage equal to half your Poise."
     },
     "DECKARD_BREAKTHROUGH": {
         "NAME": "Breakthrough",
-        "DESC": "Deal [D]-[D] damage.\nWhenever the Ambience shifts towards Guarded, this card costs 0 until your next turn."
+        "DESC": "Deal [D] damage.\nWhenever the Ambience shifts towards Guarded, this card costs 0 until your next turn."
     },
     "DECKARD_BRASH": {
         "NAME": "Brash",
@@ -65,7 +65,7 @@
     },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
-        "DESC": "Deal [D]-[D] damage."
+        "DESC": "Deal [D] damage."
     },
     "DECKARD_FOLLOW_UP": {
         "NAME": "Follow Up",
@@ -73,15 +73,15 @@
     },
     "DECKARD_GOOD_IMPRESSION": {
         "NAME": "Good Impression",
-        "DESC": "Deal [D]-[D] damage.\nIncrease the cost of this card by 1 for the rest of negotiation."
+        "DESC": "Deal [D] damage.\nIncrease the cost of this card by 1 for the rest of negotiation."
     },
     "DECKARD_GRUFF": {
         "NAME": "Gruff",
-        "DESC": "Deal [D]-[D] damage."
+        "DESC": "Deal [D] damage."
     },
     "DECKARD_GUARDED_RESPONSE": {
         "NAME": "Guarded Response",
-        "DESC": "Deal [D]-[D] damage.\nApply Poise to all your arguments equal to damage dealt by this card."
+        "DESC": "Deal [D] damage.\nApply Poise to all your arguments equal to damage dealt by this card."
     },
     "DECKARD_HOTHEADED": {
         "NAME": "Hotheaded",
@@ -93,7 +93,7 @@
     },
     "DECKARD_JABBER": {
         "NAME": "Jabber",
-        "DESC": "Deal [D]-[D] damage.\nApply [P] Poise to your core argument."
+        "DESC": "Deal [D] damage.\nApply [P] Poise to your core argument."
     },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
