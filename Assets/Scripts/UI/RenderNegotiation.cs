@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 // Renders the negotiation screen. Also invokes NegotiationManager's StartNegotiation() to set up game state.
 // Maybe have it also handle user input???
@@ -15,17 +16,25 @@ public class RenderNegotiation : MonoBehaviour
     public GameObject argPrefab;
     public GameObject handZone;
 
+    public TextMeshProUGUI drawCount;
+    public TextMeshProUGUI discardCount;
+    public TextMeshProUGUI scourCount;
+
     public Camera mainCamera;
 
     // Called whenever we load into the Negotiation scene.
     void Start()
     {
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
-        nm.StartNegotiation(this);      // Start negotiation! (This also sets up a whole bunch of variables in nm that we can now use for this method)
+        nm.StartNegotiation(this);      // Start negotiation! (This also sets up a whole bunch of gameobjects in nm that we can now use for this method)
         
         handZone = GameObject.Find("Canvas/HandZone");
         argPrefab = Resources.Load("Prefabs/ArgumentDisplay") as GameObject;
         cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
+
+        drawCount = GameObject.Find("Canvas/TrackDeck/Count").GetComponent<TextMeshProUGUI>();
+        discardCount = GameObject.Find("Canvas/TrackDiscard/Count").GetComponent<TextMeshProUGUI>();
+        scourCount = GameObject.Find("Canvas/TrackScour/Count").GetComponent<TextMeshProUGUI>();
 
         player = nm.player;
         enemy = nm.enemy;
@@ -43,6 +52,7 @@ public class RenderNegotiation : MonoBehaviour
 
         mainCamera = Camera.main;       // grab main camera
         this.RenderHand();  // Render player hand
+        this.RenderCounts();
     }
 
     public void RenderHand(){
@@ -79,6 +89,12 @@ public class RenderNegotiation : MonoBehaviour
         }
     }
 
+    public void RenderCounts(){
+        drawCount.text = player.GetDrawPile().GetSize().ToString();
+        discardCount.text = player.GetDiscardPile().GetSize().ToString();
+        scourCount.text = player.GetScourPile().GetSize().ToString();
+    }
+
     // bool moveTheCam = false;
     bool moveCameraRight = false;
     Vector3 playerPos;
@@ -88,6 +104,7 @@ public class RenderNegotiation : MonoBehaviour
             NegotiationManager.Instance.NextTurn();
             RenderHand();
             RenderNonCoreArguments();
+            RenderCounts();
 
             playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
             enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);

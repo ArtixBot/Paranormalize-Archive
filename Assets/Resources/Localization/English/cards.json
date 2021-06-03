@@ -33,7 +33,7 @@
     },
     "DECKARD_ADAPTIVE": {
         "NAME": "Adaptive",
-        "DESC": "Whenever the Ambience level changes, apply [S] Poise to all your arguments."
+        "DESC": "Whenever the Ambience phase changes, apply [S] Poise to all your arguments."
     },
     "DECKARD_ADDENDUM": {
         "NAME": "Addendum",
@@ -45,7 +45,7 @@
     },
     "DECKARD_BREAKTHROUGH": {
         "NAME": "Breakthrough",
-        "DESC": "Deal [D] damage.\nWhenever the Ambience shifts towards Guarded, this card costs 0 until your next turn."
+        "DESC": "Deal [D] damage.\nWhenever the Ambience phase changes towards Guarded, this card costs 0 until your next turn."
     },
     "DECKARD_BRASH": {
         "NAME": "Brash",
@@ -69,7 +69,7 @@
     },
     "DECKARD_FOLLOW_UP": {
         "NAME": "Follow Up",
-        "DESC": "Deal [D] damage.\nWhenever the Ambience level changes, return this card from your discard pile to your hand."
+        "DESC": "Deal [D] damage.\nWhenever the Ambience phase changes, return this card from your discard pile to your hand."
     },
     "DECKARD_GOOD_IMPRESSION": {
         "NAME": "Good Impression",
@@ -85,7 +85,7 @@
     },
     "DECKARD_HOTHEADED": {
         "NAME": "Hotheaded",
-        "DESC": "Whenever Ambience changes towards Dangerous, draw [S] cards."
+        "DESC": "Whenever the Ambience phase changes towards Dangerous, draw [S] cards."
     },
     "DECKARD_INTERVENE": {
         "NAME": "Intervene",

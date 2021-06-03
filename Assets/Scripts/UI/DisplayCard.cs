@@ -95,14 +95,18 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Hover
     public void OnPointerEnter(PointerEventData eventData){
         transform.localScale += new Vector3(0.1f, 0.1f, 0);
-        // transform.position = transform.position + new Vector3(0, 0, 1);
-        // transform.SetAsLastSibling();
+        if (!isInCardOverlay){
+            transform.position = transform.position + new Vector3(0, 200, 0);
+            transform.SetAsLastSibling();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData){
         transform.localScale -= new Vector3(0.1f, 0.1f, 0);
-        // transform.position = transform.position + new Vector3(0, 0, -1);
-        // transform.SetSiblingIndex(0);    
+        if (!isInCardOverlay){
+            transform.position = transform.position + new Vector3(0, -200, 0);
+            transform.SetSiblingIndex(0);    
+        }    
     }
 
     public void OnPointerClick(PointerEventData eventData){
