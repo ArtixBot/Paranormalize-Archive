@@ -65,6 +65,7 @@ public class NegotiationManager : EventSubscriber
         this.cardsPlayedThisTurn = 0;
         tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
+        renderer.Redraw();
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
             this.NextTurn();
         }

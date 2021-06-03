@@ -80,7 +80,6 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     s = s.Replace(match.Value, poise.ToString());
                 }else {                                     // Custom parsing (e.g. if we do [ABC], searches for an 'ABC' field in the card)
                     string parsed = match.Value.Substring(1, match.Value.Length-2);     // Remove [ and ] characters
-                    Debug.Log(parsed);
                     int customValue = (int)reference.GetType().GetField(parsed).GetValue(reference);
                     s = s.Replace(match.Value, customValue.ToString());
                 }

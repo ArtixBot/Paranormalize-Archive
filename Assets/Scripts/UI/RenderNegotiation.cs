@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 // Renders the negotiation screen. Also invokes NegotiationManager's StartNegotiation() to set up game state.
@@ -18,7 +19,10 @@ public class RenderNegotiation : MonoBehaviour
 
     public TextMeshProUGUI drawCount;
     public TextMeshProUGUI discardCount;
+    public GameObject scourObject;
     public TextMeshProUGUI scourCount;
+
+    public Button endTurnButton;
 
     public Camera mainCamera;
 
@@ -28,6 +32,7 @@ public class RenderNegotiation : MonoBehaviour
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
         nm.StartNegotiation(this);      // Start negotiation! (This also sets up a whole bunch of gameobjects in nm that we can now use for this method)
         
+        mainCamera = Camera.main;       // grab main camera
         handZone = GameObject.Find("Canvas/HandZone");
         argPrefab = Resources.Load("Prefabs/ArgumentDisplay") as GameObject;
         cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
@@ -35,6 +40,10 @@ public class RenderNegotiation : MonoBehaviour
         drawCount = GameObject.Find("Canvas/TrackDeck/Count").GetComponent<TextMeshProUGUI>();
         discardCount = GameObject.Find("Canvas/TrackDiscard/Count").GetComponent<TextMeshProUGUI>();
         scourCount = GameObject.Find("Canvas/TrackScour/Count").GetComponent<TextMeshProUGUI>();
+        scourObject = GameObject.Find("Canvas/TrackScour");
+        scourObject.SetActive(false);
+        endTurnButton = GameObject.Find("Canvas/EndTurnButton").GetComponent<Button>();
+        endTurnButton.onClick.AddListener(NegotiationManager.Instance.NextTurn);
 
         player = nm.player;
         enemy = nm.enemy;
@@ -50,7 +59,6 @@ public class RenderNegotiation : MonoBehaviour
         coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
         coreEnemy.SetActive(true);
 
-        mainCamera = Camera.main;       // grab main camera
         this.RenderHand();  // Render player hand
         this.RenderCounts();
     }
@@ -92,24 +100,29 @@ public class RenderNegotiation : MonoBehaviour
     public void RenderCounts(){
         drawCount.text = player.GetDrawPile().GetSize().ToString();
         discardCount.text = player.GetDiscardPile().GetSize().ToString();
+        if (player.GetScourPile().GetSize() > 0){
+            scourObject.SetActive(true);
+        }
         scourCount.text = player.GetScourPile().GetSize().ToString();
     }
 
-    // bool moveTheCam = false;
-    bool moveCameraRight = false;
-    Vector3 playerPos;
-    Vector3 enemyPos;
     void Update(){
         if (Input.GetKeyUp(KeyCode.E)){
             NegotiationManager.Instance.NextTurn();
-            RenderHand();
-            RenderNonCoreArguments();
-            RenderCounts();
-
-            playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
-            enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
-            moveCameraRight = !moveCameraRight;
         }
+    }
+
+    bool moveCameraRight = false;
+    Vector3 playerPos;
+    Vector3 enemyPos;
+    public void Redraw(){
+        RenderHand();
+        RenderNonCoreArguments();
+        RenderCounts();
+
+        playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
+        enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
+        moveCameraRight = !moveCameraRight;
     }
 
     public float duration = 1f;       // this doesn't seem to do anything for some reason

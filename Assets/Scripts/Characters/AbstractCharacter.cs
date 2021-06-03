@@ -70,6 +70,11 @@ public abstract class AbstractCharacter
         return;
     }
 
+    public void Scour(AbstractCard card){
+        hand.Remove(card);
+        scourPile.AddCard(card);
+    }
+
     public void StartTurn(){
         // Debug.Log("Starting turn of " + this.NAME + ".");
         // remove poise from all arguments

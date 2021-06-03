@@ -113,7 +113,7 @@
     },
     "DECKARD_TRASH_TALK": {
         "NAME": "Trash Talk",
-        "DESC": "Deal [D] damage to a random enemy argument [T] times."
+        "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
     },
     "ESPHER_JUXTAPOSITION": {
         "NAME": "Juxtaposition",

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardType {ATTACK, SKILL, TRAIT};
-public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, STATUS};
-public enum CardTags {INHERIT, SCOUR};
+public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
+public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
+public enum CardTags {INHERIT, SCOUR, POISE};       // Also determines what tooltips should appear when viewing the card
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard : EventSubscriber {
@@ -17,6 +17,7 @@ public abstract class AbstractCard : EventSubscriber {
     public CardRarity RARITY;       // Card rarity
     public int COST;                // Card cost
     public AbstractCharacter OWNER; // Card owner (determined during AbstractCharacter.AddCardToPermaDeck)
+    public List<CardTags> TAGS = new List<CardTags>();     // Card tags
 
     // Cosmetic
     public string NAME;             // Card name
@@ -25,11 +26,10 @@ public abstract class AbstractCard : EventSubscriber {
     public string FLAVOR;           // Flavor text
     public List<string> QUIPS;      // Say something when a card is played
 
-
     public bool isUpgraded = false;
     public bool suppressEventCalls = false;     // should only be true when a card invokes NegotiationManager.Instance.SelectCardsFromList
 
-    public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardAmbient ambience, CardRarity rarity, CardType type){
+    public AbstractCard(string id, Dictionary<string, string> cardStrings, int cost, CardAmbient ambience, CardRarity rarity, CardType type, List<CardTags> tags = null){
         this.ID = id;
         this.NAME = cardStrings["NAME"];
         this.DESC = cardStrings["DESC"];
@@ -37,6 +37,11 @@ public abstract class AbstractCard : EventSubscriber {
         this.AMBIENCE = ambience;
         this.RARITY = rarity;
         this.TYPE = type;
+        if (tags != null){
+            foreach (CardTags tag in tags){
+                this.TAGS.Add(tag);
+            }
+        }
     }
 
     public virtual void Play(AbstractCharacter source, AbstractArgument target){
@@ -53,8 +58,12 @@ public abstract class AbstractCard : EventSubscriber {
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
         }
         source.curAP -= this.COST;
-        source.GetHand().Remove(this);      // TODO: Currently removes the first occurrence of a card instead of the actual card itself...I think. Fix by using ID check instead?
-        source.GetDiscardPile().AddCard(this);
+        if (this.IsTrait()){               // Scour stuff
+            OWNER.Scour(this);
+        } else {
+            source.GetHand().Remove(this);
+            source.GetDiscardPile().AddCard(this);
+        }
     }
 
     // Should only ever be overridden whenever a card makes a call to NegotiationManager.Instance.SelectCardsFromList.
