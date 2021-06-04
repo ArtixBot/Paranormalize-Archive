@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
-public enum CardTags {INHERIT, SCOUR, POISE};       // Also determines what tooltips should appear when viewing the card
+public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL};   // Determines what tooltips should appear when viewing the card
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard : EventSubscriber {
@@ -58,7 +58,7 @@ public abstract class AbstractCard : EventSubscriber {
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
         }
         source.curAP -= this.COST;
-        if (this.IsTrait()){               // Scour stuff
+        if (this.IsTrait() || this.HasTag(CardTags.SCOUR)){               // Scour stuff
             OWNER.Scour(this);
         } else {
             source.GetHand().Remove(this);
@@ -96,5 +96,9 @@ public abstract class AbstractCard : EventSubscriber {
     
     public bool IsInfluence(){
         return this.AMBIENCE == CardAmbient.INFLUENCE;
+    }
+
+    public bool HasTag(CardTags tag){
+        return this.TAGS.Contains(tag);
     }
 }

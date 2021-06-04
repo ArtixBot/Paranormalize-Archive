@@ -1,0 +1,5 @@
+{
+    "INHERIT": "Start negotiation with this card in your hand.",
+    "SCOUR": "Scoured cards are removed from the deck for the rest of negotiation.",
+    "POISE": "Blocks incoming damage until the start of the owner's turn."
+}

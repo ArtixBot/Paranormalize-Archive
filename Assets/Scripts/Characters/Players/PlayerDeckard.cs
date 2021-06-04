@@ -32,6 +32,7 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         this.AddCardToPermaDeck("DECKARD_ADDENDUM");
         this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
+        this.AddCardToPermaDeck("DECKARD_OPENING_OFFER");
         // this.AddCardToPermaDeck("DECKARD_ADAPTIVE");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_DEEP_BREATH");

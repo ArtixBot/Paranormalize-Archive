@@ -19,10 +19,15 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public TextMeshProUGUI cardCost;
     public TextMeshProUGUI cardType;
     public TextMeshProUGUI cardText;
+    public GameObject keywordPrefab;
+    public List<GameObject> keywordTooltips = new List<GameObject>();
 
     public bool isInCardOverlay = false;
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
+    void Start(){
+        keywordPrefab = Resources.Load("Prefabs/KeywordTooltip") as GameObject;
+    }
     public void Render()
     {
         cardBG = transform.Find("CardBG").GetComponent<Image>();
@@ -94,6 +99,19 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Hover
     public void OnPointerEnter(PointerEventData eventData){
         transform.localScale += new Vector3(0.1f, 0.1f, 0);
+        if (this.keywordTooltips.Count == 0){
+            for(int i = reference.TAGS.Count - 1; i >= 0; i--){
+                // Debug.Log(reference.TAGS[i]);
+                CardTags tag = reference.TAGS[i];
+                GameObject prefab = Instantiate(keywordPrefab, transform.position + new Vector3(300, 400 + (i * -100), 0), Quaternion.identity);
+                prefab.SetActive(false);
+                prefab.GetComponent<TooltipKeyword>().title.text = tag.ToString().Substring(0, 1) + tag.ToString().Substring(1).ToLower();
+                prefab.transform.SetParent(GameObject.Find("Canvas").transform);
+                prefab.SetActive(true);
+                this.keywordTooltips.Add(prefab);
+                // Debug.Log(tag.ToString() + " " + LocalizationLibrary.Instance.GetKeywordString(tag.ToString()));
+            }
+        }
         if (!isInCardOverlay){
             transform.position = transform.position + new Vector3(0, 200, 0);
             transform.SetAsLastSibling();
@@ -102,6 +120,10 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerExit(PointerEventData eventData){
         transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+        foreach(GameObject tooltip in this.keywordTooltips){
+            Destroy(tooltip);
+        }
+        this.keywordTooltips.Clear();
         if (!isInCardOverlay){
             transform.position = transform.position + new Vector3(0, -200, 0);
             transform.SetSiblingIndex(0);    

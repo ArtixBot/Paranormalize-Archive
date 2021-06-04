@@ -95,6 +95,10 @@
         "NAME": "Jabber",
         "DESC": "Deal [D] damage.\nApply [P] Poise to your core argument."
     },
+    "DECKARD_OPENING_OFFER": {
+        "NAME": "Opening Offer",
+        "DESC": "Inherit.\nDeal [D] damage.\nScour."
+    },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
         "DESC": "Choose a card in hand. Give it Preserve."
