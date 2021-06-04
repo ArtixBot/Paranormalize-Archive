@@ -116,6 +116,9 @@ public class RenderNegotiation : MonoBehaviour
     Vector3 playerPos;
     Vector3 enemyPos;
     public void Redraw(){
+        foreach (var prefab in GameObject.FindGameObjectsWithTag("Tooltip")){
+            Destroy(prefab);
+        }
         RenderHand();
         RenderNonCoreArguments();
         RenderCounts();

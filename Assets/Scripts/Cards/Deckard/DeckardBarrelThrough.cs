@@ -17,7 +17,8 @@ public class DeckardBarrelThrough : AbstractCard {
         cardCost,
         CardAmbient.AGGRESSION,
         CardRarity.COMMON,
-        CardType.ATTACK
+        CardType.ATTACK,
+        new List<CardTags>{CardTags.POISE}
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

@@ -16,7 +16,8 @@ public class DeckardCalm : AbstractCard {
         cardCost,
         CardAmbient.DIALOGUE,
         CardRarity.STARTER,
-        CardType.SKILL
+        CardType.SKILL,
+        new List<CardTags>{CardTags.POISE}
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

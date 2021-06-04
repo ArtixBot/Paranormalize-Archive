@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 1324336781804576393}
   m_Layer: 5
   m_Name: AmbienceTooltip
-  m_TagString: Untagged
+  m_TagString: Tooltip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
