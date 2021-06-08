@@ -113,7 +113,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
         if (!isInCardOverlay){
-            transform.position = transform.position + new Vector3(0, 200, 0);
+            transform.position = transform.position + new Vector3(0, 100, 0);
             transform.SetAsLastSibling();
         }
     }
@@ -125,7 +125,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
         this.keywordTooltips.Clear();
         if (!isInCardOverlay){
-            transform.position = transform.position + new Vector3(0, -200, 0);
+            transform.position = transform.position + new Vector3(0, -100, 0);
             transform.SetSiblingIndex(0);    
         }    
     }

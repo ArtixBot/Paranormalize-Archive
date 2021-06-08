@@ -26,9 +26,9 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         this.AddCardToPermaDeck("DECKARD_TRASH_TALK");
         // this.AddCardToPermaDeck("DECKARD_STOIC");
-        // this.AddCardToPermaDeck("DECKARD_INTERVENE");
-        // this.AddCardToPermaDeck("DECKARD_CHALLENGE");
-        // this.AddCardToPermaDeck("DECKARD_JABBER");
+        this.AddCardToPermaDeck("DECKARD_INTERVENE");
+        this.AddCardToPermaDeck("DECKARD_CHALLENGE");
+        this.AddCardToPermaDeck("DECKARD_JABBER");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_ADDENDUM");
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");

@@ -99,6 +99,10 @@
         "NAME": "Heated",
         "DESC": "Deploy [S] Heated."
     },
+    "DECKARD_INTERVENE": {
+        "NAME": "Intervene",
+        "DESC": "Apply [P] Poise."
+    },
     "DECKARD_JABBER": {
         "NAME": "Jabber",
         "DESC": "Deal [D] damage.\nApply [P] Poise to your core argument."

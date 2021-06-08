@@ -670,9 +670,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 300, y: 400}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1845875921644247656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,6 +692,8 @@ MonoBehaviour:
   cardCost: {fileID: 0}
   cardType: {fileID: 0}
   cardText: {fileID: 0}
+  keywordPrefab: {fileID: 0}
+  keywordTooltips: []
   isInCardOverlay: 0
   selectedInCardOverlay: 0
 --- !u!114 &6246263319826635852
@@ -839,7 +841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -127.90005, y: 225}
+  m_AnchoredPosition: {x: -127.90015, y: 225}
   m_SizeDelta: {x: 44.19995, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1845875921700111833
