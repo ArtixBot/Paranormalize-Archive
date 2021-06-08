@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This card should be created by DeckardInstincts, and not anywhere else.
 public class DeckardInstinctsHeated : AbstractCard
 {
     public static string cardID = "DECKARD_INSTINCTS_HEATED";

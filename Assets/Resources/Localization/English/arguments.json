@@ -53,7 +53,7 @@
     },
     "HEATED":{
         "NAME": "Heated",
-        "DESC": "[OWNER]'s Aggression cards deal +[STACKS] damage. Reduce by 1 at the end of [OWNER]'s turn."
+        "DESC": "[OWNER]'s Aggression cards deal +[STACKS] damage. Remove 1 stack from this argument at the end of [OWNER]'s turn."
     },
     "HOTHEADED":{
         "NAME": "Hotheaded",

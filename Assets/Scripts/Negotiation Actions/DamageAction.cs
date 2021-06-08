@@ -10,14 +10,13 @@ public class DamageAction : AbstractAction {
     private AbstractCharacter argumentOwner;
     private int damageMin;
     private int damageMax;
-    private int attackXTimes;
 
     ///<summary>
     ///Damage an argument. Triggers an ARGUMENT_ATTACKED_BLOCKED if all damage was negated by Poise, and ARGUMENT_ATTACKED_UNBLOCKED otherwise.
     ///If the target is destroyed post-damage resolution, triggers an ARGUMENT_DESTROYED event.
     ///<list type="bullet">
     ///<item><term>target</term><description>The argument being damaged. If null, damages a random argument instead. The random target will be filtered based on argumentOwner.</description></item>
-    ///<item><term>argumentOwner</term><description>The owner of the argument. Does nothing if target is null, else determines filter for random targeting.</description></item>
+    ///<item><term>argumentOwner</term><description>The owner of the argument. If target is null, determines filter for random targeting.</description></item>
     ///<item><term>damageMin, damageMax</term><description>Deal [damageMin] - [damageMax] damage.</description></item>
     ///</list>
     ///</summary>
@@ -26,7 +25,6 @@ public class DamageAction : AbstractAction {
         this.argumentOwner = argumentOwner;
         this.damageMin = damageMin;
         this.damageMax = damageMax;
-        this.attackXTimes = Math.Max(attackXTimes, 1);       // if a negative/zero value is supplied ignore it!
     }
 
     public override int Resolve(){
