@@ -18,7 +18,8 @@ public class DeckardJabber : AbstractCard {
         cardCost,
         CardAmbient.DIALOGUE,
         CardRarity.COMMON,
-        CardType.ATTACK
+        CardType.ATTACK,
+        new List<CardTags>{CardTags.POISE}
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

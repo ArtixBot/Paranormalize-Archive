@@ -15,6 +15,10 @@
         "NAME": "Collected",
         "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to this argument."
     },
+    "CORE_DESOLATION": {
+        "NAME": "Desolation",
+        "DESC": "At the start of [OWNER]'s turn, if the Ambience phase is in Desolation, deal [STACKS] damage to ALL of [ENEMY]'s arguments.\n\nAt the end of [OWNER]'s turn, change the Ambience phase to Desolation.\n\nWhile Ambience is in Desolation, this argument is Untouchable."
+    },
     "CORE_NO_ABILITY": {
         "NAME": "Boring",
         "DESC": "This has no special effects."
@@ -46,6 +50,10 @@
     "STICKY_FINGERS":{
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
+    },
+    "HEATED":{
+        "NAME": "Heated",
+        "DESC": "[OWNER]'s Aggression cards deal +[STACKS] damage. Reduce by 1 at the end of [OWNER]'s turn."
     },
     "HOTHEADED":{
         "NAME": "Hotheaded",

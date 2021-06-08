@@ -87,9 +87,17 @@
         "NAME": "Hotheaded",
         "DESC": "Whenever the Ambience phase changes towards Dangerous, draw [S] cards."
     },
-    "DECKARD_INTERVENE": {
-        "NAME": "Intervene",
-        "DESC": "Apply [P] Poise."
+    "DECKARD_INSTINCTS": {
+        "NAME": "Instincts",
+        "DESC": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated."
+    },
+    "DECKARD_INSTINCTS_FINESSE": {
+        "NAME": "Finesse",
+        "DESC": "Deploy [S] Finesse."
+    },
+    "DECKARD_INSTINCTS_HEATED": {
+        "NAME": "Heated",
+        "DESC": "Deploy [S] Heated."
     },
     "DECKARD_JABBER": {
         "NAME": "Jabber",

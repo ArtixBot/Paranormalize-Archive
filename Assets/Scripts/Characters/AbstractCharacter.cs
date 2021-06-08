@@ -16,11 +16,18 @@ public abstract class AbstractCharacter
     public List<AbstractArgument> nonCoreArguments = new List<AbstractArgument>();
     
     // STAT MODIFIERS
-    public int drawMod          = 0;    // At end of turn, draw 5 + <drawMod>
-    public int maxAP = 3, curAP = 3;    // Action points
-    public float dmgDealtMult   = 1.0f; // Universal damage multiplier of the character.
-    public int dmgDealtAdd      = 0;    // Universal damage adder of the character.
-    // When playing an attack, damage dealt by the character is X = (damage + dmgDealtAdd) * dmgDealtMult
+    public int drawMod          = 0;                // At end of turn, draw 5 + <drawMod>
+    public int maxAP = 3, curAP = 3;                // Action points
+
+    public float dmgDealtMult           = 1.0f;     // Universal damage multiplier of the character. Applies to cards and arguments.
+    public float dmgDealtCardMult       = 1.0f;     // Universal damage multiplier. Applies only to cards.
+    public float dmgDealtDialogueMult   = 1.0f;     // Dialogue card damage multiplier.
+    public float dmgDealtAggressionMult = 1.0f;     // Aggression card damage multiplier.
+    public int dmgDealtAdd              = 0;        // Universal damage adder of the character. Applies to cards and arguments.
+    public int dmgDealtCardAdd          = 0;        // Universal damage adder. Applies only to cards.
+    public int dmgDealtDialogueAdd      = 0;        // Dialogue card damage adder.
+    public int dmgDealtAggressionAdd    = 0;        // Aggression card damage adder.
+    // When playing an attack, damage dealt by the character is X = (damage +  dmgDealtAdd + dmgDealtTypeAdd) * (dmgDealtMult + dmgDealtTypeMult)
     // The argument taking damage is then modified by (X + AbstractArgument.dmgTakenAdd) * AbstractArgument.dmgTakenMult
 
     public Deck permaDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
