@@ -145,7 +145,6 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     float duration = 0.015f;
-    float currentTime = 0f;
     IEnumerator RunOnPointerEnter(){
         this.origScale = transform.localScale;
         float currentTime = 0f;
