@@ -12,26 +12,29 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     public AbstractCard reference;
 
-    public Image cardBG;
-    public Image cardImage;
-    public Image cardInsignia;
-    public TextMeshProUGUI cardName;
-    public TextMeshProUGUI cardCost;
-    public TextMeshProUGUI cardType;
-    public TextMeshProUGUI cardText;
-    public GameObject keywordPrefab;
-    public List<GameObject> keywordTooltips = new List<GameObject>();
-
+    public Vector3 onHoverScaleAmount = new Vector3(0.1f, 0.1f, 0f);
     public bool isInCardOverlay = false;
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
+    private Image cardBG;
+    private Image cardImage;
+    private Image cardInsignia;
+    private TextMeshProUGUI cardName;
+    private TextMeshProUGUI cardCost;
+    private TextMeshProUGUI cardType;
+    private TextMeshProUGUI cardText;
+    private GameObject keywordPrefab;
+    private List<GameObject> keywordTooltips = new List<GameObject>();
+    
     private int siblingIndex;
     private Quaternion origRotation;
     private Vector3 origScale;
 
     void Start(){
         keywordPrefab = Resources.Load("Prefabs/KeywordTooltip") as GameObject;
+        this.origScale = transform.localScale;
     }
+
     public void Render()
     {
         cardBG = transform.Find("CardBG").GetComponent<Image>();
@@ -100,32 +103,6 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         return s;
     }
 
-    // Hover
-    public void OnPointerEnter(PointerEventData eventData){
-        StartCoroutine(RunOnPointerEnter());
-        if (this.keywordTooltips.Count == 0){
-            for(int i = reference.TAGS.Count - 1; i >= 0; i--){
-                // Debug.Log(reference.TAGS[i]);
-                CardTags tag = reference.TAGS[i];
-                GameObject prefab = Instantiate(keywordPrefab, transform.position + new Vector3(300, 400 + (i * -100), 0), Quaternion.identity);
-                prefab.SetActive(false);
-                prefab.GetComponent<TooltipKeyword>().title.text = tag.ToString().Substring(0, 1) + tag.ToString().Substring(1).ToLower();
-                prefab.transform.SetParent(GameObject.Find("Canvas").transform);
-                prefab.SetActive(true);
-                this.keywordTooltips.Add(prefab);
-                // Debug.Log(tag.ToString() + " " + LocalizationLibrary.Instance.GetKeywordString(tag.ToString()));
-            }
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData){
-        StartCoroutine(RunOnPointerExit());
-        foreach(GameObject tooltip in this.keywordTooltips){
-            Destroy(tooltip);
-        }
-        this.keywordTooltips.Clear();
-    }
-
     public void OnPointerClick(PointerEventData eventData){
         if (isInCardOverlay){
             selectedInCardOverlay = !selectedInCardOverlay;
@@ -144,19 +121,33 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    float duration = 0.015f;
-    
-    IEnumerator RunOnPointerEnter(){
-        this.origScale = transform.localScale;
-        float currentTime = 0f;
-        float normalized = 0f;
-        Vector3 increment = new Vector3(0.1f, 0.1f, 0);
-        while (currentTime <= duration){
-            currentTime += Time.deltaTime;
-            normalized = Math.Min(currentTime / duration, 1.0f);
-            transform.localScale = this.origScale + (increment * normalized);
-            yield return null;
+    // Hover
+    public void OnPointerEnter(PointerEventData eventData){
+        StartCoroutine(RunOnPointerEnter());
+        if (this.keywordTooltips.Count == 0){
+            for(int i = reference.TAGS.Count - 1; i >= 0; i--){
+                CardTags tag = reference.TAGS[i];
+                GameObject prefab = Instantiate(keywordPrefab, transform.position + new Vector3(300, 400 + (i * -100), 0), Quaternion.identity);
+                this.keywordTooltips.Add(prefab);
+                prefab.SetActive(false);
+                prefab.GetComponent<TooltipKeyword>().title.text = tag.ToString().Substring(0, 1) + tag.ToString().Substring(1).ToLower();
+                prefab.transform.SetParent(GameObject.Find("Canvas").transform);
+                prefab.SetActive(true);
+            }
         }
+    }
+
+    public void OnPointerExit(PointerEventData eventData){
+        StartCoroutine(RunOnPointerExit());
+        foreach(GameObject tooltip in this.keywordTooltips){
+            Destroy(tooltip);
+        }
+        this.keywordTooltips.Clear();
+    }
+
+    float duration = 0.05f;
+    IEnumerator RunOnPointerEnter(){
+        StopCoroutine(RunOnPointerExit());
         if (!isInCardOverlay){
             this.siblingIndex = transform.GetSiblingIndex();
             this.origRotation = transform.rotation;
@@ -165,25 +156,33 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             transform.position = transform.position + new Vector3(0, 100, 0);
             transform.SetAsLastSibling();
         }
+        float currentTime = 0f;
+        Vector3 maxSize = this.origScale + this.onHoverScaleAmount;
+        while (currentTime <= duration){
+            currentTime += Time.deltaTime;
+            float normalized = Math.Min(currentTime / duration, 1.0f);
+            Vector3 lerpSize = Vector3.Lerp(this.origScale, maxSize, normalized);
+            transform.localScale = lerpSize;
+            yield return null;
+        }
     }
 
     IEnumerator RunOnPointerExit(){
-        float currentTime = 0f;
-        float normalized = 0f;
-        Vector3 bigScale = this.origScale + new Vector3(0.1f, 0.1f, 0);
-        Vector3 decrement = transform.localScale - this.origScale;
-        while (currentTime <= duration){
-            currentTime += Time.deltaTime;
-            normalized = Math.Min(currentTime / duration, 1.0f);
-            transform.localScale = bigScale + (decrement * normalized);
-            yield return null;
-        }
-        transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+        StopCoroutine(RunOnPointerEnter());
         if (!isInCardOverlay){
             transform.rotation = this.origRotation;
             transform.position = transform.position + new Vector3(0, -100, 0);
             transform.SetSiblingIndex(siblingIndex);    
         }
-        yield return null;
+        float currentTime = 0f;
+        Vector3 curSize = transform.localScale;
+        while (currentTime <= duration){
+            currentTime += Time.deltaTime;
+            float normalized = Math.Min(currentTime / duration, 1.0f);
+            Vector3 lerpSize = Vector3.Lerp(curSize, this.origScale, normalized);
+            transform.localScale = lerpSize;
+            yield return null;
+        }
+        transform.localScale -= new Vector3(0.1f, 0.1f, 0);
     }
 }
