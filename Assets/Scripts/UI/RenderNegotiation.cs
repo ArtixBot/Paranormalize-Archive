@@ -63,6 +63,8 @@ public class RenderNegotiation : MonoBehaviour
         this.RenderCounts();
     }
 
+    public float renderCardHorizontalDistance;      // set in inspector
+
     public void RenderHand(){
         // get rid of the old hand to render a new one. maybe excessive - could we just rerender the hand?
         foreach (Transform child in handZone.transform){
@@ -71,7 +73,7 @@ public class RenderNegotiation : MonoBehaviour
         List<AbstractCard> playerHand = player.GetHand();
         for(int i = 0; i < playerHand.Count; i++){
             AbstractCard card = playerHand[i];
-            GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(i * 200.0f, 0, 0), Quaternion.identity);
+            GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(i * renderCardHorizontalDistance, 0, 0), Quaternion.identity);
             cardDisplay.transform.Rotate(0, 0, 20 - (10 *i));
             cardDisplay.transform.SetParent(handZone.transform);
             cardDisplay.GetComponent<DisplayCard>().reference = card;

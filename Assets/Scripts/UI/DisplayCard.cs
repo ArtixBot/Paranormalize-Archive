@@ -25,6 +25,10 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool isInCardOverlay = false;
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
+    private int siblingIndex;
+    private Quaternion origRotation;
+    private Vector3 origScale;
+
     void Start(){
         keywordPrefab = Resources.Load("Prefabs/KeywordTooltip") as GameObject;
     }
@@ -98,7 +102,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     // Hover
     public void OnPointerEnter(PointerEventData eventData){
-        transform.localScale += new Vector3(0.1f, 0.1f, 0);
+        StartCoroutine(RunOnPointerEnter());
         if (this.keywordTooltips.Count == 0){
             for(int i = reference.TAGS.Count - 1; i >= 0; i--){
                 // Debug.Log(reference.TAGS[i]);
@@ -112,22 +116,14 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 // Debug.Log(tag.ToString() + " " + LocalizationLibrary.Instance.GetKeywordString(tag.ToString()));
             }
         }
-        if (!isInCardOverlay){
-            transform.position = transform.position + new Vector3(0, 100, 0);
-            transform.SetAsLastSibling();
-        }
     }
 
     public void OnPointerExit(PointerEventData eventData){
-        transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+        StartCoroutine(RunOnPointerExit());
         foreach(GameObject tooltip in this.keywordTooltips){
             Destroy(tooltip);
         }
         this.keywordTooltips.Clear();
-        if (!isInCardOverlay){
-            transform.position = transform.position + new Vector3(0, -100, 0);
-            transform.SetSiblingIndex(0);    
-        }    
     }
 
     public void OnPointerClick(PointerEventData eventData){
@@ -146,5 +142,48 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
             instance.EnableButtonIfConditionsMet();
         }
+    }
+
+    float duration = 0.015f;
+    float currentTime = 0f;
+    IEnumerator RunOnPointerEnter(){
+        this.origScale = transform.localScale;
+        float currentTime = 0f;
+        float normalized = 0f;
+        Vector3 increment = new Vector3(0.1f, 0.1f, 0);
+        while (currentTime <= duration){
+            currentTime += Time.deltaTime;
+            normalized = Math.Min(currentTime / duration, 1.0f);
+            transform.localScale = this.origScale + (increment * normalized);
+            yield return null;
+        }
+        if (!isInCardOverlay){
+            this.siblingIndex = transform.GetSiblingIndex();
+            this.origRotation = transform.rotation;
+
+            transform.rotation = Quaternion.identity;
+            transform.position = transform.position + new Vector3(0, 100, 0);
+            transform.SetAsLastSibling();
+        }
+    }
+
+    IEnumerator RunOnPointerExit(){
+        float currentTime = 0f;
+        float normalized = 0f;
+        Vector3 bigScale = this.origScale + new Vector3(0.1f, 0.1f, 0);
+        Vector3 decrement = transform.localScale - this.origScale;
+        while (currentTime <= duration){
+            currentTime += Time.deltaTime;
+            normalized = Math.Min(currentTime / duration, 1.0f);
+            transform.localScale = bigScale + (decrement * normalized);
+            yield return null;
+        }
+        transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+        if (!isInCardOverlay){
+            transform.rotation = this.origRotation;
+            transform.position = transform.position + new Vector3(0, -100, 0);
+            transform.SetSiblingIndex(siblingIndex);    
+        }
+        yield return null;
     }
 }
