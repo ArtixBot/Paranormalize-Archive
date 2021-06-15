@@ -14,7 +14,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public Vector3 onHoverScaleAmount = new Vector3(0.1f, 0.1f, 0f);
     public Vector3 onHoverMoveAmount = new Vector3(0, 100, 0);
-    public bool isInCardOverlay = false;
+    public bool isInCardOverlay;
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
     private Image cardBG;
@@ -41,6 +41,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.origScale = transform.localScale;
         this.origRotation = transform.rotation;
         this.origPos = transform.position;
+        this.isInCardOverlay = transform.parent.name != "HandZone";         // default to false since cards are primarily in the hand only
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
@@ -203,8 +204,10 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Quaternion lerpRotation = Quaternion.Lerp(curRot, this.origRotation, normalized);
             transform.rotation = lerpRotation;
 
-            Vector3 lerpPos = Vector3.Lerp(curPos, this.origPos, normalized);
-            transform.position = lerpPos;
+            if (!isInCardOverlay){
+                Vector3 lerpPos = Vector3.Lerp(curPos, this.origPos, normalized);
+                transform.position = lerpPos;
+            }
             yield return null;
         }
     }

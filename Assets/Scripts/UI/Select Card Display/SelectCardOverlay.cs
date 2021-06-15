@@ -50,7 +50,7 @@ public class SelectCardOverlay : MonoBehaviour
             newObj.transform.SetParent(populateGridLayout.transform);
 			if (newObj.GetComponent<DisplayCard>() != null){
             	newObj.GetComponent<DisplayCard>().reference = cardsToRender[i];
-				newObj.GetComponent<DisplayCard>().isInCardOverlay = true;
+				// newObj.GetComponent<DisplayCard>().isInCardOverlay = true;		// should be handled with Render() already
             	newObj.GetComponent<DisplayCard>().Render();
 			}
 		}
