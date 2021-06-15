@@ -32,11 +32,13 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     void Start(){
         keywordPrefab = Resources.Load("Prefabs/KeywordTooltip") as GameObject;
-        this.origScale = transform.localScale;
     }
 
     public void Render()
     {
+        this.origScale = transform.localScale;
+        this.origRotation = transform.rotation;
+
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
         cardInsignia = transform.Find("CardInsignia").GetComponent<Image>();
@@ -124,6 +126,14 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Hover
     public void OnPointerEnter(PointerEventData eventData){
         StartCoroutine(RunOnPointerEnter());
+    }
+
+    public void OnPointerExit(PointerEventData eventData){
+        StartCoroutine(RunOnPointerExit());
+    }
+
+    float duration = 0.05f;
+    IEnumerator RunOnPointerEnter(){
         if (this.keywordTooltips.Count == 0){
             for(int i = reference.TAGS.Count - 1; i >= 0; i--){
                 CardTags tag = reference.TAGS[i];
@@ -135,52 +145,53 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 prefab.SetActive(true);
             }
         }
-    }
-
-    public void OnPointerExit(PointerEventData eventData){
-        StartCoroutine(RunOnPointerExit());
-        foreach(GameObject tooltip in this.keywordTooltips){
-            Destroy(tooltip);
-        }
-        this.keywordTooltips.Clear();
-    }
-
-    float duration = 0.05f;
-    IEnumerator RunOnPointerEnter(){
         StopCoroutine(RunOnPointerExit());
         if (!isInCardOverlay){
             this.siblingIndex = transform.GetSiblingIndex();
-            this.origRotation = transform.rotation;
-
-            transform.rotation = Quaternion.identity;
             transform.position = transform.position + new Vector3(0, 100, 0);
             transform.SetAsLastSibling();
         }
+
         float currentTime = 0f;
         Vector3 maxSize = this.origScale + this.onHoverScaleAmount;
         while (currentTime <= duration){
             currentTime += Time.deltaTime;
             float normalized = Math.Min(currentTime / duration, 1.0f);
+
             Vector3 lerpSize = Vector3.Lerp(this.origScale, maxSize, normalized);
             transform.localScale = lerpSize;
+            
+            Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, normalized);
+            transform.rotation = lerpRotation;
+
             yield return null;
         }
     }
 
     IEnumerator RunOnPointerExit(){
+        foreach(GameObject tooltip in this.keywordTooltips){
+            Destroy(tooltip);
+        }
+        this.keywordTooltips.Clear();
+
         StopCoroutine(RunOnPointerEnter());
         if (!isInCardOverlay){
-            transform.rotation = this.origRotation;
             transform.position = transform.position + new Vector3(0, -100, 0);
             transform.SetSiblingIndex(siblingIndex);    
         }
+
         float currentTime = 0f;
+        Quaternion curRot = transform.rotation;
         Vector3 curSize = transform.localScale;
         while (currentTime <= duration){
             currentTime += Time.deltaTime;
             float normalized = Math.Min(currentTime / duration, 1.0f);
+
             Vector3 lerpSize = Vector3.Lerp(curSize, this.origScale, normalized);
             transform.localScale = lerpSize;
+
+            Quaternion lerpRotation = Quaternion.Lerp(curRot, this.origRotation, normalized);
+            transform.rotation = lerpRotation;
             yield return null;
         }
         transform.localScale -= new Vector3(0.1f, 0.1f, 0);
