@@ -13,6 +13,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public AbstractCard reference;
 
     public Vector3 onHoverScaleAmount = new Vector3(0.1f, 0.1f, 0f);
+    public Vector3 onHoverMoveAmount = new Vector3(0, 100, 0);
     public bool isInCardOverlay = false;
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
@@ -29,6 +30,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private int siblingIndex;
     private Quaternion origRotation;
     private Vector3 origScale;
+    private Vector3 origPos;
 
     void Start(){
         keywordPrefab = Resources.Load("Prefabs/KeywordTooltip") as GameObject;
@@ -38,6 +40,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         this.origScale = transform.localScale;
         this.origRotation = transform.rotation;
+        this.origPos = transform.position;
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
@@ -148,12 +151,13 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         StopCoroutine(RunOnPointerExit());
         if (!isInCardOverlay){
             this.siblingIndex = transform.GetSiblingIndex();
-            transform.position = transform.position + new Vector3(0, 100, 0);
+            // transform.position = transform.position + new Vector3(0, 100, 0);
             transform.SetAsLastSibling();
         }
 
         float currentTime = 0f;
         Vector3 maxSize = this.origScale + this.onHoverScaleAmount;
+        Vector3 maxMove = this.origPos + this.onHoverMoveAmount;
         while (currentTime <= duration){
             currentTime += Time.deltaTime;
             float normalized = Math.Min(currentTime / duration, 1.0f);
@@ -164,6 +168,10 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, normalized);
             transform.rotation = lerpRotation;
 
+            if (!isInCardOverlay){
+                Vector3 lerpMove = Vector3.Lerp(this.origPos, maxMove, normalized);
+                transform.position = lerpMove;
+            }
             yield return null;
         }
     }
@@ -176,13 +184,15 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         StopCoroutine(RunOnPointerEnter());
         if (!isInCardOverlay){
-            transform.position = transform.position + new Vector3(0, -100, 0);
+            // transform.position = transform.position + new Vector3(0, -100, 0);
             transform.SetSiblingIndex(siblingIndex);    
         }
 
         float currentTime = 0f;
         Quaternion curRot = transform.rotation;
         Vector3 curSize = transform.localScale;
+        Vector3 curPos = transform.position;
+
         while (currentTime <= duration){
             currentTime += Time.deltaTime;
             float normalized = Math.Min(currentTime / duration, 1.0f);
@@ -192,8 +202,10 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
             Quaternion lerpRotation = Quaternion.Lerp(curRot, this.origRotation, normalized);
             transform.rotation = lerpRotation;
+
+            Vector3 lerpPos = Vector3.Lerp(curPos, this.origPos, normalized);
+            transform.position = lerpPos;
             yield return null;
         }
-        transform.localScale -= new Vector3(0.1f, 0.1f, 0);
     }
 }

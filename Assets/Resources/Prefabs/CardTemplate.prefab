@@ -685,15 +685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119ad7e70b3f2264ea113e5cd0595f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardBG: {fileID: 0}
-  cardImage: {fileID: 0}
-  cardInsignia: {fileID: 0}
-  cardName: {fileID: 0}
-  cardCost: {fileID: 0}
-  cardType: {fileID: 0}
-  cardText: {fileID: 0}
-  keywordPrefab: {fileID: 0}
-  keywordTooltips: []
+  onHoverScaleAmount: {x: 0.2, y: 0.2, z: 0}
+  onHoverMoveAmount: {x: 0, y: 100, z: 0}
   isInCardOverlay: 0
   selectedInCardOverlay: 0
 --- !u!114 &6246263319826635852
