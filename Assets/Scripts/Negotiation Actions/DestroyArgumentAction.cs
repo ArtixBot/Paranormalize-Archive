@@ -14,7 +14,6 @@ public class DestroyArgumentAction : AbstractAction {
         this.owner = source;
         this.argumentToDestroy = argumentToDestroy;
         
-        argumentToDestroy.ORIGIN = ArgumentOrigin.DEPLOYED;
         argumentToDestroy.OWNER = source;
     }
 
