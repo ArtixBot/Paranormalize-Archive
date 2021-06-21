@@ -25,7 +25,7 @@ public class DeckardBarrelThrough : AbstractCard {
         base.Play(source, target);
         int poiseSum = 0;
         poiseSum += source.GetCoreArgument().poise;
-        foreach (AbstractArgument arg in source.GetArguments()){
+        foreach (AbstractArgument arg in source.GetTargetableArguments()){
             poiseSum += arg.poise;
         }
         poiseSum = (int)Mathf.Round((float)0.5 * poiseSum);

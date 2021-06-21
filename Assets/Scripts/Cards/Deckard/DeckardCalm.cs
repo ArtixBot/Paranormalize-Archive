@@ -26,7 +26,7 @@ public class DeckardCalm : AbstractCard {
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), POISE));
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), 2, true));
 
-        foreach(AbstractArgument arg in source.GetArguments()){
+        foreach(AbstractArgument arg in source.GetTargetableArguments()){
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, POISE));
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, 2, true));
         }

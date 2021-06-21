@@ -52,7 +52,7 @@ public class DeckardGuardedResponse : AbstractCard {
             poiseToApply = data.damageDealt;
         }
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(charToApplyPoiseTo, charToApplyPoiseTo.GetCoreArgument(), poiseToApply));
-        foreach(AbstractArgument arg in charToApplyPoiseTo.GetArguments()){
+        foreach(AbstractArgument arg in charToApplyPoiseTo.GetTargetableArguments()){
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(charToApplyPoiseTo, arg, poiseToApply));
         }
     }

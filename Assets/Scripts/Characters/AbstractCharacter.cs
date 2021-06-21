@@ -111,6 +111,17 @@ public abstract class AbstractCharacter
         return null;
     }
 
+    // Return all non-core arguments THAT CAN BE TARGETED.
+    public List<AbstractArgument> GetTargetableArguments(){
+        List<AbstractArgument> targetable = new List<AbstractArgument>();
+        foreach(AbstractArgument argument in this.nonCoreArguments){
+            if (!argument.isTrait){         // TODO: Also filter our arguments with the "Untouchable" status
+                targetable.Add(argument);
+            }
+        }
+        return targetable;
+    }
+
     // Return all non-core arguments.
     public List<AbstractArgument> GetArguments(){
         return this.nonCoreArguments;
