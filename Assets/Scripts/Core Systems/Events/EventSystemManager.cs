@@ -40,7 +40,7 @@ public class EventSystemManager
     }
 
     public void SubscribeToEvent(EventSubscriber subscriber, EventType type){
-        if (!subscriber.eventsSubscribedTo.Contains(type)){
+        if (!subscriber.eventsSubscribedTo.Contains(type)){         // prevent double subscription
             subscriber.eventsSubscribedTo.Add(type);
             gameEvents[type].Add(subscriber);
         }

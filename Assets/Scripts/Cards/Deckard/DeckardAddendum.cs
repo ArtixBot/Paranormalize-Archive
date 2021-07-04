@@ -37,7 +37,7 @@ public class DeckardAddendum : AbstractCard {
         EventCardDrawn data = (EventCardDrawn) eventData;
 
         if (data.cardDrawn == this){
-            NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(data.owner), MIN_DAMAGE, MAX_DAMAGE));
+            NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(data.owner), MIN_DAMAGE, MAX_DAMAGE, this));
             // NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentStrawman(), STACKS)); //TODO: Change to Finesse argument
         }
         return;

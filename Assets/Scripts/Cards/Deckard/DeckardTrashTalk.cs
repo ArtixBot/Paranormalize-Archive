@@ -24,7 +24,7 @@ public class DeckardTrashTalk : AbstractCard {
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         for (int i = 0; i < ITERATIONS; i++){
-            NegotiationManager.Instance.AddAction(new DamageAction(null, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+            NegotiationManager.Instance.AddAction(new DamageAction(null, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
         }
     }
 

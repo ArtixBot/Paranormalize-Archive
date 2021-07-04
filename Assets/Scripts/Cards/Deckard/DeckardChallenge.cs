@@ -24,7 +24,7 @@ public class DeckardChallenge : AbstractCard {
         base.Play(source, target);
         int poiseToRemove = source.GetCoreArgument().poise;
         source.GetCoreArgument().poise = 0;
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE + poiseToRemove, MAX_DAMAGE + poiseToRemove));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE + poiseToRemove, MAX_DAMAGE + poiseToRemove, this));
     }
 
     public override void Upgrade(){

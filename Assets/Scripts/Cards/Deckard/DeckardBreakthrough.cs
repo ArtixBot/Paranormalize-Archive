@@ -26,7 +26,7 @@ public class DeckardBreakthrough : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
     }
 
     public override void Upgrade(){

@@ -24,7 +24,7 @@ public class DeckardJabber : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), POISE));
     }
 

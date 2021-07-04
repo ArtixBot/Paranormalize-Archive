@@ -31,7 +31,7 @@ public class DeckardGuardedResponse : AbstractCard {
         this.charToApplyPoiseTo = source;
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_BLOCKED);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_ATTACKED_UNBLOCKED);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
         EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
     }
 

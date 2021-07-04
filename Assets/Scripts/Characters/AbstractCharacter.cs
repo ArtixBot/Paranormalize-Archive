@@ -20,11 +20,11 @@ public abstract class AbstractCharacter
     public int maxAP = 3, curAP = 3;                // Action points
 
     public float dmgDealtMult           = 1.0f;     // Universal damage multiplier of the character. Applies to cards and arguments.
-    public float dmgDealtCardMult       = 1.0f;     // Universal damage multiplier. Applies only to cards.
+    public float dmgDealtCardMult       = 1.0f;     // Universal damage multiplier FOR CARDS ONLY.
     public float dmgDealtDialogueMult   = 1.0f;     // Dialogue card damage multiplier.
     public float dmgDealtAggressionMult = 1.0f;     // Aggression card damage multiplier.
     public int dmgDealtAdd              = 0;        // Universal damage adder of the character. Applies to cards and arguments.
-    public int dmgDealtCardAdd          = 0;        // Universal damage adder. Applies only to cards.
+    public int dmgDealtCardAdd          = 0;        // Universal damage adder FOR CARDS ONLY.
     public int dmgDealtDialogueAdd      = 0;        // Dialogue card damage adder.
     public int dmgDealtAggressionAdd    = 0;        // Aggression card damage adder.
     // When playing an attack, damage dealt by the character is X = (damage +  dmgDealtAdd + dmgDealtTypeAdd) * (dmgDealtMult + dmgDealtTypeMult)

@@ -29,7 +29,7 @@ public class DeckardBarrelThrough : AbstractCard {
             poiseSum += arg.poise;
         }
         poiseSum = (int)Mathf.Round((float)0.5 * poiseSum);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE + poiseSum, MAX_DAMAGE + poiseSum));
+        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE + poiseSum, MAX_DAMAGE + poiseSum, this));
     }
 
     public override void Upgrade(){

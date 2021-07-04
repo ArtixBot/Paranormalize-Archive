@@ -36,7 +36,7 @@ public class ArgumentParadox : AbstractArgument
             case EventType.ARGUMENT_DESTROYED:
                 EventArgDestroyed destroyData = (EventArgDestroyed) eventData;
                 if (destroyData.argumentDestroyed == this){
-                    NegotiationManager.Instance.AddAction(new DamageAction(this.OWNER.GetCoreArgument(), this.OWNER, this.stacks, this.stacks));
+                    NegotiationManager.Instance.AddAction(new DamageAction(this.OWNER.GetCoreArgument(), this.OWNER, this.stacks, this.stacks, this));
                 }
                 break;
         }
