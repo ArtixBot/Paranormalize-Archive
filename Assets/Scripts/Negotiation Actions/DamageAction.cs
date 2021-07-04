@@ -7,6 +7,7 @@ using GameEvent;
 public class DamageAction : AbstractAction {
 
     private AbstractArgument target;
+    private AbstractCharacter attacker;
     private AbstractCharacter argumentOwner;
     private int damageMin;
     private int damageMax;
@@ -23,6 +24,7 @@ public class DamageAction : AbstractAction {
     public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax){
         this.target = target;
         this.argumentOwner = argumentOwner;
+        this.attacker = TurnManager.Instance.GetOtherCharacter(argumentOwner);
         this.damageMin = damageMin;
         this.damageMax = damageMax;
     }
@@ -34,7 +36,7 @@ public class DamageAction : AbstractAction {
             int index = UnityEngine.Random.Range(0, range);
             this.target = (index == 0) ? argumentOwner.GetCoreArgument() : argumentOwner.GetTargetableArguments()[index - 1];
         }
-        int damageDealt = UnityEngine.Random.Range(damageMin, damageMax+1);
+        int damageDealt = CalculateDamage(UnityEngine.Random.Range(damageMin, damageMax+1));
         
         // Handle Poise removal.
         if (this.target.poise > 0){
@@ -53,11 +55,20 @@ public class DamageAction : AbstractAction {
 
         // Check to see if the target argument should be destroyed.
         if (this.target.curHP <= 0){
-            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target.OWNER, target));
-            // EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(target));    // trigger on-destroy effects (if any)
-            // this.target.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
-            // this.target.OWNER.nonCoreArguments.Remove(this.target);     // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
+            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target));
         }
         return 0;
+    }
+
+    private int CalculateDamage(int initialDamage){
+        int damage = initialDamage;
+        // Debug.Log("Init damage: " + damage);
+                                                                                            // sicne dmgDealtMult and dmgDealtCardMult are by default 1.0f, need to subtract 1.0f for a default 1.0x damage multiplier
+        damage = (int)Math.Round((damage + attacker.dmgDealtAdd + attacker.dmgDealtCardAdd) * (attacker.dmgDealtMult + attacker.dmgDealtCardMult- 1.0f));
+        // Debug.Log(attacker.dmgDealtAdd + " " + attacker.dmgDealtCardAdd + " " + attacker.dmgDealtMult + " " + attacker.dmgDealtCardMult);
+        // Debug.Log("Damage post-attacker calculation: " + damage);
+        damage = (int)Math.Round((damage + target.dmgTakenAdd) * target.dmgTakenMult);
+        // Debug.Log("End damage: " + damage);
+        return damage;
     }
 }

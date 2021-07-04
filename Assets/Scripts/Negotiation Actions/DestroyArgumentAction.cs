@@ -10,11 +10,9 @@ public class DestroyArgumentAction : AbstractAction {
     private AbstractCharacter owner;
     private AbstractArgument argumentToDestroy;
     
-    public DestroyArgumentAction(AbstractCharacter source, AbstractArgument argumentToDestroy){
-        this.owner = source;
+    public DestroyArgumentAction(AbstractArgument argumentToDestroy){
         this.argumentToDestroy = argumentToDestroy;
-        
-        argumentToDestroy.OWNER = source;
+        this.owner = argumentToDestroy.OWNER;
     }
 
     public override int Resolve(){

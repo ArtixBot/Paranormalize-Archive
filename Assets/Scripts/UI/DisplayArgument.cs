@@ -41,6 +41,7 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
         if (reference.isTrait){
             transform.Find("HealthBar").gameObject.SetActive(false);
+            Destroy(GetComponent<DetectDrop>());            // remove drop capability on a displayed trait
         }
         // if (!reference.isCore){
         //     argumentImage.rectTransform.sizeDelta = new Vector2(100, 100);

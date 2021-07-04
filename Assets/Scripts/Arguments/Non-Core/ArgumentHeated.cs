@@ -37,7 +37,7 @@ public class ArgumentHeated : AbstractArgument
             currentlyApplying = this.stacks;
         }
         if (this.stacks == 0){
-            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this.OWNER, this));
+            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
         }
     }
 }
