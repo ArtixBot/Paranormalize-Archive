@@ -77,6 +77,13 @@ public abstract class AbstractCharacter
         return;
     }
 
+    public void Destroy(AbstractCard card){
+        hand.Remove(card);
+        if (permaDeck.ToList().Contains(card)){
+            permaDeck.deck.Remove(card);
+        }
+    }
+
     public void Scour(AbstractCard card){
         hand.Remove(card);
         scourPile.AddCard(card);

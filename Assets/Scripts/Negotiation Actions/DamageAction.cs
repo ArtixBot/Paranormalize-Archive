@@ -85,6 +85,7 @@ public class DamageAction : AbstractAction {
 
     private int CalculateDamage(int initialDamage){
         int damage = initialDamage;
+        // Debug.Log("Initial damage: " + damage);
 
         // Perform damage calculations for cards.
         if (attackingCard != null){
@@ -103,6 +104,7 @@ public class DamageAction : AbstractAction {
                     break;
             }
             damage = (int)Math.Round((damage + target.dmgTakenAdd) * target.dmgTakenMult);              // Calculate final damage taken by the target
+            // Debug.Log("Final card damage: " + damage);
             return damage;
         }
 

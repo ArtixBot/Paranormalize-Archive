@@ -192,6 +192,6 @@ public class NegotiationManager : EventSubscriber
         } 
         em.TriggerEvent(new EventCardPlayed(caller, caller.OWNER));
         this.caller = null;
-        renderer.RenderHand();
+        renderer.Redraw();
     }
 }

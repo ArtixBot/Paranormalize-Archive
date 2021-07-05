@@ -31,6 +31,10 @@ public class ArgumentHeated : AbstractArgument
             EventTurnEnd data = (EventTurnEnd) eventData;
             if (data.end == this.OWNER) stacks -= 1;
         }
+        if (eventData.type == EventType.ARGUMENT_DESTROYED){
+            EventArgDestroyed data = (EventArgDestroyed) eventData;
+            if (data.argumentDestroyed == this) stacks = 0;
+        }
         if (this.stacks != currentlyApplying){
             int delta = (this.stacks - currentlyApplying);
             this.OWNER.dmgDealtAggressionAdd += delta;

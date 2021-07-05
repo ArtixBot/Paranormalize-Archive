@@ -51,9 +51,13 @@
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
     },
+    "FINESSE":{
+        "NAME": "Finesse",
+        "DESC": "The next [STACKS] Dialogue attack(s) that [OWNER] plays also draw 1 card."
+    },
     "HEATED":{
         "NAME": "Heated",
-        "DESC": "[OWNER]'s Aggression cards deal +[STACKS] damage. Remove 1 stack from this argument at the end of [OWNER]'s turn."
+        "DESC": "[OWNER]'s Aggression attacks deal +[STACKS] damage. Remove 1 stack from this argument at the end of [OWNER]'s turn."
     },
     "HOTHEADED":{
         "NAME": "Hotheaded",
