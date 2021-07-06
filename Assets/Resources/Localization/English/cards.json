@@ -119,6 +119,14 @@
         "NAME": "Jabber",
         "DESC": "Deal [D] damage.\nApply [P] Poise to your core argument."
     },
+    "DECKARD_KNACK": {
+        "NAME": "Knack",
+        "DESC": "Draw [N] cards.\nDeploy Finesse equal to the number of Dialogue cards drawn."
+    },
+    "DECKARD_MAGNETIC_PERSONALITY": {
+        "NAME": "Magnetic Personality",
+        "DESC": "Whenever the Ambience phase changes, Deploy [S] Finesse and [S] Heated."
+    },
     "DECKARD_OPENING_OFFER": {
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."

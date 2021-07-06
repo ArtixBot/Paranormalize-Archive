@@ -78,5 +78,9 @@
     "STRAWMAN": {
         "NAME": "Strawman",
         "DESC": "This must be destroyed before targeting [OWNER]'s other arguments.\n\nThis has max resolve equal to stack count (currently [STACKS])."
+    },
+    "MAGNETIC_PERSONALITY": {
+        "NAME": "Magnetic Personality",
+        "DESC": "Whenever the Ambience level changes, Deploy [STACKS] Finesse and [STACKS] Heated."
     }
 }
