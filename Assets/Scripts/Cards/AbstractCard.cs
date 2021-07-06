@@ -63,8 +63,10 @@ public abstract class AbstractCard : EventSubscriber {
         } else if (this.IsTrait() || this.HasTag(CardTags.SCOUR)){               // Scour stuff
             OWNER.Scour(this);
         } else {
-            source.GetHand().Remove(this);
-            source.GetDiscardPile().AddCard(this);
+            if (source.GetHand().Contains(this)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
+                source.GetHand().Remove(this);
+                source.GetDiscardPile().AddCard(this);
+            }
         }
     }
 

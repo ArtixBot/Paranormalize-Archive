@@ -20,6 +20,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_FINESSE");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_HEATED");
         this.AddCardToPermaDeck("DECKARD_INSTINCTS");
+        this.AddCardToPermaDeck("DECKARD_REVERSAL");
         // this.AddCardToPermaDeck("DECKARD_BRASH");
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");
@@ -28,7 +29,8 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_HOTHEADED");
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         // this.AddCardToPermaDeck("DECKARD_TRASH_TALK");
-        // this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_FLATTER");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
         // this.AddCardToPermaDeck("DECKARD_INTERVENE");
         // this.AddCardToPermaDeck("DECKARD_CHALLENGE");
         // this.AddCardToPermaDeck("DECKARD_JABBER");

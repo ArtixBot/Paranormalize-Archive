@@ -19,7 +19,7 @@ public class DeckardAddendum : AbstractCard {
         cardCost,
         CardAmbient.DIALOGUE,
         CardRarity.COMMON,
-        CardType.ATTACK
+        CardType.SKILL
     ){
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_DRAWN);
     }
@@ -38,7 +38,7 @@ public class DeckardAddendum : AbstractCard {
 
         if (data.cardDrawn == this){
             NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(data.owner), MIN_DAMAGE, MAX_DAMAGE, this));
-            // NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentStrawman(), STACKS)); //TODO: Change to Finesse argument
+            NegotiationManager.Instance.AddAction(new DeployArgumentAction(data.owner, new ArgumentFinesse(), STACKS));
         }
         return;
     }

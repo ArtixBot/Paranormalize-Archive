@@ -67,6 +67,10 @@
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
     },
+    "DECKARD_FLATTER": {
+        "NAME": "Flatter",
+        "DESC": "Deal [D] damage.\nIf you have no Aggression cards in hand, this costs 0 and hits ALL enemy arguments."
+    },
     "DECKARD_FOLLOW_UP": {
         "NAME": "Follow Up",
         "DESC": "Deal [D] damage.\nWhenever the Ambience phase changes, return this card from your discard pile to your hand."
@@ -110,6 +114,10 @@
     "DECKARD_OPENING_OFFER": {
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
+    },
+    "DECKARD_REVERSAL": {
+        "NAME": "Reversal",
+        "DESC": "Remove all Poise from target enemy argument and apply it to your core argument."
     },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",

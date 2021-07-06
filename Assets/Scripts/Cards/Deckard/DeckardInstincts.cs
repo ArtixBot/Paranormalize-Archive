@@ -34,7 +34,7 @@ public class DeckardInstincts : AbstractCard
     public override void PlayCardsSelected(List<AbstractCard> selectedCards){
         foreach(AbstractCard card in selectedCards){
             NegotiationManager.Instance.PlayCard(card, this.OWNER, null);       // this adds the selected card to the discard pile, so we need to remove it from the discard pile afterwards; see next line
-            this.OWNER.GetDiscardPile().ToList().Remove(card);          // this works, but is there a more elegant solution?
+            // this.OWNER.GetDiscardPile().ToList().Remove(card);          // this works, but is there a more elegant solution?
         }
     }
 
