@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
-public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY};   // Determines what tooltips should appear when viewing the card
+public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY, PIERCING};   // Determines what tooltips should appear when viewing the card
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public abstract class AbstractCard : EventSubscriber {

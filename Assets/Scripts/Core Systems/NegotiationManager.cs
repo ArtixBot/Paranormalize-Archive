@@ -11,6 +11,7 @@ public class NegotiationManager : EventSubscriber
 {
     public static readonly NegotiationManager Instance = new NegotiationManager();
     public List<AbstractAction> actionQueue = new List<AbstractAction>();
+    public List<AbstractCard> cardsPlayedThisTurn = new List<AbstractCard>();
 
     public Ambience ambience = Ambience.Instance;
     public TurnManager tm = TurnManager.Instance;
@@ -21,7 +22,7 @@ public class NegotiationManager : EventSubscriber
     public AbstractCharacter enemy;
 
     public int round = 1;
-    public int cardsPlayedThisTurn = 0;
+    public int numCardsPlayedThisTurn = 0;
 
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
@@ -62,7 +63,8 @@ public class NegotiationManager : EventSubscriber
         em.TriggerEvent(new EventTurnEnd(tm.GetCurrentCharacter()));
         tm.GetCurrentCharacter().EndTurn();        // Run end-of-turn function for current character.
         tm.NextCharacter();                        // Switch characters.
-        this.cardsPlayedThisTurn = 0;
+        this.numCardsPlayedThisTurn = 0;
+        this.cardsPlayedThisTurn.Clear();
         tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
         renderer.Redraw();
@@ -95,7 +97,7 @@ public class NegotiationManager : EventSubscriber
         actionQueue.Clear();
 
         this.round = 1;
-        this.cardsPlayedThisTurn = 0;
+        this.numCardsPlayedThisTurn = 0;
         ambience.SetState(AmbienceState.TENSE);
         // change scene to loss
     }
@@ -108,7 +110,7 @@ public class NegotiationManager : EventSubscriber
         actionQueue.Clear();
 
         this.round = 1;
-        this.cardsPlayedThisTurn = 0;
+        this.numCardsPlayedThisTurn = 0;
         ambience.SetState(AmbienceState.TENSE);
         // change scene to win
     }
@@ -117,7 +119,7 @@ public class NegotiationManager : EventSubscriber
         if (card == null) return false;
         try {
             card.Play(source, target);
-            cardsPlayedThisTurn += 1;
+            // numCardsPlayedThisTurn += 1;
             if (!card.suppressEventCalls){  // Event calls are suppressed here if SelectCardsFromList is invoked; instead invoked after SelectedCards is played
                 em.TriggerEvent(new EventCardPlayed(card, source));
             }
@@ -154,8 +156,10 @@ public class NegotiationManager : EventSubscriber
 
     public override void NotifyOfEvent(AbstractEvent eventData){
         EventCardPlayed data = (EventCardPlayed) eventData;
-        cardsPlayedThisTurn += 1;
+        cardsPlayedThisTurn.Add(data.cardPlayed);
+        numCardsPlayedThisTurn += 1;
 
+        // Debug.Log("Played " + numCardsPlayedThisTurn + " cards this turn; last card played was " + cardsPlayedThisTurn[cardsPlayedThisTurn.Count-1].NAME);
         if (data.cardAmbient == CardAmbient.DIALOGUE){
             ambience.AdjustState(-1);
         } else if (data.cardAmbient == CardAmbient.AGGRESSION){

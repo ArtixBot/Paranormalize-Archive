@@ -51,6 +51,10 @@
         "NAME": "Brash",
         "DESC": "Deal [D] damage to all enemy arguments."
     },
+    "DECKARD_BULLDOZE": {
+        "NAME": "Bulldoze",
+        "DESC": "Whenever an enemy argument is destroyed, draw [S] card(s) and gain [S] action(s)."
+    },
     "DECKARD_CALM": {
         "NAME": "Calm",
         "DESC": "Apply [P] Poise to all your arguments.\nDouble your Poise."
@@ -58,6 +62,10 @@
     "DECKARD_CHALLENGE": {
         "NAME": "Challenge",
         "DESC": "Remove all Poise from your core argument to deal damage equal to Poise removed."
+    },
+    "DECKARD_CURVEBALL": {
+        "NAME": "Curveball",
+        "DESC": "Deal [D] damage.\nDeal Piercing damage if the last card played this turn was a Dialogue card.\nDraw [N] cards if the last card played this turn was an Influence card."
     },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",

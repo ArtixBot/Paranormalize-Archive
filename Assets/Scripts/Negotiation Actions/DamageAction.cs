@@ -13,6 +13,7 @@ public class DamageAction : AbstractAction {
     private AbstractCharacter argumentOwner;
     private int damageMin;
     private int damageMax;
+    private bool piercingDamage;
 
     // public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax){
     //     this.target = target;
@@ -30,24 +31,27 @@ public class DamageAction : AbstractAction {
     ///<item><term>argumentOwner</term><description>The owner of the argument. If target is null, determines filter for random targeting.</description></item>
     ///<item><term>damageMin, damageMax</term><description>Deal [damageMin] - [damageMax] damage.</description></item>
     ///<item><term>attackingCard/attackingArgument</term><description>Used for damage calculations. Supply value of 'this'.</description></item>
+    ///<item><term>piercingDamage</term><description>If true, damage dealt will ignore Poise on the target argument.</description></item>
     ///</list>
     ///</summary>
-    public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax, AbstractCard attackingCard){
+    public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax, AbstractCard attackingCard, bool piercingDamage = false){
         this.target = target;
         this.argumentOwner = argumentOwner;
         this.attackingCard = attackingCard;
         this.damageMin = damageMin;
         this.damageMax = damageMax;
+        this.piercingDamage = piercingDamage;
 
         this.attacker = attackingCard.OWNER;
     }
 
-    public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax, AbstractArgument attackingArgument){
+    public DamageAction(AbstractArgument target, AbstractCharacter argumentOwner, int damageMin, int damageMax, AbstractArgument attackingArgument, bool piercingDamage = false){
         this.target = target;
         this.argumentOwner = argumentOwner;
         this.attackingArgument = attackingArgument;
         this.damageMin = damageMin;
         this.damageMax = damageMax;
+        this.piercingDamage = piercingDamage;
 
         this.attacker = attackingArgument.OWNER;
     }
@@ -62,7 +66,7 @@ public class DamageAction : AbstractAction {
         int damageDealt = CalculateDamage(UnityEngine.Random.Range(damageMin, damageMax+1));
         
         // Handle Poise removal.
-        if (this.target.poise > 0){
+        if (this.target.poise > 0 && !piercingDamage){
             if ( (damageDealt - this.target.poise) > 0){
                 damageDealt -= this.target.poise;
                 this.target.poise = 0;

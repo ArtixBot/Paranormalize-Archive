@@ -25,7 +25,7 @@ public class DeckardGuardedResponse : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        // I'm not sure of a better way of doing this with the current system but it  *seems* to work.
+        // I'm not sure of a better way of doing this with the current system but it *seems* to work.
         // Essentially, before we perform the damage action (which triggers one of ARGUMENT_ATTACKED_BLOCKED/ARGUMENT_ATTACKED_UNBLOCKED), we subscribe to both events with this card.
         // The damage action on resolution will then cause this card's NotifyOfEvent() function to run, and it immediately unsubscribes the card there.
         this.charToApplyPoiseTo = source;

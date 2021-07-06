@@ -67,6 +67,10 @@
         "NAME": "Paradox",
         "DESC": "When destroyed, deal [STACKS] damage to [OWNER]'s core argument.\n\nAt the end of [OWNER]'s turn, add [STACKS] stack(s) to this argument."
     },
+    "BULLDOZE":{
+        "NAME": "Bulldoze",
+        "DESC": "Whenever one of [ENEMY]'s arguments is destroyed, [OWNER] gains [STACKS] action(s) and draws [STACKS] card(s)."
+    },
     "STAY_COOL":{
         "NAME": "Stay Cool",
         "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to [OWNER]'s core argument."
