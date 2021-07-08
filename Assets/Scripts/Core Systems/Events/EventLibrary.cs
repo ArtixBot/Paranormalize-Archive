@@ -15,7 +15,8 @@ public enum EventType {
     CARD_DRAWN,
     CARD_PLAYED,
     TURN_START,
-    TURN_END
+    TURN_END,
+    POISE_APPLIED
 };
 public abstract class AbstractEvent{
     public EventType type;
@@ -134,6 +135,19 @@ namespace GameEvent{
             this.cardPlayed = card;
             this.cardAmbient = card.AMBIENCE;
             this.cardType = card.TYPE;
+        }
+    }
+
+    public class EventPoiseApplied : AbstractEvent{
+        public int poiseApplied;
+        public AbstractArgument target;
+        ///<summary>
+        ///Trigger whenever Poise is applied. poise is the amount of poise that was applied (post-resolution), and target is the argument which gained the poise.
+        ///</summary>
+        public EventPoiseApplied(AbstractArgument target, int poiseApplied){
+            this.type = EventType.POISE_APPLIED;
+            this.poiseApplied = poiseApplied;
+            this.target = target;
         }
     }
 }

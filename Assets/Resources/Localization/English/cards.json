@@ -67,6 +67,10 @@
         "NAME": "Curveball",
         "DESC": "Deal [D] damage.\nDeal Piercing damage if the last card played this turn was a Dialogue card.\nDraw [N] cards if the last card played this turn was an Influence card."
     },
+    "DECKARD_COMMAND": {
+        "NAME": "Always in Command",
+        "DESC": "Deploy [S] Authority.\nScour."
+    },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",
         "DESC": "Apply [P] Poise.\nDraw [N] card(s)."

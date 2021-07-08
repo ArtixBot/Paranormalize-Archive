@@ -51,6 +51,10 @@
         "NAME": "Sticky Fingers",
         "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
     },
+    "AUTHORITY":{
+        "NAME": "Authority",
+        "DESC": "Draw +1 card at the end of your turn.\n\nAt the end of [OWNER]'s turn or whenever this argument gains Poise, deal [STACKS] damage to a random enemy argument."
+    },
     "FINESSE":{
         "NAME": "Finesse",
         "DESC": "The next [STACKS] Dialogue attack(s) that [OWNER] plays also draw 1 card."

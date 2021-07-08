@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameEvent;
 
 public class ApplyPoiseAction : AbstractAction {
 
@@ -31,6 +32,9 @@ public class ApplyPoiseAction : AbstractAction {
             this.target.poise *= this.poise;
         } else {
             this.target.poise += this.poise;
+        }
+        if (this.poise > 0){
+            EventSystemManager.Instance.TriggerEvent(new EventPoiseApplied(this.target, this.poise));
         }
         return 0;
     }

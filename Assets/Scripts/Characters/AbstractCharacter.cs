@@ -105,7 +105,7 @@ public abstract class AbstractCharacter
             this.hand.RemoveAt(i);                   // Then actually remove it from the hand.
         }
         this.curAP = this.maxAP;
-        this.Draw(5);
+        this.Draw(5 + drawMod);
     }
 
     /// <summary> Finds and returns the first argument instance IF it exists. </summary>
