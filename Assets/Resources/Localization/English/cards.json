@@ -75,6 +75,10 @@
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
     },
+    "DECKARD_FILIBUSTER": {
+        "NAME": "Filibuster",
+        "DESC": "Apply [P] Poise to all your arguments.\nScour."
+    },
     "DECKARD_FLATTER": {
         "NAME": "Flatter",
         "DESC": "Deal [D] damage.\nIf you have no Aggression cards in hand, this costs 0 and hits ALL enemy arguments."
@@ -130,6 +134,11 @@
     "DECKARD_OPENING_OFFER": {
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
+    },
+    "DECKARD_REINFORCE": {
+        "NAME": "Reinforce",
+        "DESC": "Remove all Poise from a friendly support argument.\nIncrease that argument's stack count equal to half the Poise removed.\nScour.",
+        "DESC+": "Remove all Poise from a friendly support argument.\nIncrease that argument's stack count equal to the Poise removed.\nScour."
     },
     "DECKARD_REVERSAL": {
         "NAME": "Reversal",

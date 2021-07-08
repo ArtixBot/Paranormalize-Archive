@@ -26,7 +26,9 @@ public class DeployArgumentAction : AbstractAction {
     public override int Resolve(){
         AbstractArgument instance = this.owner.GetArgument(argumentToDeploy);
         if (instance != null){
+            Debug.Log("Copy exists; adding " + stacksToDeploy + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
             instance.stacks += stacksToDeploy;
+            Debug.Log("Instance now has " + instance.stacks + " stacks.");
         } else {
             this.owner.nonCoreArguments.Add(argumentToDeploy);
             argumentToDeploy.TriggerOnDeploy();     // Add event subscriptions

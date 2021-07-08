@@ -76,6 +76,10 @@ public abstract class AbstractCard : EventSubscriber {
     public virtual void Upgrade(){
         this.isUpgraded = true;
         this.NAME = this.NAME + "+";
+        Dictionary<string, string> checkForUpgDesc = LocalizationLibrary.Instance.GetCardStrings(this.ID);      // if a "DESC+" is defined, use that upgraded description instead once a card is ugpraded.
+        if (checkForUpgDesc.ContainsKey("DESC+")){
+            this.DESC = checkForUpgDesc["DESC+"];
+        }
     }
 
     public bool IsAttack(){

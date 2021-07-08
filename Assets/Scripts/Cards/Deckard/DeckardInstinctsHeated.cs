@@ -9,7 +9,7 @@ public class DeckardInstinctsHeated : AbstractCard
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 0;
 
-    public int STACKS = 2;
+    public int STACKS = 1;
 
     public DeckardInstinctsHeated() : base(
         cardID,

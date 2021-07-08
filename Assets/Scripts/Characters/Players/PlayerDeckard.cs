@@ -34,6 +34,8 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_CURVEBALL");
         this.AddCardToPermaDeck("DECKARD_KNACK");
         this.AddCardToPermaDeck("DECKARD_MAGNETIC_PERSONALITY");
+        this.AddCardToPermaDeck("DECKARD_FILIBUSTER");
+        this.AddCardToPermaDeck("DECKARD_REINFORCE");
         // this.AddCardToPermaDeck("DECKARD_INTERVENE");
         // this.AddCardToPermaDeck("DECKARD_CHALLENGE");
         // this.AddCardToPermaDeck("DECKARD_JABBER");

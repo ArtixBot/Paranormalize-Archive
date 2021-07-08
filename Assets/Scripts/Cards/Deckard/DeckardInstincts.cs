@@ -8,7 +8,7 @@ public class DeckardInstincts : AbstractCard
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int STACKS = 2;         // only does stuff for descriptions
+    public int STACKS = 1;         // only does stuff for descriptions
     private bool upgrade = false;
 
     public DeckardInstincts() : base(
