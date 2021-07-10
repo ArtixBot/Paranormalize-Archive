@@ -37,7 +37,8 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_FILIBUSTER");
         this.AddCardToPermaDeck("DECKARD_REINFORCE");
         this.AddCardToPermaDeck("DECKARD_COMMAND");
-        // this.AddCardToPermaDeck("DECKARD_INTERVENE");
+        this.AddCardToPermaDeck("DECKARD_IMPATIENCE");
+        this.AddCardToPermaDeck("DECKARD_SIMMER");
         // this.AddCardToPermaDeck("DECKARD_CHALLENGE");
         // this.AddCardToPermaDeck("DECKARD_JABBER");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");

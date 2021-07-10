@@ -75,6 +75,10 @@
         "NAME": "Deep Breath",
         "DESC": "Apply [P] Poise.\nDraw [N] card(s)."
     },
+    "DECKARD_DEFUSAL": {
+        "NAME": "Defusal",
+        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards; otherwise, change the Ambience phase one level towards Guarded."
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
@@ -106,6 +110,10 @@
     "DECKARD_HOTHEADED": {
         "NAME": "Hotheaded",
         "DESC": "Whenever the Ambience phase changes towards Dangerous, draw [S] cards."
+    },
+    "DECKARD_IMPATIENCE": {
+        "NAME": "Impatience",
+        "DESC": "Choose a friendly support argument.\nGain actions equal to its stack count, then destroy it.\nScour."
     },
     "DECKARD_INSTINCTS": {
         "NAME": "Instincts",
@@ -151,6 +159,10 @@
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
         "DESC": "Choose a card in hand. Give it Preserve."
+    },
+    "DECKARD_SIMMER": {
+        "NAME": "Simmer",
+        "DESC": "Deploy [S] Simmer."
     },
     "DECKARD_SNIPING_REMARK": {
         "NAME": "Sniping Remark",

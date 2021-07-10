@@ -75,6 +75,10 @@
         "NAME": "Bulldoze",
         "DESC": "Whenever one of [ENEMY]'s arguments is destroyed, [OWNER] gains [STACKS] action(s) and draws [STACKS] card(s)."
     },
+    "SIMMER": {
+        "NAME": "Simmer",
+        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis argument gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nDestroy this argument at the end of [OWNER]'s turn."
+    },
     "STAY_COOL":{
         "NAME": "Stay Cool",
         "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to [OWNER]'s core argument."
