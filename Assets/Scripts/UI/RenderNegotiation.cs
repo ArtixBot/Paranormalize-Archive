@@ -13,18 +13,19 @@ public class RenderNegotiation : MonoBehaviour
     public AbstractCharacter player;
     public AbstractCharacter enemy;
 
-    public GameObject cardTemplatePrefab;
-    public GameObject argPrefab;
-    public GameObject handZone;
+    private GameObject cardTemplatePrefab;
+    private GameObject argPrefab;
+    private GameObject handZone;
 
-    public TextMeshProUGUI drawCount;
-    public TextMeshProUGUI discardCount;
-    public GameObject scourObject;
-    public TextMeshProUGUI scourCount;
+    private TextMeshProUGUI drawCount;
+    private TextMeshProUGUI discardCount;
+    private GameObject scourObject;
+    private TextMeshProUGUI scourCount;
+    private TextMeshProUGUI actionCount;
 
-    public Button endTurnButton;
+    private Button endTurnButton;
 
-    public Camera mainCamera;
+    private Camera mainCamera;
 
     // Called whenever we load into the Negotiation scene.
     void Start()
@@ -40,6 +41,7 @@ public class RenderNegotiation : MonoBehaviour
         drawCount = GameObject.Find("Canvas/TrackDeck/Count").GetComponent<TextMeshProUGUI>();
         discardCount = GameObject.Find("Canvas/TrackDiscard/Count").GetComponent<TextMeshProUGUI>();
         scourCount = GameObject.Find("Canvas/TrackScour/Count").GetComponent<TextMeshProUGUI>();
+        actionCount = GameObject.Find("Canvas/TrackAP/Count").GetComponent<TextMeshProUGUI>();
         scourObject = GameObject.Find("Canvas/TrackScour");
         scourObject.SetActive(false);
         endTurnButton = GameObject.Find("Canvas/EndTurnButton").GetComponent<Button>();
@@ -63,7 +65,7 @@ public class RenderNegotiation : MonoBehaviour
         this.RenderCounts();
     }
 
-    public float renderCardHorizontalDistance;      // set in inspector
+    public int renderCardHorizontalDistance;      // set in inspector
 
     public void RenderHand(){
         // get rid of the old hand to render a new one. maybe excessive - could we just rerender the hand?
@@ -71,12 +73,15 @@ public class RenderNegotiation : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         List<AbstractCard> playerHand = player.GetHand();
-        for(int i = 0; i < playerHand.Count; i++){
-            AbstractCard card = playerHand[i];
-            GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(i * renderCardHorizontalDistance, 0, 0), Quaternion.identity);
-            cardDisplay.transform.Rotate(0, 0, 20 - (10 *i));
+        int cardsInHand = playerHand.Count;
+
+        int startXPos = (-renderCardHorizontalDistance/2) * (cardsInHand - 1);
+        int startAng = 5 * (cardsInHand - 1);
+        for (int i = 0; i < cardsInHand; i++){
+            GameObject cardDisplay = Instantiate(cardTemplatePrefab, handZone.transform.position + new Vector3(startXPos + (i * renderCardHorizontalDistance), 0, 0), Quaternion.identity);
+            cardDisplay.transform.Rotate(0, 0, startAng - (10 *i));
             cardDisplay.transform.SetParent(handZone.transform);
-            cardDisplay.GetComponent<DisplayCard>().reference = card;
+            cardDisplay.GetComponent<DisplayCard>().reference = playerHand[i];
             cardDisplay.GetComponent<DisplayCard>().Render();
             // cardDisplay.SetActive(true);        // calls OnEnable() for the card template prefab
         }
@@ -107,6 +112,7 @@ public class RenderNegotiation : MonoBehaviour
             scourObject.SetActive(true);
         }
         scourCount.text = player.GetScourPile().GetSize().ToString();
+        actionCount.text = player.curAP + "/" + player.maxAP;
     }
 
     void Update(){

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameEvent;
 
+// TODO: Fix bug where this doesn't get removed when at 0 stacks.
 public class ArgumentHeated : AbstractArgument
 {
     public ArgumentHeated(){
@@ -30,8 +31,7 @@ public class ArgumentHeated : AbstractArgument
         if (eventData.type == EventType.TURN_END){
             EventTurnEnd data = (EventTurnEnd) eventData;
             if (data.end == this.OWNER) stacks -= 1;
-        }
-        if (eventData.type == EventType.ARGUMENT_DESTROYED){
+        } else if (eventData.type == EventType.ARGUMENT_DESTROYED){
             EventArgDestroyed data = (EventArgDestroyed) eventData;
             if (data.argumentDestroyed == this) stacks = 0;
         }
