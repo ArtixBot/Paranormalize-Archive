@@ -27,6 +27,7 @@ public abstract class AbstractArgument : EventSubscriber
     // Stat modifiers
     public float dmgTakenMult = 1.0f;       // This argument takes [dmgTakenMult]x damage (default 1.0x)
     public int dmgTakenAdd = 0;           // This argument takes +[dmgTakenAdd] damage (default 0).
+    
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
     public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events by overriding this function.
