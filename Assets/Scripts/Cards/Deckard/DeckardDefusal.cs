@@ -25,7 +25,7 @@ public class DeckardDefusal : AbstractCard {
         if (state == AmbienceState.GUARDED || state == AmbienceState.TENSE){
             NegotiationManager.Instance.AddAction(new DrawCardsAction(source, DRAW));
         } else {
-            Ambience.Instance.SetState(state - 1);
+            Ambience.Instance.AdjustState(-1);
         }
     }
 

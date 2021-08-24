@@ -25,7 +25,12 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");
         // this.AddCardToPermaDeck("DECKARD_CALM");
-        // this.AddCardToPermaDeck("DECKARD_SNIPING_REMARK");
+        this.AddCardToPermaDeck("DECKARD_SMOKE_BREAK");
+        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
+        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
+        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
+        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
+        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
         // this.AddCardToPermaDeck("DECKARD_HOTHEADED");
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         this.AddCardToPermaDeck("DECKARD_BULLDOZE");
@@ -39,7 +44,8 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_COMMAND");
         this.AddCardToPermaDeck("DECKARD_IMPATIENCE");
         this.AddCardToPermaDeck("DECKARD_SIMMER");
-        // this.AddCardToPermaDeck("DECKARD_CHALLENGE");
+        this.AddCardToPermaDeck("DECKARD_DEFUSAL");
+        this.AddCardToPermaDeck("DECKARD_CROSS_EXAMINATION");
         // this.AddCardToPermaDeck("DECKARD_JABBER");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_ADDENDUM");

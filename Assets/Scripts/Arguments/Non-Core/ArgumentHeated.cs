@@ -30,10 +30,10 @@ public class ArgumentHeated : AbstractArgument
     public override void NotifyOfEvent(AbstractEvent eventData){
         if (eventData.type == EventType.TURN_END){
             EventTurnEnd data = (EventTurnEnd) eventData;
-            if (data.end == this.OWNER) stacks -= 1;
+            if (data.end == this.OWNER) this.stacks -= 1;
         } else if (eventData.type == EventType.ARGUMENT_DESTROYED){
             EventArgDestroyed data = (EventArgDestroyed) eventData;
-            if (data.argumentDestroyed == this) stacks = 0;
+            if (data.argumentDestroyed == this) this.stacks = 0;
         }
         if (this.stacks != currentlyApplying){
             int delta = (this.stacks - currentlyApplying);

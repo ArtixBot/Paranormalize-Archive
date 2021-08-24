@@ -44,6 +44,7 @@ public abstract class AbstractCard : EventSubscriber {
         }
     }
 
+    // A bunch of checks to make sure that we can even play the card -- if we're not able to, don't activate card effects.
     public virtual void Play(AbstractCharacter source, AbstractArgument target){
         if (!source.canPlayCards){
             throw new Exception(source.NAME + " cannot play cards!");
@@ -56,17 +57,6 @@ public abstract class AbstractCard : EventSubscriber {
         }
         if (source.curAP < this.COST){
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
-        }
-        source.curAP -= this.COST;
-        if (this.HasTag(CardTags.DESTROY)){         // Destroy card
-            OWNER.Destroy(this);
-        } else if (this.IsTrait() || this.HasTag(CardTags.SCOUR)){               // Scour stuff
-            OWNER.Scour(this);
-        } else {
-            if (source.GetHand().Contains(this)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
-                source.GetHand().Remove(this);
-                source.GetDiscardPile().AddCard(this);
-            }
         }
     }
 

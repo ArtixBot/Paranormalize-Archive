@@ -154,18 +154,24 @@ public class NegotiationManager : EventSubscriber
         character.GetDiscardPile().Clear();
     }
 
+    // Handle post-card playing effects (move card to discard pile, spend AP costs, etc.)
     public override void NotifyOfEvent(AbstractEvent eventData){
         EventCardPlayed data = (EventCardPlayed) eventData;
+        AbstractCard cardPlayed = data.cardPlayed;
         cardsPlayedThisTurn.Add(data.cardPlayed);
         numCardsPlayedThisTurn += 1;
 
-        // Debug.Log("Played " + numCardsPlayedThisTurn + " cards this turn; last card played was " + cardsPlayedThisTurn[cardsPlayedThisTurn.Count-1].NAME);
-        if (data.cardAmbient == CardAmbient.DIALOGUE){
-            ambience.AdjustState(-1);
-        } else if (data.cardAmbient == CardAmbient.AGGRESSION){
-            ambience.AdjustState(1);
+        cardPlayed.OWNER.curAP -= cardPlayed.COST;
+        if (cardPlayed.HasTag(CardTags.DESTROY)){         // Destroy card
+            cardPlayed.OWNER.Destroy(cardPlayed);
+        } else if (cardPlayed.IsTrait() || cardPlayed.HasTag(CardTags.SCOUR)){               // Scour stuff
+            cardPlayed.OWNER.Scour(cardPlayed);
+        } else {
+            if (cardPlayed.OWNER.GetHand().Contains(cardPlayed)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
+                cardPlayed.OWNER.GetHand().Remove(cardPlayed);
+                cardPlayed.OWNER.GetDiscardPile().AddCard(cardPlayed);
+            }
         }
-        // Debug.Log("Current ambience: " + ambience.GetState());
     }
 
     ///<summary>

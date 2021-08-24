@@ -34,7 +34,6 @@ public class Ambience
         }
 
         if (oldState != GetState()){        // If ambience state changes...
-            EventSystemManager.Instance.TriggerEvent(new EventAmbientStateShift(oldState, GetState()));
             if (oldState > GetState()){     // shifted towards diplomacy
                 shiftsToDiplomacyThisTurn += 1;
             } else {    // shifted towards aggression

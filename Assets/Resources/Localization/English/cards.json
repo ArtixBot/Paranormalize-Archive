@@ -71,13 +71,17 @@
         "NAME": "Always in Command",
         "DESC": "Deploy [S] Authority.\nScour."
     },
+    "DECKARD_CROSS_EXAMINATION": {
+        "NAME": "Cross-Examination",
+        "DESC": "Deal [D] damage.\nCan only target enemy support arguments."
+    },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",
         "DESC": "Apply [P] Poise.\nDraw [N] card(s)."
     },
     "DECKARD_DEFUSAL": {
         "NAME": "Defusal",
-        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards; otherwise, change the Ambience phase one level towards Guarded."
+        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards; otherwise, change Ambience one level towards Guarded."
     },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
@@ -147,6 +151,10 @@
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
     },
+    "DECKARD_RAPID_FIRE": {
+        "NAME": "Rapid Fire",
+        "DESC": "Deal [D] damage to a random enemy argument.\nDeploy [S] Chatterbox."
+    },
     "DECKARD_REINFORCE": {
         "NAME": "Reinforce",
         "DESC": "Remove all Poise from a friendly support argument.\nIncrease that argument's stack count equal to half the Poise removed.\nScour.",
@@ -163,6 +171,10 @@
     "DECKARD_SIMMER": {
         "NAME": "Simmer",
         "DESC": "Deploy [S] Simmer."
+    },
+    "DECKARD_SMOKE_BREAK": {
+        "NAME": "Smoke Break",
+        "DESC": "Set the Ambience to Guarded.\nScour."
     },
     "DECKARD_SNIPING_REMARK": {
         "NAME": "Sniping Remark",

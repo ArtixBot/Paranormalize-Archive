@@ -4,12 +4,16 @@
         "DESC": "Whenever the Ambience phase changes, apply [STACKS] <b>Poise</b> to all of [OWNER]'s arguments."
     },
     "AMBIENT_SHIFT_DIALOGUE": {
-        "NAME": "Ambient Shift - Dialogue",
-        "DESC": "When this has 5+ stacks, shift the Ambience one level towards Guarded and destroy this."
+        "NAME": "Ambient Shift: Dialogue",
+        "DESC": "When this argument has 5+ stacks, change Ambience one level towards Guarded and destroy this."
     },
     "AMBIENT_SHIFT_AGGRESSION": {
-        "NAME": "Ambient Shift - Aggression",
-        "DESC": "When this has 5+ stacks, shift the Ambience one level towards Dangerous and destroy this."
+        "NAME": "Ambient Shift: Aggression",
+        "DESC": "When this argument has 5+ stacks, change Ambience one level towards Dangerous and destroy this."
+    },
+    "CHATTERBOX": {
+        "NAME": "Chatterbox",
+        "DESC": "[OWNER]'s \"Rapid Fire\" cards attack [STACKS] additional time(s) until end of turn."
     },
     "CORE_AI": {
         "NAME": "Combative",
