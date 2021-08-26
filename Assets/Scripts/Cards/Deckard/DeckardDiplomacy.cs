@@ -27,6 +27,7 @@ public class DeckardDiplomacy : AbstractCard {
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MAX_DAMAGE += 2;
+        this.MIN_DAMAGE += 3;
+        this.MAX_DAMAGE += 1;
     }
 }

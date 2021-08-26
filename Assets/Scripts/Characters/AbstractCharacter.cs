@@ -111,7 +111,7 @@ public abstract class AbstractCharacter
     /// <summary> Finds and returns the first argument instance IF it exists. </summary>
     public AbstractArgument GetArgument(AbstractArgument argument){
         foreach (AbstractArgument aa in this.nonCoreArguments){
-            if (argument.ID == aa.ID && aa.stacks != 0){
+            if (argument.ID == aa.ID){        // Seems like aa.stacks != 0 causes an issue. Removing for now.
                 return aa;
             }
         }

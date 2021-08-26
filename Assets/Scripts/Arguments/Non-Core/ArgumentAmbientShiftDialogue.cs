@@ -30,5 +30,13 @@ public class ArgumentAmbientShiftDialogue : AbstractArgument
             NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
             NegotiationManager.Instance.AddAction(new ChangeAmbienceAction(-1));
         }
+
+        if (eventData.type == EventType.TURN_END){
+            EventTurnEnd data = (EventTurnEnd) eventData;
+            if (data.end == this.OWNER) this.stacks -= 1;
+        }
+        if (this.stacks == 0){
+            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
+        }
     }
 }

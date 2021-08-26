@@ -176,6 +176,10 @@
         "NAME": "Smoke Break",
         "DESC": "Set the Ambience to Guarded.\nScour."
     },
+    "DECKARD_SMOOTH_TALK": {
+        "NAME": "Smooth Talk",
+        "DESC": "Deploy [S] Finesse.\nInfluential [INFLUENCE]."
+    },
     "DECKARD_SNIPING_REMARK": {
         "NAME": "Sniping Remark",
         "DESC": "Remove all Poise from target argument.\nDeal [D] damage."

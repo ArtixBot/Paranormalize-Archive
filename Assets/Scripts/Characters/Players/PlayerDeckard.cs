@@ -46,7 +46,7 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_SIMMER");
         this.AddCardToPermaDeck("DECKARD_DEFUSAL");
         this.AddCardToPermaDeck("DECKARD_CROSS_EXAMINATION");
-        // this.AddCardToPermaDeck("DECKARD_JABBER");
+        this.AddCardToPermaDeck("DECKARD_SMOOTH_TALK");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_ADDENDUM");
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");

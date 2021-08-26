@@ -18,7 +18,6 @@ public class DestroyArgumentAction : AbstractAction {
     public override int Resolve(){
         AbstractArgument instance = owner.GetArgument(argumentToDestroy);
         if (instance != null){
-            Debug.Log("Succesfully destroyed argument");
             EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(argumentToDestroy));    // trigger on-destroy effects (if any)
             this.argumentToDestroy.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
             owner.nonCoreArguments.Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)

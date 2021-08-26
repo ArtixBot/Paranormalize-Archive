@@ -5,11 +5,11 @@
     },
     "AMBIENT_SHIFT_DIALOGUE": {
         "NAME": "Ambient Shift: Dialogue",
-        "DESC": "When this argument has 5+ stacks, change Ambience one level towards Guarded and destroy this."
+        "DESC": "When this has 5+ stacks, shift Ambience one level towards Guarded, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this argument."
     },
     "AMBIENT_SHIFT_AGGRESSION": {
         "NAME": "Ambient Shift: Aggression",
-        "DESC": "When this argument has 5+ stacks, change Ambience one level towards Dangerous and destroy this."
+        "DESC": "When this has 5+ stacks, shift Ambience one level towards Dangerous, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this argument."
     },
     "CHATTERBOX": {
         "NAME": "Chatterbox",
