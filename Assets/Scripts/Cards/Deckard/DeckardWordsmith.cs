@@ -1,33 +1,32 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckardReinforce : AbstractCard {
+public class DeckardWordsmith : AbstractCard {
 
-    public static string cardID = "DECKARD_REINFORCE";
+    public static string cardID = "DECKARD_WORDSMITH";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    private int multiplier = 2;
+    public int STACKS = 2;
 
-    public DeckardReinforce() : base(
+    public DeckardWordsmith() : base(
         cardID,
         cardStrings,
         cardCost,
         CardAmbient.INFLUENCE,
-        CardRarity.UNCOMMON,
+        CardRarity.RARE,
         CardType.SKILL,
         new List<CardTags>{CardTags.SCOUR}
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        target.stacks *= this.multiplier;
+        NegotiationManager.Instance.AddAction(new DeployArgumentAction(this.OWNER, new ArgumentWordsmith(), this.STACKS));
     }
 
     public override void Upgrade(){
         base.Upgrade();
-        this.multiplier += 1;
+        this.COST -= 1;
     }
 }

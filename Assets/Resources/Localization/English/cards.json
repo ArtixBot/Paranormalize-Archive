@@ -39,6 +39,10 @@
         "NAME": "Addendum",
         "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
     },
+    "DECKARD_AUTHORITATIVE": {
+        "NAME": "Authoritative",
+        "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all friendly support arguments."
+    },
     "DECKARD_BARREL_THROUGH": {
         "NAME": "Barrel Through",
         "DESC": "Deal [D] damage.\nDeals bonus damage equal to half your Poise."
@@ -54,6 +58,10 @@
     "DECKARD_BULLDOZE": {
         "NAME": "Bulldoze",
         "DESC": "Whenever an enemy argument is destroyed, draw [S] card(s) and gain [S] action(s)."
+    },
+    "DECKARD_BURST_OF_ANGER": {
+        "NAME": "Burst of Anger",
+        "DESC": "Deal [D] damage.\nDraw [N] card.\n<b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_CALM": {
         "NAME": "Calm",
@@ -151,18 +159,22 @@
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
     },
+    "DECKARD_PRESENT_THE_EVIDENCE": {
+        "NAME": "Present the Evidence",
+        "DESC": "Increase a friendly support argument's stacks by [S].\nDeal damage equal to its stack count to a random enemy argument."
+    },
     "DECKARD_RAPID_FIRE": {
         "NAME": "Rapid Fire",
         "DESC": "Deal [D] damage to a random enemy argument.\nDeploy [S] Chatterbox."
     },
     "DECKARD_REINFORCE": {
         "NAME": "Reinforce",
-        "DESC": "Remove all Poise from a friendly support argument.\nIncrease that argument's stack count equal to half the Poise removed.\nScour.",
-        "DESC+": "Remove all Poise from a friendly support argument.\nIncrease that argument's stack count equal to the Poise removed.\nScour."
+        "DESC": "Double a friendly support argument's stack count.\nScour.",
+        "DESC+": "Triple a friendly support argument's stack count.\nScour."
     },
     "DECKARD_REVERSAL": {
         "NAME": "Reversal",
-        "DESC": "Remove all Poise from target enemy argument and apply it to your core argument."
+        "DESC": "Steal all Poise from an enemy argument and apply it to your core argument."
     },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
@@ -195,6 +207,10 @@
     "DECKARD_TRASH_TALK": {
         "NAME": "Trash Talk",
         "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
+    },
+    "DECKARD_WORDSMITH": {
+        "NAME": "Wordsmith",
+        "DESC": "Deploy [STACKS] Wordsmith.\nScour."
     },
     "ESPHER_JUXTAPOSITION": {
         "NAME": "Juxtaposition",

@@ -89,7 +89,7 @@
     },
     "SIMMER": {
         "NAME": "Simmer",
-        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis argument gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nDestroy this argument at the end of [OWNER]'s turn."
+        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis argument gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
     },
     "STAY_COOL":{
         "NAME": "Stay Cool",
@@ -102,5 +102,9 @@
     "MAGNETIC_PERSONALITY": {
         "NAME": "Magnetic Personality",
         "DESC": "Whenever the Ambience level changes, Deploy [STACKS] Finesse and [STACKS] Heated."
+    },
+    "WORDSMITH": {
+        "NAME": "Wordsmith",
+        "DESC": "[OWNER]'s Dialogue and Aggression cards gain <b>Influential</b> [STACKS].\n\nAt the end of [OWNER]'s turn, destroy this."
     }
 }

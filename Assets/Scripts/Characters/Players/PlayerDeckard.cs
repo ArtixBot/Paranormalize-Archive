@@ -27,11 +27,11 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_CALM");
         this.AddCardToPermaDeck("DECKARD_SMOKE_BREAK");
         this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
-        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
-        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
-        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
-        this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
-        // this.AddCardToPermaDeck("DECKARD_HOTHEADED");
+        // this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
+        this.AddCardToPermaDeck("DECKARD_BURST_OF_ANGER");
+        this.AddCardToPermaDeck("DECKARD_AUTHORITATIVE", true);
+        this.AddCardToPermaDeck("DECKARD_WORDSMITH");
+        this.AddCardToPermaDeck("DECKARD_PRESENT_THE_EVIDENCE");
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         this.AddCardToPermaDeck("DECKARD_BULLDOZE");
         this.AddCardToPermaDeck("DECKARD_FLATTER");
