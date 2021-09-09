@@ -23,8 +23,8 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_REVERSAL");
         // this.AddCardToPermaDeck("DECKARD_BRASH");
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
-        // this.AddCardToPermaDeck("DECKARD_GRUFF");
-        // this.AddCardToPermaDeck("DECKARD_CALM");
+        this.AddCardToPermaDeck("DECKARD_GRANDIOSITY");
+        this.AddCardToPermaDeck("DECKARD_INSULT");
         this.AddCardToPermaDeck("DECKARD_SMOKE_BREAK");
         this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");
         // this.AddCardToPermaDeck("DECKARD_RAPID_FIRE");

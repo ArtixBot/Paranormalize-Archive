@@ -87,20 +87,24 @@ public class RenderNegotiation : MonoBehaviour
         }
     }
 
+    public float radius = 340f;
+
     public void RenderNonCoreArguments(){
         Transform parent = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform;
         foreach (Transform child in parent){
-            GameObject.Destroy(child.gameObject.GetComponent<DisplayArgument>().tooltipInstance);
+            if (child.gameObject.GetComponent<DisplayArgument>()){
+                GameObject.Destroy(child.gameObject.GetComponent<DisplayArgument>().tooltipInstance);
+            }
             GameObject.Destroy(child.gameObject);
         }
-
+        
         for (int i = 0; i < player.nonCoreArguments.Count; i++){
-            // float radius = 500;
-            // Vector3 pos = GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform.position + (new Vector3(Mathf.Cos(angle) * radius, -2, Mathf.Sin(angle) * radius));
-            // float angle = i * Mathf.PI * 2f / radius;
-            GameObject arg = Instantiate(argPrefab, new Vector3(parent.position.x, parent.position.y + 200.0f * i, 0), Quaternion.identity);
+            float angle = ((i+1) * Mathf.PI * 2f) / 10;     // 10 should be a placeholder number
+            Vector3 newPos = new Vector3(parent.position.x + Mathf.Cos(angle) * radius, parent.position.y + Mathf.Sin(angle) * radius, 0);
+            
+            GameObject arg = Instantiate(argPrefab, newPos, Quaternion.identity);
             arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
-            arg.transform.SetParent(GameObject.Find("Canvas/PlayerSide/SpawnNonCoreHere").transform);
+            arg.transform.SetParent(parent);
             arg.SetActive(true);
         }
     }

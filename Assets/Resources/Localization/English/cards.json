@@ -111,6 +111,10 @@
         "NAME": "Good Impression",
         "DESC": "Deal [D] damage.\nIncrease the cost of this card by 1 for the rest of negotiation."
     },
+    "DECKARD_GRANDIOSITY": {
+        "NAME": "Grandiosity",
+        "DESC": "Deal [D] damage.\nThis card costs 1 less for each friendly support argument in play."
+    },
     "DECKARD_GRUFF": {
         "NAME": "Gruff",
         "DESC": "Deal [D] damage."
@@ -138,6 +142,10 @@
     "DECKARD_INSTINCTS_HEATED": {
         "NAME": "Heated",
         "DESC": "Deploy [S] Heated."
+    },
+    "DECKARD_INSULT": {
+        "NAME": "Insult",
+        "DESC": "Deal [D] damage.\n<b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INTERVENE": {
         "NAME": "Intervene",
