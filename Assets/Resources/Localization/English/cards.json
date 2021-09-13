@@ -83,6 +83,10 @@
         "NAME": "Cross-Examination",
         "DESC": "Deal [D] damage.\nCan only target enemy support arguments."
     },
+    "DECKARD_DECISIVE_ACTION": {
+        "NAME": "Decisive Action",
+        "DESC": "Remove all Poise from your arguments. Deploy 1 Inept.\nGain [ACTIONS] actions.\nScour."
+    },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",
         "DESC": "Apply [P] Poise.\nDraw [N] card(s)."
@@ -166,6 +170,10 @@
     "DECKARD_OPENING_OFFER": {
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
+    },
+    "DECKARD_OVERWHELM": {
+        "NAME": "Overwhelm",
+        "DESC": "Deploy [S] Overwhelm."
     },
     "DECKARD_PRESENT_THE_EVIDENCE": {
         "NAME": "Present the Evidence",

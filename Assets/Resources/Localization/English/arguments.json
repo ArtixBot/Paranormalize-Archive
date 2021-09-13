@@ -5,11 +5,11 @@
     },
     "AMBIENT_SHIFT_DIALOGUE": {
         "NAME": "Ambient Shift: Dialogue",
-        "DESC": "When this has 5+ stacks, shift Ambience one level towards Guarded, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this argument."
+        "DESC": "When this has 5+ stacks, shift Ambience one level towards Guarded, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this."
     },
     "AMBIENT_SHIFT_AGGRESSION": {
         "NAME": "Ambient Shift: Aggression",
-        "DESC": "When this has 5+ stacks, shift Ambience one level towards Dangerous, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this argument."
+        "DESC": "When this has 5+ stacks, shift Ambience one level towards Dangerous, then destroy this.\n\nAt the end of [OWNER]'s turn, remove 1 stack from this."
     },
     "CHATTERBOX": {
         "NAME": "Chatterbox",
@@ -25,11 +25,11 @@
     },
     "CORE_DECKARD": {
         "NAME": "Collected",
-        "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to this argument."
+        "DESC": "At the start of [OWNER]'s turn, apply [STACKS] <b>Poise</b> to this."
     },
     "CORE_DESOLATION": {
         "NAME": "Desolation",
-        "DESC": "At the start of [OWNER]'s turn, if the Ambience phase is in Desolation, deal [STACKS] damage to ALL of [ENEMY]'s arguments.\n\nAt the end of [OWNER]'s turn, change the Ambience phase to Desolation.\n\nWhile Ambience is in Desolation, this argument is Untouchable."
+        "DESC": "At the start of [OWNER]'s turn, if the Ambience phase is in Desolation, deal [STACKS] damage to ALL of [ENEMY]'s arguments.\n\nAt the end of [OWNER]'s turn, change the Ambience phase to Desolation.\n\nWhile Ambience is in Desolation, this is Untouchable."
     },
     "CORE_NO_ABILITY": {
         "NAME": "Boring",
@@ -41,31 +41,31 @@
     },
     "CORE_VOLATILE": {
         "NAME": "Volatile",
-        "DESC": "When this argument is attacked, deal [STACKS] damage to a random enemy argument."
+        "DESC": "When this is attacked, deal [STACKS] damage to a random enemy argument."
     },
     "CORE_HARDENED_RESOLVE": {
         "NAME": "Hardened Resolve",
-        "DESC": "When this argument takes unblocked damage, apply [STACKS] <b>Poise</b> to this argument, then add 1 stack to this argument.\n\nReset this argument's stacks to 1 at the start of [OWNER]'s turn."
+        "DESC": "When this takes unblocked damage, apply [STACKS] <b>Poise</b> to this, then add 1 stack to this.\n\nReset this's stacks to 1 at the start of [OWNER]'s turn."
     },
     "TALISMAN_RESOLVE": {
         "NAME": "Talisman of Renewal",
-        "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by [STACKS].\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
+        "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by [STACKS].\n\nAt the end of [OWNER]'s turn, if this has 4+ stacks, create a copy of this and halve both arguments' stacks."
     },
     "TALISMAN_EXPULSE": {
         "NAME": "Talisman of Expulsion",
-        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to all enemy arguments.\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
+        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to all enemy arguments.\n\nAt the end of [OWNER]'s turn, if this has 4+ stacks, create a copy of this and halve both arguments' stacks."
     },
     "TALISMAN_PURIFICATION": {
         "NAME": "Talisman of Purification",
-        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument.\n\nAt the end of [OWNER]'s turn, if this argument has 4+ stacks, create a copy of this argument and halve both arguments' stacks."
+        "DESC": "At the start of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument.\n\nAt the end of [OWNER]'s turn, if this has 4+ stacks, create a copy of this and halve both arguments' stacks."
     },
     "STICKY_FINGERS":{
         "NAME": "Sticky Fingers",
-        "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this argument's stacks."
+        "DESC": "When destroyed, return [STACKS] Gold to [ENEMY]. At the start of [OWNER]'s turn, halve this's stacks."
     },
     "AUTHORITY":{
         "NAME": "Authority",
-        "DESC": "Draw +1 card at the end of your turn.\n\nAt the end of [OWNER]'s turn or whenever this argument gains Poise, deal [STACKS] damage to a random enemy argument."
+        "DESC": "Draw +1 card at the end of your turn.\n\nAt the end of [OWNER]'s turn or whenever this gains Poise, deal [STACKS] damage to a random enemy argument."
     },
     "FINESSE":{
         "NAME": "Finesse",
@@ -73,15 +73,23 @@
     },
     "HEATED":{
         "NAME": "Heated",
-        "DESC": "[OWNER]'s Aggression attacks deal +[STACKS] damage. Remove 1 stack from this argument at the end of [OWNER]'s turn."
+        "DESC": "[OWNER]'s Aggression attacks deal +[STACKS] damage. Remove 1 stack from this at the end of [OWNER]'s turn."
     },
     "HOTHEADED":{
         "NAME": "Hotheaded",
         "DESC": "Whenever the Ambience phase changes towards Dangerous, [OWNER] draws [STACKS] card(s)."
     },
+    "INEPT":{
+        "NAME": "Inept",
+        "DESC": "[OWNER] cannot gain Poise for [STACKS] turn(s)."
+    },
+    "OVERWHELM":{
+        "NAME": "Overwhelm",
+        "DESC": "Whenever [OWNER] plays an Attack, apply [STACKS] <b>Poise</b> to all of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
+    },
     "PARADOX":{
         "NAME": "Paradox",
-        "DESC": "When destroyed, deal [STACKS] damage to [OWNER]'s core argument.\n\nAt the end of [OWNER]'s turn, add [STACKS] stack(s) to this argument."
+        "DESC": "When destroyed, deal [STACKS] damage to [OWNER]'s core argument.\n\nAt the end of [OWNER]'s turn, add [STACKS] stack(s) to this."
     },
     "BULLDOZE":{
         "NAME": "Bulldoze",
@@ -89,7 +97,7 @@
     },
     "SIMMER": {
         "NAME": "Simmer",
-        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis argument gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
+        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
     },
     "STAY_COOL":{
         "NAME": "Stay Cool",

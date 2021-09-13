@@ -43,9 +43,11 @@ public class DisplayArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
             transform.Find("HealthBar").gameObject.SetActive(false);
             Destroy(GetComponent<DetectDrop>());            // remove drop capability on a displayed trait
         }
-        // if (!reference.isCore){
-        //     argumentImage.rectTransform.sizeDelta = new Vector2(100, 100);
-        // }
+        if (!reference.isCore){
+            argumentImage.rectTransform.sizeDelta = new Vector2(80, 80);
+            transform.Find("HealthBar").position += new Vector3(0, 40, 0);
+            transform.Find("StackCount").position += new Vector3(35, -30, 0);
+        }
         // Debug.Log("Enabled all things for " + reference.NAME);
     }
 

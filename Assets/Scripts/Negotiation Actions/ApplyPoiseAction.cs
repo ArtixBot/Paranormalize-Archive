@@ -28,6 +28,9 @@ public class ApplyPoiseAction : AbstractAction {
 
     ///<returns>Integer value zero.</returns>
     public override int Resolve(){
+        if (!this.source.canGainPoise){
+            this.poise = 0;
+        }
         if (this.multiply){
             this.target.poise *= this.poise;
         } else {

@@ -44,6 +44,7 @@ public abstract class AbstractCharacter
     public bool canPlayDialogue = true;
     public bool canPlayAggression = true;
     public bool canPlayInfluence = true;
+    public bool canGainPoise = true;
 
 
     public abstract void AddStarterDeck();      // Should be called at the start of character creation (for players) or at start of combat (for enemies.)
