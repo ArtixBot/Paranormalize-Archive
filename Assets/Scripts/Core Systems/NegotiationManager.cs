@@ -62,13 +62,22 @@ public class NegotiationManager : EventSubscriber
     public void NextTurn(){
         em.TriggerEvent(new EventTurnEnd(tm.GetCurrentCharacter()));
         tm.GetCurrentCharacter().EndTurn();        // Run end-of-turn function for current character.
+        
         tm.NextCharacter();                        // Switch characters.
         this.numCardsPlayedThisTurn = 0;
         this.cardsPlayedThisTurn.Clear();
+        
         tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
         renderer.Redraw();
+
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
+            AbstractEnemy enemy = (AbstractEnemy) tm.GetCurrentCharacter();
+            List<(AbstractCard, AbstractArgument)> playOrder = enemy.CalculateCardsToPlay();
+            for (int i = 0; i < playOrder.Count; i++){
+                Debug.Log("Enemy plays " + playOrder[i].Item1 + " on " + playOrder[i].Item2 + "!");
+                NegotiationManager.Instance.PlayCard(playOrder[i].Item1, enemy, playOrder[i].Item2);
+            }
             this.NextTurn();
         }
     }

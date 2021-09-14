@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemy : AbstractCharacter
-{
+public class TestEnemy : AbstractEnemy{
     public TestEnemy(){
         this.NAME = "Test Dummy";
         this.FACTION = FactionType.ENEMY;
-        this.coreArgument = new ArgumentCoreDesolation();
+        this.coreArgument = new ArgumentCoreNoAbility();
         this.coreArgument.OWNER = this;
         this.maxAP = 3;
 
@@ -15,10 +14,28 @@ public class TestEnemy : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        // this.drawPile.AddCard("TINKER_ANCHOR_SLAM");
-        // this.drawPile.AddCard("TINKER_WEIGHTED_HAMMER");
-        // this.drawPile.AddCard("TINKER_FLASH_OF_BRILLIANCE");
-        // this.drawPile.AddCard("TINKER_DEFECTIVE_IMPROVEMENTS");
-        // this.drawPile.AddCard("TINKER_BLOCK");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_GRUFF");
+        this.AddCardToPermaDeck("ENEMY_BACKLASH");
+        this.AddCardToPermaDeck("ENEMY_BACKLASH");
+    }
+
+    // Calculate a list of cards to play and what arguments to target w/ each card
+    public override List<(AbstractCard, AbstractArgument)> CalculateCardsToPlay(){
+        List<AbstractCard> currentHand = new List<AbstractCard>(this.GetHand());    // new keyword allows for "deep copy" since AbstractCard appears to be a primitive type... somehow
+        List<(AbstractCard, AbstractArgument)> cardsToPlay = new List<(AbstractCard, AbstractArgument)>();
+
+        int actionBudget = this.curAP;
+
+        while (actionBudget > 0 && currentHand.Count > 0){      // literally just choose random cards
+            int rand = Random.Range(0, currentHand.Count);
+            if (currentHand[rand].COST <= actionBudget){
+                cardsToPlay.Add( (currentHand[rand], TurnManager.Instance.GetPlayer().GetCoreArgument()) );     // just target core argument for now
+                actionBudget -= currentHand[rand].COST;
+                currentHand.RemoveAt(rand);
+            }
+        }
+        return cardsToPlay;
     }
 }

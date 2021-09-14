@@ -53,7 +53,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         if (reference == null){
             return;
         }
-        cardImage.sprite = reference.IMAGE;
+        cardImage.sprite = Resources.Load<Sprite>(reference.IMAGE);
         switch(reference.AMBIENCE){
             case CardAmbient.AGGRESSION:
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-aggression");

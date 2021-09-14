@@ -47,6 +47,10 @@
         "NAME": "Hardened Resolve",
         "DESC": "When this takes unblocked damage, apply [STACKS] <b>Poise</b> to this, then add 1 stack to this.\n\nReset this's stacks to 1 at the start of [OWNER]'s turn."
     },
+    "CYNICISM": {
+        "NAME": "Cynicism",
+        "DESC": "Increases the cost of [ENEMY]'s [CARD_ONE] and [CARD_TWO] by [STACKS] until this is destroyed."
+    },
     "TALISMAN_RESOLVE": {
         "NAME": "Talisman of Renewal",
         "DESC": "At the start of [OWNER]'s turn, increase a random non-core friendly argument's resolve by [STACKS].\n\nAt the end of [OWNER]'s turn, if this has 4+ stacks, create a copy of this and halve both arguments' stacks."

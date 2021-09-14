@@ -8,6 +8,11 @@ public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
 public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY, PIERCING};   // Determines what tooltips should appear when viewing the card
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
+public class CardCostMod {
+    public int amount;
+    public EventType checkForTerminate;     // Whenever the chosen event runs, check whether to terminate this card's cost.
+}
+
 public abstract class AbstractCard : EventSubscriber {
 
     // Gameplay
@@ -16,12 +21,13 @@ public abstract class AbstractCard : EventSubscriber {
     public CardAmbient AMBIENCE;    // Card ambience type
     public CardRarity RARITY;       // Card rarity
     public int COST;                // Card cost
+    // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
     public AbstractCharacter OWNER; // Card owner (determined during AbstractCharacter.AddCardToPermaDeck)
     public List<CardTags> TAGS = new List<CardTags>();     // Card tags
 
     // Cosmetic
     public string NAME;             // Card name
-    public Sprite IMAGE;            // Card image path
+    public string IMAGE;            // Card image filepath
     public string DESC;             // Card description
     public string FLAVOR;           // Flavor text
     public List<string> QUIPS;      // Say something when a card is played
@@ -33,6 +39,7 @@ public abstract class AbstractCard : EventSubscriber {
         this.ID = id;
         this.NAME = cardStrings["NAME"];
         this.DESC = cardStrings["DESC"];
+        this.IMAGE = "Images/missing";
         this.COST = cost;
         this.AMBIENCE = ambience;
         this.RARITY = rarity;
