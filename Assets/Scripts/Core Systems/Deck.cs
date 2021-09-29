@@ -49,6 +49,16 @@ public class Deck
         this.deck.Add(card);
     }
 
+    // Return the first instance of the card (starting from the back of the deck due to collection modification)
+    public void RemoveCard(AbstractCard card){
+        for (int i = this.deck.Count() - 1; i >= 0; i--){
+            if (this.deck[i] == card){
+                this.deck.RemoveAt(i);
+                break;
+            }
+        }
+    }
+
     // Returns deck size.
     public int GetSize(){
         return this.deck.Count;

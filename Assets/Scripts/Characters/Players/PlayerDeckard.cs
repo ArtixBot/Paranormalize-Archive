@@ -15,11 +15,12 @@ public class PlayerDeckard : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
+        this.AddCardToPermaDeck("DECKARD_COMEBACK");
         this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_BARREL_THROUGH");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_FINESSE");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_HEATED");
-        // this.AddCardToPermaDeck("DECKARD_INSTINCTS");
+        this.AddCardToPermaDeck("DECKARD_INSTINCTS");
         // this.AddCardToPermaDeck("DECKARD_REVERSAL");
         // this.AddCardToPermaDeck("DECKARD_BRASH");
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
@@ -34,6 +35,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_PRESENT_THE_EVIDENCE");
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         // this.AddCardToPermaDeck("DECKARD_BULLDOZE");
+        this.AddCardToPermaDeck("DECKARD_PIVOT");
         // this.AddCardToPermaDeck("DECKARD_FLATTER");
         // this.AddCardToPermaDeck("DECKARD_STOIC");
         // this.AddCardToPermaDeck("DECKARD_CURVEBALL");

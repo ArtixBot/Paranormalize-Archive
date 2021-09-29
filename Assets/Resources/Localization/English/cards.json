@@ -75,6 +75,10 @@
         "NAME": "Curveball",
         "DESC": "Deal [D] damage.\nDeal Piercing damage if the last card played this turn was a Dialogue card.\nDraw [N] cards if the last card played this turn was an Influence card."
     },
+    "DECKARD_COMEBACK": {
+        "NAME": "Comeback",
+        "DESC": "Deal [D] damage.\nReturn a card from your discard pile to your hand."
+    },
     "DECKARD_COMMAND": {
         "NAME": "Always in Command",
         "DESC": "Deploy [S] Authority.\nScour."
@@ -175,6 +179,21 @@
         "NAME": "Overwhelm",
         "DESC": "Deploy [S] Overwhelm."
     },
+    "DECKARD_PIVOT": {
+        "NAME": "Pivot",
+        "DESC": "Change Ambience one level towards Guarded or Dangerous.",
+        "DESC+": "Change Ambience two levels towards Guarded or Dangerous."
+    },
+    "DECKARD_PIVOT_AGGRESSION": {
+        "NAME": "Aggression",
+        "DESC": "Change Ambience one level towards Dangerous.",
+        "DESC+": "Change Ambience two levels towards Dangerous."
+    },
+    "DECKARD_PIVOT_DIALOGUE": {
+        "NAME": "Dialogue",
+        "DESC": "Change Ambience one level towards Guarded.",
+        "DESC+": "Change Ambience two levels towards Guarded."
+    },
     "DECKARD_PRESENT_THE_EVIDENCE": {
         "NAME": "Present the Evidence",
         "DESC": "Increase a friendly support argument's stacks by [S].\nDeal damage equal to its stack count to a random enemy argument."
@@ -218,6 +237,10 @@
     },
     "DECKARD_STOIC": {
         "NAME": "Stoic",
+        "DESC": "Apply [P] Poise."
+    },
+    "DECKARD_STONEWALL": {
+        "NAME": "Stonewall",
         "DESC": "Apply [P] Poise."
     },
     "DECKARD_TRASH_TALK": {
