@@ -63,5 +63,6 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        this.AddCardToPermaDeck("DECKARD_BARRAGE");
     }
 }

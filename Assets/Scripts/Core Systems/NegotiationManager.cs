@@ -170,7 +170,11 @@ public class NegotiationManager : EventSubscriber
         cardsPlayedThisTurn.Add(data.cardPlayed);
         numCardsPlayedThisTurn += 1;
 
-        cardPlayed.OWNER.curAP -= cardPlayed.COST;
+        if (cardPlayed.COSTS_ALL_AP){
+            cardPlayed.OWNER.curAP -= cardPlayed.OWNER.curAP;   // Handle X-cost cards
+        } else {
+            cardPlayed.OWNER.curAP -= cardPlayed.COST;
+        }
         if (cardPlayed.HasTag(CardTags.DESTROY)){         // Destroy card
             cardPlayed.OWNER.Destroy(cardPlayed);
         } else if (cardPlayed.IsTrait() || cardPlayed.HasTag(CardTags.SCOUR)){               // Scour stuff

@@ -43,6 +43,11 @@
         "NAME": "Authoritative",
         "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all friendly support arguments."
     },
+    "DECKARD_BARRAGE": {
+        "NAME": "Barrage",
+        "DESC": "Deal [D] damage X times.\nInfluential X.",
+        "DESC+": "Deal [D] damage X+1 times.\nInfluential X+1."
+    },
     "DECKARD_BARREL_THROUGH": {
         "NAME": "Barrel Through",
         "DESC": "Deal [D] damage.\nDeals bonus damage equal to half your Poise."

@@ -68,7 +68,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
         }
         cardName.text = reference.NAME;
-        cardCost.text = reference.COST.ToString();
+        cardCost.text = (reference.COSTS_ALL_AP) ? "X" : reference.COST.ToString();
         cardType.text = reference.TYPE.ToString();
         cardText.text = ParseText(reference.DESC);
     }

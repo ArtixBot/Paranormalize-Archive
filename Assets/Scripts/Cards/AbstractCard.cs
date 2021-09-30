@@ -21,6 +21,8 @@ public abstract class AbstractCard : EventSubscriber {
     public CardAmbient AMBIENCE;    // Card ambience type
     public CardRarity RARITY;       // Card rarity
     public int COST;                // Card cost
+    public bool COSTS_ALL_AP = false;   // If true, playing this card costs all AP. Set the default cost of the card in-code to 0, though.
+
     // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
     public AbstractCharacter OWNER; // Card owner (determined during AbstractCharacter.AddCardToPermaDeck)
     public List<CardTags> TAGS = new List<CardTags>();     // Card tags
