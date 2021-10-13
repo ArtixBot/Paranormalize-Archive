@@ -74,16 +74,22 @@ public class NegotiationManager : EventSubscriber
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
             AbstractEnemy enemy = (AbstractEnemy) tm.GetCurrentCharacter();
             List<(AbstractCard, AbstractArgument)> playOrder = enemy.CalculateCardsToPlay();
-            for (int i = 0; i < playOrder.Count; i++){
-                Debug.Log("Enemy plays " + playOrder[i].Item1 + " on " + playOrder[i].Item2 + "!");
-                NegotiationManager.Instance.PlayCard(playOrder[i].Item1, enemy, playOrder[i].Item2);
-            }
+            // for (int i = 0; i < playOrder.Count; i++){
+            //     Debug.Log("Enemy plays " + playOrder[i].Item1 + " on " + playOrder[i].Item2 + "!");
+            //     NegotiationManager.Instance.PlayCard(playOrder[i].Item1, enemy, playOrder[i].Item2);
+            // }
             this.NextTurn();
+        } else {
+            this.round += 1;
         }
     }
 
     bool currentlyResolving = false;
-    public void AddAction(AbstractAction action){
+
+    // If origin = null, then this action was added by a card. Else, it was added by an argument.
+    // We can delete all actions currently in the queue associated w/ its argument if it gets destroyed.
+    public void AddAction(AbstractAction action, AbstractArgument origin = null){
+        action.origin = origin;
         actionQueue.Add(action);
         if (this.currentlyResolving){       // While the queue is already being resolved, don't try to re-resolve it as we'll repeat calls to one action!
             return;

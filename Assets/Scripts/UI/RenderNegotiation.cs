@@ -24,6 +24,7 @@ public class RenderNegotiation : MonoBehaviour
     private TextMeshProUGUI actionCount;
 
     private Button endTurnButton;
+    private TextMeshProUGUI roundText;
 
     private Camera mainCamera;
 
@@ -46,6 +47,8 @@ public class RenderNegotiation : MonoBehaviour
         scourObject.SetActive(false);
         endTurnButton = GameObject.Find("Canvas/EndTurnButton").GetComponent<Button>();
         endTurnButton.onClick.AddListener(NegotiationManager.Instance.NextTurn);
+
+        roundText = GameObject.Find("Canvas/EndTurnButton/TurnCounter").GetComponent<TextMeshProUGUI>();
 
         player = nm.player;
         enemy = nm.enemy;
@@ -139,6 +142,7 @@ public class RenderNegotiation : MonoBehaviour
         playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
         enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
         moveCameraRight = !moveCameraRight;
+        roundText.text = "Turn " + NegotiationManager.Instance.round;
     }
 
     public float duration = 1f;       // this doesn't seem to do anything for some reason

@@ -5,7 +5,6 @@ using UnityEngine;
 public enum ArgumentOrigin {DEPLOYED, PLANTED};
 public abstract class AbstractArgument : EventSubscriber
 {
-
     // Cosmetic constants
     public string NAME;
     public string DESC;

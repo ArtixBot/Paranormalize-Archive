@@ -11,7 +11,7 @@ using UnityEngine;
 public class EventSystemManager
 {
     public static readonly EventSystemManager Instance = new EventSystemManager();
-    private Dictionary<EventType, List<EventSubscriber>> gameEvents = new Dictionary<EventType, List<EventSubscriber>>();
+    public Dictionary<EventType, List<EventSubscriber>> gameEvents = new Dictionary<EventType, List<EventSubscriber>>();
     private Dictionary<EventType, List<ITriggerOnEvent>> UIEvents = new Dictionary<EventType, List<ITriggerOnEvent>>();
 
     private EventSystemManager(){
@@ -36,9 +36,11 @@ public class EventSystemManager
     }
 
     public void TriggerEvent(AbstractEvent ae){
+        // Debug.Log("Triggered event: " + ae.GetType());
         NotifySubscribers(ae);
     }
 
+    // TODO: Have this prevent double subscription based on an argument ID instead of checking for argument instances, to handle argument duplicates
     public void SubscribeToEvent(EventSubscriber subscriber, EventType type){
         if (!subscriber.eventsSubscribedTo.Contains(type)){         // prevent double subscription
             subscriber.eventsSubscribedTo.Add(type);

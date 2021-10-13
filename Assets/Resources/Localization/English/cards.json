@@ -104,6 +104,11 @@
         "NAME": "Defusal",
         "DESC": "If the Ambience is Guarded or Tense, draw [N] cards; otherwise, change Ambience one level towards Guarded."
     },
+    "DECKARD_DEJA_VU": {
+        "NAME": "Déjà Vu",
+        "DESC": "Create [DUPES] copy of a support argument.",
+        "DESC+": "Create [DUPES] copies of a support argument."
+    },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
@@ -144,6 +149,10 @@
         "NAME": "Impatience",
         "DESC": "Choose a friendly support argument.\nGain actions equal to its stack count, then destroy it.\nScour."
     },
+    "DECKARD_INSIGHT": {
+        "NAME": "Insight",
+        "DESC": "Draw [N] cards."
+    },
     "DECKARD_INSTINCTS": {
         "NAME": "Instincts",
         "DESC": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated."
@@ -180,6 +189,10 @@
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
     },
+    "DECKARD_OVERBEAR": {
+        "NAME": "Overbear",
+        "DESC": "Deal [D] damage for each friendly argument."
+    },
     "DECKARD_OVERWHELM": {
         "NAME": "Overwhelm",
         "DESC": "Deploy [S] Overwhelm."
@@ -201,7 +214,7 @@
     },
     "DECKARD_PRESENT_THE_EVIDENCE": {
         "NAME": "Present the Evidence",
-        "DESC": "Increase a friendly support argument's stacks by [S].\nDeal damage equal to its stack count to a random enemy argument."
+        "DESC": "Add [S] stack(s) to a friendly support argument.\nDeal damage equal to its stack count to a random enemy argument."
     },
     "DECKARD_RAPID_FIRE": {
         "NAME": "Rapid Fire",

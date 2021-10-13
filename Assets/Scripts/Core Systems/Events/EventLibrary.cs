@@ -18,9 +18,10 @@ public enum EventType {
     TURN_END,
     POISE_APPLIED
 };
+
 public abstract class AbstractEvent{
     public EventType type;
-}
+};
 
 namespace GameEvent{
 

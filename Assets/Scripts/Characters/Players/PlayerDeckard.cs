@@ -48,7 +48,7 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_SIMMER");
         // this.AddCardToPermaDeck("DECKARD_DEFUSAL");
         // this.AddCardToPermaDeck("DECKARD_CROSS_EXAMINATION");
-        // this.AddCardToPermaDeck("DECKARD_SMOOTH_TALK");
+        this.AddCardToPermaDeck("DECKARD_DEJA_VU");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         this.AddCardToPermaDeck("DECKARD_DECISIVE_ACTION");
         this.AddCardToPermaDeck("DECKARD_OVERWHELM");
@@ -61,8 +61,9 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
-        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        this.AddCardToPermaDeck("DECKARD_OVERBEAR");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         this.AddCardToPermaDeck("DECKARD_BARRAGE");
+        this.AddCardToPermaDeck("DECKARD_INSIGHT");
     }
 }

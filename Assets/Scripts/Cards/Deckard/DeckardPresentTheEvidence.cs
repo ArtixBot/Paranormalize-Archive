@@ -9,7 +9,7 @@ public class DeckardPresentTheEvidence : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int STACKS = 2;
+    public int STACKS = 1;
 
     public DeckardPresentTheEvidence() : base(
         cardID,
