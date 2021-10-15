@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using GameEvent;
 
@@ -19,21 +18,26 @@ public class DeployArgumentAction : AbstractAction {
         this.stacksToDeploy = stacksToDeploy;
         this.deployNewCopy = deployNewCopy;     // if true, deploy a new copy of the argument even if one already exists
         
-        argumentToDeploy.ORIGIN = ArgumentOrigin.DEPLOYED;
-        argumentToDeploy.OWNER = source;
-        argumentToDeploy.stacks = this.stacksToDeploy;
+        // argumentToDeploy.ORIGIN = ArgumentOrigin.DEPLOYED;
+        // argumentToDeploy.OWNER = source;
+        // argumentToDeploy.stacks = this.stacksToDeploy;
     }
 
     ///<returns>An integer of how many stacks were added.</returns>
     public override int Resolve(){
-        AbstractArgument instance = this.owner.GetArgument(argumentToDeploy);
+        AbstractArgument instance = this.owner.GetArgument(this.argumentToDeploy);
         if (instance == null || this.deployNewCopy){
-            this.owner.nonCoreArguments.Add(argumentToDeploy);
-            argumentToDeploy.TriggerOnDeploy();     // Add event subscriptions
-            EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToDeploy));
-            argumentToDeploy.INSTANCE_ID = argumentToDeploy.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
+            // Create a new instance of the argument and set its appropriate values.
+            AbstractArgument newInstance = Activator.CreateInstance(this.argumentToDeploy.GetType()) as AbstractArgument;
+            newInstance.ORIGIN = ArgumentOrigin.DEPLOYED;
+            newInstance.OWNER = this.owner;
+            newInstance.stacks = this.stacksToDeploy;
+            newInstance.INSTANCE_ID = newInstance.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
             NegotiationManager.Instance.argumentsDeployedThisNegotiation += 1;
-            Debug.Log("Deploying " + argumentToDeploy.INSTANCE_ID);
+
+            this.owner.nonCoreArguments.Add(newInstance);
+            newInstance.TriggerOnDeploy();     // Add event subscriptions
+            EventSystemManager.Instance.TriggerEvent(new EventArgCreated(newInstance));
         } else {
             Debug.Log("Copy exists; adding " + stacksToDeploy + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
             instance.stacks += stacksToDeploy;

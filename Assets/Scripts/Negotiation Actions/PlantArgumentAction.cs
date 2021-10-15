@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using GameEvent;
 
@@ -18,22 +17,22 @@ public class PlantArgumentAction : AbstractAction {
         this.argumentToPlant = argumentToPlant;
         this.stacksToPlant = stacksToPlant;
         this.plantNewCopy = plantNewCopy;     // if true, plant a new copy of the argument even if one already exists
-        
-        argumentToPlant.ORIGIN = ArgumentOrigin.PLANTED;
-        argumentToPlant.OWNER = target;
-        argumentToPlant.stacks = this.stacksToPlant;
     }
 
     ///<returns>An integer of how many stacks were added.</returns>
     public override int Resolve(){
         AbstractArgument instance = this.owner.GetArgument(argumentToPlant);
         if (instance == null || this.plantNewCopy){
-            this.owner.nonCoreArguments.Add(argumentToPlant);
-            argumentToPlant.TriggerOnDeploy();     // Add event subscriptions
-            EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToPlant));
-            argumentToPlant.INSTANCE_ID = argumentToPlant.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
+            AbstractArgument newInstance = Activator.CreateInstance(this.argumentToPlant.GetType()) as AbstractArgument;
+            newInstance.ORIGIN = ArgumentOrigin.PLANTED;
+            newInstance.OWNER = this.owner;
+            newInstance.stacks = this.stacksToPlant;
+            newInstance.INSTANCE_ID = newInstance.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
             NegotiationManager.Instance.argumentsDeployedThisNegotiation += 1;
-            Debug.Log("Planting " + argumentToPlant.INSTANCE_ID);
+
+            this.owner.nonCoreArguments.Add(newInstance);
+            newInstance.TriggerOnDeploy();     // Add event subscriptions
+            EventSystemManager.Instance.TriggerEvent(new EventArgCreated(newInstance));
         } else {
             Debug.Log("Copy exists; adding " + stacksToPlant + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
             instance.stacks += stacksToPlant;
