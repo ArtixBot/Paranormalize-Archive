@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
 using UnityEngine;
 
 public class DeckardDejaVu : AbstractCard {
@@ -26,10 +28,11 @@ public class DeckardDejaVu : AbstractCard {
             throw new Exception("Cannot target core arguments with Deja Vu!");
         }
         for (int i = 0; i < DUPES; i++){
+            AbstractArgument duplicate = Activator.CreateInstance(target.GetType()) as AbstractArgument;
             if (target.OWNER == source){
-                NegotiationManager.Instance.AddAction(new DeployArgumentAction(target.OWNER, target, target.stacks, true));
+                NegotiationManager.Instance.AddAction(new DeployArgumentAction(target.OWNER, duplicate, target.stacks, true));
             } else {
-                NegotiationManager.Instance.AddAction(new PlantArgumentAction(target.OWNER, target, target.stacks, true));
+                NegotiationManager.Instance.AddAction(new PlantArgumentAction(target.OWNER, duplicate, target.stacks, true));
             }
         }
     }

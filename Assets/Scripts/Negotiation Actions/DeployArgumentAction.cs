@@ -31,6 +31,9 @@ public class DeployArgumentAction : AbstractAction {
             this.owner.nonCoreArguments.Add(argumentToDeploy);
             argumentToDeploy.TriggerOnDeploy();     // Add event subscriptions
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(argumentToDeploy));
+            argumentToDeploy.INSTANCE_ID = argumentToDeploy.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
+            NegotiationManager.Instance.argumentsDeployedThisNegotiation += 1;
+            Debug.Log("Deploying " + argumentToDeploy.INSTANCE_ID);
         } else {
             Debug.Log("Copy exists; adding " + stacksToDeploy + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
             instance.stacks += stacksToDeploy;

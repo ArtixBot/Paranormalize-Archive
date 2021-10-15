@@ -15,14 +15,14 @@ public class PlayerDeckard : AbstractCharacter
     }
 
     public override void AddStarterDeck(){
-        this.AddCardToPermaDeck("DECKARD_COMEBACK");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_COMEBACK");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_BARREL_THROUGH");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_FINESSE");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_HEATED");
         this.AddCardToPermaDeck("DECKARD_INSTINCTS");
         // this.AddCardToPermaDeck("DECKARD_REVERSAL");
-        // this.AddCardToPermaDeck("DECKARD_BRASH");
+        this.AddCardToPermaDeck("DECKARD_BRASH");
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
         // this.AddCardToPermaDeck("DECKARD_GRANDIOSITY");
         // this.AddCardToPermaDeck("DECKARD_INSULT");
@@ -50,8 +50,8 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_CROSS_EXAMINATION");
         this.AddCardToPermaDeck("DECKARD_DEJA_VU");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
-        this.AddCardToPermaDeck("DECKARD_DECISIVE_ACTION");
-        this.AddCardToPermaDeck("DECKARD_OVERWHELM");
+        // this.AddCardToPermaDeck("DECKARD_DECISIVE_ACTION");
+        // this.AddCardToPermaDeck("DECKARD_OVERWHELM");
         // this.AddCardToPermaDeck("DECKARD_OPENING_OFFER");
         // this.AddCardToPermaDeck("DECKARD_ADAPTIVE");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
@@ -61,9 +61,9 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
-        this.AddCardToPermaDeck("DECKARD_OVERBEAR");
+        // this.AddCardToPermaDeck("DECKARD_OVERBEAR");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
-        this.AddCardToPermaDeck("DECKARD_BARRAGE");
-        this.AddCardToPermaDeck("DECKARD_INSIGHT");
+        // this.AddCardToPermaDeck("DECKARD_BARRAGE");
+        // this.AddCardToPermaDeck("DECKARD_INSIGHT");
     }
 }

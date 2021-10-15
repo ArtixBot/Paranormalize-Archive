@@ -23,6 +23,7 @@ public class NegotiationManager : EventSubscriber
 
     public int round = 1;
     public int numCardsPlayedThisTurn = 0;
+    public int argumentsDeployedThisNegotiation = 0;
 
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
@@ -113,6 +114,7 @@ public class NegotiationManager : EventSubscriber
 
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
+        this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
         // change scene to loss
     }
@@ -126,6 +128,7 @@ public class NegotiationManager : EventSubscriber
 
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
+        this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
         // change scene to win
     }

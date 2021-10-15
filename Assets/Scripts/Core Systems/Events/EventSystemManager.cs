@@ -21,27 +21,19 @@ public class EventSystemManager
         }
     }
 
-    private void NotifySubscribers(AbstractEvent eventData){
-        List<EventSubscriber> subscribers = gameEvents[eventData.type];
-        for (int i = subscribers.Count - 1; i >= 0; i--){
-            EventSubscriber subscriber = subscribers[i];
-            subscriber.NotifyOfEvent(eventData);
-        }
-
-        // update ui
-        List<ITriggerOnEvent> UISubscribers = UIEvents[eventData.type];
-        foreach (ITriggerOnEvent subscriber in UISubscribers){
-            subscriber.TriggerOnEvent(eventData);
-        }
-    }
-
     public void TriggerEvent(AbstractEvent ae){
-        // Debug.Log("Triggered event: " + ae.GetType());
         NotifySubscribers(ae);
     }
 
     // TODO: Have this prevent double subscription based on an argument ID instead of checking for argument instances, to handle argument duplicates
     public void SubscribeToEvent(EventSubscriber subscriber, EventType type){
+        // Debug.Log("Attempting to subscribe " + subscriber.INSTANCE_ID + " to " + type.GetType());
+        // List<EventSubscriber> listOfSubscribers = gameEvents[type];
+        // for (int i = 0; i < listOfSubscribers.Count; i++){
+        //     if (listOfSubscribers[i].INSTANCE_ID == subscriber.INSTANCE_ID){
+        //         return;
+        //     }
+        // }
         if (!subscriber.eventsSubscribedTo.Contains(type)){         // prevent double subscription
             subscriber.eventsSubscribedTo.Add(type);
             gameEvents[type].Add(subscriber);
@@ -53,6 +45,11 @@ public class EventSystemManager
     }
 
     private void UnsubscribeFromEvent(EventSubscriber subscriber, EventType type){
+        // for (int i = gameEvents[type].Count - 1; i >= 0; i--){
+        //     if (gameEvents[type][i].INSTANCE_ID == subscriber.INSTANCE_ID){
+        //         gameEvents[type].RemoveAt(i);
+        //     }
+        // }
         gameEvents[type].Remove(subscriber);
     }
 
@@ -75,6 +72,20 @@ public class EventSystemManager
         }
         foreach (EventType type in Enum.GetValues(typeof(EventType))){
             gameEvents[type].Clear();
+        }
+    }
+
+    private void NotifySubscribers(AbstractEvent eventData){
+        List<EventSubscriber> subscribers = gameEvents[eventData.type];
+        for (int i = subscribers.Count - 1; i >= 0; i--){
+            EventSubscriber subscriber = subscribers[i];
+            subscriber.NotifyOfEvent(eventData);
+        }
+
+        // update ui
+        List<ITriggerOnEvent> UISubscribers = UIEvents[eventData.type];
+        foreach (ITriggerOnEvent subscriber in UISubscribers){
+            subscriber.TriggerOnEvent(eventData);
         }
     }
 }
