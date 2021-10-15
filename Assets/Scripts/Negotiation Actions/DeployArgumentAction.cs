@@ -17,10 +17,6 @@ public class DeployArgumentAction : AbstractAction {
         this.argumentToDeploy = argumentToDeploy;
         this.stacksToDeploy = stacksToDeploy;
         this.deployNewCopy = deployNewCopy;     // if true, deploy a new copy of the argument even if one already exists
-        
-        // argumentToDeploy.ORIGIN = ArgumentOrigin.DEPLOYED;
-        // argumentToDeploy.OWNER = source;
-        // argumentToDeploy.stacks = this.stacksToDeploy;
     }
 
     ///<returns>An integer of how many stacks were added.</returns>
