@@ -72,6 +72,10 @@
         "NAME": "Calm",
         "DESC": "Apply [P] Poise to all your arguments.\nDouble your Poise."
     },
+    "DECKARD_CAPITALIZE": {
+        "NAME": "Capitalize",
+        "DESC": "Deal [D] damage.\nIf an enemy argument was destroyed this turn, this costs 0 and deals double damage."
+    },
     "DECKARD_CHALLENGE": {
         "NAME": "Challenge",
         "DESC": "Remove all Poise from your core argument to deal damage equal to Poise removed."
@@ -106,8 +110,8 @@
     },
     "DECKARD_DEJA_VU": {
         "NAME": "Déjà Vu",
-        "DESC": "Create [DUPES] copy of a support argument.",
-        "DESC+": "Create [DUPES] copies of a support argument."
+        "DESC": "Create [DUPES] copy of a support argument.\nScour.",
+        "DESC+": "Create [DUPES] copies of a support argument.\nScour."
     },
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
@@ -185,6 +189,10 @@
         "NAME": "Magnetic Personality",
         "DESC": "Whenever the Ambience phase changes, Deploy [S] Finesse and [S] Heated."
     },
+    "DECKARD_OBLIGATION": {
+        "NAME": "Obligation",
+        "DESC": "Deal [D] damage.\nAdd [S] stack(s) to ALL your support arguments."
+    },
     "DECKARD_OPENING_OFFER": {
         "NAME": "Opening Offer",
         "DESC": "Inherit.\nDeal [D] damage.\nScour."
@@ -260,6 +268,10 @@
     "DECKARD_STONEWALL": {
         "NAME": "Stonewall",
         "DESC": "Apply [P] Poise."
+    },
+    "DECKARD_TANTRUM": {
+        "NAME": "Tantrum",
+        "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
     },
     "DECKARD_TRASH_TALK": {
         "NAME": "Trash Talk",

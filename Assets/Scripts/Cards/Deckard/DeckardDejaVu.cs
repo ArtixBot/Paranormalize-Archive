@@ -19,7 +19,8 @@ public class DeckardDejaVu : AbstractCard {
         cardCost,
         CardAmbient.INFLUENCE,
         CardRarity.RARE,
-        CardType.SKILL
+        CardType.SKILL,
+        new List<CardTags>{CardTags.SCOUR}
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

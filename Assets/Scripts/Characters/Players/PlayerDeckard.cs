@@ -35,7 +35,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_PRESENT_THE_EVIDENCE");
         // this.AddCardToPermaDeck("DECKARD_STAY_COOL");
         // this.AddCardToPermaDeck("DECKARD_BULLDOZE");
-        this.AddCardToPermaDeck("DECKARD_PIVOT");
+        // this.AddCardToPermaDeck("DECKARD_PIVOT");
         // this.AddCardToPermaDeck("DECKARD_FLATTER");
         // this.AddCardToPermaDeck("DECKARD_STOIC");
         // this.AddCardToPermaDeck("DECKARD_CURVEBALL");
@@ -48,7 +48,7 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_SIMMER");
         // this.AddCardToPermaDeck("DECKARD_DEFUSAL");
         // this.AddCardToPermaDeck("DECKARD_CROSS_EXAMINATION");
-        this.AddCardToPermaDeck("DECKARD_DEJA_VU");
+        this.AddCardToPermaDeck("DECKARD_DEJA_VU", true);
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         // this.AddCardToPermaDeck("DECKARD_DECISIVE_ACTION");
         // this.AddCardToPermaDeck("DECKARD_OVERWHELM");
@@ -65,5 +65,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_BARRAGE");
         // this.AddCardToPermaDeck("DECKARD_INSIGHT");
+        // this.AddCardToPermaDeck("DECKARD_CAPITALIZE");
+        this.AddCardToPermaDeck("DECKARD_OBLIGATION");
     }
 }

@@ -67,6 +67,16 @@ public abstract class AbstractCard : EventSubscriber {
         if (source.curAP < this.COST){
             throw new Exception(source.NAME + " does not have enough actions to play " + this.NAME);
         }
+        // if (this.HasTag(CardTags.DESTROY)){         // Destroy card
+        //     this.OWNER.Destroy(this);
+        // } else if (this.IsTrait() || this.HasTag(CardTags.SCOUR)){               // Scour stuff
+        //     this.OWNER.Scour(this);
+        // } else {
+        //     if (this.OWNER.GetHand().Contains(this)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
+        //         this.OWNER.GetHand().Remove(this);
+        //         this.OWNER.GetDiscardPile().AddCard(this);
+        //     }
+        // }
     }
 
     // Should only ever be overridden whenever a card makes a call to NegotiationManager.Instance.SelectCardsFromList.
