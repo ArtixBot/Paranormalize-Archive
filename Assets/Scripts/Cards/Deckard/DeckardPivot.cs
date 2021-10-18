@@ -9,7 +9,6 @@ public class DeckardPivot : AbstractCard
     private static int cardCost = 2;
 
     public int STACKS = 1;         // only does stuff for descriptions
-    private bool upgrade = false;
 
     public DeckardPivot() : base(
         cardID,
@@ -24,7 +23,7 @@ public class DeckardPivot : AbstractCard
         base.Play(source, target);
         AbstractCard a = new DeckardPivotDialogue();
         AbstractCard b = new DeckardPivotAggression();
-        if (upgrade){
+        if (this.isUpgraded){
             a.Upgrade();
             b.Upgrade();
         }
@@ -41,6 +40,5 @@ public class DeckardPivot : AbstractCard
     public override void Upgrade(){
         base.Upgrade();
         this.STACKS += 1;
-        this.upgrade = true;
     }
 }

@@ -9,7 +9,6 @@ public class DeckardInstincts : AbstractCard
     private static int cardCost = 1;
 
     public int STACKS = 1;         // only does stuff for descriptions
-    private bool upgrade = false;
 
     public DeckardInstincts() : base(
         cardID,
@@ -24,7 +23,7 @@ public class DeckardInstincts : AbstractCard
         base.Play(source, target);
         AbstractCard a = new DeckardInstinctsFinesse();
         AbstractCard b = new DeckardInstinctsHeated();
-        if (upgrade){
+        if (this.isUpgraded){
             a.Upgrade();
             b.Upgrade();
         }
@@ -41,6 +40,5 @@ public class DeckardInstincts : AbstractCard
     public override void Upgrade(){
         base.Upgrade();
         this.STACKS += 1;
-        this.upgrade = true;
     }
 }

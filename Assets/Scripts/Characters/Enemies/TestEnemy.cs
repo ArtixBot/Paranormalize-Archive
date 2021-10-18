@@ -14,11 +14,11 @@ public class TestEnemy : AbstractEnemy{
     }
 
     public override void AddStarterDeck(){
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_GRUFF");
-        this.AddCardToPermaDeck("ENEMY_BACKLASH");
-        this.AddCardToPermaDeck("ENEMY_BACKLASH");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_GRUFF");
+        // this.AddCardToPermaDeck("ENEMY_BACKLASH");
+        // this.AddCardToPermaDeck("ENEMY_BACKLASH");
     }
 
     // Calculate a list of cards to play and what arguments to target w/ each card

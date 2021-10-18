@@ -79,7 +79,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Match match = matches[i];
             
             try{
-                if (match.Value == "[S]"){                  // Argument stack parsing
+                if (match.Value == "[S]" || match.Value == "[s]"){                  // Argument stack parsing
                     int stacks = (int)reference.GetType().GetField("STACKS").GetValue(reference);
                     s = s.Replace(match.Value, stacks.ToString());
                 } else if (match.Value == "[D]"){           // Damage parsing

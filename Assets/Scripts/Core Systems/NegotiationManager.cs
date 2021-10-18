@@ -158,6 +158,7 @@ public class NegotiationManager : EventSubscriber
             // https://stackoverflow.com/questions/12263099/function-to-clone-an-arbitrary-object
             foreach(var field in cardType.GetFields()){
                 object originalCardValue = field.GetValue(card);
+                // Debug.Log(field + ": " + originalCardValue);
                 field.SetValue(copiedCard, originalCardValue);
             }
             character.GetDrawPile().AddCard(copiedCard as AbstractCard);

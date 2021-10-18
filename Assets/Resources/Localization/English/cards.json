@@ -98,7 +98,7 @@
     },
     "DECKARD_DECISIVE_ACTION": {
         "NAME": "Decisive Action",
-        "DESC": "Remove all Poise from your arguments. Deploy 1 Inept.\nGain [ACTIONS] actions.\nScour."
+        "DESC": "Remove all Poise from your arguments. Deploy 1 Inept.\nGain [ACTIONS] actions."
     },
     "DECKARD_DEEP_BREATH": {
         "NAME": "Deep Breath",
@@ -205,6 +205,10 @@
         "NAME": "Overwhelm",
         "DESC": "Deploy [S] Overwhelm."
     },
+    "DECKARD_PANACHE": {
+        "NAME": "Panache",
+        "DESC": "Deal [D] damage.\nWhenever the Ambience level changes, double this card's damage for the rest of the turn."
+    },
     "DECKARD_PIVOT": {
         "NAME": "Pivot",
         "DESC": "Change Ambience one level towards Guarded or Dangerous.",
@@ -230,16 +234,22 @@
     },
     "DECKARD_REINFORCE": {
         "NAME": "Reinforce",
-        "DESC": "Double a friendly support argument's stack count.\nScour.",
-        "DESC+": "Triple a friendly support argument's stack count.\nScour."
+        "DESC": "Double a friendly support argument's resolve.\nRestore it to full resolve.\nScour.",
+        "DESC+": "Triple a friendly support argument's stack count.\nRestore it to full resolve.\nScour."
     },
     "DECKARD_REVERSAL": {
         "NAME": "Reversal",
-        "DESC": "Steal all Poise from an enemy argument and apply it to your core argument."
+        "DESC": "Steal all Poise from an enemy argument and apply it to your core argument.",
+        "DESC+": "Steal all Poise from an enemy argument and apply it to ALL friendly arguments."
     },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
         "DESC": "Choose a card in hand. Give it Preserve."
+    },
+    "DECKARD_SEETHE": {
+        "NAME": "Seethe",
+        "DESC": "Deploy [S] Simmer 2 times.",
+        "DESC+": "Deploy [S] Simmer+ 2 times."
     },
     "DECKARD_SIMMER": {
         "NAME": "Simmer",

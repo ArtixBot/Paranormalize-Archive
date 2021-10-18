@@ -31,10 +31,10 @@ public class Deck
     // Add a card to the back of the deck via string ID.
     // By default adds an unupgraded version to the deck, but can be upgraded by setting isUpgraded to true.
     // Returns the created card instance.
-    public AbstractCard AddCard(string cardID, bool isUpgraded = false){
+    public AbstractCard AddCard(string cardID, bool isUpgraded){
         Type cardClass = CardLibrary.Instance.Lookup(cardID);
         if (cardClass == null){
-            return null;
+            return null;        // return a null result if the card doesn't exist in CardLibrary
         }
         AbstractCard card = Activator.CreateInstance(cardClass) as AbstractCard;
         if (isUpgraded){

@@ -16,8 +16,7 @@ public class DeckardDecisiveAction : AbstractCard {
         cardCost,
         CardAmbient.DIALOGUE,
         CardRarity.UNCOMMON,
-        CardType.SKILL,
-        new List<CardTags>{CardTags.SCOUR}
+        CardType.SKILL
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){

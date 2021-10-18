@@ -11,8 +11,6 @@ public class DeckardBarrage : AbstractCard {
     public int MIN_DAMAGE = 4;
     public int MAX_DAMAGE = 4;
 
-    private bool addOne = false;
-
     public DeckardBarrage() : base(
         cardID,
         cardStrings,
@@ -27,7 +25,7 @@ public class DeckardBarrage : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        int cnt = (addOne) ? 1 + source.curAP : source.curAP;
+        int cnt = (this.isUpgraded) ? 1 + source.curAP : source.curAP;
         for (int i = 0; i < cnt; i++){
             NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
         }
@@ -36,6 +34,5 @@ public class DeckardBarrage : AbstractCard {
 
     public override void Upgrade(){
         base.Upgrade();
-        this.addOne = true;
     }
 }
