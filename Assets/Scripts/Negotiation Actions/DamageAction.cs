@@ -82,7 +82,13 @@ public class DamageAction : AbstractAction {
 
         // Check to see if the target argument should be destroyed.
         if (this.target.curHP <= 0){
-            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target));
+            if (attackingCard != null){
+                NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target, attackingCard));
+            } else if (attackingArgument != null){
+                NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target, attackingArgument));
+            } else {
+                NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target));
+            }
         }
         return 0;
     }

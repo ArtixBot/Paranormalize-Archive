@@ -60,7 +60,9 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
-        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        this.AddCardToPermaDeck("DECKARD_DOMINEER");
+        this.AddCardToPermaDeck("DECKARD_DOMINEER", true);
         // this.AddCardToPermaDeck("DECKARD_OVERBEAR");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_BARRAGE");
@@ -70,8 +72,9 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION", true);
         // this.AddCardToPermaDeck("DECKARD_PANACHE");
         this.AddCardToPermaDeck("DECKARD_SEETHE");
-        this.AddCardToPermaDeck("DECKARD_SEETHE", true);
+        // this.AddCardToPermaDeck("DECKARD_SEETHE", true);
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS", true);
+        // this.AddCardToPermaDeck("DECKARD_RACK_THE_BRAIN");
     }
 }

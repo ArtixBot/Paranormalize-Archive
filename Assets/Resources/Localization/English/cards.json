@@ -117,6 +117,10 @@
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
     },
+    "DECKARD_DOMINEER": {
+        "NAME": "Domineer",
+        "DESC": "Deal [D] damage.\nIf this destroys an enemy argument, draw [DRAW] cards and gain [ACTIONS] actions."
+    },
     "DECKARD_FILIBUSTER": {
         "NAME": "Filibuster",
         "DESC": "Apply [P] Poise to all your arguments.\nScour."
@@ -227,6 +231,10 @@
     "DECKARD_PRESENT_THE_EVIDENCE": {
         "NAME": "Present the Evidence",
         "DESC": "Add [S] stack(s) to a friendly support argument.\nDeal damage equal to its stack count to a random enemy argument."
+    },
+    "DECKARD_RACK_THE_BRAIN": {
+        "NAME": "Rack the Brain",
+        "DESC": "Choose 1 of [CHOICES] cards from your draw pile to add into your hand.\nReduce its cost to 0.\nScour."
     },
     "DECKARD_RAPID_FIRE": {
         "NAME": "Rapid Fire",

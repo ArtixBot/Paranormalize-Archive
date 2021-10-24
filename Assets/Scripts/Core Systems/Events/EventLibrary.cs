@@ -112,12 +112,26 @@ namespace GameEvent{
 
     public class EventArgDestroyed : AbstractEvent{
         public AbstractArgument argumentDestroyed;
+        public AbstractArgument destroyingArg;
+        public AbstractCard destroyingCard;
         ///<summary>
         ///Trigger when an argument is destroyed. argDestroyed represents the argument being destroyed.
         ///</summary>
         public EventArgDestroyed(AbstractArgument argDestroyed){
             this.type = EventType.ARGUMENT_DESTROYED;
             this.argumentDestroyed = argDestroyed;
+        }
+
+        public EventArgDestroyed(AbstractArgument argDestroyed, AbstractCard destroyingCard){
+            this.type = EventType.ARGUMENT_DESTROYED;
+            this.argumentDestroyed = argDestroyed;
+            this.destroyingCard = destroyingCard; 
+        }
+
+        public EventArgDestroyed(AbstractArgument argDestroyed, AbstractArgument destroyingArg){
+            this.type = EventType.ARGUMENT_DESTROYED;
+            this.argumentDestroyed = argDestroyed;
+            this.destroyingArg = destroyingArg;
         }
     }
 
