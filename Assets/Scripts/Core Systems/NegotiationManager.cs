@@ -34,6 +34,7 @@ public class NegotiationManager : EventSubscriber
         enemy = new TestEnemy();
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
+
         // END TODO
         this.renderer = renderer;
 
