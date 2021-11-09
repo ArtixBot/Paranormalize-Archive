@@ -17,6 +17,7 @@ public class BasicInkExample : MonoBehaviour {
 	void StartStory () {
 		story = new Story (inkJSONAsset.text);
         if(OnCreateStory != null) OnCreateStory(story);
+		story.variablesState["player_name"] = (GameState.mainChar != null) ? GameState.mainChar.NAME : "Ai";
 		RefreshView();
 	}
 	
@@ -35,6 +36,7 @@ public class BasicInkExample : MonoBehaviour {
 			text = text.Trim();
 			// Display the text on screen!
 			CreateContentView(text);
+			Debug.Log("Current line: " + text + " has " + story.currentTags.Count + " tags");
 		}
 
 		// Display all the choices, if there are any!
