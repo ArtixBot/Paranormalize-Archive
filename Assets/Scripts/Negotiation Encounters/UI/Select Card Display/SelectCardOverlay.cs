@@ -21,9 +21,9 @@ public class SelectCardOverlay : MonoBehaviour
 	public bool mustSelectExact;		// If true, user must select EXACTLY [selectXCards], else select UP TO [selectXCards].
 
     // TODO: Change to OnEnable and have Start() just notify if the prefab is disabled
-    void Start(){
+    // void Start(){
 		// Debug.Log("SelectCardOverlay started; assign cards to cardsToDisplay BEFORE enabling the prefab!");
-    }
+    // }
 
 	void OnEnable(){
 		// initialization and cleanup from previous instance
