@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
@@ -15,6 +16,9 @@ public class RenderStory : MonoBehaviour
     [SerializeField]
     private GameObject optionsFeed;
 
+	private GameObject playerModel;
+	private GameObject enemyModel;
+
     public GameObject textPrefab;
     public Button choicePrefab;
     // Called on loading into Story scene
@@ -22,6 +26,9 @@ public class RenderStory : MonoBehaviour
     {
         dialogFeed = transform.Find("DialogFeed/Viewport/Content").gameObject;
         optionsFeed = transform.Find("OptionsFeed").gameObject;
+
+		playerModel = transform.Find("PlayerAvatar").gameObject;
+		enemyModel = transform.Find("EnemyAvatar").gameObject;
 
         textPrefab = Resources.Load("Prefabs/DialogBubble") as GameObject;
         // choicePrefab = Resources.Load("Prefabs/Button") as Button;
@@ -46,6 +53,7 @@ public class RenderStory : MonoBehaviour
 			text = text.Trim();
 			// Display the text on screen!
 			Debug.Log("Current line: " + text);
+			HandleActionTags(story.currentTags);
             CreateDialogueBubble(text);
 			yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
 			yield return new WaitForSeconds(0.01f);		// for some reason, MouseButtonUp() will cause two dialogue bubbles to pop up (it must be getting counted as true over two frames?)
@@ -84,7 +92,6 @@ public class RenderStory : MonoBehaviour
 		}
         bubble.GetComponent<DialogBubble>().textContent.text = text;
         bubble.transform.SetParent(dialogFeed.transform, false);
-		// storyText.transform.SetParent (canvas.transform, false);
     }
 
     // When we click the choice button, tell the story to choose that choice!
@@ -108,5 +115,49 @@ public class RenderStory : MonoBehaviour
 
 	bool CurrentStoryContainsTag(string str){
 		return story.currentTags.Contains(str);
+	}
+
+	void HandleActionTags(List<string> tagList){
+		// Handles tags of the following format:
+		// action:actor (actor performs the action)
+		// List of supported actions: enter/exit
+		// List of supported actors: player/ally/enemy/bystander
+		for (int i = 0; i < tagList.Count; i++){
+			bool performAction = tagList[i].Contains(":");
+			if (!performAction){
+				continue;
+			}
+			string whatIsAction = tagList[i].Split(':')[0];
+			string whoIsActor = tagList[i].Split(':')[1];
+
+			GameObject actor = null;
+			switch(whoIsActor){
+				case "player":
+					actor = playerModel;
+					break;
+				case "ally":
+					actor = playerModel;
+					break;
+				case "enemy":
+					actor = enemyModel;
+					break;
+				case "bystander":
+					actor = enemyModel;
+					break;
+			}
+
+			switch(whatIsAction){
+				case "enter":
+					if (actor.TryGetComponent(out ActivatedLerpable enter)){
+						enter.Offset();
+					}
+					break;
+				case "exit":
+					if (actor.TryGetComponent(out ActivatedLerpable exit)){
+						exit.ResetPosition();
+					}
+					break;
+			}
+		}
 	}
 }
