@@ -6,9 +6,9 @@ This is a second line in the test story. What happens to the renderer if I end u
 I like this story. Third line btw. # narrator # exit:enemy
 The player thinks... #exit:player #enter:enemy
 ...and thinks...
-...and thinks...
-{ally}: I think you should choose option A. #enter:player
-* [Option A]{player} chose option A.
+...and thinks... #enter:player
+{ally}: I think you should choose option A. #exit:player #enter:ally
+* [Option A]{player} chose option A. #enter:player #exit:ally
     "The fool chose option A!"  # enemy
-* [Option B]You chose option B.
+* [Option B]You chose option B. #enter:player #exit:ally
     "The fool chose option B!"  # enemy #exit:enemy

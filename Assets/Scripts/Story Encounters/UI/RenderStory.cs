@@ -18,6 +18,8 @@ public class RenderStory : MonoBehaviour
 
 	private GameObject playerModel;
 	private GameObject enemyModel;
+	private GameObject allyModel;
+	private GameObject bystanderModel;
 
     public GameObject textPrefab;
     public Button choicePrefab;
@@ -28,7 +30,9 @@ public class RenderStory : MonoBehaviour
         optionsFeed = transform.Find("OptionsFeed").gameObject;
 
 		playerModel = transform.Find("PlayerAvatar").gameObject;
+		allyModel = transform.Find("AllyAvatar").gameObject;
 		enemyModel = transform.Find("EnemyAvatar").gameObject;
+		bystanderModel = transform.Find("BystanderAvatar").gameObject;
 
         textPrefab = Resources.Load("Prefabs/DialogBubble") as GameObject;
         // choicePrefab = Resources.Load("Prefabs/Button") as Button;
@@ -136,13 +140,13 @@ public class RenderStory : MonoBehaviour
 					actor = playerModel;
 					break;
 				case "ally":
-					actor = playerModel;
+					actor = allyModel;
 					break;
 				case "enemy":
 					actor = enemyModel;
 					break;
 				case "bystander":
-					actor = enemyModel;
+					actor = bystanderModel;
 					break;
 			}
 
