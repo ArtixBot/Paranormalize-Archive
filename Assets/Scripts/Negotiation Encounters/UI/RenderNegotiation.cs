@@ -32,7 +32,8 @@ public class RenderNegotiation : MonoBehaviour
     void Start()
     {
         Debug.Log("RenderNegotiation calls NegotiationManager's StartNegotiation()");
-        nm.StartNegotiation(this);      // Start negotiation! (This also sets up a whole bunch of gameobjects in nm that we can now use for this method)
+        
+        nm.StartNegotiation(this, null);      // Start negotiation! (This also sets up a whole bunch of gameobjects in nm that we can now use for this method)
         
         mainCamera = Camera.main;       // grab main camera
         handZone = GameObject.Find("Canvas/HandZone");

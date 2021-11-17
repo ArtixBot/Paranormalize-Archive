@@ -25,6 +25,9 @@ public class MainMenu : MonoBehaviour
     }
 
     private IEnumerator LoadNegotiation(){
+        //TODO: Set the GameState for character in the character selection menu instead!
+        GameState.mainChar = new PlayerDeckard();
+        
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
 
         while (!asyncLoad.isDone){

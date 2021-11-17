@@ -18,7 +18,7 @@ public class NegotiationManager : EventSubscriber
     public EventSystemManager em = EventSystemManager.Instance;
     public RenderNegotiation renderer;
 
-    public AbstractCharacter player;
+    public AbstractCharacter player = GameState.mainChar;
     public AbstractCharacter enemy;
 
     public int round = 1;
@@ -27,29 +27,24 @@ public class NegotiationManager : EventSubscriber
 
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
-    public void StartNegotiation(RenderNegotiation renderer){
+    public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar){
 
-        // TODO: REMOVE THIS, CURRENTLY FOR TESTING
-        player = new PlayerDeckard();
-        enemy = new TestEnemy();
+        this.player = (this.player == null) ? new PlayerDeckard() : this.player;    // null check for player - if null, use Deckard as base
+        this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
 
-        // END TODO
         this.renderer = renderer;
 
         em.ClearAllSubscribers();
         em.SubscribeToEvent(this, EventType.CARD_PLAYED);       // Subscribe to CARD_PLAYED event to perform all post-card play processing (ambience shift, adjusting global values, etc.)
-
-        player = tm.GetPlayer();
-        enemy = tm.GetEnemy();
         
         Debug.Log("NegotiationManager.cs: Performing deep copy of deck contents for enemy and player.");
         DeepCopyDeck(player);
         DeepCopyDeck(enemy);
 
-        player.curAP = player.maxAP;
-        enemy.curAP = enemy.maxAP;
+        this.player.curAP = player.maxAP;
+        this.enemy.curAP = enemy.maxAP;
         
         player.Draw(5);
         enemy.Draw(5);

@@ -3,8 +3,8 @@ VAR player = ""
 VAR ally = ""
 VAR scrips_gain = 100
 
-An uncharacteristic jingling sound raises the hairs on your neck. # narrator # enter:player # enter:ally
-It's Chester! # narrator # enter:enemy
+An uncharacteristic jingling sound raises the hairs on your neck. # narrato
+It's Chester! # narrator #enter:player # enter:enemy
 Oh-ho, it's {player}. And {ally}'s along for the car-ride too! #enemy
 What're you looking for? Weather-glasses? Boom-sticks? Or... # enemy
 ... # enemy
