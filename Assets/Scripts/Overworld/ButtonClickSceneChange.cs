@@ -15,6 +15,8 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
             case EncounterType.ENEMY:
             case EncounterType.ELITE:
             case EncounterType.BOSS:
+                StartCoroutine(LoadNegotiation());
+                break;
                 // enemy elite and boss encounters all switch the scene to negotiation
             case EncounterType.EVENT:
                 StartCoroutine(LoadStory(storyID));
@@ -27,6 +29,18 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
                 break;
             default:
                 break;
+        }
+    }
+
+    private IEnumerator LoadNegotiation(){
+        //TODO: Set the GameState for character in the character selection menu instead!
+        GameState.mainChar = new PlayerDeckard();
+        GameState.randomSeed = Random.Range(0, 1000000000);
+        
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
+
+        while (!asyncLoad.isDone){
+            yield return null;
         }
     }
 

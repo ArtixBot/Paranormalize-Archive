@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RenderStory : MonoBehaviour
 {
@@ -79,14 +79,14 @@ public class RenderStory : MonoBehaviour
 					OnClickChoiceButton (choice);
 				});
 			}
-		}
-        // If we've read all the content and there's no choices, the story is finished!
-		// else {
+		} else {
+			// If we've read all the content and there's no choices, the story is finished!
+			StartCoroutine(ReturnToOverworld());
 		// 	Button choice = CreateChoiceView("End of story.\nRestart?");
 		// 	choice.onClick.AddListener(delegate{
 		// 		PlayStory();
 		// 	});
-		// }
+		}
     }
 
     void CreateDialogueBubble(string text){
@@ -170,4 +170,12 @@ public class RenderStory : MonoBehaviour
 			}
 		}
 	}
+
+    private IEnumerator ReturnToOverworld(){
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
+
+        while (!asyncLoad.isDone){
+            yield return null;
+        }
+    }
 }

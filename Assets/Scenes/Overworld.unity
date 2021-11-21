@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84b63ceb6390ae47980d1357b9f9d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encounterType: 3
+  encounterType: 0
   storyID: 
 --- !u!1 &346316004
 GameObject:
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a84b63ceb6390ae47980d1357b9f9d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encounterType: 5
+  encounterType: 4
   storyID: 
 --- !u!1 &1887313804
 GameObject:
@@ -822,6 +822,7 @@ GameObject:
   - component: {fileID: 1887313808}
   - component: {fileID: 1887313807}
   - component: {fileID: 1887313806}
+  - component: {fileID: 1887313809}
   m_Layer: 5
   m_Name: Rest Encounter
   m_TagString: Untagged
@@ -930,6 +931,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887313804}
   m_CullTransparentMesh: 1
+--- !u!114 &1887313809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887313804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84b63ceb6390ae47980d1357b9f9d65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  encounterType: 5
+  storyID: 
 --- !u!1 &2026776896
 GameObject:
   m_ObjectHideFlags: 0

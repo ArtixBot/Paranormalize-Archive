@@ -13,8 +13,7 @@ public class RenderEncounters : MonoBehaviour
     public TextMeshProUGUI zoneCount;
     private EncounterType[][] map;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         MapGeneration mapGenerator = new MapGeneration();
         map = mapGenerator.GenerateMap();
     }
