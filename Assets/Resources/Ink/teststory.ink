@@ -8,7 +8,8 @@ The player thinks... #exit:player #enter:enemy
 ...and thinks...
 ...and thinks... #enter:player
 {ally}: I think you should choose option A. #exit:player #enter:ally
-* [Option A]{player} chose option A. #enter:player #exit:ally
+* [Option A]
+    {player} chose option A. #enter:player #exit:ally
     "The fool chose option A!"  # enemy
 * [Option B]You chose option B. #enter:player #exit:ally
     "The fool chose option B!"  # enemy #exit:enemy

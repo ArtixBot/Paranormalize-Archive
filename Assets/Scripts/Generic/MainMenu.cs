@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     private IEnumerator LoadNegotiation(){
         //TODO: Set the GameState for character in the character selection menu instead!
         GameState.mainChar = new PlayerDeckard();
+        GameState.randomSeed = Random.Range(0, 1000000000);
         
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
 

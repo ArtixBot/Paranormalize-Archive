@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -37,10 +38,15 @@ public class RenderStory : MonoBehaviour
         textPrefab = Resources.Load("Prefabs/DialogBubble") as GameObject;
         // choicePrefab = Resources.Load("Prefabs/Button") as Button;
 
-        if (storyToRender == null){
+		Type storyClass = StoryLibrary.Instance.Lookup(GameState.currentStoryID);
+        if (storyClass == null){
             Debug.Log("No valid story was supplied; supplying test story instead");
             storyToRender = new StoryTest();
-        }
+        } else {
+			Debug.Log("this ran");
+			AbstractStory absStory = Activator.CreateInstance(storyClass) as AbstractStory;
+			storyToRender = absStory;
+		}
         storyToRender.SetupStory();
         story = storyToRender._inkStory;
         StartCoroutine(PlayStory());
