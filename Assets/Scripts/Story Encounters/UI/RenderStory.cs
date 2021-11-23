@@ -43,7 +43,6 @@ public class RenderStory : MonoBehaviour
             Debug.Log("No valid story was supplied; supplying test story instead");
             storyToRender = new StoryTest();
         } else {
-			Debug.Log("this ran");
 			AbstractStory absStory = Activator.CreateInstance(storyClass) as AbstractStory;
 			storyToRender = absStory;
 		}
@@ -64,9 +63,11 @@ public class RenderStory : MonoBehaviour
 			// Display the text on screen!
 			Debug.Log("Current line: " + text);
 			HandleActionTags(story.currentTags);
-            CreateDialogueBubble(text);
-			yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-			yield return new WaitForSeconds(0.01f);		// for some reason, MouseButtonUp() will cause two dialogue bubbles to pop up (it must be getting counted as true over two frames?)
+            if (text != "") {
+				CreateDialogueBubble(text);
+				yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
+				yield return new WaitForSeconds(0.01f);		// for some reason, MouseButtonUp() will cause two dialogue bubbles to pop up (it must be getting counted as true over two frames?)
+			}
 		}
 
         // Display all the choices, if there are any!
@@ -173,7 +174,6 @@ public class RenderStory : MonoBehaviour
 
     private IEnumerator ReturnToOverworld(){
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
-
         while (!asyncLoad.isDone){
             yield return null;
         }

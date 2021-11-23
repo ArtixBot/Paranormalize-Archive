@@ -11,6 +11,7 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
     public string storyID;      // story ID to use if a story encounter
 
     public void OnPointerClick(PointerEventData pointerEventData){
+        GameState.currentStage += 1;
         switch (encounterType){
             case EncounterType.ENEMY:
             case EncounterType.ELITE:
@@ -19,7 +20,7 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
                 break;
                 // enemy elite and boss encounters all switch the scene to negotiation
             case EncounterType.EVENT:
-                StartCoroutine(LoadStory(storyID));
+                StartCoroutine(LoadStory("TEST_STORY"));
                 break;
             case EncounterType.FERRYMAN:
                 StartCoroutine(LoadStory("FERRYMAN_STORY"));
@@ -33,10 +34,7 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
     }
 
     private IEnumerator LoadNegotiation(){
-        //TODO: Set the GameState for character in the character selection menu instead!
-        GameState.mainChar = new PlayerDeckard();
         GameState.randomSeed = Random.Range(0, 1000000000);
-        
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
 
         while (!asyncLoad.isDone){

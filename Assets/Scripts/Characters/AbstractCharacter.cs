@@ -109,8 +109,11 @@ public abstract class AbstractCharacter
         this.Draw(5 + drawMod);
     }
 
-    /// <summary> Finds and returns the first argument instance IF it exists. </summary>
+    /// <summary> Finds and returns the first argument instance IF it exists, returns null otherwise </summary>
     public AbstractArgument GetArgument(AbstractArgument argument){
+        if (argument.ID == this.coreArgument.ID){
+            return argument;
+        }
         foreach (AbstractArgument aa in this.nonCoreArguments){
             if (argument.ID == aa.ID){        // Seems like aa.stacks != 0 causes an issue. Removing for now.
                 return aa;

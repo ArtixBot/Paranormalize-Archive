@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System.Reflection;
 using UnityEngine;
 using GameEvent;
@@ -13,12 +14,13 @@ public class NegotiationManager : EventSubscriber
     public List<AbstractAction> actionQueue = new List<AbstractAction>();
     public List<AbstractCard> cardsPlayedThisTurn = new List<AbstractCard>();
 
+    public static TurnManager tm = TurnManager.Instance;
+    public static EventSystemManager em = EventSystemManager.Instance;
+    
     public Ambience ambience = Ambience.Instance;
-    public TurnManager tm = TurnManager.Instance;
-    public EventSystemManager em = EventSystemManager.Instance;
     public RenderNegotiation renderer;
 
-    public AbstractCharacter player = GameState.mainChar;
+    public AbstractCharacter player;
     public AbstractCharacter enemy;
 
     public int round = 1;
@@ -28,8 +30,7 @@ public class NegotiationManager : EventSubscriber
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
     public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar){
-
-        this.player = (this.player == null) ? new PlayerDeckard() : this.player;    // null check for player - if null, use Deckard as base
+        this.player = (GameState.mainChar == null) ? new PlayerDeckard() : GameState.mainChar;    // null check for player - if null, use Deckard as base
         this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
@@ -103,30 +104,39 @@ public class NegotiationManager : EventSubscriber
 
     // Game over!
     public void EndNegotiationLost(){
+        actionQueue.Clear();
         Cleanup(player);
         Cleanup(enemy);
         Debug.Log("Player loses!");
-        actionQueue.Clear();
 
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
-        // change scene to loss
+        // TODO: Better end-of-negotiation handling, but for now return to Overworld
+        renderer.EndNegotiationRender();
     }
 
     // Victory!
     public void EndNegotiationWon(){
+        actionQueue.Clear();
         Cleanup(player);
         Cleanup(enemy);
         Debug.Log("Player wins!");
-        actionQueue.Clear();
 
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
-        // change scene to win
+        // TODO: Better end-of-negotiation handling, but for now return to Overworld
+        renderer.EndNegotiationRender();
+    }
+
+    private IEnumerator ReturnToOverworld(){
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
+        while (!asyncLoad.isDone){
+            yield return null;
+        }
     }
 
     public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractArgument target){

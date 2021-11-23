@@ -22,11 +22,11 @@ public class MapGeneration{
         map[10] = new EncounterType[1]{EncounterType.REST};
         map[11] = new EncounterType[1]{EncounterType.BOSS};
 
-        for (int i = 0; i < map.Length; i++){
-            for (int j = 0; j < map[i].Length; j++){
-                Debug.Log("Encounter at zone " + i + ": " + map[i][j]);
-            }
-        }
+        // for (int i = 0; i < map.Length; i++){
+        //     for (int j = 0; j < map[i].Length; j++){
+        //         Debug.Log("Encounter at zone " + i + ": " + map[i][j]);
+        //     }
+        // }
         return map;
     }
 

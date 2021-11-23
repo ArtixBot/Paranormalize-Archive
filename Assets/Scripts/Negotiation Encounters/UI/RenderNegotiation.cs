@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 // Renders the negotiation screen. Also invokes NegotiationManager's StartNegotiation() to set up game state.
@@ -185,5 +186,16 @@ public class RenderNegotiation : MonoBehaviour
             yield return null;
         }
         nm.SelectedCards(screen.selectedCards);
+    }
+
+    public void EndNegotiationRender(){
+        StartCoroutine(ReturnToOverworld());
+    }
+
+    private IEnumerator ReturnToOverworld(){
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
+        while (!asyncLoad.isDone){
+            yield return null;
+        }
     }
 }

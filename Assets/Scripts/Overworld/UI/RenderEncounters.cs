@@ -12,8 +12,7 @@ public class RenderEncounters : MonoBehaviour
     public Button optionC;
     public TextMeshProUGUI zoneCount;
     private EncounterType[][] map;
-    // Start is called before the first frame update
-    void Start(){
+    void Awake(){
         MapGeneration mapGenerator = new MapGeneration();
         map = mapGenerator.GenerateMap();
     }

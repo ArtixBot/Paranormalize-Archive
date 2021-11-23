@@ -21,15 +21,13 @@ public class MainMenu : MonoBehaviour
     }
 
     void PlayGame(){
-        StartCoroutine(LoadNegotiation());
+        StartCoroutine(LoadOverworld());
     }
 
-    private IEnumerator LoadNegotiation(){
-        //TODO: Set the GameState for character in the character selection menu instead!
-        GameState.mainChar = new PlayerDeckard();
+    private IEnumerator LoadOverworld(){
         GameState.randomSeed = Random.Range(0, 1000000000);
         
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
 
         while (!asyncLoad.isDone){
             yield return null;

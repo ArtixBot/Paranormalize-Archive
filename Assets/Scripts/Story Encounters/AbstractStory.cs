@@ -18,7 +18,7 @@ public abstract class AbstractStory {
     }
 
 	// Creates a new Story object with the compiled story which we can then play!
-	public void SetupStory () {
+	public virtual void SetupStory () {
 		_inkStory = new Story (inkAsset.text);
         if(OnCreateStory != null) OnCreateStory(_inkStory);
 		

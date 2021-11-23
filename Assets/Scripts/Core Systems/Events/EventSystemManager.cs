@@ -79,7 +79,11 @@ public class EventSystemManager
         List<EventSubscriber> subscribers = gameEvents[eventData.type];
         for (int i = subscribers.Count - 1; i >= 0; i--){
             EventSubscriber subscriber = subscribers[i];
-            subscriber.NotifyOfEvent(eventData);
+            try {
+                subscriber.NotifyOfEvent(eventData);
+            } catch (Exception ex){
+                Debug.Log("Exception occurred w/ action: " + ex.Message);
+            }
         }
 
         // update ui
