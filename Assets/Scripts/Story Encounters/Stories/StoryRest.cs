@@ -19,5 +19,9 @@ public class StoryRest : AbstractStory
                 GameState.mainChar.coreArgument.curHP = GameState.mainChar.coreArgument.maxHP;
             }
         });
+
+        this._inkStory.BindExternalFunction("gainMastery", () => {
+            GameState.mastery += 1;
+        });
     }
 }

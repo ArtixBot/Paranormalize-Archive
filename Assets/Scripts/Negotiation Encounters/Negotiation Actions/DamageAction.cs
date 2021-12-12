@@ -77,8 +77,10 @@ public class DamageAction : AbstractAction {
             }
         }
 
+
         this.target.curHP -= damageDealt;
         EventSystemManager.Instance.TriggerEvent(new EventArgAttackedUnblocked(target, damageDealt));
+
 
         // Check to see if the target argument should be destroyed.
         if (this.target.curHP <= 0){
@@ -95,7 +97,6 @@ public class DamageAction : AbstractAction {
 
     private int CalculateDamage(int initialDamage){
         int damage = initialDamage;
-        // Debug.Log("Initial damage: " + damage);
 
         // Perform damage calculations for cards.
         if (attackingCard != null){

@@ -31,7 +31,8 @@ public class NegotiationManager : EventSubscriber
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
     public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar){
         this.player = (GameState.mainChar == null) ? new PlayerDeckard() : GameState.mainChar;    // null check for player - if null, use Deckard as base
-        this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
+        // this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
+        this.enemy = new TestEnemy();
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
 
@@ -104,7 +105,6 @@ public class NegotiationManager : EventSubscriber
 
     // Game over!
     public void EndNegotiationLost(){
-        actionQueue.Clear();
         Cleanup(player);
         Cleanup(enemy);
         Debug.Log("Player loses!");
@@ -113,13 +113,14 @@ public class NegotiationManager : EventSubscriber
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
+        this.currentlyResolving = false;
+
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
         renderer.EndNegotiationRender();
     }
 
     // Victory!
     public void EndNegotiationWon(){
-        actionQueue.Clear();
         Cleanup(player);
         Cleanup(enemy);
         Debug.Log("Player wins!");
@@ -128,15 +129,10 @@ public class NegotiationManager : EventSubscriber
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
+        this.currentlyResolving = false;
+
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
         renderer.EndNegotiationRender();
-    }
-
-    private IEnumerator ReturnToOverworld(){
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
-        while (!asyncLoad.isDone){
-            yield return null;
-        }
     }
 
     public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractArgument target){
@@ -174,9 +170,12 @@ public class NegotiationManager : EventSubscriber
 
     // post-negotiation cleanup helper function
     public void Cleanup(AbstractCharacter character){
-        character.GetDrawPile().Clear();
+        actionQueue.Clear();
+        character.GetArguments().Clear();
         character.hand.Clear();
+        character.GetDrawPile().Clear();
         character.GetDiscardPile().Clear();
+        character.GetScourPile().Clear();
     }
 
     // Handle post-card playing effects (move card to discard pile, spend AP costs, etc.)

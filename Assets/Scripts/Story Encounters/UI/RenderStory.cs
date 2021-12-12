@@ -66,7 +66,7 @@ public class RenderStory : MonoBehaviour
             if (text != "") {
 				CreateDialogueBubble(text);
 				yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-				yield return new WaitForSeconds(0.01f);		// for some reason, MouseButtonUp() will cause two dialogue bubbles to pop up (it must be getting counted as true over two frames?)
+				yield return new WaitForSeconds(0.01f);		// for some reason, MouseButtonUp() will cause two dialogue bubbles to pop up (it must be getting counted as true over two updated cycles?)
 			}
 		}
 
