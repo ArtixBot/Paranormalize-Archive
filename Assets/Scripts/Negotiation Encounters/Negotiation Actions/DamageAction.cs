@@ -58,10 +58,14 @@ public class DamageAction : AbstractAction {
 
     public override int Resolve(){
         // Set a random target if none exists.
-        if (target == null){
+        if (this.target == null){
             int range = argumentOwner.GetTargetableArguments().Count + 1;
             int index = UnityEngine.Random.Range(0, range);
-            this.target = (index == 0) ? argumentOwner.GetCoreArgument() : argumentOwner.GetTargetableArguments()[index - 1];
+            if (index == 0){
+                this.target = argumentOwner.GetCoreArgument();
+            } else {
+                this.target = argumentOwner.GetTargetableArguments()[index - 1];
+            }
         }
         int damageDealt = CalculateDamage(UnityEngine.Random.Range(damageMin, damageMax+1));
         

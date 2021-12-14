@@ -12,6 +12,7 @@ public abstract class AbstractArgument : EventSubscriber
 
     // Gameplay constants
     public string ID;
+    public string INSTANCE_ID;
     public AbstractCharacter OWNER;
     public ArgumentOrigin ORIGIN;
 
@@ -29,8 +30,12 @@ public abstract class AbstractArgument : EventSubscriber
     
     // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
 
-    public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events by overriding this function.
+    public virtual void TriggerOnDeploy(){
+        this.INSTANCE_ID = this.ID + "_" + Random.Range(0, 10000);
+    }     // Subscribe to all relevant events by overriding this function.
+
     public virtual void TriggerOnDestroy(){     // Win/lose if it's a core argument.
+        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
         if (this.isCore){
             if (this.OWNER.FACTION == FactionType.PLAYER){
                 NegotiationManager.Instance.EndNegotiationLost();
@@ -40,7 +45,6 @@ public abstract class AbstractArgument : EventSubscriber
                 return;
             }
         }
-        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
     }
 
     public bool IsDeployed(){

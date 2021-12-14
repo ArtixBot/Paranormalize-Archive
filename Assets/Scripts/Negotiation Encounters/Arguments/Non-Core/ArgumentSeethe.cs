@@ -26,7 +26,8 @@ public class ArgumentSeethe : AbstractArgument
     public override void NotifyOfEvent(AbstractEvent eventData){    
         EventTurnStart person = (EventTurnStart) eventData;
         if (person.start == this.OWNER){
-            NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(this.OWNER), stacks, stacks, this));
+            AbstractCharacter opponent = TurnManager.Instance.GetOtherCharacter(this.OWNER);
+            NegotiationManager.Instance.AddAction(new DamageAction(null, opponent, stacks, stacks, this));
         }
     }
 }

@@ -114,6 +114,7 @@ public class NegotiationManager : EventSubscriber
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
         this.currentlyResolving = false;
+        // tm.GetTurnList().Clear();
 
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
         renderer.EndNegotiationRender();
@@ -123,8 +124,10 @@ public class NegotiationManager : EventSubscriber
     public void EndNegotiationWon(){
         Cleanup(player);
         Cleanup(enemy);
+        enemy = null;
         Debug.Log("Player wins!");
 
+        tm.GetTurnList().Clear();
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
@@ -171,8 +174,8 @@ public class NegotiationManager : EventSubscriber
     // post-negotiation cleanup helper function
     public void Cleanup(AbstractCharacter character){
         actionQueue.Clear();
+        character.GetHand().Clear();
         character.GetArguments().Clear();
-        character.hand.Clear();
         character.GetDrawPile().Clear();
         character.GetDiscardPile().Clear();
         character.GetScourPile().Clear();
@@ -180,6 +183,7 @@ public class NegotiationManager : EventSubscriber
 
     // Handle post-card playing effects (move card to discard pile, spend AP costs, etc.)
     public override void NotifyOfEvent(AbstractEvent eventData){
+        Debug.Log("People in turnlist: " + tm.GetTurnList().Count);
         EventCardPlayed data = (EventCardPlayed) eventData;
         AbstractCard cardPlayed = data.cardPlayed;
         cardsPlayedThisTurn.Add(data.cardPlayed);
