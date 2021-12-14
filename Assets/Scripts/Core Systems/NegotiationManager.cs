@@ -124,7 +124,6 @@ public class NegotiationManager : EventSubscriber
     public void EndNegotiationWon(){
         Cleanup(player);
         Cleanup(enemy);
-        enemy = null;
         Debug.Log("Player wins!");
 
         tm.GetTurnList().Clear();
