@@ -109,12 +109,12 @@ public class NegotiationManager : EventSubscriber
         Cleanup(enemy);
         Debug.Log("Player loses!");
 
+        tm.GetTurnList().Clear();
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
         this.currentlyResolving = false;
-        // tm.GetTurnList().Clear();
 
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
         renderer.EndNegotiationRender();
