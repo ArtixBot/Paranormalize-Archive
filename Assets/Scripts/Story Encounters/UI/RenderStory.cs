@@ -92,8 +92,11 @@ public class RenderStory : MonoBehaviour
 
     void CreateDialogueBubble(string text){
         GameObject bubble = Instantiate (textPrefab) as GameObject;
+        bubble.GetComponent<DialogBubble>().textContent.text = text;
+
 		if (CurrentStoryContainsTag("enemy")){
 			bubble.GetComponent<Image>().color = new Color(1f, 0.75f, 0.75f);
+			bubble.GetComponent<DialogBubble>().textContent.alignment = TextAlignmentOptions.Right;
 		} else if (CurrentStoryContainsTag("ally")){
 			bubble.GetComponent<Image>().color = new Color(0.75f, 1f, 0.75f);
 		} else if (CurrentStoryContainsTag("narrator")){
@@ -101,7 +104,6 @@ public class RenderStory : MonoBehaviour
 		} else {		// assume player
 			bubble.GetComponent<Image>().color = new Color(0.75f, 0.75f, 1f, 0.75f);
 		}
-        bubble.GetComponent<DialogBubble>().textContent.text = text;
         bubble.transform.SetParent(dialogFeed.transform, false);
     }
 

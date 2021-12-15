@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RenderMasteryText : MonoBehaviour
+public class RenderMoneyText : MonoBehaviour
 {
-    public TextMeshProUGUI masteryText;
+    public TextMeshProUGUI moneyText;
     // Start is called before the first frame update
     void Awake(){
-        masteryText = gameObject.GetComponent(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
+        moneyText = gameObject.GetComponent(typeof(TextMeshProUGUI)) as TextMeshProUGUI;
     }
 
     // Update is called once per frame
     void Update(){
-        masteryText.text = $"{GameState.mastery}";
+        moneyText.text = $"{GameState.money}";
     }
 }

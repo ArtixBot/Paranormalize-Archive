@@ -34,7 +34,7 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
     }
 
     private IEnumerator LoadNegotiation(){
-        GameState.randomSeed = Random.Range(0, 1000000000);
+        GameState.rngSeed = Random.Range(0, 1000000000);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Negotiation");
 
         while (!asyncLoad.isDone){

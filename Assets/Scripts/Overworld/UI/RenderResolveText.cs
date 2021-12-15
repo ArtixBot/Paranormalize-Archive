@@ -14,6 +14,6 @@ public class RenderResolveText : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        resolveText.text = $"Resolve: {GameState.mainChar.coreArgument.curHP}/{GameState.mainChar.coreArgument.maxHP}";
+        resolveText.text = $"{GameState.mainChar.coreArgument.curHP}/{GameState.mainChar.coreArgument.maxHP}";
     }
 }

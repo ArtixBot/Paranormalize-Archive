@@ -7,12 +7,14 @@ using Ink.Runtime;
 public abstract class AbstractStory {
     public static event Action<Story> OnCreateStory;
 
+    public int WEIGHT;              // Story weight. Higher weight = more likely to appear in a random event.
     public string STORY_ID;         // Story ID
     public TextAsset inkAsset;      // ink .json compiled file
     public Story _inkStory;         // .ink file. Derives automatically from inkAsset.
 
-    public AbstractStory(string ID, string textAssetPath){
+    public AbstractStory(string ID, string textAssetPath, int weight = 0){
         this.STORY_ID = ID;
+        this.WEIGHT = weight;
         this.inkAsset = Resources.Load<TextAsset>("Ink/" + textAssetPath);
         this._inkStory = new Story(this.inkAsset.text);
     }

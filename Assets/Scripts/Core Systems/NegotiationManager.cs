@@ -6,10 +6,10 @@ using System.Reflection;
 using UnityEngine;
 using GameEvent;
 
+public enum RewardType {NORMAL, ELITE, BOSS};
 // Handles negotiation. Also stores negotiation state variables, like current round, how many cards were played during this turn, etc.
 // Singleton.
-public class NegotiationManager : EventSubscriber
-{
+public class NegotiationManager : EventSubscriber {
     public static readonly NegotiationManager Instance = new NegotiationManager();
     public List<AbstractAction> actionQueue = new List<AbstractAction>();
     public List<AbstractCard> cardsPlayedThisTurn = new List<AbstractCard>();
@@ -27,12 +27,14 @@ public class NegotiationManager : EventSubscriber
     public int numCardsPlayedThisTurn = 0;
     public int argumentsDeployedThisNegotiation = 0;
 
+    private RewardType rewardsOnWin;
+
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
-    public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar){
+    public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar, RewardType rewardsOnWin = RewardType.NORMAL){
         this.player = (GameState.mainChar == null) ? new PlayerDeckard() : GameState.mainChar;    // null check for player - if null, use Deckard as base
-        // this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
-        this.enemy = new TestEnemy();
+        this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
+        this.rewardsOnWin = rewardsOnWin;
         tm.AddToTurnList(player);
         tm.AddToTurnList(enemy);
 
@@ -126,12 +128,16 @@ public class NegotiationManager : EventSubscriber
         Cleanup(enemy);
         Debug.Log("Player wins!");
 
+        // cleanup negotiation state
         tm.GetTurnList().Clear();
         this.round = 1;
         this.numCardsPlayedThisTurn = 0;
         this.argumentsDeployedThisNegotiation = 0;
         ambience.SetState(AmbienceState.TENSE);
         this.currentlyResolving = false;
+
+        // allocate rewards to the player
+        AllocateRewards(rewardsOnWin);
 
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
         renderer.EndNegotiationRender();
@@ -234,5 +240,22 @@ public class NegotiationManager : EventSubscriber
         em.TriggerEvent(new EventCardPlayed(caller, caller.OWNER));
         this.caller = null;
         renderer.Redraw();
+    }
+
+    // Give rewards to the player on victory
+    private void AllocateRewards(RewardType type){
+        switch (type){
+            case RewardType.NORMAL:
+                GameState.money += (int)Math.Round(UnityEngine.Random.Range(20, 40) * GameState.moneyGainMod);
+                break;
+            case RewardType.ELITE:
+                GameState.money += (int)Math.Round(UnityEngine.Random.Range(40, 60) * GameState.moneyGainMod);
+                GameState.mastery += 1;
+                break;
+            case RewardType.BOSS:
+                GameState.money += (int)Math.Round(UnityEngine.Random.Range(90, 110) * GameState.moneyGainMod);
+                GameState.mastery += 1;
+                break;
+        }
     }
 }

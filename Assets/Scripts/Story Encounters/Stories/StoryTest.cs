@@ -7,5 +7,5 @@ public class StoryTest : AbstractStory
     public static string storyID = "TEST_STORY";
     private static string filepath = "teststory";       // don't need to use .json ending
 
-    public StoryTest() : base(storyID, filepath){}
+    public StoryTest() : base(storyID, filepath, 0){}
 }

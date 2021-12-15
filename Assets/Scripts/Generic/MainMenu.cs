@@ -24,9 +24,7 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(LoadOverworld());
     }
 
-    private IEnumerator LoadOverworld(){
-        GameState.randomSeed = Random.Range(0, 1000000000);
-        
+    private IEnumerator LoadOverworld(){        
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Overworld");
 
         while (!asyncLoad.isDone){
