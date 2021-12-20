@@ -20,21 +20,14 @@ public class ArgumentSeethePlus : AbstractArgument
 
     public override void TriggerOnDeploy(){
         base.TriggerOnDeploy();
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
         EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){    
-        if (eventData.type == EventType.TURN_START){
-            EventTurnStart person = (EventTurnStart) eventData;
-            if (person.start == this.OWNER){
-                NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(this.OWNER), stacks, stacks, this));
-            }
-        } else if (eventData.type == EventType.TURN_END){
-            EventTurnEnd person = (EventTurnEnd) eventData;
-            if (person.end == this.OWNER){
-                this.stacks += 1;
-            }
+        EventTurnEnd person = (EventTurnEnd) eventData;
+        if (person.end == this.OWNER){
+            NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(this.OWNER), stacks, stacks, this));
+            this.stacks += 1;
         }
     }
 }

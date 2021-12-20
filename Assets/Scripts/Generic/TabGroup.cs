@@ -21,9 +21,7 @@ public class TabGroup : MonoBehaviour
     public void Subscribe(TabButton button){
         tabButtons.Add(button);
         button.index = tabButtons.Count - 1;
-        Debug.Log("Adding index: " + button.index);
         RerenderTabs();
-        Debug.Log(GameObject.Find("Page Group"));
     }
 
     public void OnTabEnter(TabButton button){

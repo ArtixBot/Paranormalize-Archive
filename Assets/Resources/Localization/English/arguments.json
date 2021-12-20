@@ -101,11 +101,11 @@
     },
     "SEETHE": {
         "NAME": "Seethe",
-        "DESC": "<b>Swarm</b>.\nAt the start of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument."
+        "DESC": "<b>Swarm</b>.\nAt the end of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument."
     },
     "SEETHE_PLUS": {
         "NAME": "Seethe+",
-        "DESC": "<b>Swarm</b>.\nAt the start of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument.\n\nAt the end of [OWNER]'s turn, add 1 stack to this."
+        "DESC": "<b>Swarm</b>.\nAt the end of [OWNER]'s turn, deal [STACKS] damage to a random enemy argument, then add 1 stack to this."
     },
     "SIMMER": {
         "NAME": "Simmer",

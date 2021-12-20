@@ -43,7 +43,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.origRotation = transform.rotation;
         this.origPos = transform.position;
         this.isInCardOverlay = transform.parent.name == "Card Display";         // default to false since cards are primarily in the hand only
-        this.isInDeckOverlay = transform.parent.parent.parent.parent.name == "ViewDeckDisplay";     // oh god
+        this.isInDeckOverlay = GameObject.Find("ViewDeckDisplay") != null;     // TODO: oh god why, please use better code
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
@@ -115,8 +115,11 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         // on click, if the card is in the deck view overlay, is not upgraded, and a mastery point is available - upgrade it.
         if (isInDeckOverlay){
             if (!reference.isUpgraded && GameState.mastery > 0){
+                GameObject deckOverlay = GameObject.Find("ViewDeckDisplay");
                 GameState.mastery -= 1;
                 reference.Upgrade();
+                deckOverlay.SetActive(false);        // refresh deck overlay
+                deckOverlay.SetActive(true);
             }
             return;
         }

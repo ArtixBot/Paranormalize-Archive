@@ -20,12 +20,12 @@ public class ArgumentSeethe : AbstractArgument
 
     public override void TriggerOnDeploy(){
         base.TriggerOnDeploy();
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){    
-        EventTurnStart person = (EventTurnStart) eventData;
-        if (person.start == this.OWNER){
+        EventTurnEnd person = (EventTurnEnd) eventData;
+        if (person.end == this.OWNER){
             AbstractCharacter opponent = TurnManager.Instance.GetOtherCharacter(this.OWNER);
             NegotiationManager.Instance.AddAction(new DamageAction(null, opponent, stacks, stacks, this));
         }
