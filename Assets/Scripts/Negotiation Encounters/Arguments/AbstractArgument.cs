@@ -21,6 +21,7 @@ public abstract class AbstractArgument : EventSubscriber
     public int curHP;       // Current resolve
     public int poise;     // Poise value
     public int stacks;      // Stack count
+    public bool isPriorityTarget = false;  // If true, enemies will target this argument first (default false). Use for decoy arguments.
     public bool isCore = false; // Is a core argument (default false)
     public bool isTrait = false;    // Is a trait (default false). Traits cannot be destroyed.
 

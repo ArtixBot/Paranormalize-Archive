@@ -28,7 +28,7 @@ public class SelectCardOverlay : MonoBehaviour
 	void OnEnable(){
 		// initialization and cleanup from previous instance
         cardPrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
-        populateGridLayout = transform.Find("Scroll View/Viewport/Content").gameObject;
+        populateGridLayout = transform.Find("Scroll View/Viewport/Card Display").gameObject;
 		confirmButton = transform.Find("Button").gameObject.GetComponent<Button>();
 		title = transform.Find("Title").gameObject.GetComponent<TextMeshProUGUI>();
 		confirmButton.onClick.AddListener(ReturnSelectedCards);

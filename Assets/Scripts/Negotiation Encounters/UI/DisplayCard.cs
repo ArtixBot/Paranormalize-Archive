@@ -14,7 +14,8 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public Vector3 onHoverScaleAmount = new Vector3(0.1f, 0.1f, 0f);
     public Vector3 onHoverMoveAmount = new Vector3(0, 100, 0);
-    public bool isInCardOverlay;
+    public bool isInCardOverlay;        // is true when in the card selection (choose 0-X cards) overlay
+    public bool isInDeckOverlay;        // is true when in the deck view overlay and for compendium view
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
     private Image cardBG;
@@ -41,7 +42,8 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.origScale = transform.localScale;
         this.origRotation = transform.rotation;
         this.origPos = transform.position;
-        this.isInCardOverlay = transform.parent.name != "HandZone";         // default to false since cards are primarily in the hand only
+        this.isInCardOverlay = transform.parent.name == "Card Display";         // default to false since cards are primarily in the hand only
+        this.isInDeckOverlay = transform.parent.parent.parent.parent.name == "ViewDeckDisplay";     // oh god
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
@@ -110,6 +112,14 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
 
     public void OnPointerClick(PointerEventData eventData){
+        // on click, if the card is in the deck view overlay, is not upgraded, and a mastery point is available - upgrade it.
+        if (isInDeckOverlay){
+            if (!reference.isUpgraded && GameState.mastery > 0){
+                GameState.mastery -= 1;
+                reference.Upgrade();
+            }
+            return;
+        }
         if (isInCardOverlay){
             selectedInCardOverlay = !selectedInCardOverlay;
             // TODO: Probably change from GameObject.Find("SelectCardOverlay(Clone)") to instead grab parent directly

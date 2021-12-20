@@ -12,8 +12,17 @@ public class ArgumentStrawman : AbstractArgument
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
         this.IMG = Resources.Load<Sprite>("Images/Arguments/boring");
 
-        this.stacks = 4;
+        this.isPriorityTarget = true;
+    }
+
+    public override void TriggerOnDeploy(){
+        base.TriggerOnDeploy();
         this.curHP = this.stacks;
+        this.maxHP = this.stacks;
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
+    }
+
+    public override void NotifyOfEvent(AbstractEvent eventData){
         this.maxHP = this.stacks;
     }
 }

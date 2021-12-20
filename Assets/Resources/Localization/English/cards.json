@@ -287,6 +287,10 @@
         "NAME": "Stonewall",
         "DESC": "Apply [P] Poise."
     },
+    "DECKARD_STRAWMAN": {
+        "NAME": "Strawman",
+        "DESC": "Deploy [S] Strawman."
+    },
     "DECKARD_TANTRUM": {
         "NAME": "Tantrum",
         "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."

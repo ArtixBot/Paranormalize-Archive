@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 5315733042763288711}
   - component: {fileID: 5315733042763288710}
   m_Layer: 5
-  m_Name: Content
+  m_Name: Card Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
