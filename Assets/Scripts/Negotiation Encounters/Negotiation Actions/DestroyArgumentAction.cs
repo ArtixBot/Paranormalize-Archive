@@ -46,7 +46,7 @@ public class DestroyArgumentAction : AbstractAction {
                     NegotiationManager.Instance.actionQueue.RemoveAt(i);
                 }
             }
-            owner.nonCoreArguments.Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
+            owner.GetArguments().Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
         }
         return 0;
     }

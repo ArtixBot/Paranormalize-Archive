@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class PlayerAi : AbstractCharacter
 {
-    public PlayerAi(){
-        this.NAME = "Ai";
-        this.FACTION = FactionType.PLAYER;
-        this.coreArgument = new ArgumentCoreAi();
-        this.coreArgument.OWNER = this;
-        this.maxAP = 3;
-        
-        this.AddStarterDeck();
-    }
+    private static string playerID = "AI";
+    private static string playerName = "Ai";
+    private static AbstractArgument playerCoreArg = new ArgumentCoreAi();
+
+    public PlayerAi(): base(playerID, playerName, playerCoreArg, true){}
 
     public override void AddStarterDeck(){
         this.AddCardToPermaDeck("AI_BOORISH");

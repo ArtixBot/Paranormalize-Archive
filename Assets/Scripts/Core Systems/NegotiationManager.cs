@@ -73,8 +73,8 @@ public class NegotiationManager : EventSubscriber {
         renderer.Redraw();
 
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
-            AbstractEnemy enemy = (AbstractEnemy) tm.GetCurrentCharacter();
-            List<(AbstractCard, AbstractArgument)> playOrder = enemy.CalculateCardsToPlay();
+            // AbstractEnemy enemy = (AbstractEnemy) tm.GetCurrentCharacter();
+            // List<(AbstractCard, AbstractArgument)> playOrder = enemy.CalculateCardsToPlay();
             // for (int i = 0; i < playOrder.Count; i++){
             //     Debug.Log("Enemy plays " + playOrder[i].Item1 + " on " + playOrder[i].Item2 + "!");
             //     NegotiationManager.Instance.PlayCard(playOrder[i].Item1, enemy, playOrder[i].Item2);
@@ -179,6 +179,7 @@ public class NegotiationManager : EventSubscriber {
     // post-negotiation cleanup helper function
     public void Cleanup(AbstractCharacter character){
         actionQueue.Clear();
+        character.coreArgument.poise = 0;
         character.GetHand().Clear();
         character.GetArguments().Clear();
         character.GetDrawPile().Clear();
@@ -244,15 +245,39 @@ public class NegotiationManager : EventSubscriber {
 
     // Give rewards to the player on victory
     private void AllocateRewards(RewardType type){
+        List<CardRarity> drafts = new List<CardRarity>();            // a 3-element list. The rarity of the card is generated randomly for each element; once a rarity is selected, choose a random card from that rarity to use.
+        List<AbstractCard> choices = new List<AbstractCard>();
+
         switch (type){
             case RewardType.NORMAL:
+                // Each draft is 70% C, 25% UC, 5% R. 
+                for (int i = 0; i < 3; i++){
+                    int rng = UnityEngine.Random.Range(0, 101);
+                    if (0 <= rng && rng < 70){
+                        drafts.Add(CardRarity.COMMON);
+                    } else if (rng < 95){
+                        drafts.Add(CardRarity.UNCOMMON);
+                    } else {
+                        drafts.Add(CardRarity.RARE);
+                    }
+                }
                 GameState.money += (int)Math.Round(UnityEngine.Random.Range(20, 40) * GameState.moneyGainMod);
                 break;
             case RewardType.ELITE:
+                // Each draft is 80% UC, 20% R.
+                for (int i = 0; i < 3; i++){
+                    int rng = UnityEngine.Random.Range(0, 101);
+                    if (0 <= rng && rng < 80){
+                        drafts.Add(CardRarity.UNCOMMON);
+                    } else {
+                        drafts.Add(CardRarity.RARE);
+                    }
+                }
                 GameState.money += (int)Math.Round(UnityEngine.Random.Range(40, 60) * GameState.moneyGainMod);
                 GameState.mastery += 1;
                 break;
             case RewardType.BOSS:
+                drafts = new List<CardRarity>{CardRarity.RARE, CardRarity.RARE, CardRarity.RARE};   // Each draft is 100% R.
                 GameState.money += (int)Math.Round(UnityEngine.Random.Range(90, 110) * GameState.moneyGainMod);
                 GameState.mastery += 1;
                 break;

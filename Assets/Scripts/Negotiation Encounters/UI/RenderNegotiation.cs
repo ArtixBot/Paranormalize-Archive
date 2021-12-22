@@ -103,12 +103,12 @@ public class RenderNegotiation : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         
-        for (int i = 0; i < player.nonCoreArguments.Count; i++){
+        for (int i = 0; i < player.GetArguments().Count; i++){
             float angle = ((i+1) * Mathf.PI * 2f) / 10;     // 10 should be a placeholder number
             Vector3 newPos = new Vector3(parent.position.x + Mathf.Cos(angle) * radius, parent.position.y + Mathf.Sin(angle) * radius, 0);
             
             GameObject arg = Instantiate(argPrefab, newPos, Quaternion.identity);
-            arg.GetComponent<DisplayArgument>().reference = player.nonCoreArguments[i];
+            arg.GetComponent<DisplayArgument>().reference = player.GetArguments()[i];
             arg.transform.SetParent(parent);
             arg.SetActive(true);
         }

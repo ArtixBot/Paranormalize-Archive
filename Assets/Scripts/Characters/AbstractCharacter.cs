@@ -8,12 +8,13 @@ using GameEvent;
 public enum FactionType {PLAYER, ENEMY};
 public abstract class AbstractCharacter
 {
+    public string ID;
     public string NAME;     // Character name
     public FactionType FACTION;
     
     // HP is based on your core argument.
     public AbstractArgument coreArgument;
-    public List<AbstractArgument> nonCoreArguments = new List<AbstractArgument>();
+    private List<AbstractArgument> nonCoreArguments = new List<AbstractArgument>();
     
     // STAT MODIFIERS
     public int drawMod          = 0;                // At end of turn, draw 5 + <drawMod>
@@ -30,13 +31,6 @@ public abstract class AbstractCharacter
     // When playing an attack, damage dealt by the character is X = (damage +  dmgDealtAdd + dmgDealtTypeAdd) * (dmgDealtMult + dmgDealtTypeMult)
     // The argument taking damage is then modified by (X + AbstractArgument.dmgTakenAdd) * AbstractArgument.dmgTakenMult
 
-    public Deck permaDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
-
-    public List<AbstractCard> hand = new List<AbstractCard>();
-    protected Deck drawPile = new Deck();
-    protected Deck discardPile = new Deck();
-    protected Deck scourPile = new Deck();
-
     public bool canPlayCards = true;
     public bool canPlayAttacks = true;
     public bool canPlaySkills = true;
@@ -46,6 +40,23 @@ public abstract class AbstractCharacter
     public bool canPlayInfluence = true;
     public bool canGainPoise = true;
 
+    public Deck permaDeck = new Deck();        // The "permanent deck" of a character. At the start of combat, deep-copy the contents of this deck to drawPile, shuffle drawPile, then draw <X> cards from it.
+
+    public List<AbstractCard> hand = new List<AbstractCard>();
+    protected Deck drawPile = new Deck();
+    protected Deck discardPile = new Deck();
+    protected Deck scourPile = new Deck();
+
+    public AbstractCharacter(string ID, string NAME, AbstractArgument coreArgument, bool isPlayerFaction){
+        this.ID = ID;
+        this.NAME = NAME;
+        this.coreArgument = coreArgument;
+        this.coreArgument.OWNER = this;
+        this.FACTION = (isPlayerFaction) ? FactionType.PLAYER : FactionType.ENEMY;
+        this.maxAP = 3;
+
+        this.AddStarterDeck();
+    }
 
     public abstract void AddStarterDeck();      // Should be called at the start of character creation (for players) or at start of combat (for enemies.)
 

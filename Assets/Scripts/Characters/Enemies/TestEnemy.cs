@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestEnemy : AbstractEnemy{
-    public TestEnemy(){
-        this.NAME = "Test Dummy";
-        this.FACTION = FactionType.ENEMY;
-        this.coreArgument = new ArgumentCoreNoAbility();
-        this.coreArgument.OWNER = this;
-        this.maxAP = 3;
+public class TestEnemy : AbstractCharacter {
+    
+    private static string charID = "TEST_DUMMY";
+    private static string charName = "Test Dummy";
+    private static AbstractArgument charCoreArg = new ArgumentCoreNoAbility();
 
-        this.AddStarterDeck();
-    }
+    public TestEnemy() : base(charID, charName, charCoreArg, false){}
 
     public override void AddStarterDeck(){
         // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
@@ -22,7 +19,7 @@ public class TestEnemy : AbstractEnemy{
     }
 
     // Calculate a list of cards to play and what arguments to target w/ each card
-    public override List<(AbstractCard, AbstractArgument)> CalculateCardsToPlay(){
+    public List<(AbstractCard, AbstractArgument)> CalculateCardsToPlay(){
         List<AbstractCard> currentHand = new List<AbstractCard>(this.GetHand());    // new keyword allows for "deep copy" since AbstractCard appears to be a primitive type... somehow
         List<(AbstractCard, AbstractArgument)> cardsToPlay = new List<(AbstractCard, AbstractArgument)>();
 

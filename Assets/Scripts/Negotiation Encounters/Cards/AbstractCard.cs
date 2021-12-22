@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CardOwner {};
 public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
 public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY, PIERCING};   // Determines what tooltips should appear when viewing the card
-public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
+public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, PARANORMAL = 4};
 
 public class CardCostMod {
     public int amount;
@@ -16,16 +17,19 @@ public class CardCostMod {
 public abstract class AbstractCard : EventSubscriber {
 
     // Gameplay
-    public string ID;               // Card ID
     public CardType TYPE;           // Card type
     public CardAmbient AMBIENCE;    // Card ambience type
     public CardRarity RARITY;       // Card rarity
     public int COST;                // Card cost
     public bool COSTS_ALL_AP = false;   // If true, playing this card costs all AP. Set the default cost of the card in-code to 0, though.
-
-    // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
     public AbstractCharacter OWNER; // Card owner (determined during AbstractCharacter.AddCardToPermaDeck)
     public List<CardTags> TAGS = new List<CardTags>();     // Card tags
+
+    // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
+
+    // Metadata
+    public string ID;               // Card ID
+    public string DRAFT_CHARACTER;  // Which character's drafts can this card appear in?
 
     // Cosmetic
     public string NAME;             // Card name
@@ -51,6 +55,7 @@ public abstract class AbstractCard : EventSubscriber {
                 this.TAGS.Add(tag);
             }
         }
+        this.DRAFT_CHARACTER = this.ID.Split('_')[0];       // Automatically derive the drafting char from the card ID since all card IDs follow the schemata CHARACTER_CARDNAME
     }
 
     // A bunch of checks to make sure that we can even play the card -- if we're not able to, don't activate card effects.

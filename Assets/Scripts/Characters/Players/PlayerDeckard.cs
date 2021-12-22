@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class PlayerDeckard : AbstractCharacter
 {
-    public PlayerDeckard(){
-        this.NAME = "Deckard";
-        this.FACTION = FactionType.PLAYER;
-        this.coreArgument = new ArgumentCoreDeckard();
-        this.coreArgument.OWNER = this;
-        this.maxAP = 3;
+    private static string playerID = "DECKARD";
+    private static string playerName = "Deckard";
+    private static AbstractArgument playerCoreArg = new ArgumentCoreDeckard();
 
-        this.AddStarterDeck();
-    }
+    public PlayerDeckard() : base(playerID, playerName, playerCoreArg, true){}
 
     public override void AddStarterDeck(){
         // this.AddCardToPermaDeck("DECKARD_COMEBACK");
