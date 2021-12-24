@@ -199,6 +199,7 @@ public class RenderNegotiation : MonoBehaviour
         rewardViewOverlay.listOfDraftCards = draftCards;
         
         rewardViewOverlay.gameObject.SetActive(true);       // editor bug causes this to run twice for some reason -- doesn't happen once built though
+        rewardViewOverlay.GetComponent<RewardViewOverlay>().Render();
     }
 
     public void EndNegotiationRender(){

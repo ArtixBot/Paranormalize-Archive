@@ -9,6 +9,7 @@ public class DeckardDefusal : AbstractCard {
     private static int cardCost = 1;
 
     public int DRAW = 3;
+    public int STACKS = 5;
 
     public DeckardDefusal() : base(
         cardID,
@@ -24,9 +25,8 @@ public class DeckardDefusal : AbstractCard {
         AmbienceState state = Ambience.Instance.GetState();
         if (state == AmbienceState.GUARDED || state == AmbienceState.TENSE){
             NegotiationManager.Instance.AddAction(new DrawCardsAction(source, DRAW));
-        } else {
-            NegotiationManager.Instance.AddAction(new ChangeAmbienceAction(-1));
         }
+        NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentAmbientShiftDialogue(), STACKS));
     }
 
     public override void Upgrade(){

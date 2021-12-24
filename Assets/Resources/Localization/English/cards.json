@@ -106,7 +106,7 @@
     },
     "DECKARD_DEFUSAL": {
         "NAME": "Defusal",
-        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards; otherwise, change Ambience one level towards Guarded."
+        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards.\nInfluential [S]."
     },
     "DECKARD_DEJA_VU": {
         "NAME": "Déjà Vu",

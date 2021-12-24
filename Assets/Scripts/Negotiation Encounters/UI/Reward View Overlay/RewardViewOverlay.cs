@@ -16,7 +16,7 @@ public class RewardViewOverlay : MonoBehaviour
     public int moneyToReward;
     public int masteryToReward;
 
-    void OnEnable(){        // editor bug causes this to get called TWICE in the editor (but works fine when building and running, feelsbad)
+    void OnEnable(){        // Unity bug causes this to get called TWICE when enabling a disabled game object -- wtf?
         rewardTextMoney = GameObject.FindObjectOfType<RenderRewardMoney>();
         rewardTextMastery = GameObject.FindObjectOfType<RenderRewardMastery>();
         draft = gameObject.GetComponentInChildren<DisplayDrafts>();
@@ -26,21 +26,13 @@ public class RewardViewOverlay : MonoBehaviour
         skipDraftButton = GameObject.Find("Panel/SkipDraftButton").GetComponent<Button>();
         skipDraftButton.onClick.AddListener(FinishRewardView);
 
-        rewardTextMoney.CallCoroutine(moneyToReward);
-        rewardTextMastery.CallCoroutine(masteryToReward);
         draft.Render();
     }
 
-    void OnDisable(){
-        RenderNegotiation renderer = GameObject.Find("RenderNegotiation").GetComponent<RenderNegotiation>();
-        renderer.EndNegotiationRender();
+    public void Render(){
+        rewardTextMoney.CallCoroutine(moneyToReward);
+        rewardTextMastery.CallCoroutine(masteryToReward);
     }
-
-    // private void Render(){
-    //     // Debug.Log($"Awarding {moneyToReward} to player");
-    //     rewardTextMoney.CallCoroutine(moneyToReward); 
-    //     rewardTextMastery.CallCoroutine(masteryToReward);
-    // }
 
     private void FinishRewardView(){
         StartCoroutine(ReturnToOverworld());

@@ -119,6 +119,10 @@
         "NAME": "Strawman",
         "DESC": "This must be destroyed before targeting [OWNER]'s other arguments.\n\nThis has max resolve equal to its stack count (currently [STACKS])."
     },
+    "STRESS": {
+        "NAME": "Stress",
+        "DESC": "If this reaches 8+ stacks, [OWNER] suffers a <b>meltdown</b>, then destroys this argument.\n\n<b>Meltdown</b>: halves the current resolve of [OWNER]'s core argument and adds a random PERMANENT negative Quirk.\n\nThis is immune to <b>Silence</b>."
+    },
     "MAGNETIC_PERSONALITY": {
         "NAME": "Magnetic Personality",
         "DESC": "Whenever the Ambience level changes, Deploy [STACKS] Finesse and [STACKS] Heated."
