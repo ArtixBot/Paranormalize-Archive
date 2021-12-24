@@ -16,6 +16,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Vector3 onHoverMoveAmount = new Vector3(0, 100, 0);
     public bool isInCardOverlay;        // is true when in the card selection (choose 0-X cards) overlay
     public bool isInDeckOverlay;        // is true when in the deck view overlay and for compendium view
+    public bool isInRewardOverlay;      // is true when this is in the reward overlay
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
     private Image cardBG;
@@ -43,7 +44,8 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.origRotation = transform.rotation;
         this.origPos = transform.position;
         this.isInCardOverlay = transform.parent.name == "Card Display";         // default to false since cards are primarily in the hand only
-        this.isInDeckOverlay = GameObject.Find("ViewDeckDisplay") != null;     // TODO: oh god why, please use better code
+        this.isInDeckOverlay = GameObject.Find("ViewDeckDisplay") != null;
+        this.isInRewardOverlay = GameObject.Find("RewardViewOverlay") != null;
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
@@ -123,6 +125,12 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
             return;
         }
+        if (isInRewardOverlay){
+            GameState.mainChar.AddCardToPermaDeck(this.reference.ID, this.reference.isUpgraded);
+            RenderNegotiation renderer = GameObject.Find("RenderNegotiation").GetComponent<RenderNegotiation>();
+            renderer.EndNegotiationRender();
+            return;
+        }
         if (isInCardOverlay){
             selectedInCardOverlay = !selectedInCardOverlay;
             // TODO: Probably change from GameObject.Find("SelectCardOverlay(Clone)") to instead grab parent directly
@@ -163,7 +171,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
         StopCoroutine(RunOnPointerExit());
-        if (!isInCardOverlay){
+        if (!isInCardOverlay && !isInRewardOverlay){
             this.siblingIndex = transform.GetSiblingIndex();
             // transform.position = transform.position + new Vector3(0, 100, 0);
             transform.SetAsLastSibling();
@@ -182,7 +190,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Quaternion lerpRotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, normalized);
             transform.rotation = lerpRotation;
 
-            if (!isInCardOverlay){
+            if (!isInCardOverlay && !isInRewardOverlay){
                 Vector3 lerpMove = Vector3.Lerp(this.origPos, maxMove, normalized);
                 transform.position = lerpMove;
             }
@@ -197,7 +205,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.keywordTooltips.Clear();
 
         StopCoroutine(RunOnPointerEnter());
-        if (!isInCardOverlay){
+        if (!isInCardOverlay && !isInRewardOverlay){
             // transform.position = transform.position + new Vector3(0, -100, 0);
             transform.SetSiblingIndex(siblingIndex);    
         }
@@ -217,7 +225,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Quaternion lerpRotation = Quaternion.Lerp(curRot, this.origRotation, normalized);
             transform.rotation = lerpRotation;
 
-            if (!isInCardOverlay){
+            if (!isInCardOverlay && !isInRewardOverlay){
                 Vector3 lerpPos = Vector3.Lerp(curPos, this.origPos, normalized);
                 transform.position = lerpPos;
             }

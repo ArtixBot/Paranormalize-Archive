@@ -15,7 +15,7 @@ public class DeckardInstincts : AbstractCard
         cardStrings,
         cardCost,
         CardAmbient.INFLUENCE,
-        CardRarity.COMMON,
+        CardRarity.STARTER,
         CardType.SKILL
     ){}
 

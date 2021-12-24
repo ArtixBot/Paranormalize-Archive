@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using System.Reflection;
 using UnityEngine;
@@ -49,6 +50,7 @@ public class NegotiationManager : EventSubscriber {
 
         this.player.curAP = player.maxAP;
         this.enemy.curAP = enemy.maxAP;
+        this.enemy.coreArgument.curHP = this.enemy.coreArgument.maxHP;
         
         player.Draw(5);
         enemy.Draw(5);
@@ -119,7 +121,7 @@ public class NegotiationManager : EventSubscriber {
         this.currentlyResolving = false;
 
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
-        renderer.EndNegotiationRender();
+        // renderer.EndNegotiationRender();
     }
 
     // Victory!
@@ -140,7 +142,7 @@ public class NegotiationManager : EventSubscriber {
         AllocateRewards(rewardsOnWin);
 
         // TODO: Better end-of-negotiation handling, but for now return to Overworld
-        renderer.EndNegotiationRender();
+        // renderer.EndNegotiationRender();
     }
 
     public bool PlayCard(AbstractCard card, AbstractCharacter source, AbstractArgument target){
@@ -245,42 +247,53 @@ public class NegotiationManager : EventSubscriber {
 
     // Give rewards to the player on victory
     private void AllocateRewards(RewardType type){
-        List<CardRarity> drafts = new List<CardRarity>();            // a 3-element list. The rarity of the card is generated randomly for each element; once a rarity is selected, choose a random card from that rarity to use.
-        List<AbstractCard> choices = new List<AbstractCard>();
+        List<AbstractCard> drafts = new List<AbstractCard>();
+        int money = 0;
+        int mastery = 0;
 
         switch (type){
             case RewardType.NORMAL:
                 // Each draft is 70% C, 25% UC, 5% R. 
                 for (int i = 0; i < 3; i++){
-                    int rng = UnityEngine.Random.Range(0, 101);
+                    int rng = UnityEngine.Random.Range(0, 100);
                     if (0 <= rng && rng < 70){
-                        drafts.Add(CardRarity.COMMON);
+                        drafts.Add(DraftCard(CardRarity.COMMON));
                     } else if (rng < 95){
-                        drafts.Add(CardRarity.UNCOMMON);
+                        drafts.Add(DraftCard(CardRarity.UNCOMMON));
                     } else {
-                        drafts.Add(CardRarity.RARE);
+                        drafts.Add(DraftCard(CardRarity.RARE));
                     }
                 }
-                GameState.money += (int)Math.Round(UnityEngine.Random.Range(20, 40) * GameState.moneyGainMod);
+                money += (int)Math.Round(UnityEngine.Random.Range(20, 40) * GameState.moneyGainMod);
                 break;
             case RewardType.ELITE:
                 // Each draft is 80% UC, 20% R.
                 for (int i = 0; i < 3; i++){
-                    int rng = UnityEngine.Random.Range(0, 101);
+                    int rng = UnityEngine.Random.Range(0, 100);
                     if (0 <= rng && rng < 80){
-                        drafts.Add(CardRarity.UNCOMMON);
+                        drafts.Add(DraftCard(CardRarity.UNCOMMON));
                     } else {
-                        drafts.Add(CardRarity.RARE);
+                        drafts.Add(DraftCard(CardRarity.RARE));
                     }
                 }
-                GameState.money += (int)Math.Round(UnityEngine.Random.Range(40, 60) * GameState.moneyGainMod);
-                GameState.mastery += 1;
+                money += (int)Math.Round(UnityEngine.Random.Range(40, 60) * GameState.moneyGainMod);
+                mastery += 1;
                 break;
             case RewardType.BOSS:
-                drafts = new List<CardRarity>{CardRarity.RARE, CardRarity.RARE, CardRarity.RARE};   // Each draft is 100% R.
-                GameState.money += (int)Math.Round(UnityEngine.Random.Range(90, 110) * GameState.moneyGainMod);
-                GameState.mastery += 1;
+                for (int i = 0; i < 3; i++){
+                    drafts.Add(DraftCard(CardRarity.RARE));   // Each draft is 100% R.
+                }
+                money += (int)Math.Round(UnityEngine.Random.Range(90, 110) * GameState.moneyGainMod);
+                mastery += 1;
                 break;
         }
+        GameState.money += money;
+        GameState.mastery += mastery;
+        renderer.DisplayVictoryScreen(drafts, money, mastery);
+    }
+
+    private AbstractCard DraftCard(CardRarity rarity){
+        List<AbstractCard> filteredList = CardLibrary.Instance.Lookup(GameState.mainChar).Where(card => card.RARITY == rarity).ToList();
+        return filteredList[UnityEngine.Random.Range(0, filteredList.Count)];       
     }
 }

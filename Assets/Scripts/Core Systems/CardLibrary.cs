@@ -10,7 +10,7 @@ public class CardLibrary
 {
     public static readonly CardLibrary Instance = new CardLibrary();
     private Dictionary<string, Type> table = new Dictionary<string, Type>();
-    private Dictionary<string, List<Type>> charTable = new Dictionary<string, List<Type>>();
+    private Dictionary<string, List<AbstractCard>> charTable = new Dictionary<string, List<AbstractCard>>();
 
     private CardLibrary(){
         float startUp = Time.realtimeSinceStartup;
@@ -25,10 +25,10 @@ public class CardLibrary
             table.Add(instance.ID, card);
             
             if (charTable.ContainsKey(instance.DRAFT_CHARACTER)){
-                charTable[instance.DRAFT_CHARACTER].Add(card);
+                charTable[instance.DRAFT_CHARACTER].Add(instance);
             } else {
-                charTable.Add(instance.DRAFT_CHARACTER, new List<Type>());
-                charTable[instance.DRAFT_CHARACTER].Add(card);
+                charTable.Add(instance.DRAFT_CHARACTER, new List<AbstractCard>());
+                charTable[instance.DRAFT_CHARACTER].Add(instance);
             }
         }
         float endStartUp = Time.realtimeSinceStartup;
@@ -46,7 +46,7 @@ public class CardLibrary
     }
 
     // Given an abstract character, return ALL cards that belong to that class. If onlyReturnDraftableByPartner is true, return only cards in the current character's pool that can be drafted by other characters.
-    public List<Type> Lookup(AbstractCharacter character, bool onlyReturnDraftableByPartner = false){
+    public List<AbstractCard> Lookup(AbstractCharacter character, bool onlyReturnDraftableByPartner = false){
         string key = character.ID;
         try {
             return charTable[key];

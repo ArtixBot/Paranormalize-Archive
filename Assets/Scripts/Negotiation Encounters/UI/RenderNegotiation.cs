@@ -24,6 +24,11 @@ public class RenderNegotiation : MonoBehaviour
     private TextMeshProUGUI scourCount;
     private TextMeshProUGUI actionCount;
 
+    [SerializeField]
+    private SelectCardOverlay selectCardOverlay;
+    [SerializeField]
+    private RewardViewOverlay rewardViewOverlay;
+
     private Button endTurnButton;
     private TextMeshProUGUI roundText;
 
@@ -186,6 +191,14 @@ public class RenderNegotiation : MonoBehaviour
             yield return null;
         }
         nm.SelectedCards(screen.selectedCards);
+    }
+
+    public void DisplayVictoryScreen(List<AbstractCard> draftCards, int moneyEarned, int masteryEarned){
+        rewardViewOverlay.moneyToReward = moneyEarned;
+        rewardViewOverlay.masteryToReward = masteryEarned;
+        rewardViewOverlay.listOfDraftCards = draftCards;
+        
+        rewardViewOverlay.gameObject.SetActive(true);       // editor bug causes this to run twice for some reason -- doesn't happen once built though
     }
 
     public void EndNegotiationRender(){
