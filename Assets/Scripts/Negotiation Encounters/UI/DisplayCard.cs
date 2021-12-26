@@ -21,6 +21,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private Image cardBG;
     private Image cardImage;
+    private Image cardInsigniaBG;
     private Image cardInsignia;
     private TextMeshProUGUI cardName;
     private TextMeshProUGUI cardCost;
@@ -49,6 +50,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
+        cardInsigniaBG = transform.Find("CardInsigniaBG").GetComponent<Image>();
         cardInsignia = transform.Find("CardInsignia").GetComponent<Image>();
         cardName = transform.Find("CardName").GetComponent<TextMeshProUGUI>();
         cardCost = transform.Find("CardCost").GetComponent<TextMeshProUGUI>();
@@ -60,18 +62,29 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardImage.sprite = Resources.Load<Sprite>(reference.IMAGE);
         switch(reference.AMBIENCE){
             case CardAmbient.AGGRESSION:
+                cardInsigniaBG.color = new Color32(94, 57, 57, 255);
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-aggression");
                 break;
             case CardAmbient.DIALOGUE:
+                cardInsigniaBG.color = new Color32(71, 94, 54, 255);
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-dialogue");
                 break;
             case CardAmbient.INFLUENCE:
+                cardInsigniaBG.color = new Color32(94, 54, 94, 255);
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-influence");
+                break;
+            case CardAmbient.PARANORMAL:
+                cardInsigniaBG.color = new Color32(0, 125, 128, 255);
+                cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-paranormal");
+                break;
+            case CardAmbient.STATUS:
+                cardInsigniaBG.color = new Color32(94, 82, 54, 255);
+                cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-status");
                 break;
             default:
                 break;
         }
-        cardName.text = reference.NAME;
+        cardName.text = reference.NAME.ToUpper();
         cardCost.text = (reference.COSTS_ALL_AP) ? "X" : reference.COST.ToString();
         cardType.text = reference.TYPE.ToString();
         cardText.text = ParseText(reference.DESC);
@@ -142,7 +155,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 cardBG.color = Color.green;
             } else {
                 instance.selectedCards.Remove(reference);
-                cardBG.color = new Color32(159, 159, 159, 255);
+                cardBG.color = new Color32(50, 50, 50, 255);
             }
             instance.EnableButtonIfConditionsMet();
         }

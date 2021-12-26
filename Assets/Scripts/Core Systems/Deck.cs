@@ -59,6 +59,16 @@ public class Deck
         }
     }
 
+    // Find and return a card by INSTANCE_ID value.
+    public AbstractCard GetCard(string INSTANCE_ID){
+        for (int i = 0; i < this.deck.Count(); i++){
+            if (this.deck[i].INSTANCE_ID == INSTANCE_ID){
+                return this.deck[i];
+            }
+        }
+        return null;
+    }
+
     // Returns deck size.
     public int GetSize(){
         return this.deck.Count;

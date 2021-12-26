@@ -174,6 +174,8 @@ public abstract class AbstractCharacter
         if (reference == null){
             return false;
         } else {
+            reference.INSTANCE_ID = ID + "_" + GameState.cardsAddedThisGame;
+            GameState.cardsAddedThisGame += 1;
             reference.OWNER = this;
             return true;
         }

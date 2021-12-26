@@ -57,11 +57,11 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
         this.AddCardToPermaDeck("DECKARD_DEFUSAL");
-        this.AddCardToPermaDeck("DECKARD_DOMINEER");
-        this.AddCardToPermaDeck("DECKARD_STRAWMAN");
-        this.AddCardToPermaDeck("DECKARD_PRESENT_THE_EVIDENCE");
+        this.AddCardToPermaDeck("NEUTRAL_BLANK");
+        // this.AddCardToPermaDeck("DECKARD_INTERROGATE");
+        this.AddCardToPermaDeck("PARANORMAL_THE_STARS_ALIGN");
         // this.AddCardToPermaDeck("DECKARD_OVERBEAR");
-        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_BARRAGE");
         // this.AddCardToPermaDeck("DECKARD_INSIGHT");
         // this.AddCardToPermaDeck("DECKARD_CAPITALIZE");

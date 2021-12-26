@@ -129,6 +129,6 @@
     },
     "WORDSMITH": {
         "NAME": "Wordsmith",
-        "DESC": "[OWNER]'s Dialogue and Aggression cards gain <b>Influential</b> [STACKS].\n\nAt the end of [OWNER]'s turn, destroy this."
+        "DESC": "[OWNER]'s Dialogue and Aggression cards gain <b>Influential</b> [STACKS] until end of turn."
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public enum CardOwner {};
 public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
-public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE};
+public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, PARANORMAL, ITEM, STATUS, NONE};
 public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY, PIERCING};   // Determines what tooltips should appear when viewing the card
-public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, PARANORMAL = 4};
+public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
 
 public class CardCostMod {
     public int amount;
@@ -28,6 +28,7 @@ public abstract class AbstractCard : EventSubscriber {
     // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
 
     // Metadata
+    public string INSTANCE_ID;      // The specific instance id for a card
     public string ID;               // Card ID
     public string DRAFT_CHARACTER;  // Which character's drafts can this card appear in?
 

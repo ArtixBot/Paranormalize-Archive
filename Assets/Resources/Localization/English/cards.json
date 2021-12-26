@@ -39,6 +39,10 @@
         "NAME": "Addendum",
         "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
     },
+    "DECKARD_APPRAISAL": {
+        "NAME": "Appraisal",
+        "DESC": "Deal [D] damage.\nHarvest: PERMANENTLY increase this card's damage by [INC_DAMAGE].\n<b>Scour</b>."
+    },
     "DECKARD_AUTHORITATIVE": {
         "NAME": "Authoritative",
         "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all friendly support arguments."
@@ -127,7 +131,7 @@
     },
     "DECKARD_FLATTER": {
         "NAME": "Flatter",
-        "DESC": "Deal [D] damage.\nIf you have no Aggression cards in hand, this costs 0 and hits ALL enemy arguments."
+        "DESC": "Deal [D] damage.\nIf you have <b>Finesse</b>, damage is dealt to ALL enemy arguments."
     },
     "DECKARD_FOLLOW_UP": {
         "NAME": "Follow Up",
@@ -163,15 +167,23 @@
     },
     "DECKARD_INSTINCTS": {
         "NAME": "Instincts",
-        "DESC": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated."
+        "DESC": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated.",
+        "DESC+": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated.\nEach choice has <b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INSTINCTS_FINESSE": {
         "NAME": "Finesse",
-        "DESC": "Deploy [S] Finesse."
+        "DESC": "Deploy [S] Finesse.",
+        "DESC+": "Deploy [S] Finesse.\n<b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INSTINCTS_HEATED": {
         "NAME": "Heated",
-        "DESC": "Deploy [S] Heated."
+        "DESC": "Deploy [S] Heated.",
+        "DESC+": "Deploy [S] Heated.\n<b>Influential</b> [INFLUENCE]."
+    },
+    "DECKARD_INTERROGATE": {
+        "NAME": "Interrogate",
+        "DESC": "Choose a friendly support argument.\nDeal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments, then destroy it.\n<b>Influential</b> [INFLUENCE].",
+        "DESC+": "Choose a friendly support argument.\nDeal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments, then destroy it.\nSet Ambience to Dangerous."
     },
     "DECKARD_INSULT": {
         "NAME": "Insult",
@@ -308,5 +320,13 @@
         "DESC": "Refresh the use of your partner ability this negotiation.\n<b>Scour</b>.",
         "QUIPS": ["[PARTNER]! Take this over for a bit.",
                   "[NARRATOR][PARTNER] steps in front of [PLAYER]."]
+    },
+    "NEUTRAL_BLANK": {
+        "NAME": "Blank",
+        "DESC": "<b>Scour</b>."
+    },
+    "PARANORMAL_THE_STARS_ALIGN": {
+        "NAME": "The Stars Align",
+        "DESC": "Deal [D] damage to EVERYONE's arguments."
     }
 }

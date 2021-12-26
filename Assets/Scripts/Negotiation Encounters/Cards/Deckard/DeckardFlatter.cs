@@ -11,8 +11,6 @@ public class DeckardFlatter : AbstractCard {
 
     public int MIN_DAMAGE = 3;
     public int MAX_DAMAGE = 3;
-    private bool conditionMet = false;
-
 
     public DeckardFlatter() : base(
         cardID,
@@ -21,16 +19,11 @@ public class DeckardFlatter : AbstractCard {
         CardAmbient.DIALOGUE,
         CardRarity.UNCOMMON,
         CardType.ATTACK
-    ){
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_DRAWN);
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.CARD_PLAYED);
-    }
+    ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        if (conditionMet){
+        if (source.GetArgument(new ArgumentFinesse()) != null){
             NegotiationManager.Instance.AddAction(new DamageAction(target.OWNER.GetCoreArgument(), target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
             List<AbstractArgument> nonCoreArgs = target.OWNER.GetTargetableArguments();
             foreach(AbstractArgument arg in nonCoreArgs){
@@ -45,20 +38,5 @@ public class DeckardFlatter : AbstractCard {
         base.Upgrade();
         this.MIN_DAMAGE += 2;
         this.MAX_DAMAGE += 2;
-    }
-
-    private int storeOldCost = cardCost;
-    public override void NotifyOfEvent(AbstractEvent eventData){
-        List<AbstractCard> hand = this.OWNER.GetHand();
-        foreach(AbstractCard card in hand){
-            if (card.AMBIENCE == CardAmbient.AGGRESSION){
-                conditionMet = false;
-                this.COST = storeOldCost;
-                return;
-            }
-        }
-        conditionMet = true;
-        if (this.COST != 0) storeOldCost = this.COST;
-        this.COST = 0;
     }
 }

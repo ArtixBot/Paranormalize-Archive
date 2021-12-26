@@ -10,6 +10,8 @@ public class DeckardInstinctsFinesse : AbstractCard
     private static int cardCost = 0;
 
     public int STACKS = 1;
+    public int INFLUENCE = 1;
+    private bool addInfluence = false;
 
     public DeckardInstinctsFinesse() : base(
         cardID,
@@ -23,10 +25,14 @@ public class DeckardInstinctsFinesse : AbstractCard
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentFinesse(), STACKS));
+        if (this.addInfluence){
+            NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentAmbientShiftDialogue(), INFLUENCE));
+        }
     }
 
     public override void Upgrade(){
         base.Upgrade();
         this.STACKS += 1;
+        this.addInfluence = true;
     }
 }
