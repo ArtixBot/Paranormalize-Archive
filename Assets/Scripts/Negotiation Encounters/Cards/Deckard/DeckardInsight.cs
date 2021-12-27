@@ -9,6 +9,7 @@ public class DeckardInsight : AbstractCard
     private static int cardCost = 1;
 
     public int DRAW = 2;
+    public int POISE = 2;
 
     public DeckardInsight() : base(
         cardID,
@@ -22,10 +23,16 @@ public class DeckardInsight : AbstractCard
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         NegotiationManager.Instance.AddAction(new DrawCardsAction(source, DRAW));
+        if (this.isUpgraded){
+            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), POISE));
+
+            foreach(AbstractArgument arg in source.GetTargetableArguments()){
+                NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, POISE));
+            }
+        }
     }
 
     public override void Upgrade(){
         base.Upgrade();
-        this.DRAW += 1;
     }
 }

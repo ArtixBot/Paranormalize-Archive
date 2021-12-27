@@ -9,7 +9,7 @@ public class DeckardInstincts : AbstractCard
     private static int cardCost = 1;
 
     public int STACKS = 1;         // only does stuff for descriptions
-    public int INFLUENCE = 1;      // same as above
+    public int INFLUENCE = 2;      // same as above
 
     public DeckardInstincts() : base(
         cardID,

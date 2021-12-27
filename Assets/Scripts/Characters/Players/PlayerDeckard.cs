@@ -56,22 +56,36 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_BREAKTHROUGH");
         // this.AddCardToPermaDeck("DECKARD_FOLLOW_UP");
-        this.AddCardToPermaDeck("DECKARD_DEFUSAL");
-        this.AddCardToPermaDeck("NEUTRAL_BLANK");
+        // this.AddCardToPermaDeck("DECKARD_DEFUSAL");
         // this.AddCardToPermaDeck("DECKARD_INTERROGATE");
-        this.AddCardToPermaDeck("PARANORMAL_THE_STARS_ALIGN");
+        // this.AddCardToPermaDeck("PARANORMAL_THE_STARS_ALIGN");
         // this.AddCardToPermaDeck("DECKARD_OVERBEAR");
-        this.AddCardToPermaDeck("DECKARD_RUMINATE");
+        // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_BARRAGE");
         // this.AddCardToPermaDeck("DECKARD_INSIGHT");
         // this.AddCardToPermaDeck("DECKARD_CAPITALIZE");
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION");
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION", true);
         // this.AddCardToPermaDeck("DECKARD_PANACHE");
-        this.AddCardToPermaDeck("DECKARD_SEETHE");
+        // this.AddCardToPermaDeck("DECKARD_SEETHE");
         // this.AddCardToPermaDeck("DECKARD_SEETHE", true);
-        // this.AddCardToPermaDeck("DECKARD_INSTINCTS");
-        // this.AddCardToPermaDeck("DECKARD_INSTINCTS", true);
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_GRUFF");
+        this.AddCardToPermaDeck("DECKARD_GRUFF");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_INSTINCTS");
+
+        this.AddCardToPermaDeck("DECKARD_ANGER", true);
+        this.AddCardToPermaDeck("DECKARD_PIVOT", true);
+        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT");
+        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
+        this.AddCardToPermaDeck("NEUTRAL_BLANK");
+        this.AddCardToPermaDeck("DECKARD_TURNABOUT");
+        this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
         // this.AddCardToPermaDeck("DECKARD_RACK_THE_BRAIN");
     }
 }

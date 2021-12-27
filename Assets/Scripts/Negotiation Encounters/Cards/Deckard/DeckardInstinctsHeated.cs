@@ -10,8 +10,7 @@ public class DeckardInstinctsHeated : AbstractCard
     private static int cardCost = 0;
 
     public int STACKS = 1;
-    public int INFLUENCE = 1;
-    private bool addInfluence = false;
+    public int INFLUENCE = 2;
 
     public DeckardInstinctsHeated() : base(
         cardID,
@@ -25,14 +24,11 @@ public class DeckardInstinctsHeated : AbstractCard
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentHeated(), STACKS));
-        if (this.addInfluence){
-            NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentAmbientShiftAggression(), INFLUENCE));
-        }
+        NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentAmbientShiftAggression(), INFLUENCE));
     }
 
     public override void Upgrade(){
         base.Upgrade();
         this.STACKS += 1;
-        this.addInfluence = true;
     }
 }

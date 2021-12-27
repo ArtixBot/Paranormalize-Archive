@@ -29,5 +29,6 @@ public class DeckardSmoothTalk : AbstractCard {
     public override void Upgrade(){
         base.Upgrade();
         this.STACKS += 1;
+        this.INFLUENCE += 1;
     }
 }

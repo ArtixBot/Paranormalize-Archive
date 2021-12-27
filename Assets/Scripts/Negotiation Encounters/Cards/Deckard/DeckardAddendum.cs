@@ -7,7 +7,7 @@ public class DeckardAddendum : AbstractCard {
 
     public static string cardID = "DECKARD_ADDENDUM";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
-    private static int cardCost = 1;
+    private static int cardCost = 0;
 
     public int MIN_DAMAGE = 1;
     public int MAX_DAMAGE = 1;

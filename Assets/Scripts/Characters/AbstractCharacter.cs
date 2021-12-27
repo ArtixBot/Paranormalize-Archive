@@ -168,6 +168,19 @@ public abstract class AbstractCharacter
     public Deck GetScourPile(){
         return this.scourPile;
     }
+    
+    public void AddTempCardToHand(string ID, bool isUpgraded = false){
+        Type cardClass = CardLibrary.Instance.Lookup(ID);
+        if (cardClass == null){
+            return;        // return a null result if the card doesn't exist in CardLibrary
+        }
+        AbstractCard card = Activator.CreateInstance(cardClass) as AbstractCard;
+        if (isUpgraded){
+            card.Upgrade();
+        }
+        card.OWNER = this;
+        this.hand.Add(card);
+    }
 
     public bool AddCardToPermaDeck(string ID, bool isUpgraded = false){
         AbstractCard reference = this.permaDeck.AddCard(ID, isUpgraded);

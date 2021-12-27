@@ -29,7 +29,6 @@ public class DeckardFollowUp : AbstractCard {
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MIN_DAMAGE += 2;
         this.MAX_DAMAGE += 2;
     }
 

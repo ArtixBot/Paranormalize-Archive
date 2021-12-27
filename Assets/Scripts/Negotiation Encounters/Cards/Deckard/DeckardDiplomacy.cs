@@ -8,7 +8,7 @@ public class DeckardDiplomacy : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int MIN_DAMAGE = 1;
+    public int MIN_DAMAGE = 2;
     public int MAX_DAMAGE = 3;
 
     public DeckardDiplomacy() : base(
@@ -27,7 +27,7 @@ public class DeckardDiplomacy : AbstractCard {
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MIN_DAMAGE += 3;
+        this.MIN_DAMAGE += 2;
         this.MAX_DAMAGE += 1;
     }
 }

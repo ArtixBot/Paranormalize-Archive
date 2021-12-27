@@ -62,7 +62,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         cardImage.sprite = Resources.Load<Sprite>(reference.IMAGE);
         switch(reference.AMBIENCE){
             case CardAmbient.AGGRESSION:
-                cardInsigniaBG.color = new Color32(94, 57, 57, 255);
+                cardInsigniaBG.color = new Color32(74, 5, 5, 255);
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-aggression");
                 break;
             case CardAmbient.DIALOGUE:
@@ -85,8 +85,11 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
         }
         cardName.text = reference.NAME.ToUpper();
+        if (reference.isUpgraded){
+            cardName.color = new Color32(169, 247, 101, 255);
+        }
         cardCost.text = (reference.COSTS_ALL_AP) ? "X" : reference.COST.ToString();
-        cardType.text = reference.TYPE.ToString();
+        cardType.text = $"{reference.TYPE.ToString()}";
         cardText.text = ParseText(reference.DESC);
     }
 

@@ -39,13 +39,17 @@
         "NAME": "Addendum",
         "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
     },
+    "DECKARD_ANGER": {
+        "NAME": "Anger",
+        "DESC": "Deal [D] damage.\nIf Ambience is Agitated, Volatile, or Dangerous: Deploy [STACKS] Heated."
+    },
     "DECKARD_APPRAISAL": {
         "NAME": "Appraisal",
         "DESC": "Deal [D] damage.\nHarvest: PERMANENTLY increase this card's damage by [INC_DAMAGE].\n<b>Scour</b>."
     },
     "DECKARD_AUTHORITATIVE": {
         "NAME": "Authoritative",
-        "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all friendly support arguments."
+        "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all your support arguments."
     },
     "DECKARD_BARRAGE": {
         "NAME": "Barrage",
@@ -163,22 +167,20 @@
     },
     "DECKARD_INSIGHT": {
         "NAME": "Insight",
-        "DESC": "Draw [N] cards."
+        "DESC": "Draw [N] cards.",
+        "DESC+": "Draw [N] cards.\nApply [POISE] Poise to ALL your arguments."
     },
     "DECKARD_INSTINCTS": {
         "NAME": "Instincts",
-        "DESC": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated.",
-        "DESC+": "Choose: Deploy [STACKS] Finesse, or Deploy [STACKS] Heated.\nEach choice has <b>Influential</b> [INFLUENCE]."
+        "DESC": "Choose: Deploy [STACKS] Finesse or [STACKS] Heated.\nEach choice has <b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INSTINCTS_FINESSE": {
         "NAME": "Finesse",
-        "DESC": "Deploy [S] Finesse.",
-        "DESC+": "Deploy [S] Finesse.\n<b>Influential</b> [INFLUENCE]."
+        "DESC": "Deploy [S] Finesse.\n<b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INSTINCTS_HEATED": {
         "NAME": "Heated",
-        "DESC": "Deploy [S] Heated.",
-        "DESC+": "Deploy [S] Heated.\n<b>Influential</b> [INFLUENCE]."
+        "DESC": "Deploy [S] Heated.\n<b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_INTERROGATE": {
         "NAME": "Interrogate",
@@ -227,8 +229,8 @@
     },
     "DECKARD_PIVOT": {
         "NAME": "Pivot",
-        "DESC": "Change Ambience one level towards Guarded or Dangerous.",
-        "DESC+": "Change Ambience two levels towards Guarded or Dangerous."
+        "DESC": "Choose: Change Ambience one level towards Guarded or Dangerous.",
+        "DESC+": "Choose: Change Ambience two levels towards Guarded or Dangerous."
     },
     "DECKARD_PIVOT_AGGRESSION": {
         "NAME": "Aggression",
@@ -260,7 +262,12 @@
     "DECKARD_REVERSAL": {
         "NAME": "Reversal",
         "DESC": "Steal all Poise from an enemy argument and apply it to your core argument.",
-        "DESC+": "Steal all Poise from an enemy argument and apply it to ALL friendly arguments."
+        "DESC+": "Steal all Poise from an enemy argument and apply it to ALL your arguments."
+    },
+    "DECKARD_ROLL_WITH_IT": {
+        "NAME": "Roll With It",
+        "DESC": "Unplayable.\nWhen this card is in your hand, transform this into a copy of the next card you play.",
+        "DESC+": "Unplayable.\nWhen this card is in your hand, transform this into an upgraded copy of the next card you play."
     },
     "DECKARD_RUMINATE": {
         "NAME": "Ruminate",
@@ -310,6 +317,10 @@
     "DECKARD_TRASH_TALK": {
         "NAME": "Trash Talk",
         "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
+    },
+    "DECKARD_TURNABOUT": {
+        "NAME": "Turnabout",
+        "DESC": "Deal [D] damage.\nIf Ambience is Guarded or Tense: this deals double damage and has <b>Influential</b> [INFLUENCE]."
     },
     "DECKARD_WORDSMITH": {
         "NAME": "Wordsmith",
