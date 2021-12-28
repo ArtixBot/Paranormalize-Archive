@@ -27,17 +27,20 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPoin
                 waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/elite-encounter");
                 break;
             case EncounterType.BOSS:
-                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/elite-encounter");
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/boss-encounter");
                 break;
             case EncounterType.EVENT:
-            
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/event");
+                break;
             case EncounterType.SHOP:
-            
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/shop");
+                break;
             case EncounterType.REST:
                 waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/rest-point");
                 break;
             case EncounterType.FERRYMAN:
-            
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/ferryman");
+                break;
             default:
                 waypointImage.sprite = Resources.Load<Sprite>("Images/missing");
                 break;
@@ -48,7 +51,7 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPoin
         GameState.currentStage += 1;
         OverworldManager.Instance.EncounterSelected(this.encounterInfo);
         switch (encounterInfo.encounterType){
-            case EncounterType.ENEMY:
+            case EncounterType.ENEMY: 
             case EncounterType.ELITE:
             case EncounterType.BOSS:
                 StartCoroutine(LoadNegotiation());
@@ -59,6 +62,9 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPoin
                 break;
             case EncounterType.FERRYMAN:
                 StartCoroutine(LoadStory("FERRYMAN_STORY"));
+                break;
+            case EncounterType.SHOP:
+                StartCoroutine(LoadStory("TEST_STORY"));
                 break;
             case EncounterType.REST:
                 StartCoroutine(LoadStory("REST_STORY"));
