@@ -15,7 +15,7 @@ public class DeckardWordsmith : AbstractCard {
         cardStrings,
         cardCost,
         CardAmbient.INFLUENCE,
-        CardRarity.RARE,
+        CardRarity.UNCOMMON,
         CardType.SKILL,
         new List<CardTags>{CardTags.SCOUR}
     ){}

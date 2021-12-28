@@ -43,10 +43,6 @@
         "NAME": "Anger",
         "DESC": "Deal [D] damage.\nIf Ambience is Agitated, Volatile, or Dangerous: Deploy [STACKS] Heated."
     },
-    "DECKARD_APPRAISAL": {
-        "NAME": "Appraisal",
-        "DESC": "Deal [D] damage.\nHarvest: PERMANENTLY increase this card's damage by [INC_DAMAGE].\n<b>Scour</b>."
-    },
     "DECKARD_AUTHORITATIVE": {
         "NAME": "Authoritative",
         "DESC": "Deal [D] damage.\nDeals bonus damage equal to the combined stack count of all your support arguments."
@@ -128,6 +124,10 @@
     "DECKARD_DOMINEER": {
         "NAME": "Domineer",
         "DESC": "Deal [D] damage.\nIf this destroys an enemy argument, draw [DRAW] cards and gain [ACTIONS] actions."
+    },
+    "DECKARD_ESCALATE": {
+        "NAME": "Escalate",
+        "DESC": "Deal [D] damage.\nIf Ambience is Agitated, Volatile, or Dangerous: deals +[BONUS] damage.\nIf Ambience is Dangerous: damage is dealt to ALL enemy arguments."
     },
     "DECKARD_FILIBUSTER": {
         "NAME": "Filibuster",

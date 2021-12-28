@@ -12,8 +12,8 @@ public class ArgumentCoreNoAbility : AbstractArgument
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
         this.IMG = Resources.Load<Sprite>("Images/Arguments/boring");
 
-        this.curHP = 20;
-        this.maxHP = 20;
+        this.curHP = 10;
+        this.maxHP = 10;
         this.stacks = 1;
         this.isCore = true;
     }

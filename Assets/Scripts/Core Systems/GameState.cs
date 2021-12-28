@@ -12,11 +12,13 @@ public static class GameState{
 
     // Metadata
     public static string currentStoryID {get; set;}
-    public static int currentStage {get; set;}
     public static int difficultyLevel {get; set;}
     public static int rngSeed {get; set;}
     public static int cardsAddedThisGame {get; set;}
 
+    // Game statistics
+    public static int currentStage {get; set;}
+    public static int hoursRemainingInCurrentStage = 24;                // TODO: testing
     public static int mastery {get; set;}
     public static int money {get; set;}
     

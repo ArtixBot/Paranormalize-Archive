@@ -79,13 +79,14 @@ public class PlayerDeckard : AbstractCharacter
         this.AddCardToPermaDeck("DECKARD_STOIC");
         this.AddCardToPermaDeck("DECKARD_INSTINCTS");
 
-        this.AddCardToPermaDeck("DECKARD_ANGER", true);
-        this.AddCardToPermaDeck("DECKARD_PIVOT", true);
+        // this.AddCardToPermaDeck("DECKARD_ANGER", true);
+        // this.AddCardToPermaDeck("DECKARD_PIVOT", true);
         this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT");
         this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
-        this.AddCardToPermaDeck("NEUTRAL_BLANK");
-        this.AddCardToPermaDeck("DECKARD_TURNABOUT");
-        this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
-        // this.AddCardToPermaDeck("DECKARD_RACK_THE_BRAIN");
+        // this.AddCardToPermaDeck("NEUTRAL_BLANK");
+        // this.AddCardToPermaDeck("DECKARD_TURNABOUT");
+        // this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
+        // this.AddCardToPermaDeck("DECKARD_ESCALATE");
+        // this.AddCardToPermaDeck("DECKARD_ESCALATE", true);
     }
 }

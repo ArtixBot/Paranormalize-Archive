@@ -3,16 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
+public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public EncounterType encounterType;
+    public EncounterInfo encounterInfo;
     public AbstractCharacter enemyIfNegotiationEncounter;   // enemy to use if an enemy encounter
     public string storyID;      // story ID to use if a story encounter
 
+    public Image waypointImage;
+
+    public void Render(){
+        if (encounterInfo == null){
+            return;
+        }
+        waypointImage = transform.Find("Image").GetComponentInChildren<Image>();
+        Debug.Log(encounterInfo.encounterType);
+        switch (encounterInfo.encounterType){
+            case EncounterType.ENEMY:
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/normal-encounter");
+                break;
+            case EncounterType.ELITE:
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/elite-encounter");
+                break;
+            case EncounterType.BOSS:
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/elite-encounter");
+                break;
+            case EncounterType.EVENT:
+            
+            case EncounterType.SHOP:
+            
+            case EncounterType.REST:
+                waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/rest-point");
+                break;
+            case EncounterType.FERRYMAN:
+            
+            default:
+                waypointImage.sprite = Resources.Load<Sprite>("Images/missing");
+                break;
+        }
+    }
+
     public void OnPointerClick(PointerEventData pointerEventData){
         GameState.currentStage += 1;
-        switch (encounterType){
+        OverworldManager.Instance.EncounterSelected(this.encounterInfo);
+        switch (encounterInfo.encounterType){
             case EncounterType.ENEMY:
             case EncounterType.ELITE:
             case EncounterType.BOSS:
@@ -31,6 +66,14 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler
             default:
                 break;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData pointerEventData){
+
+    }
+
+    public void OnPointerExit(PointerEventData pointerEventData){
+        
     }
 
     private IEnumerator LoadNegotiation(){

@@ -8,8 +8,8 @@ public class DeckardTurnabout : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 2;
 
-    public int MIN_DAMAGE = 5;
-    public int MAX_DAMAGE = 7;
+    public int MIN_DAMAGE = 4;
+    public int MAX_DAMAGE = 5;
     public int INFLUENCE = 4;
 
     public DeckardTurnabout() : base(
@@ -34,6 +34,6 @@ public class DeckardTurnabout : AbstractCard {
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MIN_DAMAGE += 2;
+        this.MIN_DAMAGE += 1;
     }
 }
