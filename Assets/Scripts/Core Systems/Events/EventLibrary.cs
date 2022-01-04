@@ -12,6 +12,7 @@ public enum EventType {
     ARGUMENT_ATTACKED_UNBLOCKED,
     ARGUMENT_CREATED,
     ARGUMENT_DESTROYED,
+    ARGUMENT_STACKS_ADDED,
     CARD_DRAWN,
     CARD_PLAYED,
     TURN_START,
@@ -107,6 +108,21 @@ namespace GameEvent{
         public EventArgCreated(AbstractArgument argCreated){
             this.type = EventType.ARGUMENT_CREATED;
             this.argumentCreated = argCreated;
+        }
+    }
+
+    public class EventArgStacksAdded : AbstractEvent{
+        public AbstractArgument argumentAddedTo;
+        public int stacksAdded;
+        public int newStackCount;
+        ///<summary>
+        ///Trigger when an argument has stacks added to.
+        ///</summary>
+        public EventArgStacksAdded(AbstractArgument argAddedTo, int stacks){
+            this.type = EventType.ARGUMENT_STACKS_ADDED;
+            this.argumentAddedTo = argAddedTo;
+            this.stacksAdded = stacks;
+            this.newStackCount = this.argumentAddedTo.stacks;
         }
     }
 

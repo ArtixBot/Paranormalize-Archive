@@ -11,7 +11,7 @@ public class ArgumentStress : AbstractArgument
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
         this.ORIGIN = ArgumentOrigin.DEPLOYED;
-        this.IMG = Resources.Load<Sprite>("Images/Arguments/hotheaded");
+        this.IMG = Resources.Load<Sprite>("Images/Arguments/stress");
 
         this.curHP = 6;
         this.maxHP = 6;
@@ -20,28 +20,14 @@ public class ArgumentStress : AbstractArgument
 
     public override void TriggerOnDeploy(){
         base.TriggerOnDeploy();
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_DESTROYED);
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.POISE_APPLIED);
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.ARGUMENT_STACKS_ADDED);
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){    
-        if (eventData.type == EventType.POISE_APPLIED){
-            EventPoiseApplied data = (EventPoiseApplied) eventData;
-            if (data.target.OWNER == this.OWNER){
-                this.stacks += 1;
-            }
-        } else if (eventData.type == EventType.TURN_END){
-            EventTurnEnd data = (EventTurnEnd) eventData;
-            if (data.end == this.OWNER){
-                NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
-            }
-        } else if (eventData.type == EventType.ARGUMENT_DESTROYED){
-            EventArgDestroyed data = (EventArgDestroyed) eventData;
-            if (data.argumentDestroyed == this){
-                AbstractCharacter enemy = TurnManager.Instance.GetOtherCharacter(this.OWNER);
-                NegotiationManager.Instance.AddAction(new DamageAction(null, enemy, this.stacks, this.stacks, this));
-            }
+        EventArgStacksAdded data = (EventArgStacksAdded) eventData;
+        if (data.argumentAddedTo == this && data.newStackCount >= 8){
+            NegotiationManager.Instance.AddAction(new DamageAction(this.OWNER.coreArgument, this.OWNER, this.OWNER.coreArgument.curHP / 2, this.OWNER.coreArgument.curHP / 2, this));
+            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
         }
     }
 }

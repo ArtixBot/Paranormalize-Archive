@@ -22,7 +22,7 @@ public class NegotiationManager : EventSubscriber {
     public RenderNegotiation renderer;
 
     public AbstractCharacter player;
-    public AbstractCharacter enemy;
+    public AbstractEnemy enemy;
 
     public int round = 1;
     public int numCardsPlayedThisTurn = 0;
@@ -32,7 +32,7 @@ public class NegotiationManager : EventSubscriber {
 
     // Clean up should be done in the EndNegotiationLost/EndNegotiationWon functions.
     // Get the player and enemy from the turn manager. Deep-copy their permadecks to their draw pile.
-    public void StartNegotiation(RenderNegotiation renderer, AbstractCharacter enemyChar, RewardType rewardsOnWin = RewardType.NORMAL){
+    public void StartNegotiation(RenderNegotiation renderer, AbstractEnemy enemyChar, RewardType rewardsOnWin = RewardType.NORMAL){
         this.player = (GameState.mainChar == null) ? new PlayerDeckard() : GameState.mainChar;    // null check for player - if null, use Deckard as base
         this.enemy = (enemyChar == null) ? new TestEnemy() : this.enemy;             // null check for enemy - if null, use TestEnemy as base
         this.rewardsOnWin = rewardsOnWin;
@@ -43,6 +43,7 @@ public class NegotiationManager : EventSubscriber {
 
         em.ClearAllSubscribers();
         em.SubscribeToEvent(this, EventType.CARD_PLAYED);       // Subscribe to CARD_PLAYED event to perform all post-card play processing (ambience shift, adjusting global values, etc.)
+        em.SubscribeToEvent(this, EventType.ARGUMENT_DESTROYED);// Subscribe to ARGUMENT_DESTROYED event to perform enemy intent recalculations whenever an argument is destroyed
         
         Debug.Log("NegotiationManager.cs: Performing deep copy of deck contents for enemy and player.");
         DeepCopyDeck(player);
@@ -60,6 +61,11 @@ public class NegotiationManager : EventSubscriber {
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
 
         Debug.Log("Negotiation begins!");
+        
+        enemy.CalculateIntents();
+        foreach(EnemyIntent intent in enemy.intents){
+            Debug.Log($"The enemy intends to play {intent.cardToPlay} on {intent.argumentTargeted}");
+        }
     }
 
     public void NextTurn(){
@@ -75,14 +81,16 @@ public class NegotiationManager : EventSubscriber {
         renderer.Redraw();
 
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
-            // AbstractEnemy enemy = (AbstractEnemy) tm.GetCurrentCharacter();
-            // List<(AbstractCard, AbstractArgument)> playOrder = enemy.CalculateCardsToPlay();
-            // for (int i = 0; i < playOrder.Count; i++){
-            //     Debug.Log("Enemy plays " + playOrder[i].Item1 + " on " + playOrder[i].Item2 + "!");
-            //     NegotiationManager.Instance.PlayCard(playOrder[i].Item1, enemy, playOrder[i].Item2);
-            // }
+            foreach (EnemyIntent intent in enemy.intents){
+                intent.Resolve();
+            }
             this.NextTurn();
         } else {
+            AbstractEnemy enemy = (AbstractEnemy) tm.GetOtherCharacter(tm.GetCurrentCharacter());
+            enemy.CalculateIntents();
+            foreach(EnemyIntent intent in enemy.intents){
+                Debug.Log($"The enemy intends to play {intent.cardToPlay} on {intent.argumentTargeted}");
+            }
             this.round += 1;
         }
     }
@@ -191,26 +199,31 @@ public class NegotiationManager : EventSubscriber {
 
     // Handle post-card playing effects (move card to discard pile, spend AP costs, etc.)
     public override void NotifyOfEvent(AbstractEvent eventData){
-        Debug.Log("People in turnlist: " + tm.GetTurnList().Count);
-        EventCardPlayed data = (EventCardPlayed) eventData;
-        AbstractCard cardPlayed = data.cardPlayed;
-        cardsPlayedThisTurn.Add(data.cardPlayed);
-        numCardsPlayedThisTurn += 1;
+        if (eventData.type == EventType.CARD_PLAYED){
+            Debug.Log("People in turnlist: " + tm.GetTurnList().Count);
+            EventCardPlayed data = (EventCardPlayed) eventData;
+            AbstractCard cardPlayed = data.cardPlayed;
+            cardsPlayedThisTurn.Add(data.cardPlayed);
+            numCardsPlayedThisTurn += 1;
 
-        if (cardPlayed.COSTS_ALL_AP){
-            cardPlayed.OWNER.curAP -= cardPlayed.OWNER.curAP;   // Handle X-cost cards
-        } else {
-            cardPlayed.OWNER.curAP -= cardPlayed.COST;
-        }
-        if (cardPlayed.HasTag(CardTags.DESTROY)){         // Destroy card
-            cardPlayed.OWNER.Destroy(cardPlayed);
-        } else if (cardPlayed.IsTrait() || cardPlayed.HasTag(CardTags.SCOUR)){               // Scour stuff
-            cardPlayed.OWNER.Scour(cardPlayed);
-        } else {
-            if (cardPlayed.OWNER.GetHand().Contains(cardPlayed)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
-                cardPlayed.OWNER.GetHand().Remove(cardPlayed);
-                cardPlayed.OWNER.GetDiscardPile().AddCard(cardPlayed);
+            if (cardPlayed.COSTS_ALL_AP){
+                cardPlayed.OWNER.curAP -= cardPlayed.OWNER.curAP;   // Handle X-cost cards
+            } else {
+                cardPlayed.OWNER.curAP -= cardPlayed.COST;
             }
+            if (cardPlayed.HasTag(CardTags.DESTROY)){         // Destroy card
+                cardPlayed.OWNER.Destroy(cardPlayed);
+            } else if (cardPlayed.IsTrait() || cardPlayed.HasTag(CardTags.SCOUR)){               // Scour stuff
+                cardPlayed.OWNER.Scour(cardPlayed);
+            } else {
+                if (cardPlayed.OWNER.GetHand().Contains(cardPlayed)){           // This check is to prevent adding cards from "choice" mechanics from being added to the discard (see: Deckard's Instincts card)
+                    cardPlayed.OWNER.GetHand().Remove(cardPlayed);
+                    cardPlayed.OWNER.GetDiscardPile().AddCard(cardPlayed);
+                }
+            }
+        } else if (eventData.type == EventType.ARGUMENT_DESTROYED){
+            EventArgDestroyed data = (EventArgDestroyed) eventData;
+            enemy.RecalculateIntents(data.argumentDestroyed);
         }
     }
 

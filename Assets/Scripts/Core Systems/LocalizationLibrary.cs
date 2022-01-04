@@ -14,6 +14,7 @@ public class LocalizationLibrary
     private JObject cards = null;
     private JObject ambience = null;
     private JObject keywords = null;
+    private JObject ui = null;
 
     private LocalizationLibrary(){
         string path = "Localization/" + Application.systemLanguage.ToString() + "/cards";
@@ -31,6 +32,10 @@ public class LocalizationLibrary
         path = "Localization/" + Application.systemLanguage.ToString() + "/keywords";
         targetFile = Resources.Load<TextAsset>(path);
         keywords = JObject.Parse(targetFile.ToString());
+
+        path = "Localization/" + Application.systemLanguage.ToString() + "/ui";
+        targetFile = Resources.Load<TextAsset>(path);
+        ui = JObject.Parse(targetFile.ToString());
     }
 
     public Dictionary<string, string> GetArgumentStrings(string ID){
@@ -70,6 +75,14 @@ public class LocalizationLibrary
     public string GetKeywordString(string ID){
         try {
             return keywords[ID].ToString();
+        } catch {
+            return "No description found for " + ID;
+        }
+    }
+
+    public string GetUIString(string ID){
+        try {
+            return ui[ID].ToString();
         } catch {
             return "No description found for " + ID;
         }

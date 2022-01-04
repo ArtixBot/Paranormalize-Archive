@@ -2,31 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBacklash : AbstractCard {
+public class EnemyNihilism : AbstractCard {
 
-    public static string cardID = "ENEMY_BACKLASH";
+    public static string cardID = "ENEMY_NIHILISM";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int MIN_DAMAGE = 2;
-    public int MAX_DAMAGE = 4;
+    public int POISE = 2;
 
-    public EnemyBacklash() : base(
+    public EnemyNihilism() : base(
         cardID,
         cardStrings,
         cardCost,
-        CardAmbient.AGGRESSION,
+        CardAmbient.DIALOGUE,
         CardRarity.COMMON,
-        CardType.ATTACK
+        CardType.SKILL
     ){}
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
+        foreach(AbstractArgument argument in source.GetTargetableArguments(true)){
+            NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, argument, POISE));
+        }
     }
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MIN_DAMAGE += 1;
+        this.POISE += 1;
     }
 }

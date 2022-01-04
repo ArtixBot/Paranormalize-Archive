@@ -30,7 +30,7 @@ public class RenderOverworld : MonoBehaviour{
             GameObject newObj = (GameObject)Instantiate(waypointPrefab, this.transform);
             prefabList.Add(newObj);
             
-            newObj.transform.SetParent(this.transform);
+            newObj.transform.SetParent(this.transform.Find("SpawnWaypoints"));
             newObj.transform.position = newObj.transform.position + new Vector3(om.activeEncounters[i].renderPosX, om.activeEncounters[i].renderPosY, 0);
             newObj.GetComponent<ButtonClickSceneChange>().encounterInfo = om.activeEncounters[i];
             newObj.GetComponent<ButtonClickSceneChange>().Render();

@@ -332,6 +332,22 @@
         "QUIPS": ["[PARTNER]! Take this over for a bit.",
                   "[NARRATOR][PARTNER] steps in front of [PLAYER]."]
     },
+    "ENEMY_BACKLASH": {
+        "NAME": "Backlash",
+        "DESC": "Deal [D] damage."
+    },
+    "ENEMY_INSIDIOUS_WHISPERS": {
+        "NAME": "Insidious Whispers",
+        "DESC": "Deploy [S] Insidious Whispers [ITERATIONS] times."
+    },
+    "ENEMY_NIHILISM": {
+        "NAME": "Nihilism",
+        "DESC": "Apply [P] Poise to ALL friendly arguments."
+    },
+    "ENEMY_REGRETS": {
+        "NAME": "Regrets",
+        "DESC": "Plant [S] Stress."
+    },
     "NEUTRAL_BLANK": {
         "NAME": "Blank",
         "DESC": "<b>Scour</b>."

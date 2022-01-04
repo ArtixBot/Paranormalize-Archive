@@ -1,0 +1,5 @@
+{
+    "TOOLTIP_WAYPOINT_TRAVEL_TIME": "Traveling to this encounter will take <color=#a1dbff><b>[HOURS_TRAVEL]</b></color> hours.",
+    "TOOLTIP_WAYPOINT_EXPIRE_TIME": "This encounter will expire in <color=#ffb8a1><b>[HOURS_EXPIRE]</b></color> hours.",
+    "TOOLTIP_WAYPOINT_EXPIRE_TIME_CRITICAL": "<i>This encounter will expire in <color=#ffb8a1><b>[HOURS_EXPIRE]</b></color> hours!</i>"
+}

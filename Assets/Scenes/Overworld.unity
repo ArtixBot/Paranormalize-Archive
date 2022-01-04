@@ -304,7 +304,7 @@ RectTransform:
   m_Children:
   - {fileID: 2102349069}
   m_Father: {fileID: 2026776900}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -901,7 +901,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4687852050926891803, guid: 29b9da1770bb4c54aad943a09b23fc20, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4687852050926891803, guid: 29b9da1770bb4c54aad943a09b23fc20, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1610,6 +1610,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006483483}
   m_CullTransparentMesh: 1
+--- !u!1 &2018812668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018812669}
+  m_Layer: 5
+  m_Name: SpawnWaypoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2018812669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018812668}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026776900}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2022414192
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,6 +1818,7 @@ RectTransform:
   - {fileID: 366345637}
   - {fileID: 1291215620}
   - {fileID: 419500355}
+  - {fileID: 2018812669}
   - {fileID: 744430160}
   - {fileID: 1306595637}
   - {fileID: 192490765}
@@ -1973,7 +2009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5019139029837147567, guid: 78c335910a64cbc4088276cc3a2f50b0, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5019139029837147567, guid: 78c335910a64cbc4088276cc3a2f50b0, type: 3}
       propertyPath: m_AnchorMax.x

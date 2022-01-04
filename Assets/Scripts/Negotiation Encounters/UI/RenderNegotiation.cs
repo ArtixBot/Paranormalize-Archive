@@ -117,6 +117,24 @@ public class RenderNegotiation : MonoBehaviour
             arg.transform.SetParent(parent);
             arg.SetActive(true);
         }
+
+        parent = GameObject.Find("Canvas/EnemySide/SpawnNonCoreHere").transform;
+        foreach (Transform child in parent){
+            if (child.gameObject.GetComponent<DisplayArgument>()){
+                GameObject.Destroy(child.gameObject.GetComponent<DisplayArgument>().tooltipInstance);
+            }
+            GameObject.Destroy(child.gameObject);
+        }
+        
+        for (int i = 0; i < enemy.GetArguments().Count; i++){
+            float angle = ((i+1) * Mathf.PI * 2f) / 10;     // 10 should be a placeholder number
+            Vector3 newPos = new Vector3(parent.position.x + Mathf.Cos(angle) * radius, parent.position.y + Mathf.Sin(angle) * radius, 0);
+            
+            GameObject arg = Instantiate(argPrefab, newPos, Quaternion.identity);
+            arg.GetComponent<DisplayArgument>().reference = enemy.GetArguments()[i];
+            arg.transform.SetParent(parent);
+            arg.SetActive(true);
+        }
     }
 
     public void RenderCounts(){

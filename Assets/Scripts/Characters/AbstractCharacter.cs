@@ -133,9 +133,12 @@ public abstract class AbstractCharacter
         return null;
     }
 
-    // Return all non-core arguments THAT CAN BE TARGETED.
-    public List<AbstractArgument> GetTargetableArguments(){
+    // Return all non-core arguments THAT CAN BE TARGETED by default. If includeCore is true, also include the core argument
+    public List<AbstractArgument> GetTargetableArguments(bool includeCore = false){
         List<AbstractArgument> targetable = new List<AbstractArgument>();
+        if (includeCore){
+            targetable.Add(this.coreArgument);
+        }
         foreach(AbstractArgument argument in this.nonCoreArguments){
             if (!argument.isTrait){         // TODO: Also filter our arguments with the "Untouchable" status
                 targetable.Add(argument);

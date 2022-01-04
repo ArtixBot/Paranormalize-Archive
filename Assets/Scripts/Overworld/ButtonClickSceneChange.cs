@@ -12,13 +12,14 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPoin
     public string storyID;      // story ID to use if a story encounter
 
     public Image waypointImage;
+    public GameObject tooltipInstance;
 
     public void Render(){
         if (encounterInfo == null){
             return;
         }
         waypointImage = transform.Find("Image").GetComponentInChildren<Image>();
-        Debug.Log(encounterInfo.encounterType);
+        // Debug.Log(encounterInfo.encounterType);
         switch (encounterInfo.encounterType){
             case EncounterType.ENEMY:
                 waypointImage.sprite = Resources.Load<Sprite>("Images/Overworld/normal-encounter");
@@ -75,11 +76,18 @@ public class ButtonClickSceneChange : MonoBehaviour, IPointerClickHandler, IPoin
     }
 
     public void OnPointerEnter(PointerEventData pointerEventData){
+        if (tooltipInstance == null){
+            GameObject waypointPrefab = Resources.Load<GameObject>("Prefabs/WaypointTooltip");
+            tooltipInstance = (GameObject)Instantiate(waypointPrefab, transform.position + new Vector3(300, 0, 0), Quaternion.identity);
+            tooltipInstance.GetComponent<TooltipWaypoint>().reference = this.encounterInfo;
+            tooltipInstance.transform.SetParent(this.transform.parent);
 
+            tooltipInstance.GetComponent<TooltipWaypoint>().SetText();
+        }
     }
 
     public void OnPointerExit(PointerEventData pointerEventData){
-        
+        Destroy(tooltipInstance);
     }
 
     private IEnumerator LoadNegotiation(){

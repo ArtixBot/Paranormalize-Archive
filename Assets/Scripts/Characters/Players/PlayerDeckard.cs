@@ -11,6 +11,16 @@ public class PlayerDeckard : AbstractCharacter
     public PlayerDeckard() : base(playerID, playerName, playerCoreArg, true){}
 
     public override void AddStarterDeck(){
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_GRUFF");
+        this.AddCardToPermaDeck("DECKARD_GRUFF");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_STOIC");
+        this.AddCardToPermaDeck("DECKARD_INSTINCTS");
+
         // this.AddCardToPermaDeck("DECKARD_COMEBACK");
         // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_BARREL_THROUGH");
@@ -69,20 +79,10 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_PANACHE");
         // this.AddCardToPermaDeck("DECKARD_SEETHE");
         // this.AddCardToPermaDeck("DECKARD_SEETHE", true);
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_GRUFF");
-        this.AddCardToPermaDeck("DECKARD_GRUFF");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_INSTINCTS");
-
         // this.AddCardToPermaDeck("DECKARD_ANGER", true);
         // this.AddCardToPermaDeck("DECKARD_PIVOT", true);
-        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT");
-        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
+        // this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT");
+        // this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
         // this.AddCardToPermaDeck("NEUTRAL_BLANK");
         // this.AddCardToPermaDeck("DECKARD_TURNABOUT");
         // this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
