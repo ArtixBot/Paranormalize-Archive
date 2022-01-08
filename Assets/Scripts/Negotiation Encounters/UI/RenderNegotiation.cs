@@ -12,10 +12,11 @@ public class RenderNegotiation : MonoBehaviour
     public NegotiationManager nm = NegotiationManager.Instance;
 
     public AbstractCharacter player;
-    public AbstractCharacter enemy;
+    public AbstractEnemy enemy;
 
     private GameObject cardTemplatePrefab;
     private GameObject argPrefab;
+    private GameObject intentPrefab;
     private GameObject handZone;
 
     private TextMeshProUGUI drawCount;
@@ -45,6 +46,7 @@ public class RenderNegotiation : MonoBehaviour
         handZone = GameObject.Find("Canvas/HandZone");
         argPrefab = Resources.Load("Prefabs/ArgumentDisplay") as GameObject;
         cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
+        intentPrefab = Resources.Load("Prefabs/IntentDisplay") as GameObject;
 
         drawCount = GameObject.Find("Canvas/TrackDeck/Count").GetComponent<TextMeshProUGUI>();
         discardCount = GameObject.Find("Canvas/TrackDiscard/Count").GetComponent<TextMeshProUGUI>();
@@ -63,16 +65,17 @@ public class RenderNegotiation : MonoBehaviour
         // Render core arguments
         GameObject corePlayer = Instantiate(argPrefab, GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform.position, Quaternion.identity);
         corePlayer.GetComponent<DisplayArgument>().reference = player.GetCoreArgument();
-        corePlayer.transform.SetParent(GameObject.Find("Canvas/PlayerSide").transform);
+        corePlayer.transform.SetParent(GameObject.Find("Canvas/PlayerSide/SpawnCoreHere").transform);
         corePlayer.SetActive(true);     // Invoke the core argument's OnEnable() function since the prefab is disabled by default
 
         GameObject coreEnemy = Instantiate(argPrefab, GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform.position, Quaternion.identity);
         coreEnemy.GetComponent<DisplayArgument>().reference = enemy.GetCoreArgument();
-        coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide").transform);
+        coreEnemy.transform.SetParent(GameObject.Find("Canvas/EnemySide/SpawnCoreHere").transform);
         coreEnemy.SetActive(true);
 
-        this.RenderHand();  // Render player hand
-        this.RenderCounts();
+        // this.RenderHand();  // Render player hand
+        // this.RenderCounts();
+        Redraw();
     }
 
     public int renderCardHorizontalDistance;      // set in inspector
@@ -147,15 +150,18 @@ public class RenderNegotiation : MonoBehaviour
         actionCount.text = player.curAP + "/" + player.maxAP;
     }
 
-    void Update(){
-        if (Input.GetKeyUp(KeyCode.E)){
-            NegotiationManager.Instance.NextTurn();
+    public void RenderIntents(){
+        Transform parent = GameObject.Find("IntentTracker/SpawnIntentsHere").transform;
+        foreach (Transform child in parent){
+            GameObject.Destroy(child.gameObject);
+        }
+        for (int i = 0; i < enemy.intents.Count; i++){
+            GameObject arg = Instantiate(intentPrefab, new Vector3(parent.position.x + 100 * i, parent.position.y, parent.position.z), Quaternion.identity);
+            arg.transform.SetParent(GameObject.Find("IntentTracker/SpawnIntentsHere").transform);
+            arg.GetComponent<RenderEnemyIntent>().reference = enemy.intents[i];
         }
     }
 
-    bool moveCameraRight = false;
-    Vector3 playerPos;
-    Vector3 enemyPos;
     public void Redraw(){
         foreach (var prefab in GameObject.FindGameObjectsWithTag("Tooltip")){
             Destroy(prefab);
@@ -163,33 +169,10 @@ public class RenderNegotiation : MonoBehaviour
         RenderHand();
         RenderNonCoreArguments();
         RenderCounts();
-
-        playerPos = GameObject.Find("Negotiation Background/CamFocusPlayer").transform.position + new Vector3(0, 0, -10);
-        enemyPos = GameObject.Find("Negotiation Background/CamFocusEnemy").transform.position + new Vector3(0, 0, -10);
-        moveCameraRight = !moveCameraRight;
+        RenderIntents();
         roundText.text = "Turn " + NegotiationManager.Instance.round;
     }
-
-    public float duration = 1f;       // this doesn't seem to do anything for some reason
-    void LateUpdate(){
-        if (mainCamera.transform.position.z > -10){
-            mainCamera.transform.position = mainCamera.transform.position + new Vector3(0, 0, -10);
-        }
-        if (moveCameraRight){
-            StartCoroutine(MoveCameraTo(mainCamera.transform.position, enemyPos, duration));
-        } else {
-            StartCoroutine(MoveCameraTo(mainCamera.transform.position, playerPos, duration));
-        }
-    }
-
-    IEnumerator MoveCameraTo(Vector3 oldPos, Vector3 newPos, float duration){
-        for (float f = 0f; f < duration/4; f += 3*Time.deltaTime){
-            mainCamera.transform.position = Vector3.Lerp(oldPos, newPos, f/duration);
-            yield return 0;
-        }
-        mainCamera.transform.position = newPos;
-    }
-
+    
     public void DisplayCardSelectScreen(List<AbstractCard> cardsToDisplay, int numToSelect, bool mustSelectExact){
         GameObject prefab = Resources.Load("Prefabs/SelectCardOverlay") as GameObject;
         Transform parentLoc = GameObject.Find("Canvas").transform;
