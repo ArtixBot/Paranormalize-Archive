@@ -4,10 +4,28 @@ using UnityEngine;
 public class EnemyIntent {
     public AbstractCard cardToPlay;
     public AbstractArgument argumentTargeted;
+    public IntentType intentType;
+
+    public enum IntentType {
+        ATTACK, BUFF_SKILL, DEBUFF_SKILL, TRAIT, UNKNOWN
+    }
 
     public EnemyIntent(AbstractCard cardToPlay, AbstractArgument target){
         this.cardToPlay = cardToPlay;
         this.argumentTargeted = target;
+        if (cardToPlay.TYPE == CardType.TRAIT){
+            this.intentType = IntentType.TRAIT;
+        } else if (cardToPlay.TYPE == CardType.ATTACK){
+            this.intentType = IntentType.ATTACK;
+        } else if (cardToPlay.TYPE == CardType.SKILL){
+            if (target.OWNER == cardToPlay.OWNER){
+                this.intentType = IntentType.BUFF_SKILL;
+            } else {
+                this.intentType = IntentType.DEBUFF_SKILL;
+            }
+        } else {
+            this.intentType = IntentType.UNKNOWN;
+        }
     }
 
     public void Resolve(){

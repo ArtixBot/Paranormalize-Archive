@@ -338,7 +338,7 @@
     },
     "ENEMY_INSIDIOUS_WHISPERS": {
         "NAME": "Insidious Whispers",
-        "DESC": "Deploy [S] Insidious Whispers [ITERATIONS] times."
+        "DESC": "Deploy [S] Insidious Whispers [INSTANCES] times."
     },
     "ENEMY_NIHILISM": {
         "NAME": "Nihilism",

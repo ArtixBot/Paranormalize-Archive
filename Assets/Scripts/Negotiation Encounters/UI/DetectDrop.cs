@@ -20,9 +20,10 @@ public class DetectDrop : MonoBehaviour, IDropHandler
         if (card != null){
             // Debug.Log("DetectDrop.cs: Played " + card.NAME + " on " + argRef.OWNER.NAME +"'s " + argRef.NAME);
             NegotiationManager.Instance.PlayCard(card, TurnManager.Instance.GetCurrentCharacter(), argRef);
-            render.GetComponent<RenderNegotiation>().RenderHand();
-            render.GetComponent<RenderNegotiation>().RenderNonCoreArguments();
-            render.GetComponent<RenderNegotiation>().RenderCounts();
+            // render.GetComponent<RenderNegotiation>().RenderHand();
+            // render.GetComponent<RenderNegotiation>().RenderNonCoreArguments();
+            // render.GetComponent<RenderNegotiation>().RenderCounts();
+            render.GetComponent<RenderNegotiation>().Redraw();
             return;
         }
         Debug.LogWarning("Failed to play card, card is null!");

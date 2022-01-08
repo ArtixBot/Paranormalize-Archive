@@ -78,7 +78,6 @@ public class NegotiationManager : EventSubscriber {
         
         tm.GetCurrentCharacter().StartTurn();      // Run start-of-turn function for new character.
         em.TriggerEvent(new EventTurnStart(tm.GetCurrentCharacter()));
-        renderer.Redraw();
 
         if (tm.GetCurrentCharacter().FACTION == FactionType.ENEMY){     // TODO: AI coding, but for now just call this function over again.
             foreach (EnemyIntent intent in enemy.intents){
@@ -91,6 +90,7 @@ public class NegotiationManager : EventSubscriber {
             foreach(EnemyIntent intent in enemy.intents){
                 Debug.Log($"The enemy intends to play {intent.cardToPlay} on {intent.argumentTargeted}");
             }
+            renderer.Redraw();
             this.round += 1;
         }
     }

@@ -7,6 +7,8 @@ public class RenderEnemyIntent : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public EnemyIntent reference;
     public AbstractArgument targetToDrawLineTo;
+    private GameObject cardTemplatePrefab;
+    private GameObject prefabInstance;
     
     public Image image; 
     public LineRenderer lr;
@@ -14,8 +16,7 @@ public class RenderEnemyIntent : MonoBehaviour, IPointerEnterHandler, IPointerEx
     void OnEnable(){
         image = gameObject.GetComponent<Image>();
         lr = gameObject.GetComponent<LineRenderer>();
-
-        image.sprite = Resources.Load<Sprite>("Images/Arguments/adaptive");
+        cardTemplatePrefab = Resources.Load("Prefabs/CardTemplate") as GameObject;
     }
 
     public void OnPointerEnter(PointerEventData eventData){
@@ -42,9 +43,14 @@ public class RenderEnemyIntent : MonoBehaviour, IPointerEnterHandler, IPointerEx
             this.lr.SetPosition(0, Camera.main.ScreenToWorldPoint(transform.position) + new Vector3(0, 0, 10));
             this.lr.SetPosition(1, Camera.main.ScreenToWorldPoint(argumentObject.transform.position) + new Vector3(0, 0, 10));
         }
+        prefabInstance = GameObject.Instantiate(cardTemplatePrefab, transform.position + new Vector3(0, 100, 0), Quaternion.identity);
+        prefabInstance.transform.SetParent(this.transform);
+        prefabInstance.GetComponent<DisplayCard>().reference = reference.cardToPlay;
+        prefabInstance.GetComponent<DisplayCard>().Render();
     }
 
     public void OnPointerExit(PointerEventData eventData){
         this.lr.enabled = false;
+        Destroy(prefabInstance);
     }
 }

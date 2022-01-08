@@ -159,6 +159,15 @@ public class RenderNegotiation : MonoBehaviour
             GameObject arg = Instantiate(intentPrefab, new Vector3(parent.position.x + 100 * i, parent.position.y, parent.position.z), Quaternion.identity);
             arg.transform.SetParent(GameObject.Find("IntentTracker/SpawnIntentsHere").transform);
             arg.GetComponent<RenderEnemyIntent>().reference = enemy.intents[i];
+            if (enemy.intents[i].intentType == EnemyIntent.IntentType.ATTACK){
+                arg.GetComponent<RenderEnemyIntent>().image.sprite = Resources.Load<Sprite>("Images/intent-attack");
+            } else if (enemy.intents[i].intentType == EnemyIntent.IntentType.BUFF_SKILL || enemy.intents[i].intentType == EnemyIntent.IntentType.DEBUFF_SKILL){
+                arg.GetComponent<RenderEnemyIntent>().image.sprite = Resources.Load<Sprite>("Images/intent-skill");
+            } else if (enemy.intents[i].intentType == EnemyIntent.IntentType.TRAIT){
+                arg.GetComponent<RenderEnemyIntent>().image.sprite = Resources.Load<Sprite>("Images/intent-trait");
+            } else {
+                arg.GetComponent<RenderEnemyIntent>().image.sprite = Resources.Load<Sprite>("Images/Arguments/adaptive");
+            }
         }
     }
 
