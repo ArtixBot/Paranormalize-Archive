@@ -19,6 +19,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public bool isInRewardOverlay;      // is true when this is in the reward overlay
     public bool selectedInCardOverlay = false;  // should only be true whenever isInCardOverlay is true
 
+    private Image cardRarityBorder;
     private Image cardBG;
     private Image cardImage;
     private Image cardInsigniaBG;
@@ -48,6 +49,7 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.isInDeckOverlay = GameObject.Find("ViewDeckDisplay") != null;
         this.isInRewardOverlay = GameObject.Find("RewardViewOverlay") != null;
 
+        cardRarityBorder = transform.Find("CardRarityBorder").GetComponent<Image>();
         cardBG = transform.Find("CardBG").GetComponent<Image>();
         cardImage = transform.Find("CardImage").GetComponent<Image>();
         cardInsigniaBG = transform.Find("CardInsigniaBG").GetComponent<Image>();
@@ -82,6 +84,20 @@ public class DisplayCard : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 cardInsignia.sprite = Resources.Load<Sprite>("Images/insignia-status");
                 break;
             default:
+                break;
+        }
+        switch (reference.RARITY){
+            case CardRarity.UNIQUE:
+            case CardRarity.RARE:
+                cardRarityBorder.color = new Color32(218, 165, 32, 255);
+                break;
+            case CardRarity.UNCOMMON:
+                cardRarityBorder.color = new Color32(192, 192, 192, 255);
+                break;
+            case CardRarity.COMMON:
+            case CardRarity.STARTER:
+            default:
+                cardRarityBorder.color = new Color32(50, 50, 50, 255);
                 break;
         }
         cardName.text = reference.NAME.ToUpper();

@@ -23,6 +23,9 @@ public class DeckardReinforce : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
+        if (target.isCore){
+            throw new Exception("Cannot target core arguments with Reinforce!");
+        }
         target.maxHP *= this.multiplier;
         target.curHP = target.maxHP;
     }

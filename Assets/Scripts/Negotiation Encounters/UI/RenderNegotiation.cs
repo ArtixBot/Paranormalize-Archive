@@ -156,7 +156,7 @@ public class RenderNegotiation : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         for (int i = 0; i < enemy.intents.Count; i++){
-            GameObject arg = Instantiate(intentPrefab, new Vector3(parent.position.x + 100 * i, parent.position.y, parent.position.z), Quaternion.identity);
+            GameObject arg = Instantiate(intentPrefab, new Vector3(64 + parent.position.x + 64 * i, parent.position.y, parent.position.z), Quaternion.identity);
             arg.transform.SetParent(GameObject.Find("IntentTracker/SpawnIntentsHere").transform);
             arg.GetComponent<RenderEnemyIntent>().reference = enemy.intents[i];
             if (enemy.intents[i].intentType == EnemyIntent.IntentType.ATTACK){

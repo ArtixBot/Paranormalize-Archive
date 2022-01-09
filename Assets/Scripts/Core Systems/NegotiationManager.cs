@@ -200,7 +200,6 @@ public class NegotiationManager : EventSubscriber {
     // Handle post-card playing effects (move card to discard pile, spend AP costs, etc.)
     public override void NotifyOfEvent(AbstractEvent eventData){
         if (eventData.type == EventType.CARD_PLAYED){
-            Debug.Log("People in turnlist: " + tm.GetTurnList().Count);
             EventCardPlayed data = (EventCardPlayed) eventData;
             AbstractCard cardPlayed = data.cardPlayed;
             cardsPlayedThisTurn.Add(data.cardPlayed);
