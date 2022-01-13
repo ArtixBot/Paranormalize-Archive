@@ -1,4 +1,4 @@
 # Paranormalize
-![Progress Pic 1](/progress1.png)
+![Progress Pic 2](/progress2.jpg)
 
 A tactical negotiation card game about exorcising spirits.
