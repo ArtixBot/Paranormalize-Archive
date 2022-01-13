@@ -40,12 +40,10 @@ public class DestroyArgumentAction : AbstractAction {
                 EventSystemManager.Instance.TriggerEvent(new EventArgDestroyed(argumentToDestroy));    // trigger on-destroy effects (if any on the argument itself or on the destroying card/arg)
             }
             this.argumentToDestroy.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
+            
             // Remove all actions that were in the action queue and associated w/ the destroyed argument
-            for (int i = NegotiationManager.Instance.actionQueue.Count - 1; i >= 0; i--){
-                if (NegotiationManager.Instance.actionQueue[i].origin == instance){
-                    NegotiationManager.Instance.actionQueue.RemoveAt(i);
-                }
-            }
+            NegotiationManager.Instance.actionQueue.RemoveAll(action => action.origin == instance);
+
             owner.GetArguments().Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
         }
         return 0;

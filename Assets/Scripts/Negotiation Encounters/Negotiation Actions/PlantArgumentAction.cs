@@ -35,8 +35,7 @@ public class PlantArgumentAction : AbstractAction {
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(newInstance));
         } else {
             Debug.Log("Copy exists; adding " + stacksToPlant + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
-            instance.stacks += stacksToPlant;
-            EventSystemManager.Instance.TriggerEvent(new EventArgStacksAdded(instance, stacksToPlant));
+            NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(instance, stacksToPlant));
             Debug.Log("Instance now has " + instance.stacks + " stacks.");
         }
         return this.stacksToPlant;

@@ -27,7 +27,7 @@ public class DeckardObligation : AbstractCard {
         base.Play(source, target);
         NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
         foreach(AbstractArgument support in source.GetArguments()){
-            support.stacks += this.STACKS;
+            NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(support, this.STACKS));
         }
     }
 

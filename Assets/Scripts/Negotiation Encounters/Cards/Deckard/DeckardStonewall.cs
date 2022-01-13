@@ -8,7 +8,7 @@ public class DeckardStonewall : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 1;
 
-    public int POISE = 5;
+    public int POISE = 4;
 
     public DeckardStonewall() : base(
         cardID,
@@ -21,11 +21,14 @@ public class DeckardStonewall : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, target, POISE));
+        AmbienceState state = Ambience.Instance.GetState();
+        bool bonusEffects = (state == AmbienceState.GUARDED);
+        int multiplier = (bonusEffects) ? 2 : 1;
+        NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, target, POISE * multiplier));
     }
 
     public override void Upgrade(){
         base.Upgrade();
-        this.POISE += 3;
+        this.POISE += 2;
     }
 }

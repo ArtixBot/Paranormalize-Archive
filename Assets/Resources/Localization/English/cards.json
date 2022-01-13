@@ -33,7 +33,7 @@
     },
     "DECKARD_ADAPTIVE": {
         "NAME": "Adaptive",
-        "DESC": "Whenever the Ambience phase changes, apply [S] Poise to all your arguments."
+        "DESC": "Whenever Ambience changes, apply [S] Poise to all your arguments."
     },
     "DECKARD_ADDENDUM": {
         "NAME": "Addendum",
@@ -58,7 +58,7 @@
     },
     "DECKARD_BREAKTHROUGH": {
         "NAME": "Breakthrough",
-        "DESC": "Deal [D] damage.\nWhenever the Ambience phase changes towards Guarded, this card costs 0 until your next turn."
+        "DESC": "Deal [D] damage.\nWhenever Ambience changes towards Guarded, this card costs 0 until your next turn."
     },
     "DECKARD_BRASH": {
         "NAME": "Brash",
@@ -96,6 +96,10 @@
         "NAME": "Always in Command",
         "DESC": "Deploy [S] Authority.\nScour."
     },
+    "DECKARD_COUNTERPOINT": {
+        "NAME": "Counterpoint",
+        "DESC": "Deal [D] damage.\nIf Ambience is Guarded or Tense: this deals double damage and has <b>Influential</b> [INFLUENCE]."
+    },
     "DECKARD_CROSS_EXAMINATION": {
         "NAME": "Cross-Examination",
         "DESC": "Deal [D] damage.\nCan only target enemy support arguments."
@@ -110,7 +114,7 @@
     },
     "DECKARD_DEFUSAL": {
         "NAME": "Defusal",
-        "DESC": "If the Ambience is Guarded or Tense, draw [N] cards.\nInfluential [S]."
+        "DESC": "If Ambience is Guarded or Tense, draw [N] cards.\nInfluential [S]."
     },
     "DECKARD_DEJA_VU": {
         "NAME": "Déjà Vu",
@@ -120,6 +124,10 @@
     "DECKARD_DIPLOMACY": {
         "NAME": "Diplomacy",
         "DESC": "Deal [D] damage."
+    },
+    "DECKARD_DISPUTE": {
+        "NAME": "Dispute",
+        "DESC": "If this targets an enemy support argument, reduce its stack count by [S].\nDeal [D] damage."
     },
     "DECKARD_DOMINEER": {
         "NAME": "Domineer",
@@ -139,7 +147,7 @@
     },
     "DECKARD_FOLLOW_UP": {
         "NAME": "Follow Up",
-        "DESC": "Deal [D] damage.\nWhenever the Ambience phase changes, return this card from your discard pile to your hand."
+        "DESC": "Deal [D] damage.\nWhenever Ambience changes, return this card from your discard pile to your hand."
     },
     "DECKARD_GOOD_IMPRESSION": {
         "NAME": "Good Impression",
@@ -159,7 +167,7 @@
     },
     "DECKARD_HOTHEADED": {
         "NAME": "Hotheaded",
-        "DESC": "Whenever the Ambience phase changes towards Dangerous, draw [S] cards."
+        "DESC": "Whenever Ambience changes towards Dangerous, draw [S] cards."
     },
     "DECKARD_IMPATIENCE": {
         "NAME": "Impatience",
@@ -205,7 +213,7 @@
     },
     "DECKARD_MAGNETIC_PERSONALITY": {
         "NAME": "Magnetic Personality",
-        "DESC": "Whenever the Ambience phase changes, Deploy [S] Finesse and [S] Heated."
+        "DESC": "Whenever Ambience changes, Deploy [S] Finesse and [S] Heated."
     },
     "DECKARD_OBLIGATION": {
         "NAME": "Obligation",
@@ -225,7 +233,7 @@
     },
     "DECKARD_PANACHE": {
         "NAME": "Panache",
-        "DESC": "Deal [D] damage.\nWhenever the Ambience level changes, double this card's damage for the rest of the turn."
+        "DESC": "Deal [D] damage.\nWhenever Ambience changes, double this card's damage for the rest of the turn."
     },
     "DECKARD_PIVOT": {
         "NAME": "Pivot",
@@ -284,7 +292,7 @@
     },
     "DECKARD_SMOKE_BREAK": {
         "NAME": "Smoke Break",
-        "DESC": "Set the Ambience to Guarded.\nScour."
+        "DESC": "Set Ambience to Guarded.\nScour."
     },
     "DECKARD_SMOOTH_TALK": {
         "NAME": "Smooth Talk",
@@ -304,7 +312,7 @@
     },
     "DECKARD_STONEWALL": {
         "NAME": "Stonewall",
-        "DESC": "Apply [P] Poise."
+        "DESC": "Apply [P] Poise.\nIf Ambience is Guarded, Poise applied by this card is doubled."
     },
     "DECKARD_STRAWMAN": {
         "NAME": "Strawman",
@@ -320,7 +328,8 @@
     },
     "DECKARD_TURNABOUT": {
         "NAME": "Turnabout",
-        "DESC": "Deal [D] damage.\nIf Ambience is Guarded or Tense: this deals double damage and has <b>Influential</b> [INFLUENCE]."
+        "DESC": "Steal up to X stacks from an enemy support argument. Add the stacks to a random friendly support argument.",
+        "DESC+": "Steal up to X+1 stacks from an enemy support argument. Add the stacks to a random friendly support argument."
     },
     "DECKARD_WORDSMITH": {
         "NAME": "Wordsmith",

@@ -26,15 +26,28 @@ public class RenderEnemyIntent : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (targetToDrawLineTo.isCore){
                 argumentObject = GameObject.Find("PlayerSide/SpawnCoreHere/ArgumentDisplay(Clone)");
             } else {
-
+                foreach (Transform nonCore in GameObject.Find("PlayerSide/SpawnNonCoreHere").transform){
+                    DisplayArgument displayArg = nonCore.gameObject.GetComponent<DisplayArgument>();
+                    if (displayArg != null && displayArg.reference.INSTANCE_ID == targetToDrawLineTo.INSTANCE_ID){
+                        argumentObject = displayArg.gameObject;
+                        break;
+                    }
+                }
             }
         } else {
             if (targetToDrawLineTo.isCore){
                 argumentObject = GameObject.Find("EnemySide/SpawnCoreHere/ArgumentDisplay(Clone)");
             } else {
-
+                foreach (Transform nonCore in GameObject.Find("EnemySide/SpawnNonCoreHere").transform){
+                    DisplayArgument displayArg = nonCore.gameObject.GetComponent<DisplayArgument>();
+                    if (displayArg != null && displayArg.reference.INSTANCE_ID == targetToDrawLineTo.INSTANCE_ID){
+                        argumentObject = displayArg.gameObject;
+                        break;
+                    }
+                }
             }
         }
+
         if (argumentObject != null){
             this.lr.enabled = true;
             this.lr.sortingOrder = 1;

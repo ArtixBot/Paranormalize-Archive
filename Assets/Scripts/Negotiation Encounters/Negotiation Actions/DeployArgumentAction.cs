@@ -36,8 +36,7 @@ public class DeployArgumentAction : AbstractAction {
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(newInstance));
         } else {
             Debug.Log("Copy exists; adding " + stacksToDeploy + " stacks to it. Instance had " + instance.stacks + " stacks before adding these new ones.");
-            instance.stacks += stacksToDeploy;
-            EventSystemManager.Instance.TriggerEvent(new EventArgStacksAdded(instance, stacksToDeploy));
+            NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(instance, stacksToDeploy));
             Debug.Log("Instance now has " + instance.stacks + " stacks.");
         }
         return this.stacksToDeploy;

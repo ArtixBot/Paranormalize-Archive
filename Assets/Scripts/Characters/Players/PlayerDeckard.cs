@@ -81,10 +81,11 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_SEETHE", true);
         // this.AddCardToPermaDeck("DECKARD_ANGER", true);
         // this.AddCardToPermaDeck("DECKARD_PIVOT", true);
-        // this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT");
-        // this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
+        this.AddCardToPermaDeck("DECKARD_DISPUTE");
+        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
+        this.AddCardToPermaDeck("DECKARD_STONEWALL");
         // this.AddCardToPermaDeck("NEUTRAL_BLANK");
-        // this.AddCardToPermaDeck("DECKARD_TURNABOUT");
+        this.AddCardToPermaDeck("DECKARD_TURNABOUT");
         // this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
         // this.AddCardToPermaDeck("DECKARD_ESCALATE");
         // this.AddCardToPermaDeck("DECKARD_ESCALATE", true);

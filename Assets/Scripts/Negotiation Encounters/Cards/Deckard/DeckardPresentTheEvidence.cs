@@ -25,7 +25,7 @@ public class DeckardPresentTheEvidence : AbstractCard {
         if (target.isCore){
             throw new Exception("Cannot target core arguments with Present the Evidence!");
         }
-        target.stacks += STACKS;
+        NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(target, this.STACKS));
         NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(target.OWNER), target.stacks, target.stacks, this));
     }
 

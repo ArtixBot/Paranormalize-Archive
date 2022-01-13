@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,34 +7,41 @@ public class DeckardTurnabout : AbstractCard {
 
     public static string cardID = "DECKARD_TURNABOUT";
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
-    private static int cardCost = 2;
-
-    public int MIN_DAMAGE = 4;
-    public int MAX_DAMAGE = 5;
-    public int INFLUENCE = 4;
+    private static int cardCost = 0;
 
     public DeckardTurnabout() : base(
         cardID,
         cardStrings,
         cardCost,
-        CardAmbient.AGGRESSION,
-        CardRarity.COMMON,
-        CardType.ATTACK
-    ){}
+        CardAmbient.INFLUENCE,
+        CardRarity.UNCOMMON,
+        CardType.SKILL
+    ){
+        this.COSTS_ALL_AP = true;
+    }
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        AmbienceState state = Ambience.Instance.GetState();
-        bool bonusEffects = (state == AmbienceState.GUARDED || state == AmbienceState.TENSE);
-        int multiplier = (bonusEffects) ? 2 : 1;
-        NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE * multiplier, MAX_DAMAGE * multiplier, this));
-        if (bonusEffects){
-            NegotiationManager.Instance.AddAction(new DeployArgumentAction(source, new ArgumentAmbientShiftAggression(), INFLUENCE));
+        if (target.isCore){
+            throw new Exception("Can only target support arguments with Turnabout!");
+        }
+        int cnt = (this.isUpgraded) ? 1 + source.curAP : source.curAP;
+        int stacksToGain = Math.Min(target.stacks, cnt);
+        
+        target.stacks -= cnt;
+        if (target.stacks <= 0){            // Destroy the argument if it falls below 0 stacks
+            target.stacks = 0;
+            NegotiationManager.Instance.AddAction(new DestroyArgumentAction(target, this));
+        }
+
+        List<AbstractArgument> recipients = this.OWNER.GetTargetableArguments();
+        if (recipients.Count > 0){
+            int index = UnityEngine.Random.Range(0, recipients.Count);
+            NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(recipients[index], stacksToGain));
         }
     }
 
     public override void Upgrade(){
         base.Upgrade();
-        this.MIN_DAMAGE += 1;
     }
 }

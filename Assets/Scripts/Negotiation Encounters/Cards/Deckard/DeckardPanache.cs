@@ -38,9 +38,9 @@ public class DeckardPanache : AbstractCard
     private int multiplier = 0;     // done so that we can update damage values on the card itself
     public override void NotifyOfEvent(AbstractEvent eventData){
         if (eventData.type == EventType.AMBIENCE_STATE_SHIFT){
+            this.multiplier += 1;
             this.MIN_DAMAGE *= 2;
             this.MAX_DAMAGE *= 2;
-            this.multiplier += 1;
         }
         if (eventData.type == EventType.TURN_END){
             for (int i = 0; i < multiplier; i++){

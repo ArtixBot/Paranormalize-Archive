@@ -37,7 +37,7 @@ public class ArgumentCoreHardenedResolve : AbstractArgument
                 EventArgAttackedUnblocked attacked = (EventArgAttackedUnblocked) eventData;
                 if (attacked.argumentAttacked == this){
                     NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this, this.stacks));
-                    this.stacks += 1;
+                    NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(this, 1));
                 }
                 break;
         }

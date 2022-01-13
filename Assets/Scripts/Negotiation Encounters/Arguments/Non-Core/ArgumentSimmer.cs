@@ -29,7 +29,7 @@ public class ArgumentSimmer : AbstractArgument
         if (eventData.type == EventType.POISE_APPLIED){
             EventPoiseApplied data = (EventPoiseApplied) eventData;
             if (data.target.OWNER == this.OWNER){
-                this.stacks += 1;
+                NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(this, 1));
             }
         } else if (eventData.type == EventType.TURN_END){
             EventTurnEnd data = (EventTurnEnd) eventData;

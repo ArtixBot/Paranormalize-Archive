@@ -9,7 +9,7 @@ public class DeckardBreakthrough : AbstractCard {
     private static Dictionary<string, string> cardStrings = LocalizationLibrary.Instance.GetCardStrings(cardID);
     private static int cardCost = 2;
 
-    public int MIN_DAMAGE = 8;
+    public int MIN_DAMAGE = 7;
     public int MAX_DAMAGE = 10;
 
     public DeckardBreakthrough() : base(

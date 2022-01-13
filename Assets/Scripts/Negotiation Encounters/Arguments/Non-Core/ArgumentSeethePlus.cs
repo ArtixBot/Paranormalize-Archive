@@ -27,7 +27,7 @@ public class ArgumentSeethePlus : AbstractArgument
         EventTurnEnd person = (EventTurnEnd) eventData;
         if (person.end == this.OWNER){
             NegotiationManager.Instance.AddAction(new DamageAction(null, TurnManager.Instance.GetOtherCharacter(this.OWNER), stacks, stacks, this));
-            this.stacks += 1;
+            NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(this, 1));
         }
     }
 }
