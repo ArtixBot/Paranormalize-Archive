@@ -113,7 +113,7 @@
     },
     "SIMMER": {
         "NAME": "Simmer",
-        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nThis gains 1 stack whenever Poise is applied to any of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
+        "DESC": "When destroyed, deal [STACKS] damage to a random enemy argument.\n\nAdd 1 stack to this whenever Poise is applied to any of [OWNER]'s arguments.\n\nAt the end of [OWNER]'s turn, destroy this."
     },
     "STAY_COOL":{
         "NAME": "Stay Cool",
