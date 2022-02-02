@@ -3,11 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CardOwner {};
 public enum CardType {ATTACK, SKILL, TRAIT, STATUS};
 public enum CardAmbient {DIALOGUE, AGGRESSION, INFLUENCE, PARANORMAL, ITEM, STATUS, NONE};
 public enum CardTags {INHERIT, SCOUR, POISE, DEPLOY, PLANT, INFLUENTIAL, DESTROY, PIERCING};   // Determines what tooltips should appear when viewing the card
 public enum CardRarity {STARTER = 0, COMMON = 1, UNCOMMON = 2, RARE = 3, UNIQUE = 4};
+
+// Determines what targets can be affected by this card.
+// ENEMY - This card can target a single enemy argument (and must be dragged onto one enemy argument)
+// ALL_ENEMY - This card can target ALL enemy arguments (and can be dragged onto ANY enemy argument or just the playing field in general)
+// ALLY - This card can target a single ally argument
+// ALL_ALLY - This card can target ALL ally arguments
+// CORE_ONLY - Restricts targeting to only allow targeting of core arguments, and throws otherwise. Do NOT combine with SUPPORT_ONLY
+// SUPPORT_ONLY - Restricts targeting to only allow targeting of support arguments, and throws otherwise.
+// RANDOM - Targeting is randomized. The card can be dragged onto the playing field (without targeting a specific argument)
+public enum CardTarget {ENEMY, ALL_ENEMY, ALLY, ALL_ALLY, CORE_ONLY, SUPPORT_ONLY, RANDOM};
 
 public class CardCostMod {
     public int amount;
@@ -23,14 +32,15 @@ public abstract class AbstractCard : EventSubscriber {
     public int COST;                // Card cost
     public bool COSTS_ALL_AP = false;   // If true, playing this card costs all AP. Set the default cost of the card in-code to 0, though.
     public AbstractCharacter OWNER; // Card owner (determined during AbstractCharacter.AddCardToPermaDeck)
+    public List<CardTarget> TARGET; // Card targeting
     public List<CardTags> TAGS = new List<CardTags>();     // Card tags
 
     // public List<CardCostMod> COST_MODS;// List of modifiers to card cost
 
     // Metadata
     public string INSTANCE_ID;      // The specific instance id for a card
-    public string ID;               // Card ID
-    public string DRAFT_CHARACTER;  // Which character's drafts can this card appear in?
+    public readonly string ID;               // Card ID
+    public readonly string DRAFT_CHARACTER;  // Which character's drafts can this card appear in?
 
     // Cosmetic
     public string NAME;             // Card name
@@ -46,7 +56,7 @@ public abstract class AbstractCard : EventSubscriber {
         this.ID = id;
         this.NAME = cardStrings["NAME"];
         this.DESC = cardStrings["DESC"];
-        this.IMAGE = "Images/missing";
+        this.IMAGE = (this.ID == "DECKARD_DIPLOMACY") ? "Images/CardsDeckard/diplomacy" : "Images/missing";
         this.COST = cost;
         this.AMBIENCE = ambience;
         this.RARITY = rarity;

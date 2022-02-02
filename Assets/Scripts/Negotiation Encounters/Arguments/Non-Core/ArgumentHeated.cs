@@ -34,6 +34,11 @@ public class ArgumentHeated : AbstractArgument
         } else if (eventData.type == EventType.ARGUMENT_DESTROYED){
             EventArgDestroyed data = (EventArgDestroyed) eventData;
             if (data.argumentDestroyed == this) this.stacks = 0;
+        } else {
+            EventCardPlayed data = (EventCardPlayed) eventData;
+            if (data.cardType == CardType.ATTACK && data.cardAmbient == CardAmbient.AGGRESSION && data.cardPlayed.OWNER == this.OWNER){
+                NegotiationManager.Instance.AddAction(new DeployArgumentAction(this.OWNER, new ArgumentAmbientShiftAggression(), 1));
+            }
         }
         if (this.stacks != currentlyApplying){
             int delta = (this.stacks - currentlyApplying);

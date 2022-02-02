@@ -63,9 +63,9 @@ public class NegotiationManager : EventSubscriber {
         Debug.Log("Negotiation begins!");
         
         enemy.CalculateIntents();
-        foreach(EnemyIntent intent in enemy.intents){
-            Debug.Log($"The enemy intends to play {intent.cardToPlay} on {intent.argumentTargeted}");
-        }
+        // foreach(EnemyIntent intent in enemy.intents){
+        //     Debug.Log($"The enemy intends to play {intent.cardToPlay} on {intent.argumentTargeted}");
+        // }
     }
 
     public void NextTurn(){
@@ -306,6 +306,11 @@ public class NegotiationManager : EventSubscriber {
 
     private AbstractCard DraftCard(CardRarity rarity){
         List<AbstractCard> filteredList = CardLibrary.Instance.Lookup(GameState.mainChar).Where(card => card.RARITY == rarity).ToList();
-        return filteredList[UnityEngine.Random.Range(0, filteredList.Count)];       
+        AbstractCard draft = filteredList[UnityEngine.Random.Range(0, filteredList.Count)];
+        int rng = UnityEngine.Random.Range(0, 100);
+        if (rng < 20){      // 20% chance to upgrade a drafted card
+            draft.Upgrade();
+        }
+        return draft;
     }
 }

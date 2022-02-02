@@ -28,7 +28,7 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (argRef != null){
             argumentType.GetComponent<TextMeshProUGUI>().text = (argRef.isCore) ? "Core Argument" : "Argument";
             argumentName.GetComponent<TextMeshProUGUI>().text = argRef.NAME;
-            argumentDesc.GetComponent<TextMeshProUGUI>().text = ParseTooltip(argRef.DESC);
+            argumentDesc.GetComponent<TextMeshProUGUI>().text = ParseTooltip(argRef.DESC) + AddStatusEffectText();
             argumentStacks.GetComponent<TextMeshProUGUI>().text = "x" + argRef.stacks;
             if (argRef.isTrait){
                 argumentResolve.GetComponent<TextMeshProUGUI>().text = "TRAIT";
@@ -70,6 +70,16 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
             } 
         }
         return s;
+    }
+
+    // If the argument has any status effects, also add the description of that effect into here
+    string AddStatusEffectText(){
+        string retVal = "";
+        foreach(AbstractStatusEffect effect in argRef.statusEffects){
+            string color = (effect.TYPE == StatusEffectType.BUFF) ? "green" : "red";
+            retVal += $"\n\n<b><color={color}>{effect.NAME}</color></b>\n{ParseTooltip(effect.DESC)}";
+        }
+        return retVal;
     }
 
     public void OnPointerEnter(PointerEventData eventData){}

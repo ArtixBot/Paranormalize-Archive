@@ -147,7 +147,7 @@ public class RenderNegotiation : MonoBehaviour
             scourObject.SetActive(true);
         }
         scourCount.text = player.GetScourPile().GetSize().ToString();
-        actionCount.text = player.curAP + "/" + player.maxAP;
+        actionCount.text = player.curAP.ToString();
     }
 
     public void RenderIntents(){

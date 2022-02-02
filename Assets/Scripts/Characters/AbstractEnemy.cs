@@ -68,7 +68,7 @@ public abstract class AbstractEnemy : AbstractCharacter {
             actionBudget -= selectedCard.COST;
             currentHand.RemoveAt(rand);
         }
-        Debug.Log("Intents generated; generated " + intents.Count + " intents");
+        // Debug.Log("Intents generated; generated " + intents.Count + " intents");
     }
 
     // To be used whenever an argument is destroyed so that intents which were targeting the destroyed argument re-select a target

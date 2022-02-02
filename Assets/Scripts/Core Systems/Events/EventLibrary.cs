@@ -13,6 +13,7 @@ public enum EventType {
     ARGUMENT_CREATED,
     ARGUMENT_DESTROYED,
     ARGUMENT_STACKS_ADDED,
+    ARGUMENT_STATUS_EFFECT_APPLIED,
     CARD_DRAWN,
     CARD_PLAYED,
     TURN_START,
@@ -179,6 +180,21 @@ namespace GameEvent{
             this.type = EventType.POISE_APPLIED;
             this.poiseApplied = poiseApplied;
             this.target = target;
+        }
+    }
+
+    public class EventStatusEffectApplied : AbstractEvent{
+        public AbstractArgument argAppliedTo;
+        public AbstractStatusEffect effectApplied;
+        public int stacksAdded;
+        ///<summary>
+        ///Trigger when an argument has stacks added to.
+        ///</summary>
+        public EventStatusEffectApplied(AbstractArgument argAppliedTo, AbstractStatusEffect effect, int stacks = 0){
+            this.type = EventType.ARGUMENT_STATUS_EFFECT_APPLIED;
+            this.argAppliedTo = argAppliedTo;
+            this.effectApplied = effect;
+            this.stacksAdded = stacks;
         }
     }
 }

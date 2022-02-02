@@ -25,7 +25,7 @@ public class ArgumentStress : AbstractArgument
 
     public override void NotifyOfEvent(AbstractEvent eventData){    
         EventArgStacksAdded data = (EventArgStacksAdded) eventData;
-        if (data.argumentAddedTo == this && data.newStackCount >= 8){
+        if (data.argumentAddedTo == this && data.newStackCount >= 10){
             NegotiationManager.Instance.AddAction(new DamageAction(this.OWNER.coreArgument, this.OWNER, this.OWNER.coreArgument.curHP / 2, this.OWNER.coreArgument.curHP / 2, this));
             NegotiationManager.Instance.AddAction(new DestroyArgumentAction(this));
         }

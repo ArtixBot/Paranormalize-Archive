@@ -29,12 +29,15 @@ public abstract class AbstractArgument : EventSubscriber
     public float dmgTakenMult = 1.0f;       // This argument takes [dmgTakenMult]x damage (default 1.0x)
     public int dmgTakenAdd = 0;           // This argument takes +[dmgTakenAdd] damage (default 0).
     
-    // public List<ArgumentMods> modifiers;     // handle argument modifiers like Silenced
+    public List<AbstractStatusEffect> statusEffects = new List<AbstractStatusEffect>{};     // handle argument modifiers like Silenced
 
     public virtual void TriggerOnDeploy(){}     // Subscribe to all relevant events by overriding this function.
 
     public virtual void TriggerOnDestroy(){     // Win/lose if it's a core argument.
         EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
+        foreach(AbstractStatusEffect effect in statusEffects){
+            effect.TriggerOnHostDies();
+        }
         if (this.isCore){
             if (this.OWNER.FACTION == FactionType.PLAYER){
                 NegotiationManager.Instance.EndNegotiationLost();

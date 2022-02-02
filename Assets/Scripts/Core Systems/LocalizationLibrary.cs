@@ -11,6 +11,7 @@ public class LocalizationLibrary
 {
     public static readonly LocalizationLibrary Instance = new LocalizationLibrary();
     private JObject arguments = null;
+    private JObject statuses = null;
     private JObject cards = null;
     private JObject ambience = null;
     private JObject keywords = null;
@@ -24,6 +25,10 @@ public class LocalizationLibrary
         path = "Localization/" + Application.systemLanguage.ToString() + "/arguments";
         targetFile = Resources.Load<TextAsset>(path);
         arguments = JObject.Parse(targetFile.ToString());
+
+        path = "Localization/" + Application.systemLanguage.ToString() + "/statuseffects";
+        targetFile = Resources.Load<TextAsset>(path);
+        statuses = JObject.Parse(targetFile.ToString());
 
         path = "Localization/" + Application.systemLanguage.ToString() + "/ambience";
         targetFile = Resources.Load<TextAsset>(path);
@@ -41,6 +46,17 @@ public class LocalizationLibrary
     public Dictionary<string, string> GetArgumentStrings(string ID){
         try {
             return arguments[ID].ToObject<Dictionary<string, string>>();
+        } catch { //(Exception ex) {
+            Dictionary<string, string> notFound = new Dictionary<string, string>();
+            notFound.Add("NAME", "Missing name: " + ID);
+            notFound.Add("DESC", "Missing desc: " + ID);
+            return notFound;
+        }
+    }
+
+    public Dictionary<string, string> GetStatusStrings(string ID){
+        try {
+            return statuses[ID].ToObject<Dictionary<string, string>>();
         } catch { //(Exception ex) {
             Dictionary<string, string> notFound = new Dictionary<string, string>();
             notFound.Add("NAME", "Missing name: " + ID);

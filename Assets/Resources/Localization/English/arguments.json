@@ -77,7 +77,7 @@
     },
     "HEATED":{
         "NAME": "Heated",
-        "DESC": "<b>Passive</b>: [OWNER]'s Aggression attacks deal +[STACKS] damage. Remove 1 stack from this at the end of [OWNER]'s turn."
+        "DESC": "[OWNER]'s Aggression attacks gain <b>Influential</b> 1 and deal +[STACKS] damage for [STACKS] turn(s)."
     },
     "HOTHEADED":{
         "NAME": "Hotheaded",
@@ -125,7 +125,7 @@
     },
     "STRESS": {
         "NAME": "Stress",
-        "DESC": "If this reaches 8+ stacks, [OWNER]'s core argument takes damage equal to half its current resolve (rounded down).\n\nAfterwards, destroy this argument."
+        "DESC": "If this reaches 10+ stacks, [OWNER]'s core argument takes damage equal to half its current resolve (rounded down).\n\nAfterwards, destroy this argument."
     },
     "MAGNETIC_PERSONALITY": {
         "NAME": "Magnetic Personality",

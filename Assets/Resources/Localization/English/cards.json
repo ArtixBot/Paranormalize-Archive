@@ -35,10 +35,6 @@
         "NAME": "Adaptive",
         "DESC": "Whenever Ambience changes, apply [S] Poise to all your arguments."
     },
-    "DECKARD_ADDENDUM": {
-        "NAME": "Addendum",
-        "DESC": "When drawn, deal [D] damage to a random enemy argument and Deploy [S] Finesse."
-    },
     "DECKARD_ANGER": {
         "NAME": "Anger",
         "DESC": "Deal [D] damage.\nIf Ambience is Agitated, Volatile, or Dangerous: Deploy [STACKS] Heated."
@@ -134,8 +130,8 @@
         "DESC": "Deal [D] damage.\nIf this destroys an enemy argument, draw [DRAW] cards and gain [ACTIONS] actions."
     },
     "DECKARD_ESCALATE": {
-        "NAME": "Escalate",
-        "DESC": "Deal [D] damage.\nIf Ambience is Agitated, Volatile, or Dangerous: deals +[BONUS] damage.\nIf Ambience is Dangerous: damage is dealt to ALL enemy arguments."
+        "NAME": "Escalation",
+        "DESC": "Destroy a friendly support argument. Deal damage equal to [MULTIPLIER] times its stack count to the enemy's core argument.\nInfluential [INFLUENCE]."
     },
     "DECKARD_FILIBUSTER": {
         "NAME": "Filibuster",
@@ -192,8 +188,8 @@
     },
     "DECKARD_INTERROGATE": {
         "NAME": "Interrogate",
-        "DESC": "Choose a friendly support argument.\nDeal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments, then destroy it.\n<b>Influential</b> [INFLUENCE].",
-        "DESC+": "Choose a friendly support argument.\nDeal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments, then destroy it.\nSet Ambience to Dangerous."
+        "DESC": "Destroy a friendly support argument. Deal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments.\n<b>Influential</b> [INFLUENCE].",
+        "DESC+": "Destroy a friendly support argument. Deal damage equal to [MULTIPLIER] times its stack count to ALL enemy arguments.\nSet Ambience to Dangerous."
     },
     "DECKARD_INSULT": {
         "NAME": "Insult",
@@ -210,6 +206,11 @@
     "DECKARD_KNACK": {
         "NAME": "Knack",
         "DESC": "Draw [N] cards.\nDeploy Finesse equal to the number of Dialogue cards drawn."
+    },
+    "DECKARD_LOGIC": {
+        "NAME": "Logic",
+        "DESC": "Add [S] stack to a friendly support argument, or remove [S] stack from an enemy support argument.",
+        "DESC+": "Add [S] stacks to a friendly support argument, or remove [S] stacks from an enemy support argument."
     },
     "DECKARD_MAGNETIC_PERSONALITY": {
         "NAME": "Magnetic Personality",
@@ -322,6 +323,10 @@
         "NAME": "Tantrum",
         "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
     },
+    "DECKARD_THE_ACE": {
+        "NAME": "The Ace",
+        "DESC": "Deal [D] damage.\nIf this destroys an enemy core argument, gain an additional mastery point.\nScour."
+    },
     "DECKARD_TRASH_TALK": {
         "NAME": "Trash Talk",
         "DESC": "Deal [D] damage to a random enemy argument [ITERATIONS] times."
@@ -360,6 +365,10 @@
     "NEUTRAL_BLANK": {
         "NAME": "Blank",
         "DESC": "<b>Scour</b>."
+    },
+    "TEST_CARD_VULNERABLE": {
+        "NAME": "Apply Vulnerable",
+        "DESC": "Apply Vulnerable."
     },
     "PARANORMAL_THE_STARS_ALIGN": {
         "NAME": "The Stars Align",

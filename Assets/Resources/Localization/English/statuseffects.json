@@ -1,0 +1,42 @@
+{
+    "ELUSIVE": {
+        "NAME": "Elusive",
+        "DESC": "When this argument is targeted by an attack, negate the attack and remove Elusive. Expires at the start of owner's turn."
+    },
+    "FORTIFY": {
+        "NAME": "Fortified",
+        "DESC": "This argument takes -50% reduced damage until the start of [OWNER]'s turn."
+    },
+    "INCOHERENT": {
+        "NAME": "Incoherent",
+        "DESC": "This argument cannot gain Poise until the end of [OWNER]'s turn."
+    },
+    "PARAPSYCH": {
+        "NAME": "Parapsych",
+        "DESC": "At the start of [OWNER]'s turn, this argument loses [STACKS] resolve and reduces Parapsych by 1."
+    },
+    "RENEW": {
+        "NAME": "Renew",
+        "DESC": "At the start of [OWNER]'s turn, this argument restores [STACKS] resolve and reduces Renew by 1."
+    },
+    "RESONANCE": {
+        "NAME": "Resonance",
+        "DESC": "Whenever any other status effect is applied to this argument, also apply the effect to ALL other arguments with Resonance, then remove Resonance from ALL arguments."
+    },
+    "SILENCE": {
+        "NAME": "Silence",
+        "DESC": "This argument's effects are disabled until the end of [OWNER]'s turn."
+    },
+    "UNSTABLE": {
+        "NAME": "Unstable",
+        "DESC": "At the end of [OWNER]'s turn, destroy this argument if this is a support argument, otherwise halve its current resolve (rounded up)."
+    },
+    "UNTOUCHABLE": {
+        "NAME": "Untouchable",
+        "DESC": "This argument cannot be targeted, damaged or destroyed until the start of [OWNER]'s turn."
+    },
+    "VULNERABLE": {
+        "NAME": "Vulnerable",
+        "DESC": "This argument takes +50% increased damage until the start of [OWNER]'s turn."
+    }
+}

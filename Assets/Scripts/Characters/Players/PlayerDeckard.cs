@@ -11,15 +11,15 @@ public class PlayerDeckard : AbstractCharacter
     public PlayerDeckard() : base(playerID, playerName, playerCoreArg, true){}
 
     public override void AddStarterDeck(){
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_GRUFF");
-        this.AddCardToPermaDeck("DECKARD_GRUFF");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_STOIC");
-        this.AddCardToPermaDeck("DECKARD_INSTINCTS");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_GRUFF");
+        // this.AddCardToPermaDeck("DECKARD_GRUFF");
+        // this.AddCardToPermaDeck("DECKARD_STOIC");
+        // this.AddCardToPermaDeck("DECKARD_STOIC");
+        // this.AddCardToPermaDeck("DECKARD_STOIC");
+        // this.AddCardToPermaDeck("DECKARD_INSTINCTS");
 
         // this.AddCardToPermaDeck("DECKARD_COMEBACK");
         // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
@@ -28,7 +28,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS_HEATED");
         // this.AddCardToPermaDeck("DECKARD_INSTINCTS");
         // this.AddCardToPermaDeck("DECKARD_REVERSAL");
-        // this.AddCardToPermaDeck("DECKARD_BRASH");
+        this.AddCardToPermaDeck("DECKARD_BRASH");
         // this.AddCardToPermaDeck("DECKARD_GOOD_IMPRESSION");
         // this.AddCardToPermaDeck("DECKARD_GRANDIOSITY");
         // this.AddCardToPermaDeck("DECKARD_INSULT");
@@ -71,9 +71,10 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("PARANORMAL_THE_STARS_ALIGN");
         // this.AddCardToPermaDeck("DECKARD_OVERBEAR");
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
-        // this.AddCardToPermaDeck("DECKARD_BARRAGE");
-        // this.AddCardToPermaDeck("DECKARD_INSIGHT");
-        // this.AddCardToPermaDeck("DECKARD_CAPITALIZE");
+        // this.AddCardToPermaDeck("DECKARD_ESCALATE");
+        // this.AddCardToPermaDeck("DECKARD_LOGIC");
+        this.AddCardToPermaDeck("TEST_CARD_VULNERABLE");
+        this.AddCardToPermaDeck("TEST_CARD_VULNERABLE");
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION");
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION", true);
         // this.AddCardToPermaDeck("DECKARD_PANACHE");
@@ -81,11 +82,12 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_SEETHE", true);
         // this.AddCardToPermaDeck("DECKARD_ANGER", true);
         // this.AddCardToPermaDeck("DECKARD_PIVOT", true);
-        this.AddCardToPermaDeck("DECKARD_DISPUTE");
-        this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
-        this.AddCardToPermaDeck("DECKARD_STONEWALL");
+        // this.AddCardToPermaDeck("DECKARD_DISPUTE");
+        // this.AddCardToPermaDeck("DECKARD_ROLL_WITH_IT", true);
+        // this.AddCardToPermaDeck("DECKARD_STONEWALL");
+        // this.AddCardToPermaDeck("DECKARD_THE_ACE");
         // this.AddCardToPermaDeck("NEUTRAL_BLANK");
-        this.AddCardToPermaDeck("DECKARD_TURNABOUT");
+        // this.AddCardToPermaDeck("DECKARD_TURNABOUT");
         // this.AddCardToPermaDeck("DECKARD_TURNABOUT", true);
         // this.AddCardToPermaDeck("DECKARD_ESCALATE");
         // this.AddCardToPermaDeck("DECKARD_ESCALATE", true);
