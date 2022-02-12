@@ -24,7 +24,6 @@ public class ApplyStatusEffectAction : AbstractAction {
         this.source = src;
         this.target = target;
         this.effect = effect;
-        effect.host = target;
 
         this.stacksToApply = stacksToApply;
     }
@@ -37,15 +36,18 @@ public class ApplyStatusEffectAction : AbstractAction {
 
         // If the effect already exists, add stacks to it if applicable, else applying a status effect already on an argument has no effect.
         if (existingEffect != null){
-            if (existingEffect.stacks > 0 && this.stacksToApply > 0){
+            if (this.stacksToApply > 0 && existingEffect.stacks > 0){
                 existingEffect.stacks += this.stacksToApply;
             }
             return 0;
         }
 
-        this.target.statusEffects.Add(this.effect);
-        this.effect.TriggerOnEffectApplied();
-        EventSystemManager.Instance.TriggerEvent(new EventStatusEffectApplied(this.target, this.effect, this.stacksToApply));
+        AbstractStatusEffect newCopy = this.effect.MakeCopy();
+        newCopy.host = target;
+
+        this.target.statusEffects.Add(newCopy);
+        newCopy.TriggerOnEffectApplied();
+        EventSystemManager.Instance.TriggerEvent(new EventStatusEffectApplied(this.target, newCopy, this.stacksToApply));
         return 0;
     }
 }

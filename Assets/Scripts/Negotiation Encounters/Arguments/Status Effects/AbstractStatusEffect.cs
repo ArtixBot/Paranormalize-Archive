@@ -28,6 +28,8 @@ public abstract class AbstractStatusEffect : EventSubscriber{
 
     }
 
+    public abstract AbstractStatusEffect MakeCopy();
+
     public virtual void TriggerOnEffectApplied(){}
 
     public virtual void TriggerOnEffectExpire(){}
@@ -35,6 +37,6 @@ public abstract class AbstractStatusEffect : EventSubscriber{
     public void ExpireEffect(){     // Immediately remove the current status effect.
         EventSystemManager.Instance.UnsubscribeFromAllEvents(this);     // Unsubscribe this from EventSystemManager
         this.TriggerOnEffectExpire();                                   // Trigger expiration effects (mostly just cleanup effects)
-        this.host.statusEffects.Remove(this);                           // Remove from the list of status effects
+        this.host.statusEffects.RemoveAll(effect => effect.ID == this.ID);                           // Remove from the list of status effects. A RemoveAll predicate is used here so I can remove by ID instead of instance (yay memory and references....)
     }
 }

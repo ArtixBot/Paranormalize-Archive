@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameEvent;
 
-public class StatusFortify : AbstractStatusEffect{
+public class StatusSilenced : AbstractStatusEffect{
 
-    public static string statusID = "FORTIFY";
+    public static string statusID = "SILENCE";
     private static Dictionary<string, string> statusStrings = LocalizationLibrary.Instance.GetStatusStrings(statusID);
 
-    public StatusFortify() : base(statusID, statusStrings, StatusEffectType.BUFF){}
+    public StatusSilenced() : base(statusID, statusStrings, StatusEffectType.DEBUFF){}
     
     public override void TriggerOnEffectApplied(){
-        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
-        this.host.dmgTakenMult -= 0.5f;
+        EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_END);
     }
 
     public override void TriggerOnEffectExpire(){
-        this.host.dmgTakenMult += 0.5f;
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){
-        EventTurnStart data = (EventTurnStart) eventData;
-        if (data.start == this.host.OWNER){
+        EventTurnEnd data = (EventTurnEnd) eventData;
+        if (data.end == this.host.OWNER){
             this.ExpireEffect();
         }
     }
 
     public override AbstractStatusEffect MakeCopy(){
-        return new StatusFortify();
+        return new StatusSilenced();
     }
 }

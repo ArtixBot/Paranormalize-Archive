@@ -21,10 +21,10 @@
     },
     "RESONANCE": {
         "NAME": "Resonance",
-        "DESC": "Whenever any other status effect is applied to this argument, apply that effect to ALL other arguments with Resonance and remove Resonance from ALL arguments."
+        "DESC": "Any new status effect applied to this argument is applied to ALL arguments with Resonance, then remove Resonance from ALL arguments."
     },
     "SILENCE": {
-        "NAME": "Silence",
+        "NAME": "Silenced",
         "DESC": "This argument's effects are disabled until the end of [OWNER]'s turn."
     },
     "UNSTABLE": {

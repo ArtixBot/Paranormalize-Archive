@@ -50,7 +50,7 @@ public class EventSystemManager
         //         gameEvents[type].RemoveAt(i);
         //     }
         // }
-        gameEvents[type].Remove(subscriber);
+        gameEvents[type].RemoveAll(sub => sub.Equals(subscriber));
     }
 
     public void UnsubscribeFromEvent(ITriggerOnEvent subscriber, EventType type){
@@ -77,7 +77,16 @@ public class EventSystemManager
 
     private void NotifySubscribers(AbstractEvent eventData){
         List<EventSubscriber> subscribers = gameEvents[eventData.type];
-        for (int cnt = subscribers.Count - 1; cnt >= 0; cnt--){
+        for (int cnt = subscribers.Count - 1; cnt >= 0; cnt--){     // Trigger buffs, then argument effects, then debuffs
+            // This check is LITERALLY for only one status effect - Resonance.
+            // Because Resonance will remove all other Resonance subscribers during its own NotifyOfEvent, and the original notification happens here...
+            // If there were 5 resonance listeners, the subscribers.count would go from 5->0 in the first iteration, but the for loop would still iterate 4 more times.
+            // This causes an array-out-of-index error. Ideally, this check prevents that.
+            // I don't want to have to keep doing hacks like this as it's gonna come back to bite me, but it works.
+            // TODO: Rework Resonance implementation to prevent having to use this
+            if (cnt >= subscribers.Count){
+                continue;
+            }
             EventSubscriber subscriber = subscribers[cnt];
             subscriber.NotifyOfEvent(eventData);
         }

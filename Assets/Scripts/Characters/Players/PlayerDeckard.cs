@@ -12,7 +12,7 @@ public class PlayerDeckard : AbstractCharacter
 
     public override void AddStarterDeck(){
         this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");
@@ -73,6 +73,7 @@ public class PlayerDeckard : AbstractCharacter
         // this.AddCardToPermaDeck("DECKARD_RUMINATE");
         // this.AddCardToPermaDeck("DECKARD_ESCALATE");
         // this.AddCardToPermaDeck("DECKARD_LOGIC");
+        this.AddCardToPermaDeck("TEST_CARD_VULNERABLE");
         this.AddCardToPermaDeck("TEST_CARD_VULNERABLE");
         this.AddCardToPermaDeck("TEST_CARD_VULNERABLE");
         // this.AddCardToPermaDeck("DECKARD_OBLIGATION");

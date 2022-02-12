@@ -77,8 +77,9 @@ public class TooltipArgument : MonoBehaviour, IPointerEnterHandler, IPointerExit
         string retVal = "";
         foreach(AbstractStatusEffect effect in argRef.statusEffects){
             string color = (effect.TYPE == StatusEffectType.BUFF) ? "#a3ff8a" : "#ff7369";
+            string textColor = (effect.TYPE == StatusEffectType.BUFF) ? "#e7ffe0" : "#ffe5e3";
             string sprite = (effect.TYPE == StatusEffectType.BUFF) ? "<sprite=\"icon-buff\" index=0>" : "<sprite=\"icon-debuff\" index=0>";
-            retVal += $"\n<color={color}>{sprite}{effect.NAME}</color> - {ParseTooltip(effect.DESC)}\n";
+            retVal += $"\n<color={color}>{sprite}{effect.NAME}</color> - <color={textColor}>{ParseTooltip(effect.DESC)}</color>\n";
         }
         if (retVal != ""){
             retVal = "\n\n<b>Status Effects</b>" + retVal;

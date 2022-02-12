@@ -163,7 +163,7 @@ public class NegotiationManager : EventSubscriber {
             }
             return true;
         } catch (Exception ex){
-            Debug.LogWarning("NegotiationManager.cs failed to play " +  card.NAME + ", reason: " + ex.Message);
+            Debug.LogWarning("NegotiationManager.cs failed to play " +  card.NAME + ", reason: " + ex.ToString());
             return false;
         }
     }
