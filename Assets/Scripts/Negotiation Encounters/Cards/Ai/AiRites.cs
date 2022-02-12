@@ -23,7 +23,7 @@ public class AiRites : AbstractCard
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         int cnt = 0;
-        foreach(AbstractArgument argument in source.GetArguments()){
+        foreach(AbstractArgument argument in source.GetSupportArguments()){
             if (argument.NAME.Contains("Talisman")){
                 cnt++;
             }

@@ -23,7 +23,7 @@ public class DeckardDecisiveAction : AbstractCard {
         base.Play(source, target);
 
         this.OWNER.GetCoreArgument().poise = 0;
-        foreach(AbstractArgument arg in this.OWNER.GetArguments()){
+        foreach(AbstractArgument arg in this.OWNER.GetSupportArguments()){
             arg.poise = 0;
         }
         NegotiationManager.Instance.AddAction(new DeployArgumentAction(this.OWNER, new ArgumentInept(), 1));

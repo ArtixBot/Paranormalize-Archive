@@ -23,7 +23,7 @@ public class DeckardAuthoritative : AbstractCard {
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         int bonus = 0;
-        List<AbstractArgument> arguments = source.GetArguments();
+        List<AbstractArgument> arguments = source.GetSupportArguments();
         for (int i = 0; i < arguments.Count; i++){
             bonus += arguments[i].stacks;
         }

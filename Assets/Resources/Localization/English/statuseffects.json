@@ -1,15 +1,15 @@
 {
     "ELUSIVE": {
         "NAME": "Elusive",
-        "DESC": "When this argument is targeted by an attack, negate the attack and remove Elusive. Expires at the start of owner's turn."
+        "DESC": "When this is targeted by an attack, negate the attack and remove Elusive. Expires at the start of owner's turn."
     },
     "FORTIFY": {
         "NAME": "Fortified",
-        "DESC": "This argument takes -50% reduced damage until the start of [OWNER]'s turn."
+        "DESC": "This takes 50% reduced damage until the start of [OWNER]'s turn."
     },
     "INCOHERENT": {
         "NAME": "Incoherent",
-        "DESC": "This argument cannot gain Poise until the end of [OWNER]'s turn."
+        "DESC": "This cannot gain Poise until the end of [OWNER]'s turn."
     },
     "PARAPSYCH": {
         "NAME": "Parapsych",
@@ -21,7 +21,7 @@
     },
     "RESONANCE": {
         "NAME": "Resonance",
-        "DESC": "Whenever any other status effect is applied to this argument, also apply the effect to ALL other arguments with Resonance, then remove Resonance from ALL arguments."
+        "DESC": "Whenever any other status effect is applied to this argument, apply that effect to ALL other arguments with Resonance and remove Resonance from ALL arguments."
     },
     "SILENCE": {
         "NAME": "Silence",
@@ -29,14 +29,14 @@
     },
     "UNSTABLE": {
         "NAME": "Unstable",
-        "DESC": "At the end of [OWNER]'s turn, destroy this argument if this is a support argument, otherwise halve its current resolve (rounded up)."
+        "DESC": "At the end of [OWNER]'s turn, destroy this if it is a support argument, otherwise halve current resolve (rounded up)."
     },
     "UNTOUCHABLE": {
         "NAME": "Untouchable",
-        "DESC": "This argument cannot be targeted, damaged or destroyed until the start of [OWNER]'s turn."
+        "DESC": "This cannot be targeted, damaged or destroyed until the start of [OWNER]'s turn."
     },
     "VULNERABLE": {
         "NAME": "Vulnerable",
-        "DESC": "This argument takes +50% increased damage until the start of [OWNER]'s turn."
+        "DESC": "This takes 50% increased damage until the start of [OWNER]'s turn."
     }
 }

@@ -18,6 +18,7 @@ public abstract class AbstractStatusEffect : EventSubscriber{
         this.NAME = strings["NAME"];
         this.DESC = strings["DESC"];
         this.TYPE = type;
+        this.stacks = stacks;
 
         if (type == StatusEffectType.BUFF){
             this.LISTENER_TYPE = EventListenerType.STATUS_BUFF;
@@ -25,14 +26,15 @@ public abstract class AbstractStatusEffect : EventSubscriber{
             this.LISTENER_TYPE = EventListenerType.STATUS_DEBUFF;
         }
 
-        this.stacks = stacks;
     }
 
-    public virtual void TriggerOnEffectApplied(){}      // Subscribe to all relevant events and edit the values of the argument by overriding this function.
+    public virtual void TriggerOnEffectApplied(){}
 
     public virtual void TriggerOnEffectExpire(){}
 
-    public virtual void TriggerOnHostDies(){    // Unsubscribe from any events (if relevant). Should also undo any changes made here.
-        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
+    public void ExpireEffect(){     // Immediately remove the current status effect.
+        EventSystemManager.Instance.UnsubscribeFromAllEvents(this);     // Unsubscribe this from EventSystemManager
+        this.TriggerOnEffectExpire();                                   // Trigger expiration effects (mostly just cleanup effects)
+        this.host.statusEffects.Remove(this);                           // Remove from the list of status effects
     }
 }

@@ -29,7 +29,7 @@ public class ArgumentOverwhelm : AbstractArgument
             EventCardPlayed data = (EventCardPlayed) eventData;
             if (data.cardType == CardType.ATTACK){
                 NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this.OWNER.GetCoreArgument(), this.stacks));
-                foreach (AbstractArgument arg in this.OWNER.GetArguments()){
+                foreach (AbstractArgument arg in this.OWNER.GetSupportArguments()){
                     NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, arg, this.stacks));
                 }
             }

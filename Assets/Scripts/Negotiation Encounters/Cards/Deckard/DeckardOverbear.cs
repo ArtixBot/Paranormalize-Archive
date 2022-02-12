@@ -23,7 +23,7 @@ public class DeckardOverbear : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        int multiplier = 1 + source.GetArguments().Count;     // 1 for core argument
+        int multiplier = 1 + source.GetSupportArguments().Count;     // 1 for core argument
         NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE * multiplier, MAX_DAMAGE * multiplier, this));
     }
 

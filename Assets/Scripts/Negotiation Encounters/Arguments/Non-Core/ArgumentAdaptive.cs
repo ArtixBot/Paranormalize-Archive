@@ -26,7 +26,7 @@ public class ArgumentAdaptive : AbstractArgument
 
     public override void NotifyOfEvent(AbstractEvent eventData){
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, this.OWNER.GetCoreArgument(), this.stacks));
-        foreach (AbstractArgument arg in this.OWNER.GetArguments()){
+        foreach (AbstractArgument arg in this.OWNER.GetSupportArguments()){
             NegotiationManager.Instance.AddAction(new ApplyPoiseAction(this.OWNER, arg, this.stacks));
         }
     }

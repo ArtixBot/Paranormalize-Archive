@@ -25,7 +25,7 @@ public class DeckardRapidFire : AbstractCard {
         base.Play(source, target);
 
         int bonus_attacks = 0;
-        List<AbstractArgument> args = this.OWNER.GetArguments();
+        List<AbstractArgument> args = this.OWNER.GetSupportArguments();
         for (int i = 0; i < args.Count; i++){
             if (args[i].ID == "CHATTERBOX"){
                 bonus_attacks += args[i].stacks;

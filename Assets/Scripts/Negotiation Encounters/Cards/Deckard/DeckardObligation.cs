@@ -26,7 +26,7 @@ public class DeckardObligation : AbstractCard {
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
         NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
-        foreach(AbstractArgument support in source.GetArguments()){
+        foreach(AbstractArgument support in source.GetSupportArguments()){
             NegotiationManager.Instance.AddAction(new AddStacksToArgumentAction(support, this.STACKS));
         }
     }

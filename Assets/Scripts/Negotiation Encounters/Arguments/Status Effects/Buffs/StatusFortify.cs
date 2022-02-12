@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameEvent;
 
-public class StatusVulnerable : AbstractStatusEffect{
+public class StatusFortify : AbstractStatusEffect{
 
-    public static string statusID = "VULNERABLE";
+    public static string statusID = "FORTIFY";
     private static Dictionary<string, string> statusStrings = LocalizationLibrary.Instance.GetStatusStrings(statusID);
 
-    public StatusVulnerable() : base(
+    public StatusFortify() : base(
         statusID,
         statusStrings,
-        StatusEffectType.DEBUFF){
+        StatusEffectType.BUFF){
             EventSystemManager.Instance.SubscribeToEvent(this, EventType.TURN_START);
         }
     
     public override void TriggerOnEffectApplied(){
-        this.host.dmgTakenMult += 0.5f;
+        this.host.dmgTakenMult -= 0.5f;
     }
 
     public override void TriggerOnEffectExpire(){    // Unsubscribe from any events (if relevant). Should also undo any changes made here.
-        this.host.dmgTakenMult -= 0.5f;
+        this.host.dmgTakenMult += 0.5f;
     }
 
     public override void NotifyOfEvent(AbstractEvent eventData){

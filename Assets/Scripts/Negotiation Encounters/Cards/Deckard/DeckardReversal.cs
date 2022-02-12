@@ -23,7 +23,7 @@ public class DeckardReversal : AbstractCard {
         target.poise = 0;
         NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, source.GetCoreArgument(), poiseToSteal));
         if (this.isUpgraded){
-            foreach (AbstractArgument arg in source.GetArguments()){
+            foreach (AbstractArgument arg in source.GetSupportArguments()){
                 NegotiationManager.Instance.AddAction(new ApplyPoiseAction(source, arg, poiseToSteal));
             }
         }

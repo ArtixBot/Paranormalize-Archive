@@ -41,7 +41,7 @@ public class DestroyArgumentAction : AbstractAction {
             }
             this.argumentToDestroy.TriggerOnDestroy();                             // Remove event subscriptions and handle victory/defeat if a core argument was destroyed
             
-            owner.GetArguments().Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
+            owner.GetSupportArguments().Remove(this.argumentToDestroy);                 // remove argument from the list of arguments (previous line will return if it's a core argument so no worries)
             // Remove all actions that were in the action queue and associated w/ the destroyed argument
             NegotiationManager.Instance.actionQueue.RemoveAll(action => action.origin == instance);
         }

@@ -31,7 +31,7 @@ public class DeployArgumentAction : AbstractAction {
             newInstance.INSTANCE_ID = newInstance.ID + "_" + NegotiationManager.Instance.argumentsDeployedThisNegotiation;
             NegotiationManager.Instance.argumentsDeployedThisNegotiation += 1;
 
-            this.owner.GetArguments().Add(newInstance);
+            this.owner.GetSupportArguments().Add(newInstance);
             newInstance.TriggerOnDeploy();     // Add event subscriptions
             EventSystemManager.Instance.TriggerEvent(new EventArgCreated(newInstance));
         } else {

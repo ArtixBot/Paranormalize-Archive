@@ -191,7 +191,7 @@ public class NegotiationManager : EventSubscriber {
         actionQueue.Clear();
         character.coreArgument.poise = 0;
         character.GetHand().Clear();
-        character.GetArguments().Clear();
+        character.GetSupportArguments().Clear();
         character.GetDrawPile().Clear();
         character.GetDiscardPile().Clear();
         character.GetScourPile().Clear();

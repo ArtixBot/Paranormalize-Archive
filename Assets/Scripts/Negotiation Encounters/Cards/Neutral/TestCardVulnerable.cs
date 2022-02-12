@@ -19,6 +19,8 @@ public class TestCardVulnerable : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         NegotiationManager.Instance.AddAction(new ApplyStatusEffectAction(source, target, new StatusVulnerable()));
+        NegotiationManager.Instance.AddAction(new ApplyStatusEffectAction(source, target, new StatusFortify()));
+        NegotiationManager.Instance.AddAction(new ApplyStatusEffectAction(source, target, new StatusResonance()));
     }
 
     public override void Upgrade(){

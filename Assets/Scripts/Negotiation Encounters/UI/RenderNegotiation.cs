@@ -111,12 +111,12 @@ public class RenderNegotiation : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         
-        for (int i = 0; i < player.GetArguments().Count; i++){
+        for (int i = 0; i < player.GetSupportArguments().Count; i++){
             float angle = ((i+1) * Mathf.PI * 2f) / 10;     // 10 should be a placeholder number
             Vector3 newPos = new Vector3(parent.position.x + Mathf.Cos(angle) * radius, parent.position.y + Mathf.Sin(angle) * radius, 0);
             
             GameObject arg = Instantiate(argPrefab, newPos, Quaternion.identity);
-            arg.GetComponent<DisplayArgument>().reference = player.GetArguments()[i];
+            arg.GetComponent<DisplayArgument>().reference = player.GetSupportArguments()[i];
             arg.transform.SetParent(parent);
             arg.SetActive(true);
         }
@@ -129,12 +129,12 @@ public class RenderNegotiation : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
         
-        for (int i = 0; i < enemy.GetArguments().Count; i++){
+        for (int i = 0; i < enemy.GetSupportArguments().Count; i++){
             float angle = ((i+1) * Mathf.PI * 2f) / 10;     // 10 should be a placeholder number
             Vector3 newPos = new Vector3(parent.position.x + Mathf.Cos(angle) * radius, parent.position.y + Mathf.Sin(angle) * radius, 0);
             
             GameObject arg = Instantiate(argPrefab, newPos, Quaternion.identity);
-            arg.GetComponent<DisplayArgument>().reference = enemy.GetArguments()[i];
+            arg.GetComponent<DisplayArgument>().reference = enemy.GetSupportArguments()[i];
             arg.transform.SetParent(parent);
             arg.SetActive(true);
         }

@@ -56,7 +56,7 @@ public abstract class AbstractCard : EventSubscriber {
         this.ID = id;
         this.NAME = cardStrings["NAME"];
         this.DESC = cardStrings["DESC"];
-        this.IMAGE = (this.ID == "DECKARD_DIPLOMACY") ? "Images/CardsDeckard/diplomacy" : "Images/missing";
+        this.IMAGE = (this.ID == "DECKARD_DIPLOMACY") ? "Images/CardsDeckard/theace" : "Images/missing";
         this.COST = cost;
         this.AMBIENCE = ambience;
         this.RARITY = rarity;

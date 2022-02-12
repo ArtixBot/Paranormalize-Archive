@@ -11,8 +11,8 @@ public class PlayerDeckard : AbstractCharacter
     public PlayerDeckard() : base(playerID, playerName, playerCoreArg, true){}
 
     public override void AddStarterDeck(){
-        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
-        // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
+        this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_DIPLOMACY");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");
         // this.AddCardToPermaDeck("DECKARD_GRUFF");

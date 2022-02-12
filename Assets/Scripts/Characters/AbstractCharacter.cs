@@ -133,7 +133,7 @@ public abstract class AbstractCharacter
         return null;
     }
 
-    // Return all non-core arguments THAT CAN BE TARGETED by default. If includeCore is true, also include the core argument
+    // Return all support arguments THAT CAN BE TARGETED by default. If includeCore is true, also include the core argument
     public List<AbstractArgument> GetTargetableArguments(bool includeCore = false){
         List<AbstractArgument> targetable = new List<AbstractArgument>();
         if (includeCore){
@@ -147,8 +147,7 @@ public abstract class AbstractCharacter
         return targetable;
     }
 
-    // Return all non-core arguments.
-    public List<AbstractArgument> GetArguments(){
+    public List<AbstractArgument> GetSupportArguments(){
         return this.nonCoreArguments;
     }
 

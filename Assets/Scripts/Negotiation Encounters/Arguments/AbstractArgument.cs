@@ -36,7 +36,7 @@ public abstract class AbstractArgument : EventSubscriber
     public virtual void TriggerOnDestroy(){     // Win/lose if it's a core argument.
         EventSystemManager.Instance.UnsubscribeFromAllEvents(this);
         foreach(AbstractStatusEffect effect in statusEffects){
-            effect.TriggerOnHostDies();
+            effect.ExpireEffect();
         }
         if (this.isCore){
             if (this.OWNER.FACTION == FactionType.PLAYER){

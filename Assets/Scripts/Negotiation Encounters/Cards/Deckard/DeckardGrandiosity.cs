@@ -25,7 +25,7 @@ public class DeckardGrandiosity : AbstractCard {
 
     public override void Play(AbstractCharacter source, AbstractArgument target){
         base.Play(source, target);
-        int count = source.GetArguments().Count;
+        int count = source.GetSupportArguments().Count;
         NegotiationManager.Instance.AddAction(new DamageAction(target, target.OWNER, MIN_DAMAGE, MAX_DAMAGE, this));
     }
 
@@ -37,7 +37,7 @@ public class DeckardGrandiosity : AbstractCard {
 
     public override void NotifyOfEvent(AbstractEvent eventData){
         if (this.OWNER.GetHand().Contains(this)){
-            int modifier = this.OWNER.GetArguments().Count;
+            int modifier = this.OWNER.GetSupportArguments().Count;
             this.COST = cardCost - modifier;
         }
     }
