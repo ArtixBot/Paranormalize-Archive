@@ -38,6 +38,10 @@ public class RenderStory : MonoBehaviour
         textPrefab = Resources.Load("Prefabs/DialogBubble") as GameObject;
         // choicePrefab = Resources.Load("Prefabs/Button") as Button;
 
+		if (GameState.currentStoryID == null){
+			GameState.currentStoryID = "TEST_STORY";			// this is only used when running the Story scene for test purposes. TOOD: Remove once done testing
+		}
+
 		Type storyClass = StoryLibrary.Instance.Lookup(GameState.currentStoryID);
         if (storyClass == null){
             Debug.Log("No valid story was supplied; supplying test story instead");
